@@ -14,24 +14,35 @@ enum Router {
 
 extension Router: TargetType {
     var baseURL: URL {
-        <#code#>
+        return URL(string: APIKey.baseURL.rawValue)!
     }
     
     var path: String {
-        <#code#>
+        switch self {
+        case .login(let query):
+            return "user/login"
+        }
     }
     
     var method: Moya.Method {
-        <#code#>
+        switch self {
+        case .login(let query):
+            return .post
+        }
     }
     
     var task: Moya.Task {
-        <#code#>
+        switch self {
+        case .login(let query):
+            <#code#>
+        }
     }
     
     var headers: [String : String]? {
-        <#code#>
+        switch self {
+        case .login(let query):
+            return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        }
     }
-    
-    
 }

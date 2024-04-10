@@ -8,3 +8,8 @@
 import Foundation
 import Moya
 
+extension TargetType {
+    func asURLRequest() throws -> URLRequest {
+        <#code#>
+    }
+}

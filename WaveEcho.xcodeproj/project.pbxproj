@@ -25,6 +25,8 @@
 		C23AFEA32BC6D2EE0000EBE5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEA22BC6D2EE0000EBE5 /* Router.swift */; };
 		C23AFEA52BC6DA1C0000EBE5 /* LoginQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEA42BC6DA1C0000EBE5 /* LoginQuery.swift */; };
 		C23AFEA72BC6DBDB0000EBE5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C23AFEA62BC6DBDB0000EBE5 /* .gitignore */; };
+		C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEA82BC6DC2B0000EBE5 /* APIKey.swift */; };
+		C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		C23AFEA22BC6D2EE0000EBE5 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C23AFEA42BC6DA1C0000EBE5 /* LoginQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginQuery.swift; sourceTree = "<group>"; };
 		C23AFEA62BC6DBDB0000EBE5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C23AFEA82BC6DC2B0000EBE5 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 				C23AFEA02BC6D2380000EBE5 /* TargetType.swift */,
 				C23AFEA22BC6D2EE0000EBE5 /* Router.swift */,
 				C23AFEA42BC6DA1C0000EBE5 /* LoginQuery.swift */,
+				C23AFEA82BC6DC2B0000EBE5 /* APIKey.swift */,
+				C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -192,8 +198,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
+				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
 				C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */,
 				C23AFEA32BC6D2EE0000EBE5 /* Router.swift in Sources */,
+				C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */,
 				C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */,
 				C23AFEA52BC6DA1C0000EBE5 /* LoginQuery.swift in Sources */,
 				C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */,
