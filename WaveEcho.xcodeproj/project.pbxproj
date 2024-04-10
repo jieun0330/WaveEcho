@@ -28,6 +28,7 @@
 		C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEA82BC6DC2B0000EBE5 /* APIKey.swift */; };
 		C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */; };
 		C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */; };
+		C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		C23AFEA82BC6DC2B0000EBE5 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		C23AFE762BC6CE820000EBE5 /* WaveEcho */ = {
 			isa = PBXGroup;
 			children = (
+				C23AFEB12BC6E24F0000EBE5 /* Protocol */,
 				C23AFEAC2BC6E1A90000EBE5 /* Base */,
 				C23AFE962BC6D0BC0000EBE5 /* Network */,
 				C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */,
@@ -118,6 +121,14 @@
 				C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		C23AFEB12BC6E24F0000EBE5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +227,7 @@
 				C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */,
 				C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */,
 				C23AFEA52BC6DA1C0000EBE5 /* LoginQuery.swift in Sources */,
+				C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */,
 				C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
