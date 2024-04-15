@@ -11,6 +11,7 @@ import RxSwift
 
 enum UsersResponse {
     case join(query: SignupRequestBody)
+    case validEmail(query: ValidRequestBody)
     case login(query: LoginRequestBody)
 }
 
@@ -23,6 +24,8 @@ extension UsersResponse: TargetType {
         switch self {
         case .join:
             return .post
+        case .validEmail:
+            return .post
         case .login:
             return .post
         }
@@ -31,6 +34,9 @@ extension UsersResponse: TargetType {
     var headers: [String : String] {
         switch self {
         case .join:
+            return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .validEmail(query: let query):
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .login:
@@ -43,6 +49,8 @@ extension UsersResponse: TargetType {
         switch self {
         case .join:
             return "/v1/users/join"
+        case .validEmail:
+            return "/v1/validation/email"
         case .login:
             return "/v1/users/login"
         }
@@ -55,6 +63,10 @@ extension UsersResponse: TargetType {
     var body: Data? {
         switch self {
         case .join(query: let query):
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            return try? encoder.encode(query)
+        case .validEmail(query: let query):
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try? encoder.encode(query)
@@ -88,6 +100,30 @@ extension UsersResponse {
                         }
                     }
             } catch {
+                single(.failure(error))
+            }
+            return Disposables.create()
+        }
+    }
+    
+    static func validEmail(query: ValidRequestBody) -> Single<ValidResponse> {
+        return Single<ValidResponse>.create { single in
+            do {
+                let urlRequest = try UsersResponse.validEmail(query: query).asURLRequest()
+                
+                AF
+                    .request(urlRequest)
+                    .responseDecodable(of: ValidResponse.self) { response in
+                        switch response.result {
+                        case .success(let validEmail):
+                            single(.success(validEmail))
+                            print("이메일 중복 검사 완료", validEmail)
+                        case .failure(let error):
+                            single(.failure(error))
+                        }
+                    }
+            }
+            catch {
                 single(.failure(error))
             }
             return Disposables.create()

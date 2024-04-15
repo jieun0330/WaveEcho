@@ -48,6 +48,14 @@ class SignupView: BaseView {
         return email
     }()
     
+    let validEmailButton = {
+        let button = UIButton()
+        button.setTitle("중복확인", for: .normal)
+        button.backgroundColor = .systemYellow
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+    
     private let password = {
         let password = UILabel()
         password.text = "Password"
@@ -77,9 +85,7 @@ class SignupView: BaseView {
         return right
     }()
     
-    @objc private func rightBarButtonItemTapped() {
-        print(#function)
-    }
+    @objc private func rightBarButtonItemTapped() { }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -92,7 +98,7 @@ class SignupView: BaseView {
             addSubview($0)
         }
         
-        [nickname, nicknameTextField, email, emailTextField, password, passwordTextField].forEach {
+        [nickname, nicknameTextField, email, emailTextField, validEmailButton, password, passwordTextField].forEach {
             background.addSubview($0)
         }
     }
@@ -126,7 +132,13 @@ class SignupView: BaseView {
         
         emailTextField.snp.makeConstraints {
             $0.top.equalTo(email.snp.bottom).offset(30)
-            $0.horizontalEdges.equalToSuperview().inset(30)
+            $0.leading.equalToSuperview().inset(30)
+        }
+        
+        validEmailButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-5)
+            $0.bottom.equalTo(emailTextField)
+            $0.width.equalTo(80)
         }
         
         password.snp.makeConstraints {

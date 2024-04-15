@@ -18,15 +18,18 @@ class SignupViewModel: ViewModelType {
         let password: ControlProperty<String>
         let nickname: ControlProperty<String>
         let signupButtonTapped: ControlEvent<Void>
+        let validEmailButtonTapped: ControlEvent<Void>
     }
     
     struct Output {
         let signupTrigger: Driver<Void>
+        let validEmailTrigger: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
         
         let signupTrigger = PublishRelay<Void>()
+        let validEmailTrigger = PublishRelay<Bool>()
         
         let signupObservable = Observable.combineLatest(input.email,
                                                       input.password, input.nickname)
@@ -49,7 +52,19 @@ class SignupViewModel: ViewModelType {
                 signupTrigger.accept(())
             }
             .disposed(by: disposeBag)
-                
-        return Output(signupTrigger: signupTrigger.asDriver(onErrorJustReturn: ()))
+        
+        input.validEmailButtonTapped
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(input.email)
+            .flatMap { email in
+                UsersResponse.validEmail(query: ValidRequestBody(email: email))
+            }
+            .bind(with: self) { owner, validEmailResponse in
+                validEmailTrigger.accept(true)
+            }
+            .disposed(by: disposeBag)
+               
+        return Output(signupTrigger: signupTrigger.asDriver(onErrorJustReturn: ()),
+                      validEmailTrigger: validEmailTrigger.asDriver(onErrorJustReturn: true))
     }
 }

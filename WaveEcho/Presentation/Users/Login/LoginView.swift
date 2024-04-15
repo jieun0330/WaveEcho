@@ -64,9 +64,7 @@ class LoginView: BaseView {
         return right
     }()
     
-    @objc private func rightBarButtonItemTapped() {
-        print(#function)
-    }
+    @objc func rightBarButtonItemTapped() { }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
