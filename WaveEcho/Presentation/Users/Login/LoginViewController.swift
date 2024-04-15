@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class LoginViewController: BaseViewController {
     
     private let mainView = LoginView()
+    private let viewModel = LoginViewModel()
     
     override func loadView() {
         view = mainView
@@ -23,6 +26,16 @@ class LoginViewController: BaseViewController {
     }
     
     override func bind() {
-        <#code#>
+        let loginInput = LoginViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
+                                              password: mainView.passwordTextField.rx.text.orEmpty,
+                                              loginButtonTapped: mainView.loginButton.rx.tap)
+        
+        let loginOutput = viewModel.transform(input: loginInput)
+        
+        loginOutput.loginTrigger
+            .drive(with: self) { owner, value in
+                print("로그인 성공")
+            }
+            .disposed(by: disposeBag)
     }
 }

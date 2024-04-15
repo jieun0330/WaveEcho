@@ -38,6 +38,7 @@
 		C2DC2C092BCD21BC00A1D102 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C082BCD21BC00A1D102 /* BaseView.swift */; };
 		C2DC2C0C2BCD2A8700A1D102 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C0B2BCD2A8700A1D102 /* LoginView.swift */; };
 		C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C0D2BCD2DB700A1D102 /* LoginViewController.swift */; };
+		C2DC2C102BCD35E100A1D102 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C0F2BCD35E100A1D102 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		C2DC2C082BCD21BC00A1D102 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C2DC2C0B2BCD2A8700A1D102 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C2DC2C0D2BCD2DB700A1D102 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C2DC2C0F2BCD35E100A1D102 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,8 +194,8 @@
 		C2DC2BFA2BCD217800A1D102 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				C2DC2BF82BCD217800A1D102 /* LoginRequestBody.swift */,
 				C2DC2BF92BCD217800A1D102 /* SignupRequestBody.swift */,
+				C2DC2BF82BCD217800A1D102 /* LoginRequestBody.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -230,6 +232,7 @@
 			children = (
 				C2DC2C0B2BCD2A8700A1D102 /* LoginView.swift */,
 				C2DC2C0D2BCD2DB700A1D102 /* LoginViewController.swift */,
+				C2DC2C0F2BCD35E100A1D102 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */,
 				C2DC2C062BCD217800A1D102 /* LoginResponse.swift in Sources */,
 				C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */,
+				C2DC2C102BCD35E100A1D102 /* LoginViewModel.swift in Sources */,
 				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
 				C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */,
 				C2DC2BF22BCD20C100A1D102 /* WelcomeView.swift in Sources */,

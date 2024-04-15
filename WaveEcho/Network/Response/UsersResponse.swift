@@ -105,6 +105,7 @@ extension UsersResponse {
                         switch response.result {
                         case .success(let loginResponse):
                             single(.success(loginResponse))
+                            print("로그인 성공", loginResponse)
                         case .failure(let error):
                             single(.failure(error))
                         }
