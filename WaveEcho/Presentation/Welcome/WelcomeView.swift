@@ -18,7 +18,7 @@ class WelcomeView: BaseView {
         return hello
     }()
     
-    private let loginButton = {
+    let loginButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -27,7 +27,7 @@ class WelcomeView: BaseView {
         return button
     }()
     
-    private let signUpButton = {
+    let signUpButton = {
         let button = UIButton()
         button.setTitle("Sign up", for: .normal)
         button.setTitleColor(.black, for: .normal)
