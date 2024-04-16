@@ -17,6 +17,13 @@ final class PostsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        mainView.sendWaveButton.addTarget(self, action: #selector(sendWaveButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func sendWaveButtonTapped() {
+        print(#function)
+        let vc = ContentViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

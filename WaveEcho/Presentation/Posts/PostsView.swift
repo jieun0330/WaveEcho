@@ -38,7 +38,7 @@ class PostsView: BaseView {
         return noWave
     }()
     
-    private let sendWaveButton = {
+    let sendWaveButton = {
         let sendWave = UIButton()
         sendWave.setTitle("유리병 던지기", for: .normal)
         sendWave.setTitleColor(.black, for: .normal)
