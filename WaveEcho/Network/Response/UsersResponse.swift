@@ -13,6 +13,7 @@ enum UsersResponse {
     case join(query: SignupRequestBody)
     case validEmail(query: ValidRequestBody)
     case login(query: LoginRequestBody)
+    case refreshToken
 }
 
 extension UsersResponse: TargetType {
@@ -28,6 +29,8 @@ extension UsersResponse: TargetType {
             return .post
         case .login:
             return .post
+        case .refreshToken:
+            return .get
         }
     }
     
@@ -36,12 +39,16 @@ extension UsersResponse: TargetType {
         case .join:
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
-        case .validEmail(query: let query):
+        case .validEmail:
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .login:
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .refreshToken:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
+                    HTTPHeader.refresh.rawValue: UserDefaults.standard.string(forKey: "refreshToken") ?? ""]
         }
     }
     
@@ -53,6 +60,8 @@ extension UsersResponse: TargetType {
             return "/v1/validation/email"
         case .login:
             return "/v1/users/login"
+        case .refreshToken:
+            return "/v1/auth/refresh"
         }
     }
 
@@ -74,6 +83,8 @@ extension UsersResponse: TargetType {
             let encoder = JSONEncoder()
             encoder.keyEncodingStrategy = .convertToSnakeCase
             return try? encoder.encode(query)
+        case .refreshToken:
+            return nil
         }
     }
 }
@@ -126,6 +137,30 @@ extension UsersResponse {
             catch {
                 single(.failure(error))
             }
+            return Disposables.create()
+        }
+    }
+    
+    static func refreshToken() -> Single<RefreshTokenResponse> {
+        return Single<RefreshTokenResponse>.create { single in
+//            do {
+                let urlRequest = UsersResponse.refreshToken.urlRequest!
+                
+                AF
+                    .request(urlRequest)
+                    .responseDecodable(of: RefreshTokenResponse.self) { response in
+                        switch response.result {
+                        case .success(let refreshToken):
+                            single(.success(refreshToken))
+                            print("토큰 갱신 완료", refreshToken)
+                        case .failure(let error):
+                            single(.failure(error))
+                        }
+                    }
+//            }
+//            catch {
+//                single(.failure(error))
+//            }
             return Disposables.create()
         }
     }

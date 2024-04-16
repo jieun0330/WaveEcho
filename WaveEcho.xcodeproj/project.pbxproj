@@ -23,6 +23,8 @@
 		C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */; };
 		C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */; };
 		C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */; };
+		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
+		C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E53412BCE71B00037E1A5 /* PostsViewController.swift */; };
 		C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE62BCD20C100A1D102 /* SignupView.swift */; };
 		C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */; };
 		C2DC2BF12BCD20C100A1D102 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE82BCD20C100A1D102 /* SignupViewModel.swift */; };
@@ -41,6 +43,7 @@
 		C2DC2C102BCD35E100A1D102 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C0F2BCD35E100A1D102 /* LoginViewModel.swift */; };
 		C2DC2C122BCD53CD00A1D102 /* ValidRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C112BCD53CD00A1D102 /* ValidRequestBody.swift */; };
 		C2DC2C142BCD548E00A1D102 /* ValidResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C132BCD548E00A1D102 /* ValidResponse.swift */; };
+		C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C162BCD5AEE00A1D102 /* RefreshTokenResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,8 @@
 		C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		C27E533F2BCE6F810037E1A5 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
+		C27E53412BCE71B00037E1A5 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		C2DC2BE62BCD20C100A1D102 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C2DC2BE82BCD20C100A1D102 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 		C2DC2C0F2BCD35E100A1D102 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C2DC2C112BCD53CD00A1D102 /* ValidRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidRequestBody.swift; sourceTree = "<group>"; };
 		C2DC2C132BCD548E00A1D102 /* ValidResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidResponse.swift; sourceTree = "<group>"; };
+		C2DC2C162BCD5AEE00A1D102 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,15 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		C27E533C2BCE6EF70037E1A5 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				C27E533F2BCE6F810037E1A5 /* PostsView.swift */,
+				C27E53412BCE71B00037E1A5 /* PostsViewController.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
 		C2DC2BE92BCD20C100A1D102 /* Join */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +188,7 @@
 			children = (
 				C2DC2BE92BCD20C100A1D102 /* Join */,
 				C2DC2C0A2BCD23D200A1D102 /* Login */,
+				C2DC2C152BCD5A9000A1D102 /* RefreshToken */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -189,6 +205,7 @@
 		C2DC2BEE2BCD20C100A1D102 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C27E533C2BCE6EF70037E1A5 /* Posts */,
 				C2DC2BED2BCD20C100A1D102 /* Welcome */,
 				C2DC2BEA2BCD20C100A1D102 /* Users */,
 			);
@@ -220,6 +237,7 @@
 				C2DC2BFD2BCD217800A1D102 /* JoinResponse.swift */,
 				C2DC2C132BCD548E00A1D102 /* ValidResponse.swift */,
 				C2DC2BFE2BCD217800A1D102 /* LoginResponse.swift */,
+				C2DC2C162BCD5AEE00A1D102 /* RefreshTokenResponse.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -241,6 +259,13 @@
 				C2DC2C0F2BCD35E100A1D102 /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		C2DC2C152BCD5A9000A1D102 /* RefreshToken */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RefreshToken;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,10 +351,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */,
 				C2DC2C032BCD217800A1D102 /* SignupRequestBody.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
+				C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */,
 				C2DC2C052BCD217800A1D102 /* JoinResponse.swift in Sources */,
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
 				C2DC2C072BCD217800A1D102 /* UsersResponse.swift in Sources */,
@@ -339,6 +366,7 @@
 				C2DC2C0C2BCD2A8700A1D102 /* LoginView.swift in Sources */,
 				C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */,
 				C2DC2C092BCD21BC00A1D102 /* BaseView.swift in Sources */,
+				C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */,
 				C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */,
 				C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */,
 				C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */,
