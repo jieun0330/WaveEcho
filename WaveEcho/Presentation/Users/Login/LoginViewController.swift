@@ -23,9 +23,17 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
+        
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = SignupViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.loginButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = PostsViewController()
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)

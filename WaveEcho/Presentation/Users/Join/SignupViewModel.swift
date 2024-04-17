@@ -45,7 +45,7 @@ class SignupViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(signupObservable)
             .flatMap { joinRequest in
-                return UsersResponse.createJoin(query: joinRequest)
+                return Router.createJoin(query: joinRequest)
             }
             .subscribe(with: self) { owner, joinResponse in
                 UserDefaults.standard.set(joinResponse.email, forKey: "email")
@@ -57,7 +57,7 @@ class SignupViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(input.email)
             .flatMap { email in
-                UsersResponse.validEmail(query: ValidRequestBody(email: email))
+                Router.validEmail(query: ValidRequestBody(email: email))
             }
             .bind(with: self) { owner, validEmailResponse in
                 validEmailTrigger.accept(true)

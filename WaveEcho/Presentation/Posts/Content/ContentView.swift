@@ -10,7 +10,7 @@ import SnapKit
 
 class ContentView: BaseView {
     
-    private let content = {
+    let content = {
         let content = UITextView()
         content.backgroundColor = .orange
         return content
@@ -23,7 +23,7 @@ class ContentView: BaseView {
         return button
     }()
     
-    private let completeButton = {
+    let completeButton = {
         let button = UIButton()
         button.setTitle("완료", for: .normal)
         button.setTitleColor(.black, for: .normal)

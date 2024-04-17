@@ -5,18 +5,19 @@
 //  Created by 박지은 on 4/10/24.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 import RxSwift
 
-enum UsersResponse {
+enum Router {
     case join(query: SignupRequestBody)
     case validEmail(query: ValidRequestBody)
     case login(query: LoginRequestBody)
     case refreshToken
+    case posts(query: PostsRequestBody)
 }
 
-extension UsersResponse: TargetType {
+extension Router: TargetType {
     var baseURL: String {
         return APIKey.baseURL.rawValue
     }
@@ -31,6 +32,8 @@ extension UsersResponse: TargetType {
             return .post
         case .refreshToken:
             return .get
+        case .posts:
+            return .post
         }
     }
     
@@ -49,6 +52,10 @@ extension UsersResponse: TargetType {
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                     HTTPHeader.refresh.rawValue: UserDefaults.standard.string(forKey: "refreshToken") ?? ""]
+        case .posts:
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
+                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -62,6 +69,8 @@ extension UsersResponse: TargetType {
             return "/v1/users/login"
         case .refreshToken:
             return "/v1/auth/refresh"
+        case .posts:
+            return "/v1/posts"
         }
     }
 
@@ -70,30 +79,30 @@ extension UsersResponse: TargetType {
     }
     
     var body: Data? {
+        
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+
         switch self {
         case .join(query: let query):
-            let encoder = JSONEncoder()
-            encoder.keyEncodingStrategy = .convertToSnakeCase
             return try? encoder.encode(query)
         case .validEmail(query: let query):
-            let encoder = JSONEncoder()
-            encoder.keyEncodingStrategy = .convertToSnakeCase
             return try? encoder.encode(query)
         case .login(let query):
-            let encoder = JSONEncoder()
-            encoder.keyEncodingStrategy = .convertToSnakeCase
             return try? encoder.encode(query)
         case .refreshToken:
             return nil
+        case .posts(query: let query):
+            return try? encoder.encode(query)
         }
     }
 }
 
-extension UsersResponse {
+extension Router {
     static func createJoin(query: SignupRequestBody) -> Single<JoinResponse> {
         return Single<JoinResponse>.create { single in
             do {
-                let urlRequest = try UsersResponse.join(query: query).asURLRequest()
+                let urlRequest = try Router.join(query: query).asURLRequest()
                 
                 AF
                     .request(urlRequest)
@@ -120,7 +129,7 @@ extension UsersResponse {
     static func validEmail(query: ValidRequestBody) -> Single<ValidResponse> {
         return Single<ValidResponse>.create { single in
             do {
-                let urlRequest = try UsersResponse.validEmail(query: query).asURLRequest()
+                let urlRequest = try Router.validEmail(query: query).asURLRequest()
                 
                 AF
                     .request(urlRequest)
@@ -143,8 +152,7 @@ extension UsersResponse {
     
     static func refreshToken() -> Single<RefreshTokenResponse> {
         return Single<RefreshTokenResponse>.create { single in
-//            do {
-                let urlRequest = UsersResponse.refreshToken.urlRequest!
+                let urlRequest = Router.refreshToken.urlRequest!
                 
                 AF
                     .request(urlRequest)
@@ -157,10 +165,6 @@ extension UsersResponse {
                             single(.failure(error))
                         }
                     }
-//            }
-//            catch {
-//                single(.failure(error))
-//            }
             return Disposables.create()
         }
     }
@@ -168,7 +172,7 @@ extension UsersResponse {
     static func createLogin(query: LoginRequestBody) -> Single<LoginResponse> {
         return Single<LoginResponse>.create { single in
             do {
-                let urlRequest = try UsersResponse.login(query: query).asURLRequest()
+                let urlRequest = try Router.login(query: query).asURLRequest()
                 
                 AF
                     .request(urlRequest)
@@ -177,6 +181,30 @@ extension UsersResponse {
                         case .success(let loginResponse):
                             single(.success(loginResponse))
                             print("로그인 성공", loginResponse)
+                        case .failure(let error):
+                            single(.failure(error))
+                        }
+                    }
+            }
+            catch {
+                single(.failure(error))
+            }
+            return Disposables.create()
+        }
+    }
+    
+    static func createPosts(query: PostsRequestBody) -> Single<PostsResponse> {
+        return Single<PostsResponse>.create { single in
+            do {
+                let urlRequest = try Router.posts(query: query).asURLRequest()
+                
+                AF
+                    .request(urlRequest)
+                        .responseDecodable(of: PostsResponse.self) { response in
+                        switch response.result {
+                        case .success(let postsResponse):
+                            single(.success(postsResponse))
+                            print("포스팅 작성 성공", postsResponse)
                         case .failure(let error):
                             single(.failure(error))
                         }

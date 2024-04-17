@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class ContentViewController: BaseViewController {
     
     private let mainView = ContentView()
+    private let viewModel = ContentViewModel()
     
     override func loadView() {
         view = mainView
@@ -22,7 +25,18 @@ final class ContentViewController: BaseViewController {
         mainView.uploadPhotoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
     }
     
-    @objc private func photoButtonTapped() {
-        print(#function)
+    @objc private func photoButtonTapped() { }
+    
+    override func bind() {
+        let contentInput = ContentViewModel.Input(content: mainView.content.rx.text.orEmpty,
+                                                  uploadButtonTapped: mainView.completeButton.rx.tap)
+        
+        let contentOutput = viewModel.transform(input: contentInput)
+        
+        contentOutput.uploadPostTrigger
+            .drive(with: self) { owner, _ in
+                print("포스팅 업로드 성공")
+            }
+            .disposed(by: disposeBag)
     }
 }
