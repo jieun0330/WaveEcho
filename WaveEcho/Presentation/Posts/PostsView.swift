@@ -47,6 +47,14 @@ class PostsView: BaseView {
         return sendWave
     }()
     
+    lazy var myPageButton = {
+        let myPage = UIBarButtonItem(image: UIImage(systemName: "person"),
+                                   style: .plain,
+                                   target: self,
+                                   action: #selector(rightBarButtonItemTapped))
+        return myPage
+    }()
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
     
@@ -55,9 +63,9 @@ class PostsView: BaseView {
         didChangeValue(segment: segment)
     }
     
-    @objc private func didChangeValue(segment: UISegmentedControl) {
-
-    }
+    @objc func rightBarButtonItemTapped() { }
+    
+    @objc private func didChangeValue(segment: UISegmentedControl) { }
     
     override func configureHierarchy() {
         [segment, noWaveLabel, sendWaveButton].forEach {
