@@ -26,10 +26,12 @@ final class SignupViewController: BaseViewController {
         
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
-                let vc = LoginViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
+                
+//                let vc = LoginViewController()
+//                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
+        
     }
     
     override func bind() {
@@ -41,8 +43,23 @@ final class SignupViewController: BaseViewController {
         
         let signupOutput = viewModel.transform(input: signupInput)
         
-        signupOutput.signupTrigger
+        signupOutput.validSignup
             .drive(with: self) { owner, value in
+                let validButtonColor: UIColor = value ? .systemYellow : .systemGray5
+                owner.mainView.signupButton.backgroundColor = validButtonColor
+                let buttonTitleColor: UIColor = value ? .black : .lightGray
+                owner.mainView.signupButton.setTitleColor(buttonTitleColor, for: .normal)
+                let isEnabled: Bool = value ? true : false
+                owner.mainView.signupButton.isEnabled = isEnabled
+//                let validNickname: String = value ? "" : "2글자 이상 입력해주세요"
+//                owner.mainView.validNickname.text = validNickname
+            }
+            .disposed(by: disposeBag)
+        
+        signupOutput.signupTrigger
+            .drive(with: self) { owner, _ in
+                owner.mainView.signupButton.isEnabled = true
+                owner.mainView.signupButton.backgroundColor = .systemYellow
                 print("회원가입 성공")
             }
             .disposed(by: disposeBag)

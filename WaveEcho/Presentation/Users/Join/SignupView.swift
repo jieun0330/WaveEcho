@@ -27,6 +27,7 @@ class SignupView: BaseView {
     private let nickname = {
         let nickname = UILabel()
         nickname.text = "Nickname"
+        nickname.font = .boldSystemFont(ofSize: 18)
         return nickname
     }()
     
@@ -36,9 +37,17 @@ class SignupView: BaseView {
         return nickname
     }()
     
+//    let validNickname = {
+//        let nickname = UILabel()
+//        nickname.font = .systemFont(ofSize: 14)
+//        nickname.textColor = .red
+//        return nickname
+//    }()
+    
     private let email = {
         let email = UILabel()
         email.text = "Email"
+        email.font = .boldSystemFont(ofSize: 18)
         return email
     }()
     
@@ -59,6 +68,7 @@ class SignupView: BaseView {
     private let password = {
         let password = UILabel()
         password.text = "Password"
+        password.font = .boldSystemFont(ofSize: 18)
         return password
     }()
     
@@ -98,7 +108,8 @@ class SignupView: BaseView {
             addSubview($0)
         }
         
-        [nickname, nicknameTextField, email, emailTextField, validEmailButton, password, passwordTextField].forEach {
+        [nickname, nicknameTextField, email, emailTextField, validEmailButton,
+         password, passwordTextField].forEach {
             background.addSubview($0)
         }
     }
@@ -121,17 +132,22 @@ class SignupView: BaseView {
         }
         
         nicknameTextField.snp.makeConstraints {
-            $0.top.equalTo(nickname.snp.bottom).offset(30)
+            $0.top.equalTo(nickname.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(30)
         }
         
+//        validNickname.snp.makeConstraints {
+//            $0.top.equalTo(nicknameTextField.snp.bottom).offset(5)
+//            $0.leading.equalTo(nicknameTextField)
+//        }
+        
         email.snp.makeConstraints {
             $0.leading.equalTo(nickname)
-            $0.top.equalTo(nicknameTextField.snp.bottom).offset(20)
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(35)
         }
         
         emailTextField.snp.makeConstraints {
-            $0.top.equalTo(email.snp.bottom).offset(30)
+            $0.top.equalTo(email.snp.bottom).offset(20)
             $0.leading.equalToSuperview().inset(30)
         }
         
@@ -143,11 +159,11 @@ class SignupView: BaseView {
         
         password.snp.makeConstraints {
             $0.leading.equalTo(email)
-            $0.top.equalTo(emailTextField.snp.bottom).offset(20)
+            $0.top.equalTo(emailTextField.snp.bottom).offset(35)
         }
         
         passwordTextField.snp.makeConstraints {
-            $0.top.equalTo(password.snp.bottom).offset(30)
+            $0.top.equalTo(password.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(30)
         }
         

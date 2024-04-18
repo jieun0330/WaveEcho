@@ -36,7 +36,7 @@ class LoginViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(loginObservable)
             .flatMap { loginRequest in
-                return Router.createLogin(query: loginRequest)
+                return UsersRouter.createLogin(query: loginRequest)
             }
             .bind(with: self) { owner, loginResponse in
                 UserDefaults.standard.set(loginResponse.accessToken, forKey: "accessToken")

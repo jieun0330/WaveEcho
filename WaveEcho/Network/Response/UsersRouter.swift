@@ -9,15 +9,17 @@ import UIKit
 import Alamofire
 import RxSwift
 
-enum Router {
+let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+
+enum UsersRouter {
     case join(query: SignupRequestBody)
     case validEmail(query: ValidRequestBody)
     case login(query: LoginRequestBody)
     case refreshToken
-    case posts(query: PostsRequestBody)
+    case withdraw
 }
 
-extension Router: TargetType {
+extension UsersRouter: TargetType {
     var baseURL: String {
         return APIKey.baseURL.rawValue
     }
@@ -32,8 +34,8 @@ extension Router: TargetType {
             return .post
         case .refreshToken:
             return .get
-        case .posts:
-            return .post
+        case .withdraw:
+            return .get
         }
     }
     
@@ -49,13 +51,11 @@ extension Router: TargetType {
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .refreshToken:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
+            return [HTTPHeader.authorization.rawValue: accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                     HTTPHeader.refresh.rawValue: UserDefaults.standard.string(forKey: "refreshToken") ?? ""]
-        case .posts:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
-                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
-                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .withdraw:
+            return [:]
         }
     }
     
@@ -69,8 +69,8 @@ extension Router: TargetType {
             return "/v1/users/login"
         case .refreshToken:
             return "/v1/auth/refresh"
-        case .posts:
-            return "/v1/posts"
+        case .withdraw:
+            return "/v1/users/withdraw"
         }
     }
 
@@ -92,17 +92,17 @@ extension Router: TargetType {
             return try? encoder.encode(query)
         case .refreshToken:
             return nil
-        case .posts(query: let query):
-            return try? encoder.encode(query)
+        case .withdraw:
+            return nil
         }
     }
 }
 
-extension Router {
+extension UsersRouter {
     static func createJoin(query: SignupRequestBody) -> Single<JoinResponse> {
         return Single<JoinResponse>.create { single in
             do {
-                let urlRequest = try Router.join(query: query).asURLRequest()
+                let urlRequest = try UsersRouter.join(query: query).asURLRequest()
                 
                 AF
                     .request(urlRequest)
@@ -129,7 +129,7 @@ extension Router {
     static func validEmail(query: ValidRequestBody) -> Single<ValidResponse> {
         return Single<ValidResponse>.create { single in
             do {
-                let urlRequest = try Router.validEmail(query: query).asURLRequest()
+                let urlRequest = try UsersRouter.validEmail(query: query).asURLRequest()
                 
                 AF
                     .request(urlRequest)
@@ -152,7 +152,7 @@ extension Router {
     
     static func refreshToken() -> Single<RefreshTokenResponse> {
         return Single<RefreshTokenResponse>.create { single in
-                let urlRequest = Router.refreshToken.urlRequest!
+                let urlRequest = UsersRouter.refreshToken.urlRequest!
                 
                 AF
                     .request(urlRequest)
@@ -172,7 +172,7 @@ extension Router {
     static func createLogin(query: LoginRequestBody) -> Single<LoginResponse> {
         return Single<LoginResponse>.create { single in
             do {
-                let urlRequest = try Router.login(query: query).asURLRequest()
+                let urlRequest = try UsersRouter.login(query: query).asURLRequest()
                 
                 AF
                     .request(urlRequest)
@@ -193,26 +193,22 @@ extension Router {
         }
     }
     
-    static func createPosts(query: PostsRequestBody) -> Single<PostsResponse> {
-        return Single<PostsResponse>.create { single in
-            do {
-                let urlRequest = try Router.posts(query: query).asURLRequest()
-                
-                AF
-                    .request(urlRequest)
-                        .responseDecodable(of: PostsResponse.self) { response in
-                        switch response.result {
-                        case .success(let postsResponse):
-                            single(.success(postsResponse))
-                            print("포스팅 작성 성공", postsResponse)
-                        case .failure(let error):
-                            single(.failure(error))
-                        }
+    static func withdrawUsers() -> Single<WithdrawResponse> {
+        return Single<WithdrawResponse>.create { single in
+            let urlRequest = UsersRouter.withdraw.urlRequest!
+            
+            AF
+                .request(urlRequest)
+                .responseDecodable(of: WithdrawResponse.self) { response in
+                    switch response.result {
+                    case .success(let withdrawResponse):
+                        single(.success(withdrawResponse))
+                        print("회원탈퇴 성공", withdrawResponse)
+                    case .failure(let error):
+                        single(.failure(error))
+                        print(error)
                     }
-            }
-            catch {
-                single(.failure(error))
-            }
+                }
             return Disposables.create()
         }
     }

@@ -17,8 +17,12 @@ final class PostsViewController: BaseViewController {
         let alert = UIAlertController(title: "회원탙퇴",
                                       message: "정말로 회원탈퇴를 하시겠습니까?",
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "네", style: .default))
-        alert.addAction(UIAlertAction(title: "아니오", style: .cancel))
+        let yesAction = UIAlertAction(title: "네", style: .default) { action in
+            
+        }
+        let noAction = UIAlertAction(title: "아니오", style: .cancel)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
         return alert
     }()
     

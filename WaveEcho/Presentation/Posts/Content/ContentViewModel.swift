@@ -37,7 +37,7 @@ class ContentViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMap { postRequest in
-                return Router.createPosts(query: postRequest)
+                return PostsRouter.createPosts(query: postRequest)
             }
             .bind(with: self) { owner, postResponse in
                 uploadPostTrigger.accept(())

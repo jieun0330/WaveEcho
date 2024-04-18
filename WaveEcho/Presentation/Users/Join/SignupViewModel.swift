@@ -22,17 +22,25 @@ class SignupViewModel: ViewModelType {
     }
     
     struct Output {
+        // 회원가입 조건
+        let validSignup: Driver<Bool>
+        // 회원가입
         let signupTrigger: Driver<Void>
+        // 이메일 중복 확인
         let validEmailTrigger: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
-        
+        //회원가입 조건
+        let validSignup = BehaviorRelay(value: false)
+        // 회원가입
         let signupTrigger = PublishRelay<Void>()
+        // 이메일 중복 확인
         let validEmailTrigger = PublishRelay<Bool>()
-        
+                
         let signupObservable = Observable.combineLatest(input.email,
-                                                      input.password, input.nickname)
+                                                        input.password,
+                                                        input.nickname)
             .map { email, password, nickname in
                 return SignupRequestBody(email: email,
                                        password: password,
@@ -41,11 +49,26 @@ class SignupViewModel: ViewModelType {
                                        birthDay: nil)
             }
         
+        // 회원가입 조건
+        signupObservable
+            .bind(with: self) { owner, signupRequest in
+                if signupRequest.nick.count >= 2 &&
+                    signupRequest.email.contains("@") &&
+                    signupRequest.email.contains(".com") &&
+                    signupRequest.password.count >= 8 {
+                    validSignup.accept(true)
+                } else {
+                    validSignup.accept(false)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        // 회원가입
         input.signupButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(signupObservable)
             .flatMap { joinRequest in
-                return Router.createJoin(query: joinRequest)
+                return UsersRouter.createJoin(query: joinRequest)
             }
             .subscribe(with: self) { owner, joinResponse in
                 UserDefaults.standard.set(joinResponse.email, forKey: "email")
@@ -53,18 +76,21 @@ class SignupViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        // 이메일 중복 확인
         input.validEmailButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(input.email)
             .flatMap { email in
-                Router.validEmail(query: ValidRequestBody(email: email))
+                UsersRouter.validEmail(query: ValidRequestBody(email: email))
             }
             .bind(with: self) { owner, validEmailResponse in
                 validEmailTrigger.accept(true)
             }
             .disposed(by: disposeBag)
                
-        return Output(signupTrigger: signupTrigger.asDriver(onErrorJustReturn: ()),
+        return Output(validSignup: validSignup.asDriver(),
+                      signupTrigger: signupTrigger.asDriver(onErrorJustReturn: ()),
                       validEmailTrigger: validEmailTrigger.asDriver(onErrorJustReturn: true))
+        
     }
 }
