@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class SignupViewController: BaseViewController {
     
@@ -26,9 +27,8 @@ final class SignupViewController: BaseViewController {
         
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
-                
-//                let vc = LoginViewController()
-//                owner.navigationController?.pushViewController(vc, animated: true)
+                let vc = LoginViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -51,15 +51,12 @@ final class SignupViewController: BaseViewController {
                 owner.mainView.signupButton.setTitleColor(buttonTitleColor, for: .normal)
                 let isEnabled: Bool = value ? true : false
                 owner.mainView.signupButton.isEnabled = isEnabled
-//                let validNickname: String = value ? "" : "2글자 이상 입력해주세요"
-//                owner.mainView.validNickname.text = validNickname
             }
             .disposed(by: disposeBag)
         
         signupOutput.signupTrigger
             .drive(with: self) { owner, _ in
-                owner.mainView.signupButton.isEnabled = true
-                owner.mainView.signupButton.backgroundColor = .systemYellow
+                owner.view.makeToast("회원가입이 완료되었습니다")
                 print("회원가입 성공")
             }
             .disposed(by: disposeBag)
@@ -67,6 +64,12 @@ final class SignupViewController: BaseViewController {
         signupOutput.validEmailTrigger
             .drive(with: self) { owner, _ in
                 print("이메일 중복 검사 완료")
+            }
+            .disposed(by: disposeBag)
+        
+        signupOutput.validEmail
+            .drive(with: self) { owner, value in
+                owner.mainView.validEmail.text = value
             }
             .disposed(by: disposeBag)
     }

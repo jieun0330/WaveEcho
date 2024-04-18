@@ -126,6 +126,7 @@ extension UsersRouter {
         }
     }
     
+    // 이메일 중복 확인
     static func validEmail(query: ValidRequestBody) -> Single<ValidResponse> {
         return Single<ValidResponse>.create { single in
             do {

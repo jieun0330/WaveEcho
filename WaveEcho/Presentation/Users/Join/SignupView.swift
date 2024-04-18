@@ -37,13 +37,6 @@ class SignupView: BaseView {
         return nickname
     }()
     
-//    let validNickname = {
-//        let nickname = UILabel()
-//        nickname.font = .systemFont(ofSize: 14)
-//        nickname.textColor = .red
-//        return nickname
-//    }()
-    
     private let email = {
         let email = UILabel()
         email.text = "Email"
@@ -57,6 +50,13 @@ class SignupView: BaseView {
         return email
     }()
     
+    let validEmail = {
+        let email = UILabel()
+        email.font = .systemFont(ofSize: 14)
+        email.textColor = .red
+        return email
+    }()
+
     let validEmailButton = {
         let button = UIButton()
         button.setTitle("중복확인", for: .normal)
@@ -108,7 +108,7 @@ class SignupView: BaseView {
             addSubview($0)
         }
         
-        [nickname, nicknameTextField, email, emailTextField, validEmailButton,
+        [nickname, nicknameTextField, email, emailTextField, validEmailButton, validEmail,
          password, passwordTextField].forEach {
             background.addSubview($0)
         }
@@ -149,12 +149,18 @@ class SignupView: BaseView {
         emailTextField.snp.makeConstraints {
             $0.top.equalTo(email.snp.bottom).offset(20)
             $0.leading.equalToSuperview().inset(30)
+            $0.trailing.equalTo(validEmailButton.snp.leading).offset(-5)
         }
         
         validEmailButton.snp.makeConstraints {
             $0.trailing.equalToSuperview().offset(-5)
             $0.bottom.equalTo(emailTextField)
             $0.width.equalTo(80)
+        }
+        
+        validEmail.snp.makeConstraints {
+            $0.top.equalTo(emailTextField.snp.bottom).offset(5)
+            $0.leading.equalTo(emailTextField)
         }
         
         password.snp.makeConstraints {

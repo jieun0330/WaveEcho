@@ -28,6 +28,7 @@ class SignupViewModel: ViewModelType {
         let signupTrigger: Driver<Void>
         // 이메일 중복 확인
         let validEmailTrigger: Driver<Bool>
+        let validEmail: Driver<String>
     }
     
     func transform(input: Input) -> Output {
@@ -37,6 +38,7 @@ class SignupViewModel: ViewModelType {
         let signupTrigger = PublishRelay<Void>()
         // 이메일 중복 확인
         let validEmailTrigger = PublishRelay<Bool>()
+        let validEmail = BehaviorRelay(value: "")
                 
         let signupObservable = Observable.combineLatest(input.email,
                                                         input.password,
@@ -85,12 +87,15 @@ class SignupViewModel: ViewModelType {
             }
             .bind(with: self) { owner, validEmailResponse in
                 validEmailTrigger.accept(true)
+                //  이메일 중복 확인 응답코드 description
+                validEmail.accept(validEmailResponse.message)
             }
             .disposed(by: disposeBag)
                
         return Output(validSignup: validSignup.asDriver(),
                       signupTrigger: signupTrigger.asDriver(onErrorJustReturn: ()),
-                      validEmailTrigger: validEmailTrigger.asDriver(onErrorJustReturn: true))
+                      validEmailTrigger: validEmailTrigger.asDriver(onErrorJustReturn: true),
+                      validEmail: validEmail.asDriver())
         
     }
 }
