@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Toast
 
 class LoginViewController: BaseViewController {
     
@@ -27,16 +28,17 @@ class LoginViewController: BaseViewController {
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = SignupViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
+//                owner.navigationController?.pushViewController(vc, animated: true)
+                owner.navigationController?.viewControllers = [vc]
             }
             .disposed(by: disposeBag)
         
-        mainView.loginButton.rx.tap
-            .bind(with: self) { owner, _ in
-                let vc = PostsViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
-            }
-            .disposed(by: disposeBag)
+//        mainView.loginButton.rx.tap
+//            .bind(with: self) { owner, _ in
+//                let vc = PostsViewController()
+//                owner.navigationController?.pushViewController(vc, animated: true)
+//            }
+//            .disposed(by: disposeBag)
     }
     
     override func bind() {
@@ -46,9 +48,25 @@ class LoginViewController: BaseViewController {
         
         let loginOutput = viewModel.transform(input: loginInput)
         
+        loginOutput.validLogin.asObservable()
+            .bind(with: self) { owner, value in
+                let status: Bool = value ? true : false
+                owner.mainView.loginButton.isEnabled = status
+            }
+            .disposed(by: disposeBag)
+        
         loginOutput.loginTrigger
             .drive(with: self) { owner, value in
                 print("로그인 성공")
+                owner.view.makeToast("로그인되었습니다")
+            }
+            .disposed(by: disposeBag)
+        
+        loginOutput.loginTrigger
+            .debounce(.seconds(2))
+            .drive(with: self) { owner, _ in
+                let vc = PostsViewController()
+                owner.navigationController?.setViewControllers([vc], animated: true)
             }
             .disposed(by: disposeBag)
     }

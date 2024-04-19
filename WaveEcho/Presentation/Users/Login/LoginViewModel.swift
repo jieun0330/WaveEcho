@@ -20,17 +20,33 @@ class LoginViewModel: ViewModelType {
     }
     
     struct Output {
+        // 로그인 조건
+        let validLogin: Driver<Bool>
+        // 로그인
         let loginTrigger: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
-        
+        // 로그인 조건
+        let validLogin = BehaviorRelay(value: false)
+        // 로그인
         let loginTrigger = PublishRelay<Void>()
         
         let loginObservable = Observable.combineLatest(input.email, input.password)
             .map { email, password in
                 return LoginRequestBody(email: email, password: password)
             }
+        
+        // 로그인 조건
+        loginObservable
+            .bind(with: self) { owner, loginRequest in
+                if loginRequest.email.contains("@") {
+                    validLogin.accept(true)
+                } else {
+                    validLogin.accept(false)
+                }
+            }
+            .disposed(by: disposeBag)
         
         input.loginButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
@@ -45,6 +61,7 @@ class LoginViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(loginTrigger: loginTrigger.asDriver(onErrorJustReturn: ()))
+        return Output(validLogin: validLogin.asDriver(),
+                      loginTrigger: loginTrigger.asDriver(onErrorJustReturn: ()))
     }
 }

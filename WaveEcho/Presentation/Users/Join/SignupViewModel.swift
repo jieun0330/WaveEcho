@@ -57,7 +57,8 @@ class SignupViewModel: ViewModelType {
                 if signupRequest.nick.count >= 2 &&
                     signupRequest.email.contains("@") &&
                     signupRequest.email.contains(".com") &&
-                    signupRequest.password.count >= 8 {
+                    signupRequest.password.count >= 8
+                {
                     validSignup.accept(true)
                 } else {
                     validSignup.accept(false)

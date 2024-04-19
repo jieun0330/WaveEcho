@@ -25,12 +25,13 @@ final class WelcomeViewController: BaseViewController {
     @objc private func signUpButtonTapped() {
         print(#function)
         let vc = SignupViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.viewControllers = [vc]
+
     }
     
     @objc private func loginButtonTapped() {
         print(#function)
         let vc = LoginViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.viewControllers = [vc]
     }
 }

@@ -26,6 +26,7 @@ class LoginView: BaseView {
     private let email = {
         let email = UILabel()
         email.text = "Email"
+        email.font = .boldSystemFont(ofSize: 18)
         return email
     }()
     
@@ -38,6 +39,7 @@ class LoginView: BaseView {
     private let password = {
         let password = UILabel()
         password.text = "Password"
+        password.font = .boldSystemFont(ofSize: 18)
         return password
     }()
     

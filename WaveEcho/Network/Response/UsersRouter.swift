@@ -170,6 +170,7 @@ extension UsersRouter {
         }
     }
     
+    // 로그인
     static func createLogin(query: LoginRequestBody) -> Single<LoginResponse> {
         return Single<LoginResponse>.create { single in
             do {
@@ -183,7 +184,10 @@ extension UsersRouter {
                             single(.success(loginResponse))
                             print("로그인 성공", loginResponse)
                         case .failure(let error):
-                            single(.failure(error))
+                            //                            single(.failure(error))
+                            if response.response?.statusCode == 401 {
+                                print("계정을 확인해주세요")
+                            }
                         }
                     }
             }

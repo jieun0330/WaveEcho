@@ -28,7 +28,7 @@ final class SignupViewController: BaseViewController {
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = LoginViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
+                owner.navigationController?.viewControllers = [vc]
             }
             .disposed(by: disposeBag)
         
@@ -56,8 +56,16 @@ final class SignupViewController: BaseViewController {
         
         signupOutput.signupTrigger
             .drive(with: self) { owner, _ in
-                owner.view.makeToast("회원가입이 완료되었습니다")
                 print("회원가입 성공")
+                owner.view.makeToast("회원가입이 완료되었습니다")
+            }
+            .disposed(by: disposeBag)
+        
+        signupOutput.signupTrigger
+            .debounce(.seconds(2))
+            .drive(with: self) { owner, _ in
+                let vc = PostsViewController()
+                owner.navigationController?.setViewControllers([vc], animated: true)
             }
             .disposed(by: disposeBag)
         
