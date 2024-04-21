@@ -19,26 +19,18 @@ class LoginViewController: BaseViewController {
         view = mainView
         view.backgroundColor = .systemYellow
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
         
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = SignupViewController()
-//                owner.navigationController?.pushViewController(vc, animated: true)
                 owner.navigationController?.viewControllers = [vc]
             }
             .disposed(by: disposeBag)
-        
-//        mainView.loginButton.rx.tap
-//            .bind(with: self) { owner, _ in
-//                let vc = PostsViewController()
-//                owner.navigationController?.pushViewController(vc, animated: true)
-//            }
-//            .disposed(by: disposeBag)
     }
     
     override func bind() {
@@ -48,6 +40,7 @@ class LoginViewController: BaseViewController {
         
         let loginOutput = viewModel.transform(input: loginInput)
         
+        // 로그인버튼 (비)활성화
         loginOutput.validLogin.asObservable()
             .bind(with: self) { owner, value in
                 let status: Bool = value ? true : false
@@ -55,13 +48,21 @@ class LoginViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 로그인 실패했을 시 에러 핸들링
+        loginOutput.loginError
+            .drive(with: self) { owner, error in
+                owner.errorHandler(apiError: error, calltype: .login)
+            }
+            .disposed(by: disposeBag)
+        
+        // 로그인 되었습니다 toast message
         loginOutput.loginTrigger
             .drive(with: self) { owner, value in
-                print("로그인 성공")
                 owner.view.makeToast("로그인되었습니다")
             }
             .disposed(by: disposeBag)
         
+        // 2초 후 화면 전환
         loginOutput.loginTrigger
             .debounce(.seconds(2))
             .drive(with: self) { owner, _ in

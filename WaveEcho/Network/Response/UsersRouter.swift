@@ -113,10 +113,6 @@ extension UsersRouter {
                             print("회원가입 완료", joinResponse)
                         case .failure(let error):
                             single(.failure(error))
-//                            print("1", error)
-//                            if response.response?.statusCode == 409 {
-//                                print("이미 가입된 유저입니다")
-//                            }
                         }
                     }
             } catch {
@@ -171,8 +167,8 @@ extension UsersRouter {
     }
     
     // 로그인
-    static func createLogin(query: LoginRequestBody) -> Single<LoginResponse> {
-        return Single<LoginResponse>.create { single in
+    static func createLogin(query: LoginRequestBody) -> Single<Result<LoginResponse, APIError>> {
+        return Single<Result<LoginResponse, APIError>>.create { single in
             do {
                 let urlRequest = try UsersRouter.login(query: query).asURLRequest()
                 
@@ -181,23 +177,22 @@ extension UsersRouter {
                     .responseDecodable(of: LoginResponse.self) { response in
                         switch response.result {
                         case .success(let loginResponse):
-                            single(.success(loginResponse))
+                            single(.success(.success(loginResponse)))
                             print("로그인 성공", loginResponse)
                         case .failure(let error):
-                            //                            single(.failure(error))
-                            if response.response?.statusCode == 401 {
-                                print("계정을 확인해주세요")
-                            }
+                            guard let statusCode = response.response?.statusCode else { return }
+                            guard let error = APIError(rawValue: statusCode) else { return }
+                            single(.success(.failure(error)))
                         }
                     }
             }
             catch {
-                single(.failure(error))
+                single(.success(.failure(APIError.code400)))
             }
             return Disposables.create()
         }
     }
-    
+        
     static func withdrawUsers() -> Single<WithdrawResponse> {
         return Single<WithdrawResponse>.create { single in
             let urlRequest = UsersRouter.withdraw.urlRequest!
