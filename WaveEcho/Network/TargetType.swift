@@ -13,7 +13,7 @@ protocol TargetType: URLRequestConvertible {
     var method: HTTPMethod { get }
     var headers: [String: String] { get }
     var path: String { get }
-    var parameters: String? { get }
+    var parameters: [String: Any]? { get }
     var body: Data? { get }
 }
 
@@ -22,7 +22,14 @@ extension TargetType {
         let url = try baseURL.asURL()
         var urlRequest = try URLRequest(url: url.appendingPathComponent(path), method: method)
         urlRequest.allHTTPHeaderFields = headers
-        urlRequest.httpBody = parameters?.data(using: .utf8)
+        
+        if let parameters {
+            if method == .get {
+                urlRequest = try URLEncoding.queryString.encode(urlRequest, with: parameters)
+            } else {
+                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+            }
+        }
         urlRequest.httpBody = body
         return urlRequest
     }

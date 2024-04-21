@@ -10,7 +10,7 @@ import SnapKit
 
 class PostsView: BaseView {
     
-    private let segment = {
+    let segment = {
         let segment = UISegmentedControl(items: ["나의 유리병", "답장"])
         segment.translatesAutoresizingMaskIntoConstraints = false
         return segment
@@ -32,11 +32,24 @@ class PostsView: BaseView {
         return view
     }()
     
-    private let noWaveLabel = {
-        let noWave = UILabel()
-        noWave.text = "던진 유리병이 아직 없습니다"
-        return noWave
+    private let testOfWaves = {
+        let test = UIView()
+        test.backgroundColor = .red
+        return test
     }()
+    
+    let testOfWavesContents = {
+        let test = UILabel()
+        test.textColor = .black
+        test.text = "test"
+        return test
+    }()
+    
+//    private let noWaveLabel = {
+//        let noWave = UILabel()
+//        noWave.text = "던진 유리병이 아직 없습니다"
+//        return noWave
+//    }()
     
     let sendWaveButton = {
         let sendWave = UIButton()
@@ -65,11 +78,17 @@ class PostsView: BaseView {
     
     @objc func rightBarButtonItemTapped() { }
     
-    @objc private func didChangeValue(segment: UISegmentedControl) { }
+    @objc func didChangeValue(segment: UISegmentedControl) {
+        print(#function)
+    }
     
     override func configureHierarchy() {
-        [segment, noWaveLabel, sendWaveButton].forEach {
+        [segment, testOfWaves, sendWaveButton].forEach {
             addSubview($0)
+        }
+        
+        [testOfWavesContents].forEach {
+            testOfWaves.addSubview($0)
         }
     }
     
@@ -80,10 +99,20 @@ class PostsView: BaseView {
             $0.height.equalTo(40)
         }
         
-        noWaveLabel.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(30)
+        testOfWaves.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.top.equalTo(segment.snp.bottom).offset(20)
+            $0.height.equalTo(200)
         }
+        
+        testOfWavesContents.snp.makeConstraints {
+            $0.leading.top.equalToSuperview().offset(10)
+        }
+        
+//        noWaveLabel.snp.makeConstraints {
+//            $0.center.equalToSuperview()
+//            $0.horizontalEdges.equalToSuperview().inset(30)
+//        }
         
         sendWaveButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)

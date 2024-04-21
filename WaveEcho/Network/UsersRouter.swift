@@ -26,28 +26,16 @@ extension UsersRouter: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .join:
+        case .join, .validEmail, .login:
             return .post
-        case .validEmail:
-            return .post
-        case .login:
-            return .post
-        case .refreshToken:
-            return .get
-        case .withdraw:
+        case .refreshToken, .withdraw:
             return .get
         }
     }
     
     var headers: [String : String] {
         switch self {
-        case .join:
-            return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
-                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
-        case .validEmail:
-            return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
-                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
-        case .login:
+        case .join, .validEmail, .login:
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .refreshToken:
@@ -74,8 +62,8 @@ extension UsersRouter: TargetType {
         }
     }
 
-    var parameters: String? {
-        return nil
+    var parameters: [String: Any]? {
+        nil
     }
     
     var body: Data? {

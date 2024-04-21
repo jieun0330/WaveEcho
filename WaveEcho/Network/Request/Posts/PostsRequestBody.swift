@@ -8,7 +8,7 @@
 import Foundation
 
 struct PostsRequestBody: Encodable {
-    let content: String
+    let content: String?
     let product_id: String?
     let files: [String]?
 }

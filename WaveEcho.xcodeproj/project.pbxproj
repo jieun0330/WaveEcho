@@ -35,6 +35,8 @@
 		C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A82BD107A900176723 /* PostsViewModel.swift */; };
 		C2CDC2AC2BD133D900176723 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = C2CDC2AB2BD133D900176723 /* Toast */; };
 		C2CDC2CA2BD36F9E00176723 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2C92BD36F9E00176723 /* APIError.swift */; };
+		C2CDC2CC2BD4C63B00176723 /* FetchPostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2CB2BD4C63B00176723 /* FetchPostsResponse.swift */; };
+		C2CDC2D12BD4FDF000176723 /* FetchPostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2D02BD4FDF000176723 /* FetchPostQuery.swift */; };
 		C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE62BCD20C100A1D102 /* SignupView.swift */; };
 		C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */; };
 		C2DC2BF12BCD20C100A1D102 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE82BCD20C100A1D102 /* SignupViewModel.swift */; };
@@ -81,6 +83,8 @@
 		C2CDC2A62BD1062C00176723 /* WithdrawResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawResponse.swift; sourceTree = "<group>"; };
 		C2CDC2A82BD107A900176723 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		C2CDC2C92BD36F9E00176723 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		C2CDC2CB2BD4C63B00176723 /* FetchPostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostsResponse.swift; sourceTree = "<group>"; };
+		C2CDC2D02BD4FDF000176723 /* FetchPostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostQuery.swift; sourceTree = "<group>"; };
 		C2DC2BE62BCD20C100A1D102 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C2DC2BE82BCD20C100A1D102 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -155,12 +159,15 @@
 		C23AFE962BC6D0BC0000EBE5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C2DC2BFC2BCD217800A1D102 /* Request */,
-				C2DC2C012BCD217800A1D102 /* Response */,
+				C2DC2C002BCD217800A1D102 /* UsersRouter.swift */,
+				C2CDC2A42BD1023800176723 /* PostsRouter.swift */,
 				C23AFEA02BC6D2380000EBE5 /* TargetType.swift */,
 				C23AFEA82BC6DC2B0000EBE5 /* APIKey.swift */,
 				C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */,
 				C2CDC2C92BD36F9E00176723 /* APIError.swift */,
+				C2CDC2CF2BD4FDE400176723 /* Query */,
+				C2DC2BFC2BCD217800A1D102 /* Request */,
+				C2DC2C012BCD217800A1D102 /* Response */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -215,8 +222,17 @@
 			isa = PBXGroup;
 			children = (
 				C27E534E2BCE8F800037E1A5 /* PostsResponse.swift */,
+				C2CDC2CB2BD4C63B00176723 /* FetchPostsResponse.swift */,
 			);
 			path = Posts;
+			sourceTree = "<group>";
+		};
+		C2CDC2CF2BD4FDE400176723 /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				C2CDC2D02BD4FDF000176723 /* FetchPostQuery.swift */,
+			);
+			path = Query;
 			sourceTree = "<group>";
 		};
 		C2DC2BE92BCD20C100A1D102 /* Join */ = {
@@ -293,8 +309,6 @@
 		C2DC2C012BCD217800A1D102 /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				C2DC2C002BCD217800A1D102 /* UsersRouter.swift */,
-				C2CDC2A42BD1023800176723 /* PostsRouter.swift */,
 				C2DC2BFF2BCD217800A1D102 /* Users */,
 				C27E534D2BCE8F730037E1A5 /* Posts */,
 			);
@@ -408,6 +422,7 @@
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
+				C2CDC2D12BD4FDF000176723 /* FetchPostQuery.swift in Sources */,
 				C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */,
 				C2DC2C052BCD217800A1D102 /* JoinResponse.swift in Sources */,
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
@@ -428,6 +443,7 @@
 				C27E534F2BCE8F800037E1A5 /* PostsResponse.swift in Sources */,
 				C2DC2BF12BCD20C100A1D102 /* SignupViewModel.swift in Sources */,
 				C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */,
+				C2CDC2CC2BD4C63B00176723 /* FetchPostsResponse.swift in Sources */,
 				C2DC2C122BCD53CD00A1D102 /* ValidRequestBody.swift in Sources */,
 				C27E53492BCE8DE40037E1A5 /* ContentViewModel.swift in Sources */,
 				C2CDC2A72BD1062C00176723 /* WithdrawResponse.swift in Sources */,

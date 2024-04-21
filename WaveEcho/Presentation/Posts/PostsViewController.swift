@@ -12,6 +12,7 @@ import RxCocoa
 final class PostsViewController: BaseViewController {
     
     private let mainView = PostsView()
+    private let viewModel = PostsViewModel()
     
     private let withdrawAlert = {
         let alert = UIAlertController(title: "회원탙퇴",
@@ -42,11 +43,28 @@ final class PostsViewController: BaseViewController {
                 owner.present(owner.withdrawAlert, animated: true)
             }
             .disposed(by: disposeBag)
+     
     }
     
     @objc private func sendWaveButtonTapped() {
         print(#function)
         let vc = ContentViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func bind() {
+        let input = PostsViewModel.Input(viewDidLoad: Observable.just(Void()))
+        let output = viewModel.transform(input: input)
+        
+        output.postsContent
+            .bind(with: self) { owner, fetchPostsResponse in
+                owner.mainView.testOfWavesContents.text = fetchPostsResponse.data.first?.content
+            }
+            .disposed(by: disposeBag)
+        
+//        output.postsError
+//            .drive(with: self) { owner, error in
+//                errorHandler(apiError: error, calltype: <#T##APIError.CallType#>)
+//            }
     }
 }
