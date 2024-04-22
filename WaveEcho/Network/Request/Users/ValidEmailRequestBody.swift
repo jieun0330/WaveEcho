@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct ValidRequestBody: Encodable {
+struct ValidEmailRequestBody: Encodable {
     let email: String
 }

@@ -12,8 +12,8 @@ import RxSwift
 let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
 
 enum UsersRouter {
-    case join(query: SignupRequestBody)
-    case validEmail(query: ValidRequestBody)
+    case signup(query: SignupRequestBody)
+    case validEmail(query: ValidEmailRequestBody)
     case login(query: LoginRequestBody)
     case refreshToken
     case withdraw
@@ -26,7 +26,7 @@ extension UsersRouter: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .join, .validEmail, .login:
+        case .signup, .validEmail, .login:
             return .post
         case .refreshToken, .withdraw:
             return .get
@@ -35,7 +35,7 @@ extension UsersRouter: TargetType {
     
     var headers: [String : String] {
         switch self {
-        case .join, .validEmail, .login:
+        case .signup, .validEmail, .login:
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .refreshToken:
@@ -49,7 +49,7 @@ extension UsersRouter: TargetType {
     
     var path: String {
         switch self {
-        case .join:
+        case .signup:
             return "/v1/users/join"
         case .validEmail:
             return "/v1/validation/email"
@@ -72,7 +72,7 @@ extension UsersRouter: TargetType {
         encoder.keyEncodingStrategy = .convertToSnakeCase
 
         switch self {
-        case .join(query: let query):
+        case .signup(query: let query):
             return try? encoder.encode(query)
         case .validEmail(query: let query):
             return try? encoder.encode(query)
@@ -87,54 +87,7 @@ extension UsersRouter: TargetType {
 }
 
 extension UsersRouter {
-    static func createJoin(query: SignupRequestBody) -> Single<JoinResponse> {
-        return Single<JoinResponse>.create { single in
-            do {
-                let urlRequest = try UsersRouter.join(query: query).asURLRequest()
-                
-                AF
-                    .request(urlRequest)
-                    .responseDecodable(of: JoinResponse.self) { response in
-                        switch response.result {
-                        case .success(let joinResponse):
-                            single(.success(joinResponse))
-                            print("회원가입 완료", joinResponse)
-                        case .failure(let error):
-                            single(.failure(error))
-                        }
-                    }
-            } catch {
-                single(.failure(error))
-            }
-            return Disposables.create()
-        }
-    }
-    
-    // 이메일 중복 확인
-    static func validEmail(query: ValidRequestBody) -> Single<ValidResponse> {
-        return Single<ValidResponse>.create { single in
-            do {
-                let urlRequest = try UsersRouter.validEmail(query: query).asURLRequest()
-                
-                AF
-                    .request(urlRequest)
-                    .responseDecodable(of: ValidResponse.self) { response in
-                        switch response.result {
-                        case .success(let validEmail):
-                            single(.success(validEmail))
-                            print("이메일 중복 검사 완료", validEmail)
-                        case .failure(let error):
-                            single(.failure(error))
-                        }
-                    }
-            }
-            catch {
-                single(.failure(error))
-            }
-            return Disposables.create()
-        }
-    }
-    
+
     static func refreshToken() -> Single<RefreshTokenResponse> {
         return Single<RefreshTokenResponse>.create { single in
                 let urlRequest = UsersRouter.refreshToken.urlRequest!
@@ -154,33 +107,6 @@ extension UsersRouter {
         }
     }
     
-    // 로그인
-    static func createLogin(query: LoginRequestBody) -> Single<Result<LoginResponse, APIError>> {
-        return Single<Result<LoginResponse, APIError>>.create { single in
-            do {
-                let urlRequest = try UsersRouter.login(query: query).asURLRequest()
-                
-                AF
-                    .request(urlRequest)
-                    .responseDecodable(of: LoginResponse.self) { response in
-                        switch response.result {
-                        case .success(let loginResponse):
-                            single(.success(.success(loginResponse)))
-                            print("로그인 성공", loginResponse)
-                        case .failure(let error):
-                            guard let statusCode = response.response?.statusCode else { return }
-                            guard let error = APIError(rawValue: statusCode) else { return }
-                            single(.success(.failure(error)))
-                        }
-                    }
-            }
-            catch {
-                single(.success(.failure(APIError.code400)))
-            }
-            return Disposables.create()
-        }
-    }
-        
     static func withdrawUsers() -> Single<WithdrawResponse> {
         return Single<WithdrawResponse>.create { single in
             let urlRequest = UsersRouter.withdraw.urlRequest!

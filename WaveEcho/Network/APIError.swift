@@ -29,6 +29,9 @@ enum APIError: Int, Error {
     case code445 = 445 // 게시글 수정 권한, 본인만 수정 가능
     
     enum CallType {
+        case signup
+        case validEmail
         case login
+        case fetchPost
     }
 }

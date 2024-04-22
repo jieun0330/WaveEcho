@@ -1,5 +1,5 @@
 //
-//  JoinRequestBody.swift
+//  SignupRequestBody.swift
 //  WaveEcho
 //
 //  Created by 박지은 on 4/12/24.

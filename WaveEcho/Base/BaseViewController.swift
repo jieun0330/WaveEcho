@@ -29,12 +29,47 @@ class BaseViewController: UIViewController {
     
     func errorHandler(apiError: APIError, calltype: APIError.CallType) {
         switch calltype {
+            
+        case .signup:
+            switch apiError {
+            case .code400:
+                makeAlert(message: "필수값을 채워주세요")
+            case .code409:
+                makeAlert(message: "이미 가입한 유저입니다")
+            default:
+                return
+            }
+            
+        case .validEmail:
+            switch apiError {
+            case .code400:
+                makeAlert(message: "이메일을 입력해주세요")
+            case .code409:
+                makeAlert(message: "사용이 불가한 이메일입니다")
+            default:
+                return
+            }
+
         case .login:
             switch apiError {
             case .code400:
                 makeAlert(message: "이메일 혹은 비밀번호를 올바르게 입력해주세요")
             case .code401:
                 makeAlert(message: "가입되지 않았거나 비밀번호가 틀렸습니다")
+            default:
+                return
+            }
+            
+        case .fetchPost:
+            switch apiError {
+            case .code400:
+                makeAlert(message: "잘못된 요청")
+            case .code401:
+                makeAlert(message: "인증할 수 없는 액세스 토큰")
+            case .code403:
+                makeAlert(message: "접근권한이 없습니다")
+            case .code419:
+                makeAlert(message: "액세스 토큰이 만료되었습니다")
             default:
                 return
             }

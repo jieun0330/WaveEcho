@@ -1,5 +1,5 @@
 //
-//  JoinViewController.swift
+//  SignupViewController.swift
 //  WaveEcho
 //
 //  Created by 박지은 on 4/15/24.
@@ -75,9 +75,24 @@ final class SignupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 이메일 중복확인 안내 text
         signupOutput.validEmail
             .drive(with: self) { owner, value in
                 owner.mainView.validEmail.text = value
+            }
+            .disposed(by: disposeBag)
+        
+        // 회원가입 에러 처리
+        signupOutput.signupError
+            .drive(with: self) { owner, error in
+                owner.errorHandler(apiError: error, calltype: .signup)
+            }
+            .disposed(by: disposeBag)
+        
+        // 이메일 중복 확인 에러 처리
+        signupOutput.validEmailError
+            .drive(with: self) { owner, error in
+                owner.errorHandler(apiError: error, calltype: .validEmail)
             }
             .disposed(by: disposeBag)
     }

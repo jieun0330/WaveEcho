@@ -55,16 +55,17 @@ class LoginViewModel: ViewModelType {
         input.loginButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(loginObservable)
-            .flatMap({ loginRequest in
-                return UsersRouter.createLogin(query: loginRequest)
-            })
+            .debug()
+            .flatMap { loginRequest in
+                return APIManager.shared.create(type: LoginResponse.self,
+                                                router: .login(query: loginRequest))
+            }
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
                     UserDefaults.standard.set(success.accessToken, forKey: "accessToken")
                     UserDefaults.standard.set(success.refreshToken, forKey: "refreshToken")
                     loginTrigger.accept(())
-                    
                 case .failure(let error):
                     loginError.accept(error)
                 }

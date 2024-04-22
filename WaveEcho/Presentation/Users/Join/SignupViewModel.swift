@@ -1,5 +1,5 @@
 //
-//  JoinViewModel.swift
+//  SignupViewModel.swift
 //  WaveEcho
 //
 //  Created by 박지은 on 4/15/24.
@@ -28,7 +28,11 @@ class SignupViewModel: ViewModelType {
         let signupTrigger: Driver<Void>
         // 이메일 중복 확인
         let validEmailTrigger: Driver<Bool>
+        // 이메일 중복확인 안내 텍스트
         let validEmail: Driver<String>
+        // 회원가입 에러처리
+        let signupError: Driver<APIError>
+        let validEmailError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
@@ -38,7 +42,11 @@ class SignupViewModel: ViewModelType {
         let signupTrigger = PublishRelay<Void>()
         // 이메일 중복 확인
         let validEmailTrigger = PublishRelay<Bool>()
+        // 이메일 중복확인 안내 텍스트
         let validEmail = BehaviorRelay(value: "")
+        // 회원가입 에러처리
+        let signupError = PublishRelay<APIError>()
+        let validEmailError = PublishRelay<APIError>()
                 
         let signupObservable = Observable.combineLatest(input.email,
                                                         input.password,
@@ -49,6 +57,11 @@ class SignupViewModel: ViewModelType {
                                        nick: nickname,
                                        phoneNum: nil,
                                        birthDay: nil)
+            }
+        
+        let validEmailObservable = input.email.asObservable()
+            .map { email in
+                return ValidEmailRequestBody(email: email)
             }
         
         // 회원가입 조건
@@ -70,33 +83,46 @@ class SignupViewModel: ViewModelType {
         input.signupButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(signupObservable)
-            .flatMap { joinRequest in
-                return UsersRouter.createJoin(query: joinRequest)
+            .flatMap { signupRequest in
+                return APIManager.shared.create(type: SignupResponse.self, router: .signup(query: signupRequest))
             }
-            .subscribe(with: self) { owner, joinResponse in
-                UserDefaults.standard.set(joinResponse.email, forKey: "email")
-                signupTrigger.accept(())
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let success):
+                    UserDefaults.standard.set(success.email, forKey: "email")
+                    signupTrigger.accept(())
+                case .failure(let error):
+                    signupError.accept(error)
+                }
             }
             .disposed(by: disposeBag)
         
         // 이메일 중복 확인
         input.validEmailButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
-            .withLatestFrom(input.email)
-            .flatMap { email in
-                UsersRouter.validEmail(query: ValidRequestBody(email: email))
+            .withLatestFrom(validEmailObservable)
+            .flatMap { emailRequest in
+                return APIManager.shared.create(type: ValidEmailResponse.self,
+                                                router: .validEmail(query: emailRequest))
             }
-            .bind(with: self) { owner, validEmailResponse in
-                validEmailTrigger.accept(true)
-                //  이메일 중복 확인 응답코드 description
-                validEmail.accept(validEmailResponse.message)
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let success):
+                    validEmailTrigger.accept(true)
+                    // 이메일 중복확인 안내 텍스트
+                    validEmail.accept(success.message)
+                case .failure(let error):
+                    validEmailError.accept(error)
+                }
             }
             .disposed(by: disposeBag)
                
         return Output(validSignup: validSignup.asDriver(),
                       signupTrigger: signupTrigger.asDriver(onErrorJustReturn: ()),
                       validEmailTrigger: validEmailTrigger.asDriver(onErrorJustReturn: true),
-                      validEmail: validEmail.asDriver())
+                      validEmail: validEmail.asDriver(),
+                      signupError: signupError.asDriver(onErrorJustReturn: .code500),
+                      validEmailError: validEmailError.asDriver(onErrorJustReturn: .code500))
         
     }
 }

@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class PostsView: BaseView {
-    
     let segment = {
         let segment = UISegmentedControl(items: ["나의 유리병", "답장"])
         segment.translatesAutoresizingMaskIntoConstraints = false
@@ -32,16 +31,21 @@ class PostsView: BaseView {
         return view
     }()
     
-    private let testOfWaves = {
-        let test = UIView()
-        test.backgroundColor = .red
-        return test
+    lazy var collectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.backgroundColor = .red
+        return collectionView
     }()
     
+//    private let testOfWaves = {
+//        let test = UIView()
+//        test.backgroundColor = .red
+//        return test
+//    }()
+//    
     let testOfWavesContents = {
         let test = UILabel()
         test.textColor = .black
-        test.text = "test"
         return test
     }()
     
@@ -76,6 +80,19 @@ class PostsView: BaseView {
         didChangeValue(segment: segment)
     }
     
+    private func createLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = 10
+        let width = UIScreen.main.bounds.width - spacing
+        layout.itemSize = CGSize(width: width, height: width / 2)
+        layout.minimumLineSpacing = spacing
+        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+        layout.minimumInteritemSpacing = spacing
+        layout.scrollDirection = .vertical
+        
+        return layout
+    }
+    
     @objc func rightBarButtonItemTapped() { }
     
     @objc func didChangeValue(segment: UISegmentedControl) {
@@ -83,13 +100,13 @@ class PostsView: BaseView {
     }
     
     override func configureHierarchy() {
-        [segment, testOfWaves, sendWaveButton].forEach {
+        [segment, testOfWavesContents, collectionView, sendWaveButton].forEach {
             addSubview($0)
         }
         
-        [testOfWavesContents].forEach {
-            testOfWaves.addSubview($0)
-        }
+//        [testOfWavesContents].forEach {
+//            testOfWaves.addSubview($0)
+//        }
     }
     
     override func configureConstraints() {
@@ -99,15 +116,25 @@ class PostsView: BaseView {
             $0.height.equalTo(40)
         }
         
-        testOfWaves.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(segment.snp.bottom).offset(20)
-            $0.height.equalTo(200)
+        testOfWavesContents.snp.makeConstraints {
+            $0.leading.top.equalTo(segment)
         }
         
-        testOfWavesContents.snp.makeConstraints {
-            $0.leading.top.equalToSuperview().offset(10)
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(segment.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview().inset(10)
+            $0.bottom.equalTo(sendWaveButton.snp.top).offset(-10)
         }
+        
+//        testOfWaves.snp.makeConstraints {
+//            $0.horizontalEdges.equalToSuperview().inset(20)
+//            $0.top.equalTo(segment.snp.bottom).offset(20)
+//            $0.height.equalTo(200)
+//        }
+//        
+//        testOfWavesContents.snp.makeConstraints {
+//            $0.leading.top.equalToSuperview().offset(10)
+//        }
         
 //        noWaveLabel.snp.makeConstraints {
 //            $0.center.equalToSuperview()
