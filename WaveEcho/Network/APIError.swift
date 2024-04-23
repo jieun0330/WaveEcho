@@ -32,6 +32,7 @@ enum APIError: Int, Error {
         case signup
         case validEmail
         case login
+        case createPosts
         case fetchPost
     }
 }

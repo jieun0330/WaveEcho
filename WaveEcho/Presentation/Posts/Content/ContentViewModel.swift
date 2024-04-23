@@ -19,12 +19,14 @@ class ContentViewModel: ViewModelType {
     }
     
     struct Output {
-        let uploadPostTrigger: Driver<Void>
+        let createPostTrigger: Driver<Void>
+        let createPostError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
         
         let uploadPostTrigger = PublishRelay<Void>()
+        let createPostError = PublishRelay<APIError>()
         
         let contentObservable = input.content.asObservable()
             .map { content in
@@ -37,13 +39,19 @@ class ContentViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMap { postRequest in
-                return PostsRouter.createPosts(query: postRequest)
+                return APIManager.shared.create(type: PostsResponse.self, router: PostsRouter.createPosts(query: postRequest))
             }
-            .bind(with: self) { owner, postResponse in
-                uploadPostTrigger.accept(())
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    uploadPostTrigger.accept(())
+                case .failure(let error):
+                    createPostError.accept(error)
+                }
             }
             .disposed(by: disposeBag)
         
-        return Output(uploadPostTrigger: uploadPostTrigger.asDriver(onErrorJustReturn: ()))
+        return Output(createPostTrigger: uploadPostTrigger.asDriver(onErrorJustReturn: ()),
+                      createPostError: createPostError.asDriver(onErrorJustReturn: .code500))
     }
 }

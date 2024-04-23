@@ -33,9 +33,16 @@ final class ContentViewController: BaseViewController {
         
         let contentOutput = viewModel.transform(input: contentInput)
         
-        contentOutput.uploadPostTrigger
+        contentOutput.createPostTrigger
             .drive(with: self) { owner, _ in
                 print("포스팅 업로드 성공")
+            }
+            .disposed(by: disposeBag)
+        
+        // 포스팅 작성 에러 핸들링
+        contentOutput.createPostError
+            .drive(with: self) { owner, error in
+                owner.errorHandler(apiError: error, calltype: .createPosts)
             }
             .disposed(by: disposeBag)
     }

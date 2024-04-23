@@ -13,7 +13,7 @@ struct PostsResponse: Decodable {
     let content: String
     let createdAt: String
     let creator: CreatorInfo
-    let files: [String]    
+    let files: [String]
 }
 
 struct CreatorInfo: Decodable {

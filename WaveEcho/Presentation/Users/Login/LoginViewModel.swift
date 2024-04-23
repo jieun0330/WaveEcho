@@ -58,7 +58,7 @@ class LoginViewModel: ViewModelType {
             .debug()
             .flatMap { loginRequest in
                 return APIManager.shared.create(type: LoginResponse.self,
-                                                router: .login(query: loginRequest))
+                                                router: UsersRouter.login(query: loginRequest))
             }
             .bind(with: self) { owner, result in
                 switch result {

@@ -84,7 +84,7 @@ class SignupViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(signupObservable)
             .flatMap { signupRequest in
-                return APIManager.shared.create(type: SignupResponse.self, router: .signup(query: signupRequest))
+                return APIManager.shared.create(type: SignupResponse.self, router: UsersRouter.signup(query: signupRequest))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -103,7 +103,7 @@ class SignupViewModel: ViewModelType {
             .withLatestFrom(validEmailObservable)
             .flatMap { emailRequest in
                 return APIManager.shared.create(type: ValidEmailResponse.self,
-                                                router: .validEmail(query: emailRequest))
+                                                router: UsersRouter.validEmail(query: emailRequest))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -123,6 +123,5 @@ class SignupViewModel: ViewModelType {
                       validEmail: validEmail.asDriver(),
                       signupError: signupError.asDriver(onErrorJustReturn: .code500),
                       validEmailError: validEmailError.asDriver(onErrorJustReturn: .code500))
-        
     }
 }

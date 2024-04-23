@@ -34,7 +34,8 @@ class PostsViewModel {
         input.viewDidLoad
             .withLatestFrom(fetchPostsObservable)
             .flatMap { postQuery in
-                return PostsRouter.fetchPosts(query: postQuery)
+                return APIManager.shared.create(type: FetchPostsResponse.self,
+                                                router: PostsRouter.fetchPosts(query: postQuery))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -48,6 +49,5 @@ class PostsViewModel {
         
         return Output(postsContent: postsContent,
                       postsError: postsError.asDriver(onErrorJustReturn: .code500))
-        
     }
 }

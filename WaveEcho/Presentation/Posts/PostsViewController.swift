@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class PostsViewController: BaseViewController {
-
+    
     private let mainView = PostsView()
     private let viewModel = PostsViewModel()
     
@@ -27,12 +27,10 @@ final class PostsViewController: BaseViewController {
         return alert
     }()
     
-    private var fetchPostsResponseCount = 0
-    
     override func loadView() {
         view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,15 +41,12 @@ final class PostsViewController: BaseViewController {
         navigationItem.rightBarButtonItem = mainView.myPageButton
         
         mainView.myPageButton.rx.tap
-            .bind(with: self) { owner, _ in
+            .bind(with: self) {  owner, _ in
                 owner.present(owner.withdrawAlert, animated: true)
             }
             .disposed(by: disposeBag)
-     
-        mainView.collectionView.delegate = self
-        mainView.collectionView.dataSource = self
-        mainView.collectionView.register(PostsCollectionViewCell.self,
-                                         forCellWithReuseIdentifier: PostsCollectionViewCell.identifer)
+        
+        mainView.tableView.rowHeight = 100
     }
     
     @objc private func sendWaveButtonTapped() {
@@ -65,34 +60,18 @@ final class PostsViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.postsContent
-            .bind(with: self) { owner, fetchPostsResponse in
-                owner.mainView.testOfWavesContents.text = fetchPostsResponse.data.first?.content
-                owner.fetchPostsResponseCount = fetchPostsResponse.data.count
+            .map { $0.data }
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: PostsTableViewCell.identifer,
+                                                  cellType: PostsTableViewCell.self)) {(row, element, cell) in
+                
+                cell.contents.text = element.content
             }
-            .disposed(by: disposeBag)
+                                                  .disposed(by: disposeBag)
         
         output.postsError
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .fetchPost)
             }
             .disposed(by: disposeBag)
-    }
-}
-
-extension PostsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("count", fetchPostsResponseCount)
-        return fetchPostsResponseCount
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostsCollectionViewCell.identifer,
-                                                      for: indexPath) as! PostsCollectionViewCell
-        
-        cell.backgroundColor = .blue
-        
-        return cell
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68982BD685D100507C0B /* PostsTableViewCell.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -37,8 +38,7 @@
 		C2CDC2CA2BD36F9E00176723 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2C92BD36F9E00176723 /* APIError.swift */; };
 		C2CDC2CC2BD4C63B00176723 /* FetchPostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2CB2BD4C63B00176723 /* FetchPostsResponse.swift */; };
 		C2CDC2D12BD4FDF000176723 /* FetchPostQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2D02BD4FDF000176723 /* FetchPostQuery.swift */; };
-		C2CDC2E02BD6298A00176723 /* PostsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2DF2BD6298A00176723 /* PostsCollectionViewCell.swift */; };
-		C2CDC2E22BD6299400176723 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2E12BD6299400176723 /* BaseCollectionViewCell.swift */; };
+		C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2E12BD6299400176723 /* BaseTableViewCell.swift */; };
 		C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2E32BD62EFC00176723 /* APIManager.swift */; };
 		C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE62BCD20C100A1D102 /* SignupView.swift */; };
 		C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */; };
@@ -61,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C20E68982BD685D100507C0B /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,8 +89,7 @@
 		C2CDC2C92BD36F9E00176723 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		C2CDC2CB2BD4C63B00176723 /* FetchPostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostsResponse.swift; sourceTree = "<group>"; };
 		C2CDC2D02BD4FDF000176723 /* FetchPostQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostQuery.swift; sourceTree = "<group>"; };
-		C2CDC2DF2BD6298A00176723 /* PostsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsCollectionViewCell.swift; sourceTree = "<group>"; };
-		C2CDC2E12BD6299400176723 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		C2CDC2E12BD6299400176723 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		C2CDC2E32BD62EFC00176723 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		C2DC2BE62BCD20C100A1D102 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 			children = (
 				C2DC2C082BCD21BC00A1D102 /* BaseView.swift */,
 				C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */,
-				C2CDC2E12BD6299400176723 /* BaseCollectionViewCell.swift */,
+				C2CDC2E12BD6299400176723 /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 				C27E533F2BCE6F810037E1A5 /* PostsView.swift */,
 				C27E53412BCE71B00037E1A5 /* PostsViewController.swift */,
 				C2CDC2A82BD107A900176723 /* PostsViewModel.swift */,
-				C2CDC2DF2BD6298A00176723 /* PostsCollectionViewCell.swift */,
+				C20E68982BD685D100507C0B /* PostsTableViewCell.swift */,
 				C27E53432BCE77390037E1A5 /* Content */,
 			);
 			path = Posts;
@@ -430,13 +430,12 @@
 				C2DC2C032BCD217800A1D102 /* SignupRequestBody.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
-				C2CDC2E22BD6299400176723 /* BaseCollectionViewCell.swift in Sources */,
+				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
 				C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */,
 				C2CDC2D12BD4FDF000176723 /* FetchPostQuery.swift in Sources */,
 				C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */,
 				C2DC2C052BCD217800A1D102 /* SignupResponse.swift in Sources */,
-				C2CDC2E02BD6298A00176723 /* PostsCollectionViewCell.swift in Sources */,
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
 				C2DC2C072BCD217800A1D102 /* UsersRouter.swift in Sources */,
 				C2DC2C142BCD548E00A1D102 /* ValidEmailResponse.swift in Sources */,
@@ -450,6 +449,7 @@
 				C2CDC2A52BD1023800176723 /* PostsRouter.swift in Sources */,
 				C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */,
 				C27E53472BCE780C0037E1A5 /* ContentViewController.swift in Sources */,
+				C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */,
 				C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */,
 				C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */,
 				C27E534F2BCE8F800037E1A5 /* PostsResponse.swift in Sources */,

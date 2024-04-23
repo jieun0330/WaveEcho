@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FetchPostQuery {
+struct FetchPostQuery: Encodable {
     let next: String
     let limit: String
     let product_id: String

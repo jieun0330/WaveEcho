@@ -16,7 +16,7 @@ final class APIManager {
     
     private init() { }
     
-    func create<T: Decodable>(type: T.Type, router: UsersRouter) -> Single<Result<T, APIError>> {
+    func create<T: Decodable>(type: T.Type, router: TargetType) -> Single<Result<T, APIError>> {
     
         return Single<Result<T, APIError>>.create { single in
             do {

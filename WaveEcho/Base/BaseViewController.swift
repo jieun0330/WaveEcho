@@ -60,6 +60,20 @@ class BaseViewController: UIViewController {
                 return
             }
             
+        case .createPosts:
+            switch apiError {
+            case .code401:
+                makeAlert(message: "인증할 수 없는 액세스 토큰입니다")
+            case .code403:
+                makeAlert(message: "접근권한이 없습니다")
+            case .code410:
+                makeAlert(message: "게시글이 저장되지 않았습니다")
+            case .code419:
+                makeAlert(message: "액세스 토큰이 만료되었습니다")
+            default:
+                return
+            }
+            
         case .fetchPost:
             switch apiError {
             case .code400:

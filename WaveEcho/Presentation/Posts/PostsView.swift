@@ -31,29 +31,11 @@ class PostsView: BaseView {
         return view
     }()
     
-    lazy var collectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.backgroundColor = .red
-        return collectionView
+    let tableView = {
+        let tableView = UITableView()
+        tableView.register(PostsTableViewCell.self, forCellReuseIdentifier: PostsTableViewCell.identifer)
+        return tableView
     }()
-    
-//    private let testOfWaves = {
-//        let test = UIView()
-//        test.backgroundColor = .red
-//        return test
-//    }()
-//    
-    let testOfWavesContents = {
-        let test = UILabel()
-        test.textColor = .black
-        return test
-    }()
-    
-//    private let noWaveLabel = {
-//        let noWave = UILabel()
-//        noWave.text = "던진 유리병이 아직 없습니다"
-//        return noWave
-//    }()
     
     let sendWaveButton = {
         let sendWave = UIButton()
@@ -75,22 +57,6 @@ class PostsView: BaseView {
     override init(frame: CGRect) {
         super .init(frame: frame)
     
-        segment.addTarget(self, action: #selector(didChangeValue(segment: )), for: .valueChanged)
-        segment.selectedSegmentIndex = 0
-        didChangeValue(segment: segment)
-    }
-    
-    private func createLayout() -> UICollectionViewFlowLayout {
-        let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 10
-        let width = UIScreen.main.bounds.width - spacing
-        layout.itemSize = CGSize(width: width, height: width / 2)
-        layout.minimumLineSpacing = spacing
-        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
-        layout.minimumInteritemSpacing = spacing
-        layout.scrollDirection = .vertical
-        
-        return layout
     }
     
     @objc func rightBarButtonItemTapped() { }
@@ -100,13 +66,9 @@ class PostsView: BaseView {
     }
     
     override func configureHierarchy() {
-        [segment, testOfWavesContents, collectionView, sendWaveButton].forEach {
+        [segment, tableView, sendWaveButton].forEach {
             addSubview($0)
         }
-        
-//        [testOfWavesContents].forEach {
-//            testOfWaves.addSubview($0)
-//        }
     }
     
     override func configureConstraints() {
@@ -116,30 +78,11 @@ class PostsView: BaseView {
             $0.height.equalTo(40)
         }
         
-        testOfWavesContents.snp.makeConstraints {
-            $0.leading.top.equalTo(segment)
-        }
-        
-        collectionView.snp.makeConstraints {
+        tableView.snp.makeConstraints {
             $0.top.equalTo(segment.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(10)
             $0.bottom.equalTo(sendWaveButton.snp.top).offset(-10)
         }
-        
-//        testOfWaves.snp.makeConstraints {
-//            $0.horizontalEdges.equalToSuperview().inset(20)
-//            $0.top.equalTo(segment.snp.bottom).offset(20)
-//            $0.height.equalTo(200)
-//        }
-//        
-//        testOfWavesContents.snp.makeConstraints {
-//            $0.leading.top.equalToSuperview().offset(10)
-//        }
-        
-//        noWaveLabel.snp.makeConstraints {
-//            $0.center.equalToSuperview()
-//            $0.horizontalEdges.equalToSuperview().inset(30)
-//        }
         
         sendWaveButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)
@@ -147,6 +90,12 @@ class PostsView: BaseView {
             $0.width.equalTo(200)
             $0.centerX.equalToSuperview()
         }
+    }
+    
+    override func configureView() {
+        segment.addTarget(self, action: #selector(didChangeValue(segment: )), for: .valueChanged)
+        segment.selectedSegmentIndex = 0
+        didChangeValue(segment: segment)
     }
     
     required init?(coder: NSCoder) {
