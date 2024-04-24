@@ -15,6 +15,8 @@
 		C20E68B72BD8FF2100507C0B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B62BD8FF2100507C0B /* ProfileViewController.swift */; };
 		C20E68B92BD9001C00507C0B /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B82BD9001C00507C0B /* ProfileRouter.swift */; };
 		C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68BC2BD91C5F00507C0B /* MyProfileResponse.swift */; };
+		C20E68C02BD9512200507C0B /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68BF2BD9512200507C0B /* UITextView.swift */; };
+		C20E68C22BD953FC00507C0B /* ImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68C12BD953FC00507C0B /* ImageUploadResponse.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -76,6 +78,8 @@
 		C20E68B62BD8FF2100507C0B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C20E68B82BD9001C00507C0B /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		C20E68BC2BD91C5F00507C0B /* MyProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileResponse.swift; sourceTree = "<group>"; };
+		C20E68BF2BD9512200507C0B /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		C20E68C12BD953FC00507C0B /* ImageUploadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadResponse.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +170,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		C20E68BE2BD9511800507C0B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C20E68BF2BD9512200507C0B /* UITextView.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		C23AFE6B2BC6CE820000EBE5 = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +198,7 @@
 		C23AFE762BC6CE820000EBE5 /* WaveEcho */ = {
 			isa = PBXGroup;
 			children = (
+				C20E68BE2BD9511800507C0B /* Extension */,
 				C20E689A2BD73D8C00507C0B /* Manager */,
 				C2DC2BEE2BCD20C100A1D102 /* Presentation */,
 				C23AFEB12BC6E24F0000EBE5 /* Protocol */,
@@ -275,6 +288,7 @@
 			children = (
 				C27E534E2BCE8F800037E1A5 /* PostsResponse.swift */,
 				C2CDC2CB2BD4C63B00176723 /* FetchPostsResponse.swift */,
+				C20E68C12BD953FC00507C0B /* ImageUploadResponse.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -473,11 +487,13 @@
 			files = (
 				C20E68B92BD9001C00507C0B /* ProfileRouter.swift in Sources */,
 				C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */,
+				C20E68C22BD953FC00507C0B /* ImageUploadResponse.swift in Sources */,
 				C2DC2C032BCD217800A1D102 /* SignupRequestBody.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
+				C20E68C02BD9512200507C0B /* UITextView.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
 				C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */,
 				C2CDC2D12BD4FDF000176723 /* FetchPostQuery.swift in Sources */,

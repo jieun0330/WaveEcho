@@ -10,10 +10,15 @@ import SnapKit
 
 class ContentView: BaseView {
     
-    let content = {
-        let content = UITextView()
-        content.backgroundColor = .orange
+    let contentTextView = {
+        let content = UnderlineTextView()
+//        content.backgroundColor = .orange
         return content
+    }()
+    
+    let presentPhotoView = {
+        let photo = UIImageView()
+        return photo
     }()
     
     let uploadPhotoButton = {
@@ -37,16 +42,22 @@ class ContentView: BaseView {
     }
     
     override func configureHierarchy() {
-        [content, uploadPhotoButton, completeButton].forEach {
+        [contentTextView, presentPhotoView, uploadPhotoButton, completeButton].forEach {
             addSubview($0)
         }
     }
     
     override func configureConstraints() {
-        content.snp.makeConstraints {
+        contentTextView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide).offset(50)
             $0.horizontalEdges.equalToSuperview().inset(50)
             $0.height.equalTo(100)
+        }
+        
+        presentPhotoView.snp.makeConstraints {
+            $0.top.equalTo(contentTextView.snp.bottom).offset(20)
+            $0.horizontalEdges.equalTo(contentTextView)
+            $0.height.equalTo(300)
         }
         
         uploadPhotoButton.snp.makeConstraints {

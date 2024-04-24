@@ -22,11 +22,12 @@ class ContentViewModel: ViewModelType {
     struct Output {
         let createPostTrigger: Driver<Void>
         let createPostError: Driver<APIError>
+        let uploadPhotoButtonTapped: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
         
-        let uploadPostTrigger = PublishRelay<Void>()
+        let createPostTrigger = PublishRelay<Void>()
         let createPostError = PublishRelay<APIError>()
         let uploadPhotoTrigger = PublishRelay<Void>()
         
@@ -36,7 +37,7 @@ class ContentViewModel: ViewModelType {
                                         product_id: "",
                                         files: nil)
             }
-        
+
         input.completeButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
@@ -46,7 +47,7 @@ class ContentViewModel: ViewModelType {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
-                    uploadPostTrigger.accept(())
+                    createPostTrigger.accept(())
                 case .failure(let error):
                     
                     createPostError.accept(error)
@@ -54,11 +55,12 @@ class ContentViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-//        input.uploadPhotoButtonTapped
-//            .debounce(.seconds(1), scheduler: MainScheduler.instance)
-//            .withLatestFrom(<#T##second: ObservableConvertibleType##ObservableConvertibleType#>)
-        
-        return Output(createPostTrigger: uploadPostTrigger.asDriver(onErrorJustReturn: ()),
-                      createPostError: createPostError.asDriver(onErrorJustReturn: .code500))
+        input.uploadPhotoButtonTapped
+            .bind(to: uploadPhotoTrigger)
+            .disposed(by: disposeBag)
+                
+        return Output(createPostTrigger: createPostTrigger.asDriver(onErrorJustReturn: ()),
+                      createPostError: createPostError.asDriver(onErrorJustReturn: .code500),
+                      uploadPhotoButtonTapped: uploadPhotoTrigger.asDriver(onErrorJustReturn: ()))
     }
 }

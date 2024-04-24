@@ -41,9 +41,6 @@ final class PostsViewController: BaseViewController {
         navigationItem.rightBarButtonItem = mainView.myPageButton
         navigationItem.title = "파도 속 유리병"
         
-        // 🎾
-        navigationController?.navigationItem.backButtonTitle = ""
-        
         mainView.myPageButton.rx.tap
             .bind(with: self) {  owner, _ in
                 let vc = ProfileViewController()
@@ -53,7 +50,6 @@ final class PostsViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.tableView.rowHeight = 200
-        
     }
     
     @objc private func sendWaveButtonTapped() {
@@ -72,18 +68,16 @@ final class PostsViewController: BaseViewController {
             .map { $0.data }
             .bind(to: mainView.tableView.rx.items(cellIdentifier: PostsTableViewCell.identifer,
                                                   cellType: PostsTableViewCell.self)) {(row, element, cell) in
-                cell.contents.text = element.content
-                
+                cell.selectionStyle = .none
                 cell.layer.borderWidth = 1
                 cell.layer.borderColor = UIColor.green.cgColor
-                cell.backgroundView = UIImageView(image: .whitePaper)
-                cell.backgroundView?.layer.masksToBounds = true
+
+                cell.contents.text = element.content
                 
                 let stringDate = DateFormatManager.shared.stringToDate(date: element.createdAt)
                 let realtiveDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                 cell.date.text = realtiveDate
                 
-                cell.selectionStyle = .none
             }
                                                   .disposed(by: disposeBag)
         

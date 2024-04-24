@@ -10,6 +10,15 @@ import SnapKit
 
 class PostsTableViewCell: BaseTableViewCell {
     
+    let testImage = {
+        let test = UIImageView()
+        test.image = .whitePaper
+        test.contentMode = .scaleAspectFill
+        test.layer.borderWidth = 1
+        test.layer.borderColor = UIColor.blue.cgColor
+        return test
+    }()
+
     let contents = {
         let contents = UILabel()
         contents.text = "contents"
@@ -24,7 +33,7 @@ class PostsTableViewCell: BaseTableViewCell {
         date.font = .systemFont(ofSize: 10)
         return date
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -36,12 +45,16 @@ class PostsTableViewCell: BaseTableViewCell {
     }
     
     override func configureHierarchy() {
-        [contents, date].forEach {
+        [testImage, contents, date].forEach {
             contentView.addSubview($0)
         }
     }
     
     override func configureConstraints() {
+        
+        testImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
 
         contents.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(10)
@@ -54,11 +67,18 @@ class PostsTableViewCell: BaseTableViewCell {
             $0.bottom.equalToSuperview().offset(-10)
             $0.trailing.equalToSuperview().offset(-10)
         }
+        
+        contentView.snp.makeConstraints {
+            $0.verticalEdges.equalToSuperview().inset(20)
+            $0.horizontalEdges.equalToSuperview().inset(10)
+        }
     }
     
     override func configureView() {
 
         contentView.layer.cornerRadius = 20
+        contentView.layer.borderColor = UIColor.orange.cgColor
+        contentView.layer.borderWidth = 1
     }
     
     required init?(coder: NSCoder) {
