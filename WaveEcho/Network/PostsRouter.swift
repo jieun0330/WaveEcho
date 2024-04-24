@@ -10,8 +10,12 @@ import Alamofire
 import RxSwift
 
 enum PostsRouter {
+    // 포스트 작성
     case createPosts(query: PostsRequestBody)
+    // 포스트 조회
     case fetchPosts(query: FetchPostQuery)
+    // 포스트 이미지 업로드
+    case uploadImage(query: ImageUploadRequestBody)
 }
 
 extension PostsRouter: TargetType {
@@ -25,6 +29,8 @@ extension PostsRouter: TargetType {
             return .post
         case .fetchPosts:
             return .get
+        case .uploadImage:
+            return .post
         }
     }
     
@@ -37,6 +43,10 @@ extension PostsRouter: TargetType {
         case .fetchPosts:
             return [HTTPHeader.authorization.rawValue: accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .uploadImage:
+            return [HTTPHeader.authorization.rawValue: accessToken,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -44,12 +54,14 @@ extension PostsRouter: TargetType {
         switch self {
         case .createPosts, .fetchPosts:
             return "/v1/posts"
+        case .uploadImage:
+            return "/v1/posts/files"
         }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .createPosts:
+        case .createPosts, .uploadImage:
             nil
         case .fetchPosts(let query):
             ["next": query.next,
@@ -68,6 +80,8 @@ extension PostsRouter: TargetType {
             return try? encoder.encode(query)
         case .fetchPosts:
             return nil
+        case .uploadImage(query: let query):
+            return try? encoder.encode(query)
         }
     }
 }

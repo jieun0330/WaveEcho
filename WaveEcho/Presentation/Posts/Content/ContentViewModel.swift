@@ -15,7 +15,8 @@ class ContentViewModel: ViewModelType {
     
     struct Input {
         let content: ControlProperty<String>
-        let uploadButtonTapped: ControlEvent<Void>
+        let uploadPhotoButtonTapped: ControlEvent<Void>
+        let completeButtonTapped: ControlEvent<Void>
     }
     
     struct Output {
@@ -27,6 +28,7 @@ class ContentViewModel: ViewModelType {
         
         let uploadPostTrigger = PublishRelay<Void>()
         let createPostError = PublishRelay<APIError>()
+        let uploadPhotoTrigger = PublishRelay<Void>()
         
         let contentObservable = input.content.asObservable()
             .map { content in
@@ -35,7 +37,7 @@ class ContentViewModel: ViewModelType {
                                         files: nil)
             }
         
-        input.uploadButtonTapped
+        input.completeButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMap { postRequest in
@@ -43,13 +45,18 @@ class ContentViewModel: ViewModelType {
             }
             .bind(with: self) { owner, result in
                 switch result {
-                case .success(_):
+                case .success(let success):
                     uploadPostTrigger.accept(())
                 case .failure(let error):
+                    
                     createPostError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
+        
+//        input.uploadPhotoButtonTapped
+//            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+//            .withLatestFrom(<#T##second: ObservableConvertibleType##ObservableConvertibleType#>)
         
         return Output(createPostTrigger: uploadPostTrigger.asDriver(onErrorJustReturn: ()),
                       createPostError: createPostError.asDriver(onErrorJustReturn: .code500))

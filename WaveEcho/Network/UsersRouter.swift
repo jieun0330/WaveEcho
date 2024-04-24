@@ -78,34 +78,13 @@ extension UsersRouter: TargetType {
             return try? encoder.encode(query)
         case .login(let query):
             return try? encoder.encode(query)
-        case .refreshToken:
-            return nil
-        case .withdraw:
+        case .refreshToken, .withdraw:
             return nil
         }
     }
 }
 
 extension UsersRouter {
-
-    static func refreshToken() -> Single<RefreshTokenResponse> {
-        return Single<RefreshTokenResponse>.create { single in
-                let urlRequest = UsersRouter.refreshToken.urlRequest!
-                
-                AF
-                    .request(urlRequest)
-                    .responseDecodable(of: RefreshTokenResponse.self) { response in
-                        switch response.result {
-                        case .success(let refreshToken):
-                            single(.success(refreshToken))
-                            print("토큰 갱신 완료", refreshToken)
-                        case .failure(let error):
-                            single(.failure(error))
-                        }
-                    }
-            return Disposables.create()
-        }
-    }
     
     static func withdrawUsers() -> Single<WithdrawResponse> {
         return Single<WithdrawResponse>.create { single in

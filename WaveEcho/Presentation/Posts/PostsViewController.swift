@@ -39,14 +39,21 @@ final class PostsViewController: BaseViewController {
                                           for: .touchUpInside)
         
         navigationItem.rightBarButtonItem = mainView.myPageButton
+        navigationItem.title = "파도 속 유리병"
+        
+        // 🎾
+        navigationController?.navigationItem.backButtonTitle = ""
         
         mainView.myPageButton.rx.tap
             .bind(with: self) {  owner, _ in
-                owner.present(owner.withdrawAlert, animated: true)
+                let vc = ProfileViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+//                owner.present(owner.withdrawAlert, animated: true)
             }
             .disposed(by: disposeBag)
         
-        mainView.tableView.rowHeight = 100
+        mainView.tableView.rowHeight = 200
+        
     }
     
     @objc private func sendWaveButtonTapped() {
@@ -59,19 +66,31 @@ final class PostsViewController: BaseViewController {
         let input = PostsViewModel.Input(viewDidLoad: Observable.just(Void()))
         let output = viewModel.transform(input: input)
         
+        print("output.postsContent🦸🏻‍♀️", output.postsContent)
+        
         output.postsContent
             .map { $0.data }
             .bind(to: mainView.tableView.rx.items(cellIdentifier: PostsTableViewCell.identifer,
                                                   cellType: PostsTableViewCell.self)) {(row, element, cell) in
-                
                 cell.contents.text = element.content
+                
+                cell.layer.borderWidth = 1
+                cell.layer.borderColor = UIColor.green.cgColor
+                cell.backgroundView = UIImageView(image: .whitePaper)
+                cell.backgroundView?.layer.masksToBounds = true
+                
+                let stringDate = DateFormatManager.shared.stringToDate(date: element.createdAt)
+                let realtiveDate = DateFormatManager.shared.relativeDate(date: stringDate!)
+                cell.date.text = realtiveDate
+                
+                cell.selectionStyle = .none
             }
                                                   .disposed(by: disposeBag)
         
-        output.postsError
-            .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .fetchPost)
-            }
-            .disposed(by: disposeBag)
+//        output.postsError
+//            .drive(with: self) { owner, error in
+//                owner.errorHandler(apiError: error, calltype: .createPosts)
+//            }
+//            .disposed(by: disposeBag)
     }
 }

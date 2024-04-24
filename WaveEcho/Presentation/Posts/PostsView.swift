@@ -9,27 +9,12 @@ import UIKit
 import SnapKit
 
 class PostsView: BaseView {
-    let segment = {
-        let segment = UISegmentedControl(items: ["나의 유리병", "답장"])
-        segment.translatesAutoresizingMaskIntoConstraints = false
-        return segment
-    }()
     
-    private let myWaveView = {
-        let view = UIView()
-        view.tag = 0
-        view.backgroundColor = .green
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let responseView = {
-        let view = UIView()
-        view.tag = 1
-        view.backgroundColor = .yellow
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    let segment = {
+//        let segment = UISegmentedControl(items: ["나의 유리병", "답장"])
+//        segment.translatesAutoresizingMaskIntoConstraints = false
+//        return segment
+//    }()
     
     let tableView = {
         let tableView = UITableView()
@@ -61,27 +46,29 @@ class PostsView: BaseView {
     
     @objc func rightBarButtonItemTapped() { }
     
-    @objc func didChangeValue(segment: UISegmentedControl) {
-        print(#function)
-    }
+//    @objc func didChangeValue(segment: UISegmentedControl) {
+//        print(#function)
+//    }
     
     override func configureHierarchy() {
-        [segment, tableView, sendWaveButton].forEach {
+        [tableView, sendWaveButton].forEach {
             addSubview($0)
         }
     }
     
     override func configureConstraints() {
-        segment.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide)
-            $0.horizontalEdges.equalToSuperview().inset(30)
-            $0.height.equalTo(40)
-        }
+//        segment.snp.makeConstraints {
+//            $0.top.equalTo(safeAreaLayoutGuide)
+//            $0.horizontalEdges.equalToSuperview().inset(30)
+//            $0.height.equalTo(40)
+//        }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(segment.snp.bottom).offset(10)
+//            $0.top.equalTo(segment.snp.bottom).offset(10)
+            $0.top.equalTo(safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview().inset(10)
             $0.bottom.equalTo(sendWaveButton.snp.top).offset(-10)
+//            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
         }
         
         sendWaveButton.snp.makeConstraints {
@@ -93,9 +80,9 @@ class PostsView: BaseView {
     }
     
     override func configureView() {
-        segment.addTarget(self, action: #selector(didChangeValue(segment: )), for: .valueChanged)
-        segment.selectedSegmentIndex = 0
-        didChangeValue(segment: segment)
+//        segment.addTarget(self, action: #selector(didChangeValue(segment: )), for: .valueChanged)
+//        segment.selectedSegmentIndex = 0
+//        didChangeValue(segment: segment)
     }
     
     required init?(coder: NSCoder) {

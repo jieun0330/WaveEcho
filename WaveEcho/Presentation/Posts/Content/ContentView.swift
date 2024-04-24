@@ -50,13 +50,15 @@ class ContentView: BaseView {
         }
         
         uploadPhotoButton.snp.makeConstraints {
-            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
+//            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
             $0.leading.equalTo(safeAreaLayoutGuide).offset(20)
+            $0.centerY.equalTo(completeButton)
             $0.width.equalTo(100)
         }
         
         completeButton.snp.makeConstraints {
-            $0.bottom.equalTo(uploadPhotoButton)
+            $0.bottom.equalTo(safeAreaLayoutGuide)
+//            $0.bottom.equalTo(uploadPhotoButton)
             $0.trailing.equalTo(safeAreaLayoutGuide).inset(20)
             $0.width.equalTo(100)
             $0.height.equalTo(50)

@@ -34,5 +34,7 @@ enum APIError: Int, Error {
         case login
         case createPosts
         case fetchPost
+        
+        case refreshToken
     }
 }

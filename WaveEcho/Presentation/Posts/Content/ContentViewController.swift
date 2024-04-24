@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class ContentViewController: BaseViewController {
     
@@ -22,28 +23,38 @@ final class ContentViewController: BaseViewController {
         super.viewDidLoad()
 
         navigationItem.title = "유리병 던지기"
-        mainView.uploadPhotoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
+//        mainView.uploadPhotoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
+        
     }
     
-    @objc private func photoButtonTapped() { }
+//    @objc private func photoButtonTapped() { }
     
     override func bind() {
         let contentInput = ContentViewModel.Input(content: mainView.content.rx.text.orEmpty,
-                                                  uploadButtonTapped: mainView.completeButton.rx.tap)
+                                                  uploadPhotoButtonTapped: mainView.uploadPhotoButton.rx.tap,
+                                                  completeButtonTapped: mainView.completeButton.rx.tap)
         
         let contentOutput = viewModel.transform(input: contentInput)
         
         contentOutput.createPostTrigger
             .drive(with: self) { owner, _ in
                 print("포스팅 업로드 성공")
+                owner.view.makeToast("포스팅 업로드 성공")
+            }
+            .disposed(by: disposeBag)
+        
+        contentOutput.createPostTrigger
+            .debounce(.seconds(2))
+            .drive(with: self) { owner, _ in
+                owner.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
         
         // 포스팅 작성 에러 핸들링
-        contentOutput.createPostError
-            .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .createPosts)
-            }
-            .disposed(by: disposeBag)
+//        contentOutput.createPostError
+//            .drive(with: self) { owner, error in
+//                owner.errorHandler(apiError: error, calltype: .createPosts)
+//            }
+//            .disposed(by: disposeBag)
     }
 }

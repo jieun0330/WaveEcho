@@ -5,7 +5,7 @@
 //  Created by 박지은 on 4/22/24.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 import Alamofire
@@ -23,13 +23,19 @@ final class APIManager {
                 let urlRequest = try router.asURLRequest()
                 
                 AF
-                    .request(urlRequest)
+                    .request(urlRequest, interceptor: RefreshToken())
                     .responseDecodable(of: T.self) { response in
+                        print("accessToken🤯", UserDefaults.standard.string(forKey: "accessToken"))
+                        print("response🦄", response)
                         switch response.result {
                         case .success(let success):
+                            print("success💂🏻‍♀️", success)
                             single(.success(.success(success)))
+                            
                         case .failure(_):
                             guard let statusCode = response.response?.statusCode else { return }
+//                            if statusCode == 418 {
+//                            }
                             guard let error = APIError(rawValue: statusCode) else { return }
                             single(.success(.failure(error)))
                         }
@@ -38,7 +44,23 @@ final class APIManager {
             catch {
                 single(.success(.failure(APIError.code500)))
             }
+            
             return Disposables.create()
         }
     }
+    
+//    func upload<T: Decodable>(type: T.type, router: TargetType) -> Single<Result<T, APIError>> {
+//        
+//        return Single<Result<T, APIError>>.create { single in
+//            AF
+//                .upload(multipartFormData: { multipartFormData in
+//                    multipartFormData.append(<#T##data: Data##Data#>,
+//                                             withName: <#T##String#>,
+//                                             fileName: <#T##String?#>,
+//                                             mimeType: <#T##String?#>)
+//                }, to: router.baseURL.)
+//        }
+        
+//    }
+    
 }
