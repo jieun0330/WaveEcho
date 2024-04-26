@@ -48,6 +48,8 @@ final class PostsViewController: BaseViewController {
 //                owner.present(owner.withdrawAlert, animated: true)
             }
             .disposed(by: disposeBag)
+        
+        mainView.tableView.rowHeight = 200
     }
     
     @objc private func sendWaveButtonTapped() {
@@ -82,6 +84,20 @@ final class PostsViewController: BaseViewController {
         output.postsError
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .createPosts)
+            }
+            .disposed(by: disposeBag)
+        
+        output.postsError
+            .debounce(.seconds(2))
+            .drive(with: self) { owner, error in
+                UserDefaults.standard.removeObject(forKey: "accessToken")
+                let vc = WelcomeViewController()
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+
+                let sceneDelegate = windowScene.delegate as? SceneDelegate
+
+                sceneDelegate?.window?.rootViewController = vc
+                sceneDelegate?.window?.makeKeyAndVisible()
             }
             .disposed(by: disposeBag)
     }

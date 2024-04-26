@@ -67,7 +67,7 @@ class PostsTableViewCell: BaseTableViewCell {
 
         contents.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(10)
-            $0.top.equalToSuperview().offset(5)
+            $0.top.equalTo(contentView).offset(5)
             $0.bottom.equalToSuperview().offset(-20)
             $0.trailing.equalTo(date.snp.leading).offset(10)
         }
@@ -77,8 +77,8 @@ class PostsTableViewCell: BaseTableViewCell {
         }
         
         date.snp.makeConstraints {
-            $0.bottom.equalToSuperview().offset(-10)
-            $0.trailing.equalToSuperview().offset(-10)
+            $0.bottom.equalTo(contentView).offset(-10)
+            $0.trailing.equalTo(contentView).offset(-10)
         }
         
 //        contentView.snp.makeConstraints {

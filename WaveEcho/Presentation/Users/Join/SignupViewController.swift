@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class SignupViewController: BaseViewController {
+final class SignupViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate {
     
     private let mainView = SignupView()
     private let viewModel = SignupViewModel()
@@ -32,6 +32,9 @@ final class SignupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        mainView.nicknameTextField.delegate = self
+        mainView.emailTextField.delegate = self
+        mainView.passwordTextField.delegate = self
     }
     
     override func bind() {
@@ -81,7 +84,7 @@ final class SignupViewController: BaseViewController {
                 owner.mainView.validEmail.text = value
             }
             .disposed(by: disposeBag)
-        
+                
         // 회원가입 에러 처리
         signupOutput.signupError
             .drive(with: self) { owner, error in
@@ -95,5 +98,25 @@ final class SignupViewController: BaseViewController {
                 owner.errorHandler(apiError: error, calltype: .validEmail)
             }
             .disposed(by: disposeBag)
+        
+//        signupOutput.validSignup
+//            .drive(with: self) { owner, value in
+//                let validEmail: String = value ? "사용 가능한 이메일입니다" : "사용 불가한 이메일입니다"
+//                owner.mainView.validEmail.text = validEmail
+//            }.disposed(by: disposeBag)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == self.mainView.nicknameTextField {
+            self.mainView.emailTextField.becomeFirstResponder()
+        } else if textField == self.mainView.emailTextField {
+            self.mainView.passwordTextField.becomeFirstResponder()
+        }
+        return true
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        self.view.endEditing(true)
     }
 }

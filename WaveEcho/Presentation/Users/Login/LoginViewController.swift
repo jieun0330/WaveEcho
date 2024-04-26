@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-class LoginViewController: BaseViewController {
+class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     private let mainView = LoginView()
     private let viewModel = LoginViewModel()
@@ -37,6 +37,9 @@ class LoginViewController: BaseViewController {
                 owner.view.endEditing(true)
             }
             .disposed(by: disposeBag)
+        
+        mainView.emailTextField.delegate = self
+        mainView.passwordTextField.delegate = self
     }
     
     override func bind() {
@@ -76,5 +79,13 @@ class LoginViewController: BaseViewController {
                 owner.navigationController?.setViewControllers([vc], animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == self.mainView.emailTextField {
+            self.mainView.passwordTextField.becomeFirstResponder()
+        }
+        return true
     }
 }

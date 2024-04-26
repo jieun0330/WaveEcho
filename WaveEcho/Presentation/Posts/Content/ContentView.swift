@@ -37,10 +37,22 @@ class ContentView: BaseView {
         return button
     }()
     
+    lazy var rightBarButtonItem = {
+        let right = UIBarButtonItem(title: "완료",
+                                    style: .plain,
+                                    target: self,
+                                    action: #selector(self.rightBarButtonItemTapped))
+        return right
+    }()
+    
+    @objc private func rightBarButtonItemTapped() {
+        endEditing(true)
+    }
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
     }
-    
+        
     override func configureHierarchy() {
         [contentTextView, presentPhotoView, uploadPhotoButton, completeButton].forEach {
             addSubview($0)

@@ -110,7 +110,7 @@ class SignupViewModel: ViewModelType {
                 case .success(let success):
                     validEmailTrigger.accept(true)
                     // 이메일 중복확인 안내 텍스트
-                    validEmail.accept(success.message)
+//                    validEmail.accept(success.message)
                 case .failure(let error):
                     validEmailError.accept(error)
                 }

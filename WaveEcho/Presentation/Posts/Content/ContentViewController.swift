@@ -25,6 +25,7 @@ final class ContentViewController: BaseViewController {
 
         navigationItem.title = "유리병 던지기"
         mainView.uploadPhotoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
     }
     
     @objc private func photoButtonTapped() {
