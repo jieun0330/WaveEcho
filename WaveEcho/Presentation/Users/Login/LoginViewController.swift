@@ -31,6 +31,12 @@ class LoginViewController: BaseViewController {
                 owner.navigationController?.viewControllers = [vc]
             }
             .disposed(by: disposeBag)
+        
+        mainView.loginButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func bind() {

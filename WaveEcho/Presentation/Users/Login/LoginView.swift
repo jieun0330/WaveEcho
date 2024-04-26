@@ -46,6 +46,8 @@ class LoginView: BaseView {
     let passwordTextField = {
         let password = UITextField()
         password.placeholder = "비밀번호를 입력해주세요"
+        password.keyboardType = .numberPad
+        password.isSecureTextEntry = true
         return password
     }()
     
