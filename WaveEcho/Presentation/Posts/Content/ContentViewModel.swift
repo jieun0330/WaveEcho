@@ -49,7 +49,7 @@ class ContentViewModel: ViewModelType {
                 case .success(let success):
                     createPostTrigger.accept(())
                 case .failure(let error):
-                    
+                    print("error 🫥", error)
                     createPostError.accept(error)
                 }
             }

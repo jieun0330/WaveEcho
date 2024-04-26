@@ -48,8 +48,6 @@ final class PostsViewController: BaseViewController {
 //                owner.present(owner.withdrawAlert, animated: true)
             }
             .disposed(by: disposeBag)
-        
-        mainView.tableView.rowHeight = 200
     }
     
     @objc private func sendWaveButtonTapped() {
@@ -73,7 +71,7 @@ final class PostsViewController: BaseViewController {
                 cell.layer.borderColor = UIColor.green.cgColor
 
                 cell.contents.text = element.content
-                
+
                 let stringDate = DateFormatManager.shared.stringToDate(date: element.createdAt)
                 let realtiveDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                 cell.date.text = realtiveDate
@@ -81,10 +79,10 @@ final class PostsViewController: BaseViewController {
             }
                                                   .disposed(by: disposeBag)
         
-//        output.postsError
-//            .drive(with: self) { owner, error in
-//                owner.errorHandler(apiError: error, calltype: .createPosts)
-//            }
-//            .disposed(by: disposeBag)
+        output.postsError
+            .drive(with: self) { owner, error in
+                owner.errorHandler(apiError: error, calltype: .createPosts)
+            }
+            .disposed(by: disposeBag)
     }
 }

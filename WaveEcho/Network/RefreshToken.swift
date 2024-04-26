@@ -54,10 +54,10 @@ class RefreshToken: RequestInterceptor {
                             print("success 🌽", success)
                             // 재발급 성공 -> 새로운 토큰 저장
                             UserDefaults.standard.set(success.accessToken, forKey: "accessToken")
-                            completion(.retry)
+                            completion(.retry) // ❗️
                             
                         case .failure(let error):
-                            print("error 🥧", error)
+                            print("error 🥧", error) // 418
                             print("accessToken 😶‍🌫️", accessToken)
                             print(statusCode)
                             

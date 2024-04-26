@@ -43,6 +43,7 @@ class PostsViewModel {
                 case .success(let success):
                     print("success💪🏻", success)
                     postsContent.accept(success)
+                    
                 case .failure(let error):
                     print("error🧕🏻", error)
                     postsError.accept(error)

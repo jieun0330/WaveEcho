@@ -27,6 +27,7 @@ final class APIManager {
                     .responseDecodable(of: T.self) { response in
                         print("accessToken🤯", UserDefaults.standard.string(forKey: "accessToken"))
                         print("response🦄", response)
+                        print("response.response?.statusCode 🆘", response.response?.statusCode)
                         switch response.result {
                         case .success(let success):
                             print("success💂🏻‍♀️", success)
@@ -34,6 +35,8 @@ final class APIManager {
                             
                         case .failure(_):
                             guard let statusCode = response.response?.statusCode else { return }
+                            
+                            // 418을 만났을 때의 화면전환 인데 
 //                            if statusCode == 418 {
 //                            }
                             guard let error = APIError(rawValue: statusCode) else { return }
