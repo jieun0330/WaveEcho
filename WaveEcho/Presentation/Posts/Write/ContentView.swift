@@ -12,12 +12,15 @@ class ContentView: BaseView {
     
     let contentTextView = {
         let content = UnderlineTextView()
-//        content.backgroundColor = .orange
         return content
     }()
     
     let presentPhotoView = {
         let photo = UIImageView()
+        photo.contentMode = .scaleAspectFill
+        photo.clipsToBounds = true
+        photo.layer.borderWidth = 1
+        photo.layer.borderColor = UIColor.orange.cgColor
         return photo
     }()
     
@@ -28,9 +31,9 @@ class ContentView: BaseView {
         return button
     }()
     
-    let completeButton = {
+    let sendButton = {
         let button = UIButton()
-        button.setTitle("완료", for: .normal)
+        button.setTitle("던지기", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .lightGray
         button.layer.cornerRadius = 20
@@ -54,7 +57,7 @@ class ContentView: BaseView {
     }
         
     override func configureHierarchy() {
-        [contentTextView, presentPhotoView, uploadPhotoButton, completeButton].forEach {
+        [contentTextView, presentPhotoView, uploadPhotoButton, sendButton].forEach {
             addSubview($0)
         }
     }
@@ -75,11 +78,11 @@ class ContentView: BaseView {
         uploadPhotoButton.snp.makeConstraints {
 //            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
             $0.leading.equalTo(safeAreaLayoutGuide).offset(20)
-            $0.centerY.equalTo(completeButton)
+            $0.centerY.equalTo(sendButton)
             $0.width.equalTo(100)
         }
         
-        completeButton.snp.makeConstraints {
+        sendButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)
 //            $0.bottom.equalTo(uploadPhotoButton)
             $0.trailing.equalTo(safeAreaLayoutGuide).inset(20)

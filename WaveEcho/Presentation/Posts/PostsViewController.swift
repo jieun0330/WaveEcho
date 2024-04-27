@@ -34,6 +34,15 @@ final class PostsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    @objc private func sendWaveButtonTapped() {
+        print(#function)
+        let vc = ContentViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func configureView() {
         mainView.sendWaveButton.addTarget(self,
                                           action: #selector(sendWaveButtonTapped),
                                           for: .touchUpInside)
@@ -50,12 +59,12 @@ final class PostsViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.tableView.rowHeight = 200
-    }
-    
-    @objc private func sendWaveButtonTapped() {
-        print(#function)
-        let vc = ContentViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        
+        mainView.tableView.rx.itemSelected
+            .bind(with: self) { owner, index in
+                print("🤑", index)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func bind() {
@@ -77,7 +86,6 @@ final class PostsViewController: BaseViewController {
                 let stringDate = DateFormatManager.shared.stringToDate(date: element.createdAt)
                 let realtiveDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                 cell.date.text = realtiveDate
-                
             }
                                                   .disposed(by: disposeBag)
         
@@ -87,11 +95,13 @@ final class PostsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 리프레시 토큰 만료시 기존 accessToken 삭제
+        // rootView 첫화면으로 전환
         output.postsError
             .debounce(.seconds(2))
             .drive(with: self) { owner, error in
                 UserDefaults.standard.removeObject(forKey: "accessToken")
-                let vc = WelcomeViewController()
+                let vc = UINavigationController (rootViewController: WelcomeViewController ())
                 guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
 
                 let sceneDelegate = windowScene.delegate as? SceneDelegate

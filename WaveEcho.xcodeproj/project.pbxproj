@@ -33,6 +33,7 @@
 		C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */; };
 		C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */; };
 		C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */; };
+		C25D9F132BDCC5DB00012307 /* PostsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F122BDCC5DB00012307 /* PostsDetailViewController.swift */; };
 		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
 		C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E53412BCE71B00037E1A5 /* PostsViewController.swift */; };
 		C27E53452BCE774A0037E1A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E53442BCE774A0037E1A5 /* ContentView.swift */; };
@@ -94,6 +95,7 @@
 		C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		C25D9F122BDCC5DB00012307 /* PostsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailViewController.swift; sourceTree = "<group>"; };
 		C27E533F2BCE6F810037E1A5 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		C27E53412BCE71B00037E1A5 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		C27E53442BCE774A0037E1A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -252,6 +254,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		C25D9F112BDCC1ED00012307 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C25D9F122BDCC5DB00012307 /* PostsDetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		C27E533C2BCE6EF70037E1A5 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,19 +269,20 @@
 				C27E53412BCE71B00037E1A5 /* PostsViewController.swift */,
 				C2CDC2A82BD107A900176723 /* PostsViewModel.swift */,
 				C20E68982BD685D100507C0B /* PostsTableViewCell.swift */,
-				C27E53432BCE77390037E1A5 /* Content */,
+				C27E53432BCE77390037E1A5 /* Write */,
+				C25D9F112BDCC1ED00012307 /* Detail */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
 		};
-		C27E53432BCE77390037E1A5 /* Content */ = {
+		C27E53432BCE77390037E1A5 /* Write */ = {
 			isa = PBXGroup;
 			children = (
 				C27E53442BCE774A0037E1A5 /* ContentView.swift */,
 				C27E53462BCE780C0037E1A5 /* ContentViewController.swift */,
 				C27E53482BCE8DE40037E1A5 /* ContentViewModel.swift */,
 			);
-			path = Content;
+			path = Write;
 			sourceTree = "<group>";
 		};
 		C27E534A2BCE8E730037E1A5 /* Posts */ = {
@@ -494,6 +505,7 @@
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
 				C20E68C02BD9512200507C0B /* UITextView.swift in Sources */,
+				C25D9F132BDCC5DB00012307 /* PostsDetailViewController.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
 				C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */,
 				C2CDC2D12BD4FDF000176723 /* FetchPostQuery.swift in Sources */,

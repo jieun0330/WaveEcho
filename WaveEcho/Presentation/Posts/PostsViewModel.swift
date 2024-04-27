@@ -26,7 +26,6 @@ class PostsViewModel {
         
         let postsContent = PublishRelay<FetchPostsResponse>()
         let postsError = PublishRelay<APIError>()
-        
         let fetchPostsObservable = Observable.just(FetchPostQuery(next: "",
                                                                   limit: "5",
                                                                   product_id: ""))

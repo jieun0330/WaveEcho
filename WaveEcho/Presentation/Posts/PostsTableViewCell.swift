@@ -20,9 +20,8 @@ class PostsTableViewCell: BaseTableViewCell {
         return test
     }()
 
-    let contents = {
+    var contents = {
         let contents = UILabel()
-        contents.text = "contents"
         contents.numberOfLines = 0
         return contents
     }()
@@ -33,6 +32,12 @@ class PostsTableViewCell: BaseTableViewCell {
         date.textColor = .lightGray
         date.font = .systemFont(ofSize: 10)
         return date
+    }()
+    
+    let comments = {
+        let comments = UIButton()
+        comments.setImage(UIImage(systemName: "bubble.left"), for: .normal)
+        return comments
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -52,7 +57,7 @@ class PostsTableViewCell: BaseTableViewCell {
     }
     
     override func configureHierarchy() {
-        [testImage, contents, date].forEach {
+        [testImage, contents, date, comments].forEach {
             contentView.addSubview($0)
         }
         
@@ -79,6 +84,12 @@ class PostsTableViewCell: BaseTableViewCell {
         date.snp.makeConstraints {
             $0.bottom.equalTo(contentView).offset(-10)
             $0.trailing.equalTo(contentView).offset(-10)
+        }
+        
+        comments.snp.makeConstraints {
+            $0.leading.equalTo(contents)
+            $0.bottom.equalTo(contentView)
+            $0.size.equalTo(100)
         }
         
 //        contentView.snp.makeConstraints {

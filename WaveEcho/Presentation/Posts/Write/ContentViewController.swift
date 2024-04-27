@@ -39,7 +39,7 @@ final class ContentViewController: BaseViewController {
     override func bind() {
         let input = ContentViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
                                                   uploadPhotoButtonTapped: mainView.uploadPhotoButton.rx.tap,
-                                                  completeButtonTapped: mainView.completeButton.rx.tap)
+                                                  completeButtonTapped: mainView.sendButton.rx.tap)
 
         let output = viewModel.transform(input: input)
         
