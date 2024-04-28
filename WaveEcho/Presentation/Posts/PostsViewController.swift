@@ -8,11 +8,13 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 final class PostsViewController: BaseViewController {
     
     private let mainView = PostsView()
     private let viewModel = PostsViewModel()
+    let vc = MyProfileViewController()
     
 //    private let withdrawAlert = {
 //        let alert = UIAlertController(title: "회원탙퇴",
@@ -60,8 +62,7 @@ final class PostsViewController: BaseViewController {
         
         mainView.myPageButton.rx.tap
             .bind(with: self) {  owner, _ in
-                let vc = ProfileViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
+                owner.navigationController?.pushViewController(owner.vc, animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -83,8 +84,16 @@ final class PostsViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = PostsViewModel.Input(viewDidLoad: Observable.just(Void()))
+        let input = PostsViewModel.Input(viewDidLoad: Observable.just(Void()),
+                                         myProfileView: mainView.myPageButton.rx.tap)
         let output = viewModel.transform(input: input)
+        
+        output.myProfile
+            .map { $0 }
+            .bind(with: self) { owner, myProfileResponse in
+                owner.vc.mainView.nickname.text = myProfileResponse.nick
+            }
+            .disposed(by: disposeBag)
         
         output.postsContent
             .map { $0.data }
@@ -101,9 +110,8 @@ final class PostsViewController: BaseViewController {
                 let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                 cell.date.text = relativeDate
                 
-                
-//                cell.photos.image = UIImage(named: element.files?.first ?? "")
-//                print("photo test 🧠", element.files?.first)
+                guard let imageURL = element.files?.first else { return }
+                cell.photos.kf.setImage(with: URL(string: imageURL))
             }
                                                   .disposed(by: disposeBag)
         

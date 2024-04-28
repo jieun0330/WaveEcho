@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class ProfileView: BaseView {
+final class MyProfileView: BaseView {
     
     private let profileImage = {
         let profile = UIImageView()
@@ -16,21 +16,24 @@ final class ProfileView: BaseView {
         return profile
     }()
     
-    private let nickname = {
+    let nickname = {
         let nickname = UILabel()
-        nickname.text = "cyndi"
         return nickname
     }()
     
     private let editNicknameButton = {
         let button = UIButton()
         button.setTitle("프로필 수정", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .brown
         return button
     }()
     
     private let withDrawButton = {
         let button = UIButton()
         button.setTitle("회원탈퇴", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .cyan
         return button
     }()
 
@@ -68,11 +71,7 @@ final class ProfileView: BaseView {
             $0.width.equalTo(100)
         }
     }
-    
-//    override func configureView() {
-//        <#code#>
-//    }
-    
+        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

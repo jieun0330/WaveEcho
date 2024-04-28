@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class ProfileViewController: BaseViewController {
+final class MyProfileViewController: BaseViewController {
     
-    private let mainView = ProfileView()
+    let mainView = MyProfileView()
     
     override func loadView() {
         super.loadView()

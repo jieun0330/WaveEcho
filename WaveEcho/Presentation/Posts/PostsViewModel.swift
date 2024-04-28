@@ -15,11 +15,15 @@ class PostsViewModel {
     
     struct Input {
         let viewDidLoad: Observable<Void>
+        let myProfileView: ControlEvent<Void>
     }
     
     struct Output {
         let postsContent: PublishRelay<ReadPostsResponse>
         let postsError: Driver<APIError>
+        
+        let myProfile: PublishRelay<MyProfileResponse>
+        let myProfileError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
@@ -29,6 +33,9 @@ class PostsViewModel {
         let fetchPostsObservable = Observable.just(FetchPostQuery(next: "",
                                                                   limit: "5",
                                                                   product_id: ""))
+        let myProfile = PublishRelay<MyProfileResponse>()
+        let myProfileError = PublishRelay<APIError>()
+        
         input.viewDidLoad
             .withLatestFrom(fetchPostsObservable)
             .flatMap { postQuery in
@@ -39,14 +46,30 @@ class PostsViewModel {
                 switch result {
                 case .success(let success):
                     postsContent.accept(success)
-                    
                 case .failure(let error):
                     postsError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
         
+        input.myProfileView
+            .flatMap { _ in
+                return APIManager.shared.create(type: MyProfileResponse.self,
+                                                router: ProfileRouter.myProfile)
+            }
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let success):
+                    myProfile.accept(success)
+                case .failure(let error):
+                    myProfileError.accept(error)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         return Output(postsContent: postsContent,
-                      postsError: postsError.asDriver(onErrorJustReturn: .code500))
+                      postsError: postsError.asDriver(onErrorJustReturn: .code500),
+                      myProfile: myProfile,
+                      myProfileError: myProfileError.asDriver(onErrorJustReturn: .code500))
     }
 }
