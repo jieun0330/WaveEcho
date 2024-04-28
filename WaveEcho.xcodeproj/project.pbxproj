@@ -35,6 +35,12 @@
 		C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */; };
 		C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33C42BDE799C00F81AB4 /* UIViewController+Extension.swift */; };
 		C23D33C82BDE8D9800F81AB4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C23D33C72BDE8D9800F81AB4 /* Kingfisher */; };
+		C23D33CF2BDE983700F81AB4 /* EditMyProfileRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33CE2BDE983700F81AB4 /* EditMyProfileRequestBody.swift */; };
+		C23D33D12BDE985C00F81AB4 /* EditMyProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33D02BDE985C00F81AB4 /* EditMyProfileResponse.swift */; };
+		C23D33D42BDEA00100F81AB4 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33D32BDEA00100F81AB4 /* EditProfileView.swift */; };
+		C23D33D62BDEA07900F81AB4 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33D52BDEA07900F81AB4 /* EditProfileViewController.swift */; };
+		C23D33DA2BDEA30100F81AB4 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33D92BDEA30100F81AB4 /* EditProfileViewModel.swift */; };
+		C23D33DC2BDEC7C900F81AB4 /* KingFisherImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33DB2BDEC7C900F81AB4 /* KingFisherImage.swift */; };
 		C25D9F132BDCC5DB00012307 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */; };
 		C25D9F172BDE0C4F00012307 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F162BDE0C4F00012307 /* DetailPostView.swift */; };
 		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
@@ -103,6 +109,12 @@
 		C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C23D33C42BDE799C00F81AB4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C23D33CE2BDE983700F81AB4 /* EditMyProfileRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyProfileRequestBody.swift; sourceTree = "<group>"; };
+		C23D33D02BDE985C00F81AB4 /* EditMyProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyProfileResponse.swift; sourceTree = "<group>"; };
+		C23D33D32BDEA00100F81AB4 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		C23D33D52BDEA07900F81AB4 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		C23D33D92BDEA30100F81AB4 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		C23D33DB2BDEC7C900F81AB4 /* KingFisherImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherImage.swift; sourceTree = "<group>"; };
 		C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		C25D9F162BDE0C4F00012307 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
 		C27E533F2BCE6F810037E1A5 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
@@ -174,6 +186,7 @@
 			children = (
 				C20E68B42BD8FC9A00507C0B /* MyProfileView.swift */,
 				C20E68B62BD8FF2100507C0B /* MyProfileViewController.swift */,
+				C23D33D22BDE9FCF00F81AB4 /* Edit */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -182,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				C20E68BC2BD91C5F00507C0B /* MyProfileResponse.swift */,
+				C23D33D02BDE985C00F81AB4 /* EditMyProfileResponse.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -245,6 +259,7 @@
 				C2CDC2C92BD36F9E00176723 /* APIError.swift */,
 				C2CDC2E32BD62EFC00176723 /* APIManager.swift */,
 				C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */,
+				C23D33DB2BDEC7C900F81AB4 /* KingFisherImage.swift */,
 				C2CDC2CF2BD4FDE400176723 /* Query */,
 				C2DC2BFC2BCD217800A1D102 /* Request */,
 				C2DC2C012BCD217800A1D102 /* Response */,
@@ -268,6 +283,24 @@
 				C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		C23D33CD2BDE982900F81AB4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C23D33CE2BDE983700F81AB4 /* EditMyProfileRequestBody.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C23D33D22BDE9FCF00F81AB4 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				C23D33D32BDEA00100F81AB4 /* EditProfileView.swift */,
+				C23D33D52BDEA07900F81AB4 /* EditProfileViewController.swift */,
+				C23D33D92BDEA30100F81AB4 /* EditProfileViewModel.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		C25D9F112BDCC1ED00012307 /* Detail */ = {
@@ -384,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */,
+				C23D33CD2BDE982900F81AB4 /* Profile */,
 				C2DC2BFA2BCD217800A1D102 /* Users */,
 				C27E534A2BCE8E730037E1A5 /* Posts */,
 				C2E8EFC72BDE44D200868BB3 /* Comment */,
@@ -537,8 +571,10 @@
 				C20E68B92BD9001C00507C0B /* ProfileRouter.swift in Sources */,
 				C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */,
 				C20E68C22BD953FC00507C0B /* ImageUploadResponse.swift in Sources */,
+				C23D33D12BDE985C00F81AB4 /* EditMyProfileResponse.swift in Sources */,
 				C2DC2C032BCD217800A1D102 /* SignupRequestBody.swift in Sources */,
 				C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */,
+				C23D33CF2BDE983700F81AB4 /* EditMyProfileRequestBody.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
@@ -556,6 +592,7 @@
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
 				C2DC2C072BCD217800A1D102 /* UsersRouter.swift in Sources */,
 				C2DC2C142BCD548E00A1D102 /* ValidEmailResponse.swift in Sources */,
+				C23D33DA2BDEA30100F81AB4 /* EditProfileViewModel.swift in Sources */,
 				C2CDC2CA2BD36F9E00176723 /* APIError.swift in Sources */,
 				C2DC2C042BCD217800A1D102 /* RequestHeader.swift in Sources */,
 				C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */,
@@ -583,6 +620,7 @@
 				C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */,
 				C2DC2C102BCD35E100A1D102 /* LoginViewModel.swift in Sources */,
 				C2E8EFCC2BDE454200868BB3 /* WriteCommentResponse.swift in Sources */,
+				C23D33D42BDEA00100F81AB4 /* EditProfileView.swift in Sources */,
 				C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */,
 				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
 				C20E68B52BD8FC9A00507C0B /* MyProfileView.swift in Sources */,
@@ -591,7 +629,9 @@
 				C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */,
 				C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */,
 				C27E534C2BCE8E840037E1A5 /* WritePostsRequestBody.swift in Sources */,
+				C23D33DC2BDEC7C900F81AB4 /* KingFisherImage.swift in Sources */,
 				C2DC2BF22BCD20C100A1D102 /* WelcomeView.swift in Sources */,
+				C23D33D62BDEA07900F81AB4 /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

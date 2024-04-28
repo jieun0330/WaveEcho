@@ -36,8 +36,10 @@ class PostsTableViewCell: BaseTableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         contents.text = nil
         date.text = nil
+        photos.image = nil
     }
     
     override func layoutSubviews() {

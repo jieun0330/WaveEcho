@@ -29,12 +29,22 @@ enum APIError: Int, Error {
     case code445 = 445 // 게시글 수정 권한, 본인만 수정 가능
     
     enum CallType {
+        // 회원가입
         case signup
+        // 이메일 중복확인
         case validEmail
+        // 로그인
         case login
+        
+        // 포스팅 작성
         case createPosts
+        // 포스팅 조회
         case fetchPost
         
+        // 내 프로필 수정
+        case editMyProfile
+        
+        // 토큰 갱신
         case refreshToken
     }
 }

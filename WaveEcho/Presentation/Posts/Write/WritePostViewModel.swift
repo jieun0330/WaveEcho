@@ -57,7 +57,7 @@ class WritePostViewModel: ViewModelType {
                 }
             }
             .disposed(by: disposeBag)
-        
+                
         input.image
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .flatMap { data in

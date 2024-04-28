@@ -96,7 +96,7 @@ class BaseViewController: UIViewController {
 //                    
 //                })
             case .code419:
-                makeAlert(message: "액세스 토큰이 만료되었습니다")
+                makeAlert(message: "로그아웃 되었습니다")
 //                makeAlert(message: "액세스 토큰이 만료되었습니다", completionHandler: { _ in
 //                    
 //                })
@@ -146,6 +146,19 @@ class BaseViewController: UIViewController {
 //                makeAlert(message: "리프레시 토큰이 만료되었습니다", completionHandler: { _ in
 //                    print("여기도 안들어오나 😀")
 //                })
+            default:
+                return
+            }
+        case .editMyProfile:
+            switch apiError {
+            case .code400:
+                makeAlert(message: "잘못된 요청입니다")
+            case .code401:
+                makeAlert(message: "인증할 수 없는 액세스 토큰입니다")
+            case .code403:
+                makeAlert(message: "접근권한이 없습니다")
+            case .code419:
+                makeAlert(message: "액세스 토큰이 만료되었습니다")
             default:
                 return
             }

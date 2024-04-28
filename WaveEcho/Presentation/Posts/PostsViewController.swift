@@ -36,12 +36,6 @@ final class PostsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        rx.viewWillAppear
-            .skip(1) // 첫화면 스킵하기
-            .bind(with: self) { owner, _ in
-                owner.mainView.tableView.reloadData()
-            }
-            .disposed(by: disposeBag)
     }
     
     @objc private func sendWaveButtonTapped() {
@@ -84,8 +78,13 @@ final class PostsViewController: BaseViewController {
     }
     
     override func bind() {
+        
+        let viewWillAppearTrigger = rx.viewWillAppear
+            .map { $0 == true }
+        
         let input = PostsViewModel.Input(viewDidLoad: Observable.just(Void()),
-                                         myProfileView: mainView.myPageButton.rx.tap)
+                                         myProfileView: mainView.myPageButton.rx.tap,
+                                         viewWillAppearTrigger: viewWillAppearTrigger)
         let output = viewModel.transform(input: input)
         
         output.myProfile
@@ -104,14 +103,14 @@ final class PostsViewController: BaseViewController {
                 cell.layer.borderColor = UIColor.green.cgColor
 
                 cell.contents.text = element.content
-                cell.photos.image = UIImage(named: element.files?.first ?? "")
 
                 let stringDate = DateFormatManager.shared.stringToDate(date: element.createdAt)
                 let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                 cell.date.text = relativeDate
                 
                 guard let imageURL = element.files?.first else { return }
-                cell.photos.kf.setImage(with: URL(string: imageURL))
+                
+                cell.photos.kf.setImage(with: URL(string: imageURL), options: [.requestModifier(KingFisherNet())])        
             }
                                                   .disposed(by: disposeBag)
         

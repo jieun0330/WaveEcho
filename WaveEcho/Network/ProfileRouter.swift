@@ -10,6 +10,7 @@ import Alamofire
 
 enum ProfileRouter {
     case myProfile
+    case editMyPofile(query: EditMyProfileRequestBody)
 }
 
 extension ProfileRouter: TargetType {
@@ -21,6 +22,8 @@ extension ProfileRouter: TargetType {
         switch self {
         case .myProfile:
             return .get
+        case .editMyPofile:
+            return .put
         }
     }
     
@@ -29,12 +32,16 @@ extension ProfileRouter: TargetType {
         case .myProfile:
             return [HTTPHeader.authorization.rawValue: accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .editMyPofile:
+            return [HTTPHeader.authorization.rawValue: accessToken,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
     var path: String {
         switch self {
-        case .myProfile:
+        case .myProfile, .editMyPofile:
             return "/v1/users/me/profile"
         }
     }
@@ -44,6 +51,14 @@ extension ProfileRouter: TargetType {
     }
     
     var body: Data? {
-        return nil
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        
+        switch self {
+        case .myProfile:
+            return nil
+        case .editMyPofile(query: let query):
+            return try? encoder.encode(query)
+        }
     }
 }

@@ -16,6 +16,7 @@ class PostsViewModel {
     struct Input {
         let viewDidLoad: Observable<Void>
         let myProfileView: ControlEvent<Void>
+        let viewWillAppearTrigger: Observable<Bool>
     }
     
     struct Output {
@@ -36,7 +37,7 @@ class PostsViewModel {
         let myProfile = PublishRelay<MyProfileResponse>()
         let myProfileError = PublishRelay<APIError>()
         
-        input.viewDidLoad
+        input.viewWillAppearTrigger
             .withLatestFrom(fetchPostsObservable)
             .flatMap { postQuery in
                 return APIManager.shared.create(type: ReadPostsResponse.self,

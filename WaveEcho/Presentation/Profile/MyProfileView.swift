@@ -21,7 +21,7 @@ final class MyProfileView: BaseView {
         return nickname
     }()
     
-    private let editNicknameButton = {
+    let editNicknameButton = {
         let button = UIButton()
         button.setTitle("프로필 수정", for: .normal)
         button.setTitleColor(.black, for: .normal)

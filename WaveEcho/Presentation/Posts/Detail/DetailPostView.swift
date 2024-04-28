@@ -23,12 +23,12 @@ final class DetailPostView: BaseView {
     
     let contents = {
         let contents = UILabel()
+        contents.numberOfLines = 0
         return contents
     }()
     
     let date = {
         let date = UILabel()
-        date.text = "date test"
         return date
     }()
     
@@ -71,7 +71,7 @@ final class DetailPostView: BaseView {
         letterView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(100)
+            $0.bottom.equalTo(date).offset(20)
         }
         
         nickname.snp.makeConstraints {
@@ -80,11 +80,12 @@ final class DetailPostView: BaseView {
         
         contents.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(nickname.snp.bottom).offset(10)
+            $0.top.equalTo(nickname.snp.bottom).offset(20)
         }
         
         date.snp.makeConstraints {
-            $0.bottom.trailing.equalToSuperview().inset(20)
+            $0.top.equalTo(contents.snp.bottom).offset(20)
+            $0.trailing.equalToSuperview().inset(20)
         }
         
         replyTextView.snp.makeConstraints {

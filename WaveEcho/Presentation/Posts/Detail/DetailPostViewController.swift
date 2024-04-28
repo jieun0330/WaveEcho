@@ -12,8 +12,6 @@ import RxCocoa
 final class DetailPostViewController: BaseViewController {
     
     let mainView = DetailPostView()
-    var writeCommentResponse: WriteCommentResponse!
-    private let viewModel = DetailPostViewModel()
 
     override func loadView() {
         super.loadView()
@@ -38,21 +36,5 @@ final class DetailPostViewController: BaseViewController {
         
         // 여기 아님
 //        navigationController?.navigationItem.backButtonTitle = ""
-    }
-    
-    override func bind() {
-        print("test 🫀", writeCommentResponse)
-        
-//        let input = DetailPostViewModel.Input(sendButtonTapped: mainView.sendButton.rx.tap,
-//                                              commentID: Observable.just(writeCommentResponse.comment_id),
-//                                              commentContent: mainView.replyTextView.rx.text.orEmpty)
-//        
-//        let output = viewModel.transform(input: input)
-//        
-//        output.commentSuccess.asObservable()
-//            .bind(with: self) { owner, writeCommentResponse in
-//                print("test 💄", writeCommentResponse)
-//            }
-//            .disposed(by: disposeBag)
     }
 }
