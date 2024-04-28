@@ -11,10 +11,10 @@ import RxCocoa
 import Toast
 import PhotosUI
 
-final class ContentViewController: BaseViewController {
+final class WritePostViewController: BaseViewController {
 
-    private let mainView = ContentView()
-    private let viewModel = ContentViewModel()
+    private let mainView = WritePostView()
+    private let viewModel = WritePostViewModel()
     
     override func loadView() {
         view = mainView
@@ -37,7 +37,7 @@ final class ContentViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = ContentViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
+        let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
                                                   uploadPhotoButtonTapped: mainView.uploadPhotoButton.rx.tap,
                                                   completeButtonTapped: mainView.sendButton.rx.tap)
 
@@ -78,7 +78,7 @@ final class ContentViewController: BaseViewController {
     }
 }
 
-extension ContentViewController: PHPickerViewControllerDelegate {
+extension WritePostViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         

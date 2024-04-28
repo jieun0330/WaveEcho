@@ -9,9 +9,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class ContentViewModel: ViewModelType {
+class WritePostViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
+    var image: Data!
+    var imageFiles: [String] = []
     
     struct Input {
         let content: ControlProperty<String>
@@ -29,20 +31,23 @@ class ContentViewModel: ViewModelType {
         
         let createPostTrigger = PublishRelay<Void>()
         let createPostError = PublishRelay<APIError>()
+        
+        let uploadPhotoSuccess = PublishRelay<ImageUploadResponse>()
+        let uploadPhotoError = PublishRelay<APIError>()
         let uploadPhotoTrigger = PublishRelay<Void>()
         
         let contentObservable = input.content.asObservable()
             .map { content in
-                return PostsRequestBody(content: content,
+                return WritePostsRequestBody(content: content,
                                         product_id: "",
-                                        files: nil)
+                                        files: self.imageFiles)
             }
-
+        
         input.completeButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMap { postRequest in
-                return APIManager.shared.create(type: PostsResponse.self, router: PostsRouter.createPosts(query: postRequest))
+                return APIManager.shared.create(type: WritePostsResponse.self, router: PostsRouter.createPosts(query: postRequest))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -51,6 +56,24 @@ class ContentViewModel: ViewModelType {
                 case .failure(let error):
                     print("error 🫥", error)
                     createPostError.accept(error)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        input.uploadPhotoButtonTapped
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .flatMap {
+                return APIManager.shared.upload(type: ImageUploadResponse.self,
+                                                router: PostsRouter.uploadImage,
+                                                image: self.image)
+            }
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let success):
+                    owner.imageFiles = success.files
+                    uploadPhotoSuccess.accept(success)
+                case .failure(let error):
+                    uploadPhotoError.accept(error)
                 }
             }
             .disposed(by: disposeBag)

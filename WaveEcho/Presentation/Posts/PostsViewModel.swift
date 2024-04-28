@@ -18,13 +18,13 @@ class PostsViewModel {
     }
     
     struct Output {
-        let postsContent: PublishRelay<FetchPostsResponse>
+        let postsContent: PublishRelay<ReadPostsResponse>
         let postsError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        let postsContent = PublishRelay<FetchPostsResponse>()
+        let postsContent = PublishRelay<ReadPostsResponse>()
         let postsError = PublishRelay<APIError>()
         let fetchPostsObservable = Observable.just(FetchPostQuery(next: "",
                                                                   limit: "5",
@@ -32,19 +32,15 @@ class PostsViewModel {
         input.viewDidLoad
             .withLatestFrom(fetchPostsObservable)
             .flatMap { postQuery in
-                print("postQuery💀", postQuery)
-                return APIManager.shared.create(type: FetchPostsResponse.self,
+                return APIManager.shared.create(type: ReadPostsResponse.self,
                                                 router: PostsRouter.fetchPosts(query: postQuery))
             }
             .bind(with: self) { owner, result in
-                print("result🕵🏻‍♂️", result)
                 switch result {
                 case .success(let success):
-                    print("success💪🏻", success)
                     postsContent.accept(success)
                     
                 case .failure(let error):
-                    print("error🧕🏻", error)
                     postsError.accept(error)
                 }
             }

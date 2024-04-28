@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostsResponse: Decodable {
+struct WritePostsResponse: Decodable {
     let post_id: String
     let product_id: String
     let content: String

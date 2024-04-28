@@ -6,27 +6,21 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class PostsDetailViewController: BaseViewController {
+    
+    let mainView = PostsDetailView()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func loadView() {
+        super.loadView()
+        
+        view = mainView
     }
     
-//    override func configureHierarchy() {
-//        <#code#>
-//    }
-//    
-//    override func configureConstraints() {
-//        <#code#>
-//    }
-//    
-//    override func configureView() {
-//        <#code#>
-//    }
-//    
-//    override func bind() {
-//        <#code#>
-//    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
 }

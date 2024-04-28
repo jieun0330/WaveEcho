@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ContentView: BaseView {
+class WritePostView: BaseView {
     
     let contentTextView = {
         let content = UnderlineTextView()
@@ -76,7 +76,6 @@ class ContentView: BaseView {
         }
         
         uploadPhotoButton.snp.makeConstraints {
-//            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
             $0.leading.equalTo(safeAreaLayoutGuide).offset(20)
             $0.centerY.equalTo(sendButton)
             $0.width.equalTo(100)
@@ -84,7 +83,6 @@ class ContentView: BaseView {
         
         sendButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)
-//            $0.bottom.equalTo(uploadPhotoButton)
             $0.trailing.equalTo(safeAreaLayoutGuide).inset(20)
             $0.width.equalTo(100)
             $0.height.equalTo(50)

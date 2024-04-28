@@ -14,18 +14,18 @@ final class PostsViewController: BaseViewController {
     private let mainView = PostsView()
     private let viewModel = PostsViewModel()
     
-    private let withdrawAlert = {
-        let alert = UIAlertController(title: "회원탙퇴",
-                                      message: "정말로 회원탈퇴를 하시겠습니까?",
-                                      preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "네", style: .default) { action in
-            
-        }
-        let noAction = UIAlertAction(title: "아니오", style: .cancel)
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        return alert
-    }()
+//    private let withdrawAlert = {
+//        let alert = UIAlertController(title: "회원탙퇴",
+//                                      message: "정말로 회원탈퇴를 하시겠습니까?",
+//                                      preferredStyle: .alert)
+//        let yesAction = UIAlertAction(title: "네", style: .default) { action in
+//            
+//        }
+//        let noAction = UIAlertAction(title: "아니오", style: .cancel)
+//        alert.addAction(yesAction)
+//        alert.addAction(noAction)
+//        return alert
+//    }()
     
     override func loadView() {
         view = mainView
@@ -38,7 +38,7 @@ final class PostsViewController: BaseViewController {
     
     @objc private func sendWaveButtonTapped() {
         print(#function)
-        let vc = ContentViewController()
+        let vc = WritePostViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -54,15 +54,21 @@ final class PostsViewController: BaseViewController {
             .bind(with: self) {  owner, _ in
                 let vc = ProfileViewController()
                 owner.navigationController?.pushViewController(vc, animated: true)
-//                owner.present(owner.withdrawAlert, animated: true)
             }
             .disposed(by: disposeBag)
         
         mainView.tableView.rowHeight = 200
         
-        mainView.tableView.rx.itemSelected
-            .bind(with: self) { owner, index in
-                print("🤑", index)
+        mainView.tableView.rx.modelSelected(Contents.self)
+            .bind(with: self) { owner, response in
+                print("response 🖖🏻", response.content ?? "")
+                let detailVC = PostsDetailViewController()
+                detailVC.mainView.contents.text = response.content ?? ""
+                detailVC.mainView.nickname.text = response.creator.nick
+                let stringDate = DateFormatManager.shared.stringToDate(date: response.createdAt)
+                let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
+                detailVC.mainView.date.text = relativeDate
+                owner.navigationController?.pushViewController(detailVC, animated: true)
             }
             .disposed(by: disposeBag)
     }
@@ -71,21 +77,21 @@ final class PostsViewController: BaseViewController {
         let input = PostsViewModel.Input(viewDidLoad: Observable.just(Void()))
         let output = viewModel.transform(input: input)
         
-        print("output.postsContent🦸🏻‍♀️", output.postsContent)
-        
         output.postsContent
             .map { $0.data }
             .bind(to: mainView.tableView.rx.items(cellIdentifier: PostsTableViewCell.identifer,
                                                   cellType: PostsTableViewCell.self)) {(row, element, cell) in
+                print("row 🫶🏻", row)
                 cell.selectionStyle = .none
                 cell.layer.borderWidth = 1
                 cell.layer.borderColor = UIColor.green.cgColor
 
                 cell.contents.text = element.content
+                cell.photos.image = UIImage(named: element.files?.first ?? "")
 
                 let stringDate = DateFormatManager.shared.stringToDate(date: element.createdAt)
-                let realtiveDate = DateFormatManager.shared.relativeDate(date: stringDate!)
-                cell.date.text = realtiveDate
+                let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
+                cell.date.text = relativeDate
             }
                                                   .disposed(by: disposeBag)
         

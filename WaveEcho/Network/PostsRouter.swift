@@ -11,11 +11,11 @@ import RxSwift
 
 enum PostsRouter {
     // 포스트 작성
-    case createPosts(query: PostsRequestBody)
+    case createPosts(query: WritePostsRequestBody)
     // 포스트 조회
     case fetchPosts(query: FetchPostQuery)
     // 포스트 이미지 업로드
-    case uploadImage(query: ImageUploadRequestBody)
+    case uploadImage
 }
 
 extension PostsRouter: TargetType {
@@ -80,8 +80,8 @@ extension PostsRouter: TargetType {
             return try? encoder.encode(query)
         case .fetchPosts:
             return nil
-        case .uploadImage(query: let query):
-            return try? encoder.encode(query)
+        case .uploadImage:
+            return nil
         }
     }
 }

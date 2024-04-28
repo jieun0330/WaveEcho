@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostsRequestBody: Encodable {
+struct WritePostsRequestBody: Encodable {
     let content: String?
     let product_id: String?
     let files: [String]?

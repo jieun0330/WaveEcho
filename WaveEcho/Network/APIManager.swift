@@ -25,20 +25,12 @@ final class APIManager {
                 AF
                     .request(urlRequest, interceptor: RefreshToken())
                     .responseDecodable(of: T.self) { response in
-                        print("accessToken🤯", UserDefaults.standard.string(forKey: "accessToken"))
-                        print("response🦄", response)
-                        print("response.response?.statusCode 🆘", response.response?.statusCode)
                         switch response.result {
                         case .success(let success):
-                            print("success💂🏻‍♀️", success)
                             single(.success(.success(success)))
                             
                         case .failure(_):
                             guard let statusCode = response.response?.statusCode else { return }
-                            
-                            // 418을 만났을 때의 화면전환 인데 
-//                            if statusCode == 418 {
-//                            }
                             guard let error = APIError(rawValue: statusCode) else { return }
                             single(.success(.failure(error)))
                         }
@@ -52,18 +44,34 @@ final class APIManager {
         }
     }
     
-//    func upload<T: Decodable>(type: T.type, router: TargetType) -> Single<Result<T, APIError>> {
-//        
-//        return Single<Result<T, APIError>>.create { single in
-//            AF
-//                .upload(multipartFormData: { multipartFormData in
-//                    multipartFormData.append(<#T##data: Data##Data#>,
-//                                             withName: <#T##String#>,
-//                                             fileName: <#T##String?#>,
-//                                             mimeType: <#T##String?#>)
-//                }, to: router.baseURL.)
-//        }
+    func upload<T: Decodable>(type: T.Type, router: TargetType, image: Data) -> Single<Result<T, APIError>> {
         
-//    }
-    
+        return Single<Result<T, APIError>>.create { single in
+            do {
+                let urlRequest = try router.asURLRequest()
+
+                AF
+                    .upload(multipartFormData: { multipartFormData in
+                        multipartFormData.append(image,
+                                                 withName: "files",
+                                                 fileName: "test.png",
+                                                 mimeType: "image/png")
+                    }, with: urlRequest, interceptor: RefreshToken())
+                    .responseDecodable(of: T.self) { response in
+                        switch response.result {
+                        case .success(let success):
+                            single(.success(.success(success)))
+                        case .failure(_):
+                            guard let statusCode = response.response?.statusCode else { return }
+                            guard let error = APIError(rawValue: statusCode) else { return }
+                            single(.success(.failure(error)))
+                        }
+                    }
+            }
+            catch {
+                
+            }
+            return Disposables.create()
+        }
+    }
 }

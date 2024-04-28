@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FetchPostsResponse: Decodable {
+struct ReadPostsResponse: Decodable {
     let data: [Contents]
 }
 
