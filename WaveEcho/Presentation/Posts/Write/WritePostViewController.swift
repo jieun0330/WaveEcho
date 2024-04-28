@@ -15,9 +15,11 @@ final class WritePostViewController: BaseViewController {
 
     private let mainView = WritePostView()
     private let viewModel = WritePostViewModel()
+    private let imageData = PublishRelay<Data>()
     
     override func loadView() {
         view = mainView
+        
     }
 
     override func viewDidLoad() {
@@ -39,13 +41,13 @@ final class WritePostViewController: BaseViewController {
     override func bind() {
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
                                                   uploadPhotoButtonTapped: mainView.uploadPhotoButton.rx.tap,
-                                                  completeButtonTapped: mainView.sendButton.rx.tap)
+                                             completeButtonTapped: mainView.sendButton.rx.tap,
+                                             image: imageData)
 
         let output = viewModel.transform(input: input)
         
         output.createPostTrigger
             .drive(with: self) { owner, _ in
-                print("포스팅 업로드 성공")
                 owner.view.makeToast("포스팅 업로드 성공")
             }
             .disposed(by: disposeBag)
@@ -70,11 +72,11 @@ final class WritePostViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 포스팅 작성 에러 핸들링
-//        contentOutput.createPostError
-//            .drive(with: self) { owner, error in
-//                owner.errorHandler(apiError: error, calltype: .createPosts)
-//            }
-//            .disposed(by: disposeBag)
+        output.createPostError
+            .drive(with: self) { owner, error in
+                owner.errorHandler(apiError: error, calltype: .createPosts)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -88,6 +90,9 @@ extension WritePostViewController: PHPickerViewControllerDelegate {
            itemProvider.canLoadObject(ofClass: UIImage.self) {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {
+                    let realImage = image as? UIImage
+                    let imagePng = realImage?.pngData()!
+                    self.imageData.accept(imagePng!)
                     self.mainView.presentPhotoView.image = image as? UIImage
                 }
             }

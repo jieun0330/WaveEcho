@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class PostsDetailView: BaseView {
+final class DetailPostView: BaseView {
     
     private let letterView = {
         let letter = UIView()
@@ -32,11 +32,25 @@ final class PostsDetailView: BaseView {
         return date
     }()
     
-    private let comment = {
+    let comment = {
         let comment = UIButton()
         comment.setTitle("댓글", for: .normal)
         comment.backgroundColor = .systemGray
         return comment
+    }()
+    
+    let replyTextView = {
+        let reply = UITextView()
+        reply.backgroundColor = .blue
+        return reply
+    }()
+    
+    let sendButton = {
+        let send = UIButton()
+        send.setTitle("전송", for: .normal)
+        send.setTitleColor(.black, for: .normal)
+        send.backgroundColor = .brown
+        return send
     }()
     
     override init(frame: CGRect) {
@@ -44,7 +58,7 @@ final class PostsDetailView: BaseView {
     }
     
     override func configureHierarchy() {
-        [letterView, comment].forEach {
+        [letterView, replyTextView, sendButton, comment].forEach {
             addSubview($0)
         }
         
@@ -71,6 +85,18 @@ final class PostsDetailView: BaseView {
         
         date.snp.makeConstraints {
             $0.bottom.trailing.equalToSuperview().inset(20)
+        }
+        
+        replyTextView.snp.makeConstraints {
+            $0.top.equalTo(letterView.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(100)
+        }
+        
+        sendButton.snp.makeConstraints {
+            $0.top.equalTo(replyTextView.snp.bottom).offset(5)
+            $0.trailing.equalTo(replyTextView)
+            $0.width.equalTo(100)
         }
                 
         comment.snp.makeConstraints {

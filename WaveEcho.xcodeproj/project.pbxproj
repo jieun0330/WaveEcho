@@ -33,8 +33,9 @@
 		C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */; };
 		C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */; };
 		C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */; };
-		C25D9F132BDCC5DB00012307 /* PostsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F122BDCC5DB00012307 /* PostsDetailViewController.swift */; };
-		C25D9F172BDE0C4F00012307 /* PostsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F162BDE0C4F00012307 /* PostsDetailView.swift */; };
+		C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33C42BDE799C00F81AB4 /* UIViewController+Extension.swift */; };
+		C25D9F132BDCC5DB00012307 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */; };
+		C25D9F172BDE0C4F00012307 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F162BDE0C4F00012307 /* DetailPostView.swift */; };
 		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
 		C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E53412BCE71B00037E1A5 /* PostsViewController.swift */; };
 		C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E53442BCE774A0037E1A5 /* WritePostView.swift */; };
@@ -69,6 +70,10 @@
 		C2DC2C122BCD53CD00A1D102 /* ValidEmailRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C112BCD53CD00A1D102 /* ValidEmailRequestBody.swift */; };
 		C2DC2C142BCD548E00A1D102 /* ValidEmailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C132BCD548E00A1D102 /* ValidEmailResponse.swift */; };
 		C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2C162BCD5AEE00A1D102 /* RefreshTokenResponse.swift */; };
+		C2E8EFC92BDE451100868BB3 /* WriteCommentRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFC82BDE451100868BB3 /* WriteCommentRequestBody.swift */; };
+		C2E8EFCC2BDE454200868BB3 /* WriteCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCB2BDE454200868BB3 /* WriteCommentResponse.swift */; };
+		C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */; };
+		C2E8EFD02BDE486100868BB3 /* DetailPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,8 +101,9 @@
 		C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
 		C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
-		C25D9F122BDCC5DB00012307 /* PostsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailViewController.swift; sourceTree = "<group>"; };
-		C25D9F162BDE0C4F00012307 /* PostsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailView.swift; sourceTree = "<group>"; };
+		C23D33C42BDE799C00F81AB4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
+		C25D9F162BDE0C4F00012307 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
 		C27E533F2BCE6F810037E1A5 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		C27E53412BCE71B00037E1A5 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		C27E53442BCE774A0037E1A5 /* WritePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostView.swift; sourceTree = "<group>"; };
@@ -131,6 +137,10 @@
 		C2DC2C112BCD53CD00A1D102 /* ValidEmailRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidEmailRequestBody.swift; sourceTree = "<group>"; };
 		C2DC2C132BCD548E00A1D102 /* ValidEmailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidEmailResponse.swift; sourceTree = "<group>"; };
 		C2DC2C162BCD5AEE00A1D102 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
+		C2E8EFC82BDE451100868BB3 /* WriteCommentRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentRequestBody.swift; sourceTree = "<group>"; };
+		C2E8EFCB2BDE454200868BB3 /* WriteCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentResponse.swift; sourceTree = "<group>"; };
+		C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
+		C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				C20E68BF2BD9512200507C0B /* UITextView.swift */,
+				C23D33C42BDE799C00F81AB4 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 				C2DC2C002BCD217800A1D102 /* UsersRouter.swift */,
 				C2CDC2A42BD1023800176723 /* PostsRouter.swift */,
 				C20E68B82BD9001C00507C0B /* ProfileRouter.swift */,
+				C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */,
 				C23AFEA02BC6D2380000EBE5 /* TargetType.swift */,
 				C23AFEA82BC6DC2B0000EBE5 /* APIKey.swift */,
 				C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */,
@@ -259,8 +271,9 @@
 		C25D9F112BDCC1ED00012307 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				C25D9F162BDE0C4F00012307 /* PostsDetailView.swift */,
-				C25D9F122BDCC5DB00012307 /* PostsDetailViewController.swift */,
+				C25D9F162BDE0C4F00012307 /* DetailPostView.swift */,
+				C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */,
+				C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -368,9 +381,10 @@
 		C2DC2BFC2BCD217800A1D102 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */,
 				C2DC2BFA2BCD217800A1D102 /* Users */,
 				C27E534A2BCE8E730037E1A5 /* Posts */,
-				C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */,
+				C2E8EFC72BDE44D200868BB3 /* Comment */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -390,6 +404,7 @@
 		C2DC2C012BCD217800A1D102 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				C2E8EFCA2BDE452F00868BB3 /* Comment */,
 				C2DC2BFF2BCD217800A1D102 /* Users */,
 				C27E534D2BCE8F730037E1A5 /* Posts */,
 				C20E68BB2BD91C4A00507C0B /* Profile */,
@@ -412,6 +427,22 @@
 			children = (
 			);
 			path = RefreshToken;
+			sourceTree = "<group>";
+		};
+		C2E8EFC72BDE44D200868BB3 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C2E8EFC82BDE451100868BB3 /* WriteCommentRequestBody.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		C2E8EFCA2BDE452F00868BB3 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C2E8EFCB2BDE454200868BB3 /* WriteCommentResponse.swift */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,15 +534,18 @@
 				C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */,
 				C20E68C22BD953FC00507C0B /* ImageUploadResponse.swift in Sources */,
 				C2DC2C032BCD217800A1D102 /* SignupRequestBody.swift in Sources */,
+				C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
 				C20E68C02BD9512200507C0B /* UITextView.swift in Sources */,
-				C25D9F132BDCC5DB00012307 /* PostsDetailViewController.swift in Sources */,
+				C25D9F132BDCC5DB00012307 /* DetailPostViewController.swift in Sources */,
+				C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
 				C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */,
 				C2CDC2D12BD4FDF000176723 /* FetchPostQuery.swift in Sources */,
+				C2E8EFC92BDE451100868BB3 /* WriteCommentRequestBody.swift in Sources */,
 				C20E68B72BD8FF2100507C0B /* ProfileViewController.swift in Sources */,
 				C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */,
 				C2DC2C052BCD217800A1D102 /* SignupResponse.swift in Sources */,
@@ -521,7 +555,7 @@
 				C2CDC2CA2BD36F9E00176723 /* APIError.swift in Sources */,
 				C2DC2C042BCD217800A1D102 /* RequestHeader.swift in Sources */,
 				C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */,
-				C25D9F172BDE0C4F00012307 /* PostsDetailView.swift in Sources */,
+				C25D9F172BDE0C4F00012307 /* DetailPostView.swift in Sources */,
 				C2DC2C0C2BCD2A8700A1D102 /* LoginView.swift in Sources */,
 				C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */,
 				C2DC2C092BCD21BC00A1D102 /* BaseView.swift in Sources */,
@@ -544,10 +578,12 @@
 				C2DC2C062BCD217800A1D102 /* LoginResponse.swift in Sources */,
 				C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */,
 				C2DC2C102BCD35E100A1D102 /* LoginViewModel.swift in Sources */,
+				C2E8EFCC2BDE454200868BB3 /* WriteCommentResponse.swift in Sources */,
 				C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */,
 				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
 				C20E68B52BD8FC9A00507C0B /* ProfileView.swift in Sources */,
 				C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */,
+				C2E8EFD02BDE486100868BB3 /* DetailPostViewModel.swift in Sources */,
 				C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */,
 				C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */,
 				C27E534C2BCE8E840037E1A5 /* WritePostsRequestBody.swift in Sources */,

@@ -33,7 +33,13 @@ final class PostsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        rx.viewWillAppear
+            .skip(1) // 첫화면 스킵하기
+            .bind(with: self) { owner, _ in
+                owner.mainView.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
     }
     
     @objc private func sendWaveButtonTapped() {
@@ -49,6 +55,8 @@ final class PostsViewController: BaseViewController {
         
         navigationItem.rightBarButtonItem = mainView.myPageButton
         navigationItem.title = "파도 속 유리병"
+        // 여기 아님
+//        navigationController?.navigationItem.backButtonTitle = ""
         
         mainView.myPageButton.rx.tap
             .bind(with: self) {  owner, _ in
@@ -59,15 +67,17 @@ final class PostsViewController: BaseViewController {
         
         mainView.tableView.rowHeight = 200
         
+        
         mainView.tableView.rx.modelSelected(Contents.self)
             .bind(with: self) { owner, response in
-                print("response 🖖🏻", response.content ?? "")
-                let detailVC = PostsDetailViewController()
+                let detailVC = DetailPostViewController()
                 detailVC.mainView.contents.text = response.content ?? ""
                 detailVC.mainView.nickname.text = response.creator.nick
+                
                 let stringDate = DateFormatManager.shared.stringToDate(date: response.createdAt)
                 let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                 detailVC.mainView.date.text = relativeDate
+                
                 owner.navigationController?.pushViewController(detailVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -81,7 +91,6 @@ final class PostsViewController: BaseViewController {
             .map { $0.data }
             .bind(to: mainView.tableView.rx.items(cellIdentifier: PostsTableViewCell.identifer,
                                                   cellType: PostsTableViewCell.self)) {(row, element, cell) in
-                print("row 🫶🏻", row)
                 cell.selectionStyle = .none
                 cell.layer.borderWidth = 1
                 cell.layer.borderColor = UIColor.green.cgColor

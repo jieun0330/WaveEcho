@@ -38,15 +38,15 @@ final class SignupViewController: BaseViewController, UITextFieldDelegate, UITex
     }
     
     override func bind() {
-        let signupInput = SignupViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
+        let input = SignupViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
                                                 password: mainView.passwordTextField.rx.text.orEmpty,
                                                 nickname: mainView.nicknameTextField.rx.text.orEmpty,
                                                 signupButtonTapped: mainView.signupButton.rx.tap,
                                                 validEmailButtonTapped: mainView.validEmailButton.rx.tap)
         
-        let signupOutput = viewModel.transform(input: signupInput)
+        let output = viewModel.transform(input: input)
         
-        signupOutput.validSignup
+        output.validSignup
             .drive(with: self) { owner, value in
                 let validButtonColor: UIColor = value ? .systemYellow : .systemGray5
                 owner.mainView.signupButton.backgroundColor = validButtonColor
@@ -57,14 +57,14 @@ final class SignupViewController: BaseViewController, UITextFieldDelegate, UITex
             }
             .disposed(by: disposeBag)
         
-        signupOutput.signupTrigger
+        output.signupTrigger
             .drive(with: self) { owner, _ in
                 print("회원가입 성공")
                 owner.view.makeToast("회원가입이 완료되었습니다")
             }
             .disposed(by: disposeBag)
         
-        signupOutput.signupTrigger
+        output.signupTrigger
             .debounce(.seconds(2))
             .drive(with: self) { owner, _ in
                 let vc = PostsViewController()
@@ -72,28 +72,28 @@ final class SignupViewController: BaseViewController, UITextFieldDelegate, UITex
             }
             .disposed(by: disposeBag)
         
-        signupOutput.validEmailTrigger
+        output.validEmailTrigger
             .drive(with: self) { owner, _ in
                 print("이메일 중복 검사 완료")
             }
             .disposed(by: disposeBag)
         
         // 이메일 중복확인 안내 text
-        signupOutput.validEmail
+        output.validEmail
             .drive(with: self) { owner, value in
                 owner.mainView.validEmail.text = value
             }
             .disposed(by: disposeBag)
                 
         // 회원가입 에러 처리
-        signupOutput.signupError
+        output.signupError
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .signup)
             }
             .disposed(by: disposeBag)
         
         // 이메일 중복 확인 에러 처리
-        signupOutput.validEmailError
+        output.validEmailError
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .validEmail)
             }

@@ -12,13 +12,13 @@ import RxCocoa
 class WritePostViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
-    var image: Data!
     var imageFiles: [String] = []
     
     struct Input {
         let content: ControlProperty<String>
         let uploadPhotoButtonTapped: ControlEvent<Void>
         let completeButtonTapped: ControlEvent<Void>
+        let image: PublishRelay<Data>
     }
     
     struct Output {
@@ -31,7 +31,6 @@ class WritePostViewModel: ViewModelType {
         
         let createPostTrigger = PublishRelay<Void>()
         let createPostError = PublishRelay<APIError>()
-        
         let uploadPhotoSuccess = PublishRelay<ImageUploadResponse>()
         let uploadPhotoError = PublishRelay<APIError>()
         let uploadPhotoTrigger = PublishRelay<Void>()
@@ -54,18 +53,17 @@ class WritePostViewModel: ViewModelType {
                 case .success(_):
                     createPostTrigger.accept(())
                 case .failure(let error):
-                    print("error 🫥", error)
                     createPostError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
         
-        input.uploadPhotoButtonTapped
+        input.image
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
-            .flatMap {
+            .flatMap { data in
                 return APIManager.shared.upload(type: ImageUploadResponse.self,
                                                 router: PostsRouter.uploadImage,
-                                                image: self.image)
+                                                image: data)
             }
             .bind(with: self) { owner, result in
                 switch result {
