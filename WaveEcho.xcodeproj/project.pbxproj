@@ -34,6 +34,7 @@
 		C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */; };
 		C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */; };
 		C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33C42BDE799C00F81AB4 /* UIViewController+Extension.swift */; };
+		C23D33C82BDE8D9800F81AB4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C23D33C72BDE8D9800F81AB4 /* Kingfisher */; };
 		C25D9F132BDCC5DB00012307 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */; };
 		C25D9F172BDE0C4F00012307 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F162BDE0C4F00012307 /* DetailPostView.swift */; };
 		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
@@ -148,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23D33C82BDE8D9800F81AB4 /* Kingfisher in Frameworks */,
 				C23AFE932BC6D03F0000EBE5 /* RxCocoa in Frameworks */,
 				C23AFE8D2BC6CFF70000EBE5 /* Alamofire in Frameworks */,
 				C23AFE952BC6D03F0000EBE5 /* RxSwift in Frameworks */,
@@ -467,6 +469,7 @@
 				C23AFE922BC6D03F0000EBE5 /* RxCocoa */,
 				C23AFE942BC6D03F0000EBE5 /* RxSwift */,
 				C2CDC2AB2BD133D900176723 /* Toast */,
+				C23D33C72BDE8D9800F81AB4 /* Kingfisher */,
 			);
 			productName = WaveEcho;
 			productReference = C23AFE742BC6CE820000EBE5 /* WaveEcho.app */;
@@ -501,6 +504,7 @@
 				C23AFE8E2BC6D01C0000EBE5 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C23AFE912BC6D03F0000EBE5 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				C2CDC2AA2BD133D900176723 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				C23D33C62BDE8D9800F81AB4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = C23AFE752BC6CE820000EBE5 /* Products */;
 			projectDirPath = "";
@@ -836,6 +840,14 @@
 				minimumVersion = 6.6.0;
 			};
 		};
+		C23D33C62BDE8D9800F81AB4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 		C2CDC2AA2BD133D900176723 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift";
@@ -866,6 +878,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C23AFE912BC6D03F0000EBE5 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		C23D33C72BDE8D9800F81AB4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C23D33C62BDE8D9800F81AB4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		C2CDC2AB2BD133D900176723 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -67,7 +67,6 @@ final class PostsViewController: BaseViewController {
         
         mainView.tableView.rowHeight = 200
         
-        
         mainView.tableView.rx.modelSelected(Contents.self)
             .bind(with: self) { owner, response in
                 let detailVC = DetailPostViewController()
@@ -101,6 +100,10 @@ final class PostsViewController: BaseViewController {
                 let stringDate = DateFormatManager.shared.stringToDate(date: element.createdAt)
                 let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                 cell.date.text = relativeDate
+                
+                
+//                cell.photos.image = UIImage(named: element.files?.first ?? "")
+//                print("photo test 🧠", element.files?.first)
             }
                                                   .disposed(by: disposeBag)
         
