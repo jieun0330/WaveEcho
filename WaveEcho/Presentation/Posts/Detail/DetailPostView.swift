@@ -10,6 +10,18 @@ import SnapKit
 
 final class DetailPostView: BaseView {
     
+    //    private let scrollView = {
+    //        let scrollView = UIScrollView()
+    //        scrollView.backgroundColor = .red
+    //        return scrollView
+    //    }()
+    //    
+    //    private let contentView = {
+    //        let contentView = UIView()
+    //        contentView.backgroundColor = .yellow
+    //        return contentView
+    //    }()
+    
     private let letterView = {
         let letter = UIView()
         letter.backgroundColor = .orange
@@ -27,16 +39,22 @@ final class DetailPostView: BaseView {
         return contents
     }()
     
+    let image = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        return image
+    }()
+    
     let date = {
         let date = UILabel()
         return date
     }()
     
-    let comment = {
-        let comment = UIButton()
-        comment.setTitle("댓글", for: .normal)
-        comment.backgroundColor = .systemGray
-        return comment
+    let successCommentTest = {
+        let successTest = UILabel()
+        successTest.backgroundColor = .brown
+        return successTest
     }()
     
     let replyTextView = {
@@ -58,16 +76,34 @@ final class DetailPostView: BaseView {
     }
     
     override func configureHierarchy() {
-        [letterView, replyTextView, sendButton, comment].forEach {
-            addSubview($0)
+        //        [scrollView].forEach {
+        //            addSubview($0)
+        //        }
+        //        
+        //        [contentView].forEach {
+        //            scrollView.addSubview($0)
+        //        }
+        
+        [nickname, contents, image, date].forEach {
+            letterView.addSubview($0)
         }
         
-        [nickname, contents, date].forEach {
-            letterView.addSubview($0)
+        [letterView, successCommentTest, replyTextView, sendButton].forEach {
+            addSubview($0)
         }
     }
     
     override func configureConstraints() {
+        
+        //        scrollView.snp.makeConstraints {
+        //            $0.edges.equalToSuperview()
+        //        }
+        //        
+        //        contentView.snp.makeConstraints {
+        //            $0.edges.equalTo(scrollView)
+        //            $0.width.equalTo(scrollView.frameLayoutGuide)
+        //        }
+        //        
         letterView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -83,28 +119,34 @@ final class DetailPostView: BaseView {
             $0.top.equalTo(nickname.snp.bottom).offset(20)
         }
         
-        date.snp.makeConstraints {
+        image.snp.makeConstraints {
             $0.top.equalTo(contents.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(300)
+        }
+        
+        date.snp.makeConstraints {
+            $0.top.equalTo(image.snp.bottom).offset(20)
             $0.trailing.equalToSuperview().inset(20)
         }
         
-        replyTextView.snp.makeConstraints {
+        successCommentTest.snp.makeConstraints {
             $0.top.equalTo(letterView.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(100)
+            $0.height.equalTo(50)
+        }
+        
+        replyTextView.snp.makeConstraints {
+            $0.top.equalTo(successCommentTest.snp.bottom).offset(20)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(50)
         }
         
         sendButton.snp.makeConstraints {
             $0.top.equalTo(replyTextView.snp.bottom).offset(5)
             $0.trailing.equalTo(replyTextView)
             $0.width.equalTo(100)
-        }
-                
-        comment.snp.makeConstraints {
-            $0.bottom.equalTo(safeAreaLayoutGuide)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.width.equalTo(100)
-        }
+        }                
     }
     
     required init?(coder: NSCoder) {

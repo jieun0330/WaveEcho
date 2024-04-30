@@ -10,12 +10,14 @@ import Alamofire
 import RxSwift
 
 enum PostsRouter {
+    // 포스트 이미지 업로드
+    case uploadImage
     // 포스트 작성
     case createPosts(query: WritePostsRequestBody)
     // 포스트 조회
-    case fetchPosts(query: FetchPostQuery)
-    // 포스트 이미지 업로드
-    case uploadImage
+    case fetchPosts(query: PostQueryString)
+    // 특정 포스트 조회
+    case specificReadPost(id: String)
 }
 
 extension PostsRouter: TargetType {
@@ -31,6 +33,8 @@ extension PostsRouter: TargetType {
             return .get
         case .uploadImage:
             return .post
+        case .specificReadPost:
+            return .get
         }
     }
     
@@ -47,6 +51,10 @@ extension PostsRouter: TargetType {
             return [HTTPHeader.authorization.rawValue: accessToken,
                     HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .specificReadPost:
+            return [HTTPHeader.authorization.rawValue: accessToken,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -56,12 +64,14 @@ extension PostsRouter: TargetType {
             return "/v1/posts"
         case .uploadImage:
             return "/v1/posts/files"
+        case .specificReadPost(id: let id):
+            return "/v1/posts/user/\(id)"
         }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .createPosts, .uploadImage:
+        case .createPosts, .uploadImage, .specificReadPost:
             nil
         case .fetchPosts(let query):
             ["next": query.next,
@@ -78,9 +88,7 @@ extension PostsRouter: TargetType {
         switch self {
         case .createPosts(query: let query):
             return try? encoder.encode(query)
-        case .fetchPosts:
-            return nil
-        case .uploadImage:
+        case .fetchPosts, .uploadImage, .specificReadPost:
             return nil
         }
     }

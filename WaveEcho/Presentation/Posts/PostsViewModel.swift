@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class PostsViewModel {
-        
+    
     var disposeBag = DisposeBag()
     
     struct Input {
@@ -20,7 +20,7 @@ class PostsViewModel {
     }
     
     struct Output {
-        let postsContent: PublishRelay<ReadPostsResponse>
+        let postsContent: PublishRelay<PostResponse>
         let postsError: Driver<APIError>
         
         let myProfile: PublishRelay<MyProfileResponse>
@@ -29,18 +29,18 @@ class PostsViewModel {
     
     func transform(input: Input) -> Output {
         
-        let postsContent = PublishRelay<ReadPostsResponse>()
+        let postsContent = PublishRelay<PostResponse>()
         let postsError = PublishRelay<APIError>()
-        let fetchPostsObservable = Observable.just(FetchPostQuery(next: "",
-                                                                  limit: "5",
-                                                                  product_id: ""))
+        let fetchPostsObservable = Observable.just(PostQueryString(next: "",
+                                                                   limit: "5",
+                                                                   product_id: ""))
         let myProfile = PublishRelay<MyProfileResponse>()
         let myProfileError = PublishRelay<APIError>()
         
-        input.viewWillAppearTrigger
+        input.viewDidLoad
             .withLatestFrom(fetchPostsObservable)
             .flatMap { postQuery in
-                return APIManager.shared.create(type: ReadPostsResponse.self,
+                return APIManager.shared.create(type: PostResponse.self,
                                                 router: PostsRouter.fetchPosts(query: postQuery))
             }
             .bind(with: self) { owner, result in
@@ -52,6 +52,7 @@ class PostsViewModel {
                 }
             }
             .disposed(by: disposeBag)
+        
         
         input.myProfileView
             .flatMap { _ in

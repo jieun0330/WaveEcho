@@ -43,7 +43,8 @@ extension UsersRouter: TargetType {
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                     HTTPHeader.refresh.rawValue: UserDefaults.standard.string(forKey: "refreshToken") ?? ""]
         case .withdraw:
-            return [:]
+            return [HTTPHeader.authorization.rawValue: accessToken,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -80,29 +81,6 @@ extension UsersRouter: TargetType {
             return try? encoder.encode(query)
         case .refreshToken, .withdraw:
             return nil
-        }
-    }
-}
-
-extension UsersRouter {
-    
-    static func withdrawUsers() -> Single<WithdrawResponse> {
-        return Single<WithdrawResponse>.create { single in
-            let urlRequest = UsersRouter.withdraw.urlRequest!
-            
-            AF
-                .request(urlRequest)
-                .responseDecodable(of: WithdrawResponse.self) { response in
-                    switch response.result {
-                    case .success(let withdrawResponse):
-                        single(.success(withdrawResponse))
-                        print("회원탈퇴 성공", withdrawResponse)
-                    case .failure(let error):
-                        single(.failure(error))
-                        print(error)
-                    }
-                }
-            return Disposables.create()
         }
     }
 }

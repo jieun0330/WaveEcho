@@ -13,10 +13,13 @@ final class DetailPostViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     
+    var postID: String!
+    
     struct Input {
         let sendButtonTapped: ControlEvent<Void>
-        let commentID: Observable<String>
         let commentContent: ControlProperty<String>
+        let viewWillAppearTrigger: Observable<Bool>
+        let postID: String
     }
     
     struct Output {
@@ -30,24 +33,57 @@ final class DetailPostViewModel: ViewModelType {
         let commentSuccess = PublishRelay<WriteCommentResponse>()
         let commentError = PublishRelay<APIError>()
         let commentTrigger = PublishRelay<Void>()
-        
-        Observable.combineLatest(input.commentID, input.commentContent)
-            .flatMap { id, content in
-                return APIManager.shared.create(type: WriteCommentResponse.self,
-                                                router: CommentRouter.writeComment(query: WriteCommentRequestBody(content: content), id: id))
+        let testObservable = PublishRelay<[CommentData]>()
+
+        // 댓글 달면
+        input.sendButtonTapped
+            .withLatestFrom(input.commentContent)
+            .map { content in
+                WriteCommentRequestBody(content: content)
+            }
+            .flatMap { writeCommentRequest in
+                APIManager.shared.create(type: WriteCommentResponse.self,
+                                         router: CommentRouter.writeComment(query: writeCommentRequest,
+                                                                            id: input.postID))
             }
             .bind(with: self) { owner, result in
+                print("input.", input.postID)
+                print("result.", result)
                 switch result {
                 case .success(let success):
                     commentSuccess.accept(success)
                     commentTrigger.accept(())
                 case .failure(let error):
+                    dump(error)
                     commentError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
         
-        return Output(commentSuccess: commentSuccess.asDriver(onErrorJustReturn: WriteCommentResponse(comment_id: "", content: "", createdAt: "", creator: [])),
+//        Observable.combineLatest(input.commentID, input.commentContent)
+//            .flatMap { id, content in
+//                return APIManager.shared.create(type: WriteCommentResponse.self,
+//                                                router: CommentRouter.writeComment(query: WriteCommentRequestBody(content: content), id: id))
+//            }
+//            .bind(with: self) { owner, result in
+//                switch result {
+//                case .success(let success):
+//                    print("success 🧎🏻‍♀️", success)
+//                    commentSuccess.accept(success)
+//                    commentTrigger.accept(())
+//                case .failure(let error):
+//                    print("error 🧍🏻‍♂️", error)
+//                    commentError.accept(error)
+//                }
+//            }
+//            .disposed(by: disposeBag)
+        
+        return Output(commentSuccess: commentSuccess.asDriver(onErrorJustReturn: WriteCommentResponse(comment_id: input.postID,
+                                                                                                      content: "",
+                                                                                                      createdAt: "",
+                                                                                                      creator: Creator(user_id: "",
+                                                                                                                       nick: "",
+                                                                                                                       profileImage: ""))),
                       commentError: commentError.asDriver(onErrorJustReturn: .code500),
                       commentTrigger: commentTrigger.asDriver(onErrorJustReturn: ()))
     }

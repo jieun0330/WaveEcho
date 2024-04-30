@@ -12,19 +12,18 @@ import Toast
 import PhotosUI
 
 final class WritePostViewController: BaseViewController {
-
+    
     private let mainView = WritePostView()
     private let viewModel = WritePostViewModel()
     private let imageData = PublishRelay<Data>()
     
     override func loadView() {
         view = mainView
-        
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.title = "유리병 던지기"
         mainView.uploadPhotoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
@@ -40,10 +39,10 @@ final class WritePostViewController: BaseViewController {
     
     override func bind() {
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
-                                                  uploadPhotoButtonTapped: mainView.uploadPhotoButton.rx.tap,
-                                             completeButtonTapped: mainView.sendButton.rx.tap,
+                                             photoButtonTapped: mainView.uploadPhotoButton.rx.tap,
+                                             uploadButtonTapped: mainView.sendButton.rx.tap,
                                              image: imageData)
-
+        
         let output = viewModel.transform(input: input)
         
         output.createPostTrigger

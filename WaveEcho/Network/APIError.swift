@@ -35,6 +35,8 @@ enum APIError: Int, Error {
         case validEmail
         // 로그인
         case login
+        // 회원탈퇴
+        case withdraw
         
         // 포스팅 작성
         case createPosts

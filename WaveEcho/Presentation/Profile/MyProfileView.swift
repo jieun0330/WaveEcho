@@ -29,14 +29,14 @@ final class MyProfileView: BaseView {
         return button
     }()
     
-    private let withDrawButton = {
+    let withDrawButton = {
         let button = UIButton()
         button.setTitle("회원탈퇴", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .cyan
         return button
     }()
-
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
     }
@@ -71,7 +71,7 @@ final class MyProfileView: BaseView {
             $0.width.equalTo(100)
         }
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

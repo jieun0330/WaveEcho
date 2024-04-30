@@ -12,7 +12,9 @@ import RxCocoa
 final class DetailPostViewController: BaseViewController {
     
     let mainView = DetailPostView()
-
+    let viewModel = DetailPostViewModel()
+    var postID: String!
+    
     override func loadView() {
         super.loadView()
         
@@ -21,20 +23,23 @@ final class DetailPostViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mainView.replyTextView.isHidden = true
-        mainView.sendButton.isHidden = true
     }
     
-    override func configureView() {
-        mainView.comment.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.mainView.replyTextView.isHidden = false
-                owner.mainView.sendButton.isHidden = false
+    override func bind() {
+        
+        let viewDidAppear = rx.viewDidAppear
+            .map { $0 == true }
+        
+        let input = DetailPostViewModel.Input(sendButtonTapped: mainView.sendButton.rx.tap,
+                                              commentContent: mainView.replyTextView.rx.text.orEmpty, viewWillAppearTrigger: viewDidAppear,
+                                              postID: postID)
+        
+        let output = viewModel.transform(input: input)
+        
+        output.commentSuccess
+            .drive(with: self) { owner, writeCommentResponse in
+                owner.mainView.successCommentTest.text = writeCommentResponse.content
             }
             .disposed(by: disposeBag)
-        
-        // 여기 아님
-//        navigationController?.navigationItem.backButtonTitle = ""
     }
 }
