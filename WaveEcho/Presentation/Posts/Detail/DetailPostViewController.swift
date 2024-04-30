@@ -13,7 +13,7 @@ final class DetailPostViewController: BaseViewController {
     
     let mainView = DetailPostView()
     let viewModel = DetailPostViewModel()
-    var postID: String!
+    var postData: [PostData] = []
     
     override func loadView() {
         super.loadView()
@@ -30,8 +30,11 @@ final class DetailPostViewController: BaseViewController {
         let viewDidAppear = rx.viewDidAppear
             .map { $0 == true }
         
+        guard let postID = postData.first?.post_id else { return }
+        
         let input = DetailPostViewModel.Input(sendButtonTapped: mainView.sendButton.rx.tap,
-                                              commentContent: mainView.replyTextView.rx.text.orEmpty, viewWillAppearTrigger: viewDidAppear,
+                                              commentContent: mainView.replyTextView.rx.text.orEmpty,
+                                              viewWillAppearTrigger: viewDidAppear,
                                               postID: postID)
         
         let output = viewModel.transform(input: input)
