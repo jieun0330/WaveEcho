@@ -38,19 +38,15 @@ class RefreshToken: RequestInterceptor {
             
             do {
                 let urlRequest = try UsersRouter.refreshToken.asURLRequest()
-                print("urlRequest 👷🏻", urlRequest)
-                
                 AF
                     .request(urlRequest)
                     .responseDecodable(of: RefreshTokenResponse.self) { response in
                         
                         switch response.result {
                         case .success(let success):
-                            print("success 🌽", success)
                             // 재발급 성공 -> 새로운 토큰 저장
                             UserDefaults.standard.set(success.accessToken, forKey: "accessToken")
                             completion(.retry) // ❗️
-                            
                         case .failure(let error):
                             // doNotRetryWithError 실행
                             completion(.doNotRetryWithError(error))

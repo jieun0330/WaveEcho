@@ -33,7 +33,7 @@ final class DetailPostViewModel: ViewModelType {
         let commentSuccess = PublishRelay<WriteCommentResponse>()
         let commentError = PublishRelay<APIError>()
         let commentTrigger = PublishRelay<Void>()
-        let testObservable = PublishRelay<[CommentData]>()
+//        let testObservable = PublishRelay<[CommentData]>()
 
         // 댓글 달면
         input.sendButtonTapped
@@ -47,14 +47,11 @@ final class DetailPostViewModel: ViewModelType {
                                                                             id: input.postID))
             }
             .bind(with: self) { owner, result in
-                print("input.", input.postID)
-                print("result.", result)
                 switch result {
                 case .success(let success):
                     commentSuccess.accept(success)
                     commentTrigger.accept(())
                 case .failure(let error):
-                    dump(error)
                     commentError.accept(error)
                 }
             }

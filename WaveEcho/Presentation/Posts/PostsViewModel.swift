@@ -40,12 +40,10 @@ class PostsViewModel {
         input.viewDidLoad
             .withLatestFrom(fetchPostsObservable)
             .flatMapLatest { postQuery in
-                print(postQuery)
                 return APIManager.shared.create(type: PostResponse.self,
                                                 router: PostsRouter.fetchPosts(query: postQuery))
             }
             .bind(with: self) { owner, result in
-                dump(result)
                 switch result {
                 case .success(let success):
                     postsContent.accept(success)

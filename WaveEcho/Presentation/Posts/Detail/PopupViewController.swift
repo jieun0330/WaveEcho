@@ -13,6 +13,7 @@ import RxCocoa
 final class PopupViewController: BaseViewController {
     
     let mainView = PopupView()
+    let replyView = ReplyViewController()
     
     var postData: PostData!
     
@@ -29,7 +30,7 @@ final class PopupViewController: BaseViewController {
     
     override func configureView() {
         
-        view.backgroundColor = .black.withAlphaComponent(0.3)
+        view.backgroundColor = .black.withAlphaComponent(0.3)        
     }
     
     func setModel(_ model: PostData) {
@@ -48,6 +49,15 @@ final class PopupViewController: BaseViewController {
         mainView.throwButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.replyButton.rx.tap
+            .bind(with: self) { owner, _ in
+                if let sheet = owner.replyView.sheetPresentationController {
+                    sheet.detents = [.medium()]
+                }
+                owner.present(owner.replyView, animated: false)
             }
             .disposed(by: disposeBag)
     }

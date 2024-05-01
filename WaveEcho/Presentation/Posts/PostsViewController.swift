@@ -51,12 +51,12 @@ final class PostsViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 포스팅 작성 화면 전환
-        mainView.sendWaveButton.rx.tap
-            .bind(with: self) { owner, _ in
-                let vc = WritePostViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
-            }
-            .disposed(by: disposeBag)
+//        mainView.sendWaveButton.rx.tap
+//            .bind(with: self) { owner, _ in
+//                let vc = WritePostViewController()
+//                owner.navigationController?.pushViewController(vc, animated: true)
+//            }
+//            .disposed(by: disposeBag)
         
         // 테이블뷰 클릭 시 데이터
         //        mainView.tableView.rx.modelSelected(PostData.self)
@@ -83,11 +83,9 @@ final class PostsViewController: BaseViewController {
     // 종이배 클릭 시 -> Detail 화면 전환
     @objc private func animationViewTapped() {
         
-        print(#function)
         guard let post = postData.randomElement() else { return }
         
         popupVC.mainView.profileImage.kf.setImage(with: URL(string: post.creator.profileImage ?? ""), options: [.requestModifier(KingFisherNet())])
-        
         popupVC.mainView.nicknameLabel.text = post.creator.nick
         popupVC.mainView.contentLabel.text = post.content
         let stringDate = DateFormatManager.shared.stringToDate(date: post.createdAt)
@@ -98,6 +96,8 @@ final class PostsViewController: BaseViewController {
         popupVC.setModel(post)
         popupVC.modalPresentationStyle = .overCurrentContext
         present(popupVC, animated: false)
+        
+        popupVC.replyView.mainView.toPerson.text = post.creator.nick
     }
     
     override func bind() {

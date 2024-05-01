@@ -48,6 +48,8 @@
 		C23D33DC2BDEC7C900F81AB4 /* KingFisherImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33DB2BDEC7C900F81AB4 /* KingFisherImage.swift */; };
 		C25D9F132BDCC5DB00012307 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */; };
 		C25D9F172BDE0C4F00012307 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F162BDE0C4F00012307 /* DetailPostView.swift */; };
+		C269AF0C2BE1F62A00BB6E20 /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF0B2BE1F62A00BB6E20 /* ReplyViewController.swift */; };
+		C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF0D2BE1F96E00BB6E20 /* ReplyView.swift */; };
 		C27A067F2BE0D6CF0010D382 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C27A067E2BE0D6CF0010D382 /* Lottie */; };
 		C27A06832BE0DA240010D382 /* wavesAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = C27A06822BE0DA240010D382 /* wavesAnimation.json */; };
 		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
@@ -128,6 +130,8 @@
 		C23D33DB2BDEC7C900F81AB4 /* KingFisherImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherImage.swift; sourceTree = "<group>"; };
 		C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
 		C25D9F162BDE0C4F00012307 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
+		C269AF0B2BE1F62A00BB6E20 /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
+		C269AF0D2BE1F96E00BB6E20 /* ReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyView.swift; sourceTree = "<group>"; };
 		C27A06822BE0DA240010D382 /* wavesAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wavesAnimation.json; sourceTree = "<group>"; };
 		C27E533F2BCE6F810037E1A5 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		C27E53412BCE71B00037E1A5 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -329,9 +333,19 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		C269AF0A2BE1F59900BB6E20 /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				C269AF0D2BE1F96E00BB6E20 /* ReplyView.swift */,
+				C269AF0B2BE1F62A00BB6E20 /* ReplyViewController.swift */,
+			);
+			path = Reply;
+			sourceTree = "<group>";
+		};
 		C27E533C2BCE6EF70037E1A5 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				C269AF0A2BE1F59900BB6E20 /* Reply */,
 				C27E533F2BCE6F810037E1A5 /* PostsView.swift */,
 				C27E53412BCE71B00037E1A5 /* PostsViewController.swift */,
 				C2CDC2A82BD107A900176723 /* PostsViewModel.swift */,
@@ -596,6 +610,7 @@
 				C2DC2C032BCD217800A1D102 /* SignupRequestBody.swift in Sources */,
 				C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */,
 				C23D33CF2BDE983700F81AB4 /* EditMyProfileRequestBody.swift in Sources */,
+				C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
@@ -648,6 +663,7 @@
 				C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */,
 				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
 				C20E68B52BD8FC9A00507C0B /* MyProfileView.swift in Sources */,
+				C269AF0C2BE1F62A00BB6E20 /* ReplyViewController.swift in Sources */,
 				C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */,
 				C2E8EFD02BDE486100868BB3 /* DetailPostViewModel.swift in Sources */,
 				C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */,

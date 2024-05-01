@@ -35,14 +35,11 @@ class EditProfileViewModel: ViewModelType {
                                                 router: ProfileRouter.editMyPofile(query: EditMyProfileRequestBody(nick: nickname, phoneNum: nil, birthDay: nil, profile: nil)))
             }
             .bind(with: self) { owner, result in
-                dump(result)
                 switch result {
                 case .success(let success):
                     editProfile.accept(success)
-                    print("success 👱🏻‍♀️", success)
                 case .failure(let error):
                     editProfileError.accept(error)
-                    print("error 👵🏻", error)
                 }
             }
             .disposed(by: disposeBag)
