@@ -12,25 +12,27 @@ import RxCocoa
 final class ReplyViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
-
+    var updateCommentData = BehaviorRelay<[WriteCommentResponse]>(value: [])
+    
     struct Input {
         let sendButtonTapped: ControlEvent<Void>
         let commentContent: ControlProperty<String>
         let postID: String
     }
-
+    
     struct Output {
+        let updateCommentData: Driver<[WriteCommentResponse]>
         let commentSuccess: Driver<WriteCommentResponse>
         let commentError: Driver<APIError>
         let commentTrigger: Driver<Void>
     }
-
+    
     func transform(input: Input) -> Output {
         
         let commentSuccess = PublishRelay<WriteCommentResponse>()
         let commentError = PublishRelay<APIError>()
         let commentTrigger = PublishRelay<Void>()
-
+        
         // 댓글 달면
         input.sendButtonTapped
             .withLatestFrom(input.commentContent)
@@ -38,28 +40,29 @@ final class ReplyViewModel: ViewModelType {
                 WriteCommentRequestBody(content: content)
             }
             .flatMapLatest { writeCommentRequest in
-                print("🐥",writeCommentRequest, "id: \(input.postID)")
                 return APIManager.shared.create(type: WriteCommentResponse.self,
-                                         router: CommentRouter.writeComment(query: writeCommentRequest,
-                                                                            id: "6631c59cea1f6976de7ccd86"))
+                                                router: CommentRouter.writeComment(query: writeCommentRequest,
+                                                                                   id: input.postID))
             }
             .bind(with: self) { owner, result in
-                dump(result)
-                print("🐭🐭", result)
                 switch result {
                 case .success(let success):
-                    print("아 제발",success)
+                    
                     commentSuccess.accept(success)
                     commentTrigger.accept(())
+                    
+                    
+                    var updateComment = owner.updateCommentData.value
+                    updateComment.insert(success, at: 0)
+                    owner.updateCommentData.accept(updateComment)
                 case .failure(let error):
-                    print("🦊여우가 범의 허리를 끊었다", error)
-                    dump(error)
                     commentError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
         
-        return Output(commentSuccess: commentSuccess.asDriver(onErrorJustReturn: WriteCommentResponse(comment_id: "",
+        return Output(updateCommentData: updateCommentData.asDriver(),
+                      commentSuccess: commentSuccess.asDriver(onErrorJustReturn: WriteCommentResponse(comment_id: "",
                                                                                                       content: "",
                                                                                                       createdAt: "",
                                                                                                       creator: Creator(user_id: "",

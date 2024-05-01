@@ -16,8 +16,9 @@ enum PostsRouter {
     case createPosts(query: WritePostsRequestBody)
     // 포스트 조회
     case fetchPosts(query: PostQueryString)
-    // 특정 포스트 조회
-    case specificReadPost(id: String)
+    // 유저별 작성한 포스트 조회
+//    case userPost(query: PostQueryString, id: String)
+    case userPost(id: String)
 }
 
 extension PostsRouter: TargetType {
@@ -33,7 +34,7 @@ extension PostsRouter: TargetType {
             return .get
         case .uploadImage:
             return .post
-        case .specificReadPost:
+        case .userPost:
             return .get
         }
     }
@@ -51,9 +52,8 @@ extension PostsRouter: TargetType {
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
-        case .specificReadPost:
+        case .userPost:
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
-                    HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
@@ -64,14 +64,14 @@ extension PostsRouter: TargetType {
             return "/v1/posts"
         case .uploadImage:
             return "/v1/posts/files"
-        case .specificReadPost(id: let id):
-            return "/v1/posts/user/\(id)"
+        case .userPost(id: let id):
+            return "/v1/posts/users/\(id)"
         }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .createPosts, .uploadImage, .specificReadPost:
+        case .createPosts, .uploadImage, .userPost(_):
             nil
         case .fetchPosts(let query):
             ["next": query.next,
@@ -81,14 +81,13 @@ extension PostsRouter: TargetType {
     }
     
     var body: Data? {
-        
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         
         switch self {
         case .createPosts(query: let query):
             return try? encoder.encode(query)
-        case .fetchPosts, .uploadImage, .specificReadPost:
+        case .fetchPosts, .uploadImage, .userPost:
             return nil
         }
     }

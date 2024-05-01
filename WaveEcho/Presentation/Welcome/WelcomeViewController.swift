@@ -14,7 +14,7 @@ final class WelcomeViewController: BaseViewController {
     override func loadView() {
         view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,12 +26,15 @@ final class WelcomeViewController: BaseViewController {
         print(#function)
         let vc = SignupViewController()
         navigationController?.viewControllers = [vc]
-
     }
     
     @objc private func loginButtonTapped() {
         print(#function)
         let vc = LoginViewController()
         navigationController?.setViewControllers([vc], animated: true)
+    }
+    
+    deinit {
+        print(self)
     }
 }

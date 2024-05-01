@@ -52,6 +52,10 @@
 		C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF0D2BE1F96E00BB6E20 /* ReplyView.swift */; };
 		C269AF102BE206D000BB6E20 /* ReplyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF0F2BE206D000BB6E20 /* ReplyViewModel.swift */; };
 		C269AF132BE21F0D00BB6E20 /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = C269AF122BE21F0D00BB6E20 /* BetterSegmentedControl */; };
+		C269AF162BE2248400BB6E20 /* MyPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF152BE2248400BB6E20 /* MyPostView.swift */; };
+		C269AF182BE224EC00BB6E20 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */; };
+		C269AF1A2BE2265B00BB6E20 /* MyPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */; };
+		C269AF202BE2813800BB6E20 /* MyPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */; };
 		C27A067F2BE0D6CF0010D382 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C27A067E2BE0D6CF0010D382 /* Lottie */; };
 		C27A06832BE0DA240010D382 /* wavesAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = C27A06822BE0DA240010D382 /* wavesAnimation.json */; };
 		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
@@ -135,6 +139,10 @@
 		C269AF0B2BE1F62A00BB6E20 /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		C269AF0D2BE1F96E00BB6E20 /* ReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyView.swift; sourceTree = "<group>"; };
 		C269AF0F2BE206D000BB6E20 /* ReplyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewModel.swift; sourceTree = "<group>"; };
+		C269AF152BE2248400BB6E20 /* MyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostView.swift; sourceTree = "<group>"; };
+		C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
+		C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostTableViewCell.swift; sourceTree = "<group>"; };
+		C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewModel.swift; sourceTree = "<group>"; };
 		C27A06822BE0DA240010D382 /* wavesAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wavesAnimation.json; sourceTree = "<group>"; };
 		C27E533F2BCE6F810037E1A5 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		C27E53412BCE71B00037E1A5 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -327,11 +335,9 @@
 		C25D9F112BDCC1ED00012307 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				C25D9F162BDE0C4F00012307 /* DetailPostView.swift */,
-				C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */,
-				C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */,
-				C22003472BE0F13600A95F86 /* PopupViewController.swift */,
+				C269AF1E2BE2560E00BB6E20 /* X */,
 				C22003492BE0F15400A95F86 /* PopupView.swift */,
+				C22003472BE0F13600A95F86 /* PopupViewController.swift */,
 				C220034D2BE1308C00A95F86 /* CommentCollectionViewCell.swift */,
 			);
 			path = Detail;
@@ -347,16 +353,66 @@
 			path = Reply;
 			sourceTree = "<group>";
 		};
-		C27E533C2BCE6EF70037E1A5 /* Posts */ = {
+		C269AF142BE223DC00BB6E20 /* MyPost */ = {
 			isa = PBXGroup;
 			children = (
-				C269AF0A2BE1F59900BB6E20 /* Reply */,
+				C269AF152BE2248400BB6E20 /* MyPostView.swift */,
+				C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */,
+				C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */,
+				C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */,
+			);
+			path = MyPost;
+			sourceTree = "<group>";
+		};
+		C269AF1D2BE255F000BB6E20 /* All */ = {
+			isa = PBXGroup;
+			children = (
 				C27E533F2BCE6F810037E1A5 /* PostsView.swift */,
 				C27E53412BCE71B00037E1A5 /* PostsViewController.swift */,
 				C2CDC2A82BD107A900176723 /* PostsViewModel.swift */,
 				C20E68982BD685D100507C0B /* PostsTableViewCell.swift */,
-				C27E53432BCE77390037E1A5 /* Write */,
+			);
+			path = All;
+			sourceTree = "<group>";
+		};
+		C269AF1E2BE2560E00BB6E20 /* X */ = {
+			isa = PBXGroup;
+			children = (
+				C25D9F162BDE0C4F00012307 /* DetailPostView.swift */,
+				C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */,
+				C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */,
+			);
+			path = X;
+			sourceTree = "<group>";
+		};
+		C269AF212BE2836000BB6E20 /* Join */ = {
+			isa = PBXGroup;
+			children = (
+				C2DC2BE62BCD20C100A1D102 /* SignupView.swift */,
+				C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */,
+				C2DC2BE82BCD20C100A1D102 /* SignupViewModel.swift */,
+			);
+			path = Join;
+			sourceTree = "<group>";
+		};
+		C269AF222BE2837E00BB6E20 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C2DC2C0B2BCD2A8700A1D102 /* LoginView.swift */,
+				C2DC2C0D2BCD2DB700A1D102 /* LoginViewController.swift */,
+				C2DC2C0F2BCD35E100A1D102 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C27E533C2BCE6EF70037E1A5 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				C269AF1D2BE255F000BB6E20 /* All */,
 				C25D9F112BDCC1ED00012307 /* Detail */,
+				C27E53432BCE77390037E1A5 /* Write */,
+				C269AF0A2BE1F59900BB6E20 /* Reply */,
+				C269AF142BE223DC00BB6E20 /* MyPost */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -399,26 +455,6 @@
 			path = QueryString;
 			sourceTree = "<group>";
 		};
-		C2DC2BE92BCD20C100A1D102 /* Join */ = {
-			isa = PBXGroup;
-			children = (
-				C2DC2BE62BCD20C100A1D102 /* SignupView.swift */,
-				C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */,
-				C2DC2BE82BCD20C100A1D102 /* SignupViewModel.swift */,
-			);
-			path = Join;
-			sourceTree = "<group>";
-		};
-		C2DC2BEA2BCD20C100A1D102 /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				C2DC2BE92BCD20C100A1D102 /* Join */,
-				C2DC2C0A2BCD23D200A1D102 /* Login */,
-				C2DC2C152BCD5A9000A1D102 /* RefreshToken */,
-			);
-			path = Users;
-			sourceTree = "<group>";
-		};
 		C2DC2BED2BCD20C100A1D102 /* Welcome */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,7 +468,9 @@
 			isa = PBXGroup;
 			children = (
 				C2DC2BED2BCD20C100A1D102 /* Welcome */,
-				C2DC2BEA2BCD20C100A1D102 /* Users */,
+				C269AF212BE2836000BB6E20 /* Join */,
+				C269AF222BE2837E00BB6E20 /* Login */,
+				C2DC2C152BCD5A9000A1D102 /* RefreshToken */,
 				C27E533C2BCE6EF70037E1A5 /* Posts */,
 				C20E68B32BD8FC8400507C0B /* Profile */,
 			);
@@ -482,16 +520,6 @@
 				C20E68BB2BD91C4A00507C0B /* Profile */,
 			);
 			path = Response;
-			sourceTree = "<group>";
-		};
-		C2DC2C0A2BCD23D200A1D102 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				C2DC2C0B2BCD2A8700A1D102 /* LoginView.swift */,
-				C2DC2C0D2BCD2DB700A1D102 /* LoginViewController.swift */,
-				C2DC2C0F2BCD35E100A1D102 /* LoginViewModel.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		C2DC2C152BCD5A9000A1D102 /* RefreshToken */ = {
@@ -626,6 +654,7 @@
 				C25D9F132BDCC5DB00012307 /* DetailPostViewController.swift in Sources */,
 				C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */,
 				C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */,
+				C269AF182BE224EC00BB6E20 /* MyPostViewController.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
 				C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */,
 				C22003482BE0F13600A95F86 /* PopupViewController.swift in Sources */,
@@ -655,6 +684,7 @@
 				C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */,
 				C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */,
 				C2DC2BF12BCD20C100A1D102 /* SignupViewModel.swift in Sources */,
+				C269AF202BE2813800BB6E20 /* MyPostViewModel.swift in Sources */,
 				C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */,
 				C20E68B02BD7C51A00507C0B /* RefreshToken.swift in Sources */,
 				C269AF102BE206D000BB6E20 /* ReplyViewModel.swift in Sources */,
@@ -677,8 +707,10 @@
 				C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */,
 				C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */,
 				C27E534C2BCE8E840037E1A5 /* WritePostsRequestBody.swift in Sources */,
+				C269AF1A2BE2265B00BB6E20 /* MyPostTableViewCell.swift in Sources */,
 				C23D33DC2BDEC7C900F81AB4 /* KingFisherImage.swift in Sources */,
 				C2DC2BF22BCD20C100A1D102 /* WelcomeView.swift in Sources */,
+				C269AF162BE2248400BB6E20 /* MyPostView.swift in Sources */,
 				C23D33D62BDEA07900F81AB4 /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

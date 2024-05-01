@@ -33,6 +33,7 @@ final class ReplyView: BaseView {
         reply.isScrollEnabled = false
         return reply
     }()
+    
     let sendButton = {
         let button = UIButton()
         button.setTitle("던지기", for: .normal)

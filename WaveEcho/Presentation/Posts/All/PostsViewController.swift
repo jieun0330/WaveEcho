@@ -22,6 +22,7 @@ final class PostsViewController: BaseViewController {
     
     override func loadView() {
         view = mainView
+        
     }
     
     override func viewDidLoad() {
@@ -40,8 +41,16 @@ final class PostsViewController: BaseViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animationViewTapped))
         mainView.messageLottiView.addGestureRecognizer(tapGesture)
         
-        navigationItem.rightBarButtonItem = mainView.myPageButton
+        navigationItem.rightBarButtonItems = [mainView.myPageButton, mainView.myLetters]
         navigationItem.title = "파도 속 유리병"
+        
+        // 내 포스팅 조회 화면 전환
+        mainView.myLetters.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = MyPostViewController()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
         
         // 내 프로필 조회 화면 전환
         mainView.myPageButton.rx.tap
@@ -93,7 +102,7 @@ final class PostsViewController: BaseViewController {
         popupVC.mainView.date.text = relativeDate
         popupVC.mainView.contentImage.kf.setImage(with: URL(string: post.files?.first ?? ""), options: [.requestModifier(KingFisherNet())])
         
-        popupVC.setModel(post)
+        popupVC.setPostData(post)
         popupVC.modalPresentationStyle = .overCurrentContext
         present(popupVC, animated: false)
         

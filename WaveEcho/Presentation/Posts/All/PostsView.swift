@@ -41,12 +41,6 @@ class PostsView: BaseView {
         return animationView
     }()
     
-    //    let tableView = {
-    //        let tableView = UITableView()
-    //        tableView.register(PostsTableViewCell.self, forCellReuseIdentifier: PostsTableViewCell.identifer)
-    //        return tableView
-    //    }()
-    
     let sendWaveButton = {
         let sendWave = UIButton()
         sendWave.setTitle("유리병 던지기", for: .normal)
@@ -54,6 +48,14 @@ class PostsView: BaseView {
         sendWave.backgroundColor = .systemBlue.withAlphaComponent(0.2)
         sendWave.layer.cornerRadius = 20
         return sendWave
+    }()
+    
+    lazy var myLetters = {
+        let myLetters = UIBarButtonItem(image: UIImage(systemName: "paperplane.fill"),
+                                        style: .plain,
+                                        target: self,
+                                        action: #selector(rightBarButtonItemMyLettersTapped))
+        return myLetters
     }()
     
     lazy var myPageButton = {
@@ -69,6 +71,7 @@ class PostsView: BaseView {
         
     }
     
+    @objc func rightBarButtonItemMyLettersTapped() { }
     @objc func rightBarButtonItemTapped() { }
     
     override func configureHierarchy() {
@@ -91,12 +94,6 @@ class PostsView: BaseView {
             $0.top.equalTo(messageLottiView.snp.bottom).offset(20)
             $0.size.equalTo(100)
         }
-        
-        //        tableView.snp.makeConstraints {
-        //            $0.top.equalTo(safeAreaLayoutGuide)
-        //            $0.horizontalEdges.equalToSuperview().inset(10)
-        //            $0.bottom.equalTo(sendWaveButton.snp.top).offset(-10)
-        //        }
         
         sendWaveButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)

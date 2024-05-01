@@ -33,11 +33,4 @@ struct CommentData: Decodable {
     let content: String
     let createdAt: String
     let creator: CreatorInfo
-    
-    init(comment_id: String, content: String, createdAt: String, creator: CreatorInfo) {
-        self.comment_id = comment_id
-        self.content = content
-        self.createdAt = createdAt
-        self.creator = creator
-    }
 }

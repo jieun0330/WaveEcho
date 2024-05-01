@@ -21,15 +21,13 @@ final class APIManager {
         return Single<Result<T, APIError>>.create { single in
             do {
                 let urlRequest = try router.asURLRequest()
-                
                 AF
                     .request(urlRequest, interceptor: RefreshToken())
                     .responseDecodable(of: T.self) { response in
                         switch response.result {
                         case .success(let success):
                             single(.success(.success(success)))
-                            
-                        case .failure(_):
+                        case .failure(let error):
                             guard let statusCode = response.response?.statusCode else { return }
                             guard let error = APIError(rawValue: statusCode) else { return }
                             single(.success(.failure(error)))
@@ -39,7 +37,6 @@ final class APIManager {
             catch {
                 single(.success(.failure(APIError.code500)))
             }
-            
             return Disposables.create()
         }
     }

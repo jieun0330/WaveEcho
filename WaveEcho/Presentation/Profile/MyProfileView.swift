@@ -48,6 +48,7 @@ final class MyProfileView: BaseView {
     }
     
     override func configureConstraints() {
+        
         profileImage.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.leading.equalToSuperview().offset(10)

@@ -10,12 +10,17 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+//protocol getCommentUser: NSObject {
+//    func getCommentUser(writeCommentResponse: WriteCommentResponse)
+//}
+
 final class PopupViewController: BaseViewController {
     
     let mainView = PopupView()
     let replyView = ReplyViewController()
-    
-    var postData: PostData!
+    private let viewModel = PopupViewModel()
+    //    var test = PublishRelay<WriteCommentResponse>()
+    //    var postData: PostData!
     
     override func loadView() {
         view = mainView
@@ -25,15 +30,23 @@ final class PopupViewController: BaseViewController {
     override func viewDidLoad() {
         super .viewDidLoad()
         
+        //        replyView.getCommentUser = self
         mainView.collectionView.setCollectionViewLayout(createLayout(), animated: true)
     }
     
     override func configureView() {
         
-        view.backgroundColor = .black.withAlphaComponent(0.3)        
+        view.backgroundColor = .black.withAlphaComponent(0.3)      
+        
+        replyView.mainView.sendButton.rx.tap
+            .bind(with: self) { owner, _ in
+                print("던지기 버튼 눌렸")
+            }
+            .disposed(by: disposeBag)
     }
     
-    func setModel(_ model: PostData) {
+    func setPostData(_ model: PostData) {
+        
         let behaviorModel = BehaviorRelay(value: model)
         
         behaviorModel
@@ -45,8 +58,8 @@ final class PopupViewController: BaseViewController {
                 cell.commentLabel.text = item.content
             }
             .disposed(by: disposeBag)
-    
-//        model.post_id
+        
+        //        model.post_id
         replyView.postID = model.post_id
         
         mainView.throwButton.rx.tap
@@ -67,6 +80,7 @@ final class PopupViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
         disposeBag = .init()
     }
     
@@ -87,7 +101,16 @@ final class PopupViewController: BaseViewController {
         
         return layout
     }
+    
     deinit {
         print(self)
     }
 }
+
+//extension PopupViewController : getCommentUser {
+//    func getCommentUser(writeCommentResponse: WriteCommentResponse) {
+//        
+//        test.accept(writeCommentResponse)
+//        print("🐞🐞🐞🐞🐞", writeCommentResponse)
+//    }
+//}

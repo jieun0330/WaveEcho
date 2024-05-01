@@ -11,9 +11,9 @@ import RxCocoa
 
 class WritePostViewModel: ViewModelType {
     
-    var disposeBag = DisposeBag()
-    
     var imageFiles: [String] = []
+    
+    var disposeBag = DisposeBag()
     
     struct Input {
         let content: ControlProperty<String>

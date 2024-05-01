@@ -36,7 +36,7 @@ extension CommentRouter: TargetType {
     
     var path: String {
         switch self {
-        case .writeComment(id: let id):
+        case .writeComment(_, id: let id):
             return "/v1/posts/\(id)/comments"
         }
     }
