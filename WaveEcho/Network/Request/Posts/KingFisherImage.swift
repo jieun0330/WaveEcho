@@ -21,7 +21,7 @@ final class KingFisherNet: ImageDownloadRequestModifier {
         guard let url = components?.url else { return nil }
         var urlRequest = URLRequest(url: url)
 
-        urlRequest.addValue(accessToken, forHTTPHeaderField: HTTPHeader.authorization.rawValue)
+        urlRequest.addValue(UserDefaults.standard.string(forKey: "accessToken") ?? "", forHTTPHeaderField: HTTPHeader.authorization.rawValue)
         urlRequest.addValue(APIKey.sesacKey.rawValue, forHTTPHeaderField: HTTPHeader.sesacKey.rawValue)
 
         return urlRequest

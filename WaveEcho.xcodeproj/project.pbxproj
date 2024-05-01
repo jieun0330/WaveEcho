@@ -20,6 +20,8 @@
 		C22003442BE0E02100A95F86 /* messageAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = C22003432BE0E02100A95F86 /* messageAnimation.json */; };
 		C22003482BE0F13600A95F86 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22003472BE0F13600A95F86 /* PopupViewController.swift */; };
 		C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22003492BE0F15400A95F86 /* PopupView.swift */; };
+		C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C220034D2BE1308C00A95F86 /* CommentCollectionViewCell.swift */; };
+		C22003502BE1309400A95F86 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -101,6 +103,8 @@
 		C22003432BE0E02100A95F86 /* messageAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = messageAnimation.json; sourceTree = "<group>"; };
 		C22003472BE0F13600A95F86 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		C22003492BE0F15400A95F86 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		C220034D2BE1308C00A95F86 /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
+		C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -281,6 +285,7 @@
 				C2DC2C082BCD21BC00A1D102 /* BaseView.swift */,
 				C23AFEAF2BC6E1D50000EBE5 /* BaseViewController.swift */,
 				C2CDC2E12BD6299400176723 /* BaseTableViewCell.swift */,
+				C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 				C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */,
 				C22003472BE0F13600A95F86 /* PopupViewController.swift */,
 				C22003492BE0F15400A95F86 /* PopupView.swift */,
+				C220034D2BE1308C00A95F86 /* CommentCollectionViewCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -599,6 +605,7 @@
 				C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */,
 				C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
+				C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */,
 				C22003482BE0F13600A95F86 /* PopupViewController.swift in Sources */,
 				C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */,
 				C2CDC2D12BD4FDF000176723 /* PostQueryString.swift in Sources */,
@@ -613,6 +620,7 @@
 				C2CDC2CA2BD36F9E00176723 /* APIError.swift in Sources */,
 				C2DC2C042BCD217800A1D102 /* RequestHeader.swift in Sources */,
 				C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */,
+				C22003502BE1309400A95F86 /* BaseCollectionViewCell.swift in Sources */,
 				C25D9F172BDE0C4F00012307 /* DetailPostView.swift in Sources */,
 				C2DC2C0C2BCD2A8700A1D102 /* LoginView.swift in Sources */,
 				C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */,

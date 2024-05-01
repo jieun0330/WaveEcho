@@ -44,11 +44,6 @@ class RefreshToken: RequestInterceptor {
                     .request(urlRequest)
                     .responseDecodable(of: RefreshTokenResponse.self) { response in
                         
-                        // 418을 만나요
-                        //                        dump(response)
-                        print("accessToken 🥺", accessToken)
-                        print("response🧑🏻‍🦲", response)
-                        
                         switch response.result {
                         case .success(let success):
                             print("success 🌽", success)
@@ -57,13 +52,6 @@ class RefreshToken: RequestInterceptor {
                             completion(.retry) // ❗️
                             
                         case .failure(let error):
-                            print("error 🥧", error) // 418
-                            print("accessToken 😶‍🌫️", accessToken)
-                            print(statusCode)
-                            
-                            //                            if response.response?.statusCode == 418 {
-                            //                                APIError(rawValue: 418)
-                            //                            }
                             // doNotRetryWithError 실행
                             completion(.doNotRetryWithError(error))
                         }

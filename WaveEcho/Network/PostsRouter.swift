@@ -41,18 +41,18 @@ extension PostsRouter: TargetType {
     var headers: [String : String] {
         switch self {
         case .createPosts:
-            return [HTTPHeader.authorization.rawValue: accessToken,
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .fetchPosts:
-            return [HTTPHeader.authorization.rawValue: accessToken,
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .uploadImage:
-            return [HTTPHeader.authorization.rawValue: accessToken,
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .specificReadPost:
-            return [HTTPHeader.authorization.rawValue: accessToken,
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }

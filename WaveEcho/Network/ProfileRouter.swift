@@ -30,10 +30,10 @@ extension ProfileRouter: TargetType {
     var headers: [String : String] {
         switch self {
         case .myProfile:
-            return [HTTPHeader.authorization.rawValue: accessToken,
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .editMyPofile:
-            return [HTTPHeader.authorization.rawValue: accessToken,
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.contentType.rawValue: HTTPHeader.multipart.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }

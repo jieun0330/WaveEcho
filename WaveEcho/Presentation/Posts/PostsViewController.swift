@@ -26,6 +26,7 @@ final class PostsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func configureView() {
@@ -81,17 +82,22 @@ final class PostsViewController: BaseViewController {
     
     // 종이배 클릭 시 -> Detail 화면 전환
     @objc private func animationViewTapped() {
-
+        
+        print(#function)
         guard let post = postData.randomElement() else { return }
+        
+        popupVC.mainView.profileImage.kf.setImage(with: URL(string: post.creator.profileImage ?? ""), options: [.requestModifier(KingFisherNet())])
+        
         popupVC.mainView.nicknameLabel.text = post.creator.nick
         popupVC.mainView.contentLabel.text = post.content
         let stringDate = DateFormatManager.shared.stringToDate(date: post.createdAt)
         let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
         popupVC.mainView.date.text = relativeDate
         popupVC.mainView.contentImage.kf.setImage(with: URL(string: post.files?.first ?? ""), options: [.requestModifier(KingFisherNet())])
-
-        popupVC.modalPresentationStyle = .overFullScreen
-        self.present(popupVC, animated: false)
+        
+        popupVC.setModel(post)
+        popupVC.modalPresentationStyle = .overCurrentContext
+        present(popupVC, animated: false)
     }
     
     override func bind() {
@@ -113,12 +119,12 @@ final class PostsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-                output.postsContent
-                    .map { $0.data }
-                    .bind(with: self) { owner, postData in
-                        owner.postData = postData
-                    }
-                    .disposed(by: disposeBag)
+        output.postsContent
+            .map { $0.data }
+            .bind(with: self) { owner, postData in
+                owner.postData = postData
+            }
+            .disposed(by: disposeBag)
         
         output.postsError
             .drive(with: self) { owner, error in
@@ -131,14 +137,16 @@ final class PostsViewController: BaseViewController {
         output.postsError
             .debounce(.seconds(2))
             .drive(with: self) { owner, error in
-                UserDefaults.standard.removeObject(forKey: "accessToken")
-                let vc = UINavigationController (rootViewController: WelcomeViewController ())
-                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                
-                let sceneDelegate = windowScene.delegate as? SceneDelegate
-                
-                sceneDelegate?.window?.rootViewController = vc
-                sceneDelegate?.window?.makeKeyAndVisible()
+                if case .success = error {
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "accessToken")
+                    let vc = UINavigationController (rootViewController: WelcomeViewController ())
+                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                    
+                    let sceneDelegate = windowScene.delegate as? SceneDelegate
+                    sceneDelegate?.window?.rootViewController = vc
+                    sceneDelegate?.window?.makeKeyAndVisible()
+                }
             }
             .disposed(by: disposeBag)
     }

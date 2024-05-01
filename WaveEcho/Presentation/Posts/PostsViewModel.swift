@@ -39,11 +39,13 @@ class PostsViewModel {
         
         input.viewDidLoad
             .withLatestFrom(fetchPostsObservable)
-            .flatMap { postQuery in
+            .flatMapLatest { postQuery in
+                print(postQuery)
                 return APIManager.shared.create(type: PostResponse.self,
                                                 router: PostsRouter.fetchPosts(query: postQuery))
             }
             .bind(with: self) { owner, result in
+                dump(result)
                 switch result {
                 case .success(let success):
                     postsContent.accept(success)
@@ -52,7 +54,6 @@ class PostsViewModel {
                 }
             }
             .disposed(by: disposeBag)
-        
         
         input.myProfileView
             .flatMap { _ in

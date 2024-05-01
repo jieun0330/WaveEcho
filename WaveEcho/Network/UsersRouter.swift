@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import RxSwift
 
-let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
+//let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
 
 enum UsersRouter {
     case signup(query: SignupRequestBody)
@@ -39,11 +39,11 @@ extension UsersRouter: TargetType {
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .refreshToken:
-            return [HTTPHeader.authorization.rawValue: accessToken,
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
                     HTTPHeader.refresh.rawValue: UserDefaults.standard.string(forKey: "refreshToken") ?? ""]
         case .withdraw:
-            return [HTTPHeader.authorization.rawValue: accessToken,
+            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }

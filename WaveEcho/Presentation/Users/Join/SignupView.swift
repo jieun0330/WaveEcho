@@ -91,7 +91,7 @@ class SignupView: BaseView {
         let right = UIBarButtonItem(title: "Login",
                                     style: .plain,
                                     target: self,
-                                    action: #selector(self.rightBarButtonItemTapped))
+                                    action: #selector(rightBarButtonItemTapped))
         return right
     }()
     

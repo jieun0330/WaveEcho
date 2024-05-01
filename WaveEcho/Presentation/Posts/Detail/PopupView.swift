@@ -14,8 +14,7 @@ final class PopupView: BaseView {
         let view = UIView()
         view.backgroundColor = .white
         view.clipsToBounds = true
-        view.layer.borderColor = UIColor.red.cgColor
-        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 20
         return view
     }()
     
@@ -27,7 +26,7 @@ final class PopupView: BaseView {
         return view
     }()
     
-    private let profileImage = {
+    let profileImage = {
         let profile = UIImageView()
         profile.image = UIImage(systemName: "circle.fill")
         return profile
@@ -35,7 +34,7 @@ final class PopupView: BaseView {
     
     var nicknameLabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 10)
+        label.font = .systemFont(ofSize: 15)
         return label
     }()
     
@@ -43,7 +42,6 @@ final class PopupView: BaseView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20)
         label.numberOfLines = 0
-        label.backgroundColor = .orange
         return label
     }()
     
@@ -54,7 +52,18 @@ final class PopupView: BaseView {
     
     let date = {
         let date = UILabel()
+        date.font = .systemFont(ofSize: 12)
+        date.textColor = .systemGray
         return date
+    }()
+    
+    let collectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
+        
+        collectionView.register(CommentCollectionViewCell.self,
+                                forCellWithReuseIdentifier: CommentCollectionViewCell.identifier)
+        collectionView.isPagingEnabled = true
+        return collectionView
     }()
     
     let throwButton = {
@@ -77,6 +86,7 @@ final class PopupView: BaseView {
     
     override init(frame: CGRect) {
         super .init(frame: frame)
+        
     }
     
     override func configureHierarchy() {
@@ -85,7 +95,7 @@ final class PopupView: BaseView {
             addSubview($0)
         }
         
-        [contentView, date, throwButton, replyButton].forEach {
+        [contentView, date, collectionView, throwButton, replyButton].forEach {
             popupView.addSubview($0)
         }
         
@@ -131,6 +141,12 @@ final class PopupView: BaseView {
             $0.trailing.equalTo(contentLabel)
         }
         
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(date.snp.bottom).offset(10)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(throwButton.snp.top)
+        }
+        
         throwButton.snp.makeConstraints {
             $0.bottom.leading.equalToSuperview()
             $0.width.equalToSuperview().dividedBy(2)
@@ -142,10 +158,6 @@ final class PopupView: BaseView {
             $0.width.equalToSuperview().dividedBy(2)
             $0.height.equalTo(56)
         }
-    }
-    
-    override func configureView() {
-        backgroundColor = .black.withAlphaComponent(0.3)
     }
     
     required init?(coder: NSCoder) {

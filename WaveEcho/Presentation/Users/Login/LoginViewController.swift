@@ -83,8 +83,8 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if textField == self.mainView.emailTextField {
-            self.mainView.passwordTextField.becomeFirstResponder()
+        if textField == mainView.emailTextField {
+            mainView.passwordTextField.becomeFirstResponder()
         }
         return true
     }
