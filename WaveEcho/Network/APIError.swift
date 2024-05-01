@@ -43,6 +43,9 @@ enum APIError: Int, Error {
         // 포스팅 조회
         case fetchPost
         
+        // 댓글 작성
+        case writeComment
+        
         // 내 프로필 수정
         case editMyProfile
         

@@ -1,5 +1,5 @@
 {
-  "originHash" : "1652caeb5925a2a4024e2984ad3fb870b461ea927ae8754640db5984fc1efa19",
+  "originHash" : "04158033cdc98d60fdb3b7d3c823a62c8410c029eb9501a4054ffc820e0a2960",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
         "version" : "5.9.1"
+      }
+    },
+    {
+      "identity" : "bettersegmentedcontrol",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gmarm/BetterSegmentedControl.git",
+      "state" : {
+        "revision" : "a2b2116761f71320cee7e69b4249863f0f372c71",
+        "version" : "2.0.1"
       }
     },
     {

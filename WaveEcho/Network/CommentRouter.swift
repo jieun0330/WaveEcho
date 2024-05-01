@@ -47,7 +47,7 @@ extension CommentRouter: TargetType {
     
     var body: Data? {
         let encoder = JSONEncoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
+        encoder.keyEncodingStrategy = .useDefaultKeys
 
         switch self {
         case .writeComment(query: let query, _):

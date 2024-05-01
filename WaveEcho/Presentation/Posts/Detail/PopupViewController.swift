@@ -45,6 +45,9 @@ final class PopupViewController: BaseViewController {
                 cell.commentLabel.text = item.content
             }
             .disposed(by: disposeBag)
+    
+//        model.post_id
+        replyView.postID = model.post_id
         
         mainView.throwButton.rx.tap
             .bind(with: self) { owner, _ in

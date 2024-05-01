@@ -125,6 +125,22 @@ class BaseViewController: UIViewController {
             default:
                 return
             }
+            
+        case .writeComment:
+            switch apiError {
+            case .code400:
+                makeAlert(message: "필수값이 누락되었습니다")
+            case .code401:
+                makeAlert(message: "인증할 수 없는 액세스 토큰입니다")
+            case .code403:
+                makeAlert(message: "Forbidden")
+            case .code410:
+                makeAlert(message: "댓글을 생성할 게시글을 찾을 수 없습니다")
+            case .code419:
+                makeAlert(message: "액세스 토큰이 만료되었습니다")
+            default:
+                return
+            }
         }
     }
 

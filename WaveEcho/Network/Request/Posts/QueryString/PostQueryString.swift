@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostQueryString: Codable {
+struct PostQueryString: Encodable {
     let next: String
     let limit: String
     let product_id: String
