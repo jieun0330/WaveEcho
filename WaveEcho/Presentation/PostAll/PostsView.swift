@@ -17,29 +17,35 @@ class PostsView: BaseView {
         animationView.center = center
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .autoReverse
+//        animationView.layer.borderColor = UIColor.orange.cgColor
+//        animationView.layer.borderWidth = 1
         animationView.animationSpeed = 2
         return animationView
     }()
     
     lazy var messageLottiView : LottieAnimationView = {
         let animationView = LottieAnimationView(name: "messageAnimation")
-        animationView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        animationView.center = center
+        animationView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+//        animationView.center = center
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .autoReverse
         animationView.animationSpeed = 0.5
+        animationView.layer.borderColor = UIColor.orange.cgColor
+        animationView.layer.borderWidth = 1
         return animationView
     }()
     
-    lazy var messageLottiView2 : LottieAnimationView = {
-        let animationView = LottieAnimationView(name: "messageAnimation")
-        animationView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        animationView.center = center
-        animationView.contentMode = .scaleAspectFill
-        animationView.loopMode = .autoReverse
-        animationView.animationSpeed = 0.5
-        return animationView
-    }()
+//    lazy var messageLottiView2 : LottieAnimationView = {
+//        let animationView = LottieAnimationView(name: "messageAnimation")
+//        animationView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+//        animationView.center = center
+//        animationView.contentMode = .scaleAspectFill
+//        animationView.loopMode = .autoReverse
+//        animationView.animationSpeed = 0.5
+//        animationView.layer.borderColor = UIColor.orange.cgColor
+//        animationView.layer.borderWidth = 1
+//        return animationView
+//    }()
     
     let sendWaveButton = {
         let sendWave = UIButton()
@@ -51,31 +57,25 @@ class PostsView: BaseView {
     }()
     
     lazy var myLetters = {
-        let myLetters = UIBarButtonItem(image: UIImage(systemName: "paperplane.fill"),
-                                        style: .plain,
-                                        target: self,
-                                        action: #selector(rightBarButtonItemMyLettersTapped))
-        return myLetters
+        let item = UIBarButtonItem()
+        item.image = UIImage(systemName: "paperplane.fill")
+        return item
     }()
     
     lazy var myPageButton = {
-        let myPage = UIBarButtonItem(image: UIImage(systemName: "person"),
-                                     style: .plain,
-                                     target: self,
-                                     action: #selector(rightBarButtonItemTapped))
-        return myPage
+        let item = UIBarButtonItem()
+        item.image = UIImage(systemName: "person")
+        return item
     }()
     
     override init(frame: CGRect) {
         super .init(frame: frame)
         
     }
-    
-    @objc func rightBarButtonItemMyLettersTapped() { }
-    @objc func rightBarButtonItemTapped() { }
-    
+
     override func configureHierarchy() {
-        [seaBackgroundLottiView, messageLottiView, messageLottiView2, sendWaveButton].forEach {
+                
+        [seaBackgroundLottiView, sendWaveButton].forEach {
             addSubview($0)
         }
     }
@@ -85,15 +85,10 @@ class PostsView: BaseView {
             $0.edges.equalToSuperview()
         }
         
-        messageLottiView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.size.equalTo(100)
-        }
-        
-        messageLottiView2.snp.makeConstraints {
-            $0.top.equalTo(messageLottiView.snp.bottom).offset(20)
-            $0.size.equalTo(100)
-        }
+//        messageLottiView2.snp.makeConstraints {
+//            $0.top.equalTo(messageLottiView.snp.bottom).offset(20)
+//            $0.size.equalTo(Int.random(in: 60...100))
+//        }
         
         sendWaveButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)

@@ -7,8 +7,19 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
 class SignupView: BaseView {
+    
+    lazy var seaBackgroundLottiView : LottieAnimationView = {
+        let animationView = LottieAnimationView(name: "wavesAnimation")
+        animationView.frame = CGRect(x: 0, y: 0, width: .max, height: .max)
+        animationView.center = center
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .autoReverse
+        animationView.animationSpeed = 2
+        return animationView
+    }()
     
     private let signUp = {
         let signUp = UILabel()
@@ -20,7 +31,7 @@ class SignupView: BaseView {
     
     private let background = {
         let background = UIView()
-        background.backgroundColor = .white
+        background.backgroundColor = .systemGray6
         return background
     }()
     
@@ -60,7 +71,7 @@ class SignupView: BaseView {
     let validEmailButton = {
         let button = UIButton()
         button.setTitle("중복확인", for: .normal)
-        button.backgroundColor = .systemYellow
+        button.backgroundColor = .systemCyan
         button.setTitleColor(.black, for: .normal)
         return button
     }()
@@ -88,14 +99,10 @@ class SignupView: BaseView {
     }()
     
     lazy var rightBarButtonItem = {
-        let right = UIBarButtonItem(title: "Login",
-                                    style: .plain,
-                                    target: self,
-                                    action: #selector(rightBarButtonItemTapped))
-        return right
+        let item = UIBarButtonItem()
+        item.title = "Login"
+        return item
     }()
-    
-    @objc private func rightBarButtonItemTapped() { }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -104,7 +111,7 @@ class SignupView: BaseView {
     }
     
     override func configureHierarchy() {
-        [signUp, background, signupButton].forEach {
+        [seaBackgroundLottiView, signUp, background, signupButton].forEach {
             addSubview($0)
         }
         
@@ -115,6 +122,11 @@ class SignupView: BaseView {
     }
     
     override func configureConstraints() {
+        
+        seaBackgroundLottiView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         signUp.snp.makeConstraints {
             $0.top.equalToSuperview().offset(200)
             $0.leading.equalToSuperview().offset(40)

@@ -6,8 +6,19 @@
 //
 
 import UIKit
+import Lottie
 
 class LoginView: BaseView {
+    
+    lazy var seaBackgroundLottiView : LottieAnimationView = {
+        let animationView = LottieAnimationView(name: "wavesAnimation")
+        animationView.frame = CGRect(x: 0, y: 0, width: .max, height: .max)
+        animationView.center = center
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .autoReverse
+        animationView.animationSpeed = 2
+        return animationView
+    }()
     
     private let login = {
         let signUp = UILabel()
@@ -19,7 +30,7 @@ class LoginView: BaseView {
     
     private let background = {
         let background = UIView()
-        background.backgroundColor = .white
+        background.backgroundColor = .systemCyan.withAlphaComponent(0.1)
         return background
     }()
     
@@ -61,14 +72,10 @@ class LoginView: BaseView {
     }()
     
     lazy var rightBarButtonItem = {
-        let right = UIBarButtonItem(title: "Sign up",
-                                    style: .plain,
-                                    target: self,
-                                    action: #selector(self.rightBarButtonItemTapped))
-        return right
+        let item = UIBarButtonItem()
+        item.title = "Sign up"
+        return item
     }()
-    
-    @objc func rightBarButtonItemTapped() { }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -77,7 +84,7 @@ class LoginView: BaseView {
     }
     
     override func configureHierarchy() {
-        [login, background, loginButton].forEach {
+        [seaBackgroundLottiView, login, background, loginButton].forEach {
             addSubview($0)
         }
         
@@ -87,8 +94,13 @@ class LoginView: BaseView {
     }
     
     override func configureConstraints() {
+        
+        seaBackgroundLottiView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+
         login.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(200)
+            $0.top.equalToSuperview().offset(180)
             $0.leading.equalToSuperview().offset(40)
             $0.width.equalTo(200)
         }

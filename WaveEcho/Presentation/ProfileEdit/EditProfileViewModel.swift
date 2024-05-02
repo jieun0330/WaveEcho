@@ -14,37 +14,41 @@ class EditProfileViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
     struct Input {
-        let editProfileButtonTapped: ControlEvent<Void>
+        let editButtonTapped: ControlEvent<Void>
         let editNickname: ControlProperty<String>
     }
     
     struct Output {
-        let completeEditProfile: PublishRelay<EditMyProfileResponse>
+//        let editProfileSuccess: PublishRelay<EditMyProfileResponse>
+        let editProfileSuccess: Driver<EditMyProfileResponse>
         let editProfileError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        let editProfile = PublishRelay<EditMyProfileResponse>()
+        let editProfileSuccess = PublishRelay<EditMyProfileResponse>()
         let editProfileError = PublishRelay<APIError>()
         
-        input.editProfileButtonTapped
+        input.editButtonTapped
             .withLatestFrom(input.editNickname)
             .flatMap { nickname in
+                print("nickname 🌳", nickname)
                 return APIManager.shared.create(type: EditMyProfileResponse.self,
                                                 router: ProfileRouter.editMyPofile(query: EditMyProfileRequestBody(nick: nickname, phoneNum: nil, birthDay: nil, profile: nil)))
             }
             .bind(with: self) { owner, result in
+                print("result 🌵", result)
                 switch result {
                 case .success(let success):
-                    editProfile.accept(success)
+                    print("success 🎄", success)
+                    editProfileSuccess.accept(success)
                 case .failure(let error):
+                    print("error 🌲", error)
                     editProfileError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
                 
-        return Output(completeEditProfile: editProfile,
-                      editProfileError: editProfileError.asDriver(onErrorJustReturn: .code500))
+        return Output(editProfileSuccess: editProfileSuccess.asDriver(onErrorJustReturn: EditMyProfileResponse(user_id: "", email: "", nick: "", followers: [Followers(user_id: "", nick: "", profileImage: "")], following: [Following(user_id: "", nick: "", profileImage: "")], posts: [""])), editProfileError: editProfileError.asDriver(onErrorJustReturn: .code500))
     }
 }

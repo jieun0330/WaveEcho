@@ -25,19 +25,21 @@ final class WritePostViewController: BaseViewController {
         super.viewDidLoad()
         
         navigationItem.title = "유리병 던지기"
-        mainView.uploadPhotoButton.addTarget(self, action: #selector(photoButtonTapped), for: .touchUpInside)
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
     }
-    
-    @objc private func photoButtonTapped() {
-        print(#function)
-    }
-    
+        
     override func configureView() {
         navigationItem.backButtonTitle = ""
     }
     
     override func bind() {
+        
+        mainView.rightBarButtonItem.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
+        
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
                                              photoButtonTapped: mainView.uploadPhotoButton.rx.tap,
                                              uploadButtonTapped: mainView.sendButton.rx.tap,

@@ -18,7 +18,7 @@ struct PostData: Decodable {
     let createdAt: String
     let creator: CreatorInfo
     let files: [String]?
-    var likes: [String]
+    var likes: [String]?
     var comments: [CommentData]
 }
 

@@ -11,6 +11,12 @@ import SnapKit
 
 final class MyPostView: BaseView {
     
+    lazy var myPageButton = {
+        let item = UIBarButtonItem()
+        item.image = UIImage(systemName: "person")
+        return item
+    }()
+    
     private let segment = {
         let segment = BetterSegmentedControl(frame: .zero)
         segment.segments = LabelSegment.segments(withTitles: ["나의 유리병", "답장"])

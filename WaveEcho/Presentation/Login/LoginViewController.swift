@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toast
+import Lottie
 
 class LoginViewController: BaseViewController, UITextFieldDelegate {
     
@@ -17,11 +18,16 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     
     override func loadView() {
         view = mainView
-        view.backgroundColor = .systemYellow
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func configureView() {
+        
+        mainView.seaBackgroundLottiView.play()
         
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
         
@@ -52,11 +58,15 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
         // 로그인버튼 (비)활성화
         output.validLogin.asObservable()
             .bind(with: self) { owner, value in
+                let validButtonColor: UIColor = value ? .systemCyan : .systemGray5
+                owner.mainView.loginButton.backgroundColor = validButtonColor
+                let buttonTitleColor: UIColor = value ? .black : .lightGray
+                owner.mainView.loginButton.setTitleColor(buttonTitleColor, for: .normal)
                 let status: Bool = value ? true : false
                 owner.mainView.loginButton.isEnabled = status
             }
             .disposed(by: disposeBag)
-        
+
         // 로그인 실패했을 시 에러 핸들링
         output.loginError
             .drive(with: self) { owner, error in

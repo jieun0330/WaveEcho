@@ -15,6 +15,7 @@ final class MyPostViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoad: Observable<Void>
+//        let myProfileView: ControlEvent<Void>
     }
     
     struct Output {
@@ -27,7 +28,7 @@ final class MyPostViewModel: ViewModelType {
         let postDataError = PublishRelay<APIError>()
         
         input.viewDidLoad
-            .flatMap { value in
+            .flatMap { _ in
                 return APIManager.shared.create(type: PostResponse.self,
                                                 router: PostsRouter.userPost(id: UserDefaults.standard.string(forKey: "userID") ?? ""))
             }
@@ -35,6 +36,7 @@ final class MyPostViewModel: ViewModelType {
                 switch result {
                 case .success(let success):
                     postDataSuccess.accept(success.data)
+//                    success.data.first?.creator.nick
                 case .failure(let error):
                     postDataError.accept(error)
                 }

@@ -17,11 +17,12 @@ final class SignupViewController: BaseViewController, UITextFieldDelegate, UITex
     
     override func loadView() {
         view = mainView
-        view.backgroundColor = .systemBlue
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainView.seaBackgroundLottiView.play()
         
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
         

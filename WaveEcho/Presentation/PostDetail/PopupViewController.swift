@@ -18,7 +18,7 @@ final class PopupViewController: BaseViewController {
     
     let mainView = PopupView()
     let replyView = ReplyViewController()
-    private let viewModel = PopupViewModel()
+//    private let viewModel = PopupViewModel()
     //    var test = PublishRelay<WriteCommentResponse>()
     //    var postData: PostData!
     

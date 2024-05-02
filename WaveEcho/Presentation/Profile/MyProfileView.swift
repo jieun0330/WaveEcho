@@ -7,17 +7,31 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
 final class MyProfileView: BaseView {
     
-    private let profileImage = {
+//    lazy var profileLottiView : LottieAnimationView = {
+//        let animationView = LottieAnimationView(name: "profileAnimation")
+//        animationView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+////        animationView.center = center
+//        animationView.contentMode = .scaleAspectFill
+//        animationView.loopMode = .autoReverse
+//        animationView.animationSpeed = 2
+//        return animationView
+//    }()
+//    
+    let profileImage = {
         let profile = UIImageView()
         profile.image = UIImage(systemName: "square.text.square")
+        profile.layer.borderColor = UIColor.red.cgColor
+        profile.layer.borderWidth = 1
         return profile
     }()
     
     let nickname = {
         let nickname = UILabel()
+        nickname.font = .boldSystemFont(ofSize: 15)
         return nickname
     }()
     
@@ -56,7 +70,7 @@ final class MyProfileView: BaseView {
         }
         
         nickname.snp.makeConstraints {
-            $0.top.equalTo(profileImage)
+            $0.top.equalTo(profileImage).offset(5)
             $0.leading.equalTo(profileImage.snp.trailing).offset(10)
         }
         

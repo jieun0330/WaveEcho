@@ -41,19 +41,14 @@ class WritePostView: BaseView {
     }()
     
     lazy var rightBarButtonItem = {
-        let right = UIBarButtonItem(title: "완료",
-                                    style: .plain,
-                                    target: self,
-                                    action: #selector(self.rightBarButtonItemTapped))
-        return right
+        let item = UIBarButtonItem()
+        item.title = "완료"
+        return item
     }()
-    
-    @objc private func rightBarButtonItemTapped() {
-        endEditing(true)
-    }
     
     override init(frame: CGRect) {
         super .init(frame: frame)
+        
     }
         
     override func configureHierarchy() {

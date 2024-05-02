@@ -13,17 +13,17 @@ struct EditMyProfileResponse: Decodable {
     let nick: String
     let followers: [Followers?]
     let following: [Following?]
-    let posts: [String]
+    let posts: [String?]
 }
 
 struct Followers: Decodable {
-    let user_id: String
-    let nick: String
-    let profileImage: String
+    let user_id: String?
+    let nick: String?
+    let profileImage: String?
 }
 
 struct Following: Decodable {
-    let user_id: String
-    let nick: String
-    let profileImage: String
+    let user_id: String?
+    let nick: String?
+    let profileImage: String?
 }

@@ -9,17 +9,30 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import SnapKit
+import Lottie
 
 final class PostsViewController: BaseViewController {
     
     private let mainView = PostsView()
     private let viewModel = PostsViewModel()
     var postData: [PostData] = []
-    // 내 프로필 조회 화면
-    let myProfileVC = MyProfileViewController()
     // 팝업 화면
     let popupVC = PopupViewController()
+//    let myProfileView = AfterMyProfileViewController()
     
+//    lazy var messageLottiView : LottieAnimationView = {
+//        let animationView = LottieAnimationView(name: "messageAnimation")
+//        animationView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+////        animationView.center = center
+//        animationView.contentMode = .scaleAspectFill
+//        animationView.loopMode = .autoReverse
+//        animationView.animationSpeed = 0.5
+//        animationView.layer.borderColor = UIColor.orange.cgColor
+//        animationView.layer.borderWidth = 1
+//        return animationView
+//    }()
+
     override func loadView() {
         view = mainView
         
@@ -27,21 +40,66 @@ final class PostsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backButtonTitle = ""
         
+        // 화면 크기 가져오기
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        
+        // 종이배 개수?
+        let circleRadius: CGFloat = 20
+        let numberOfBoat = 10
+        
+        let messageLottiView = mainView.messageLottiView
+
+//        for i in 0..<2 {
+            
+            // 원의 x, y 좌표 계산
+            let x = Int.random(in: 1...(Int(screenWidth) - Int(circleRadius * 2)))
+            let y = Int.random(in: 1...(Int(screenHeight) - Int(circleRadius * 2)))
+            
+            view.addSubview(messageLottiView)
+            
+            messageLottiView.snp.makeConstraints {
+                $0.leading.equalToSuperview().offset(x)
+                $0.top.equalToSuperview().offset(y)
+                $0.size.equalTo(CGSize(width: Int.random(in: 60...100), height: Int.random(in: 60...100)))
+            }
+//        }
     }
     
     override func configureView() {
         
         mainView.seaBackgroundLottiView.play()
         mainView.messageLottiView.play()
-        mainView.messageLottiView2.play()
+//        mainView.messageLottiView2.play()
         
         // 종이 배 클릭 시
         mainView.messageLottiView.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(animationViewTapped))
+        let tapGesture = UITapGestureRecognizer()
         mainView.messageLottiView.addGestureRecognizer(tapGesture)
         
-        navigationItem.rightBarButtonItems = [mainView.myPageButton, mainView.myLetters]
+        tapGesture.rx.event
+            .bind(with: self) { owner, tapGesture in
+                guard let post = owner.postData.randomElement() else { return }
+                
+                owner.popupVC.mainView.profileImage.kf.setImage(with: URL(string: post.creator.profileImage ?? ""), options: [.requestModifier(KingFisherNet())])
+                owner.popupVC.mainView.nicknameLabel.text = post.creator.nick
+                owner.popupVC.mainView.contentLabel.text = post.content
+                let stringDate = DateFormatManager.shared.stringToDate(date: post.createdAt)
+                let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
+                owner.popupVC.mainView.date.text = relativeDate
+                owner.popupVC.mainView.contentImage.kf.setImage(with: URL(string: post.files?.first ?? ""), options: [.requestModifier(KingFisherNet())])
+                
+                owner.popupVC.setPostData(post)
+                owner.popupVC.modalPresentationStyle = .overCurrentContext
+                owner.present(owner.popupVC, animated: false)
+                owner.popupVC.replyView.mainView.toPerson.text = post.creator.nick
+            }
+            .disposed(by: disposeBag)
+        
+        navigationItem.rightBarButtonItem = mainView.myLetters
         navigationItem.title = "파도 속 유리병"
         
         // 내 포스팅 조회 화면 전환
@@ -53,11 +111,11 @@ final class PostsViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 내 프로필 조회 화면 전환
-        mainView.myPageButton.rx.tap
-            .bind(with: self) {  owner, _ in
-                owner.navigationController?.pushViewController(owner.myProfileVC, animated: true)
-            }
-            .disposed(by: disposeBag)
+//        mainView.myPageButton.rx.tap
+//            .bind(with: self) {  owner, _ in
+//                owner.navigationController?.pushViewController(owner.myProfileVC, animated: true)
+//            }
+//            .disposed(by: disposeBag)
         
         // 포스팅 작성 화면 전환
         mainView.sendWaveButton.rx.tap
@@ -89,26 +147,6 @@ final class PostsViewController: BaseViewController {
         //        mainView.tableView.rowHeight = 200
     }
     
-    // 종이배 클릭 시 -> Detail 화면 전환
-    @objc private func animationViewTapped() {
-        
-        guard let post = postData.randomElement() else { return }
-        
-        popupVC.mainView.profileImage.kf.setImage(with: URL(string: post.creator.profileImage ?? ""), options: [.requestModifier(KingFisherNet())])
-        popupVC.mainView.nicknameLabel.text = post.creator.nick
-        popupVC.mainView.contentLabel.text = post.content
-        let stringDate = DateFormatManager.shared.stringToDate(date: post.createdAt)
-        let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
-        popupVC.mainView.date.text = relativeDate
-        popupVC.mainView.contentImage.kf.setImage(with: URL(string: post.files?.first ?? ""), options: [.requestModifier(KingFisherNet())])
-        
-        popupVC.setPostData(post)
-        popupVC.modalPresentationStyle = .overCurrentContext
-        present(popupVC, animated: false)
-        
-        popupVC.replyView.mainView.toPerson.text = post.creator.nick
-    }
-    
     override func bind() {
         
         // 작성일자 실시간 변경
@@ -121,12 +159,13 @@ final class PostsViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
-        output.myProfile
-            .map { $0 }
-            .bind(with: self) { owner, myProfileResponse in
-                owner.myProfileVC.mainView.nickname.text = myProfileResponse.nick
-            }
-            .disposed(by: disposeBag)
+//        output.myProfile
+//            .map { $0 }
+//            .bind(with: self) { owner, myProfileResponse in
+//                owner.myProfileVC.mainView.nickname.text = myProfileResponse.nick
+//                owner.myProfileVC.mainView.profileImage.kf.setImage(with: URL(string: myProfileResponse.profileImage ?? ""), options: [.requestModifier(KingFisherNet())])
+//            }
+//            .disposed(by: disposeBag)
         
         output.postsContent
             .map { $0.data }

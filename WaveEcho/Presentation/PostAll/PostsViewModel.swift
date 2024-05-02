@@ -40,6 +40,7 @@ class PostsViewModel {
         input.viewDidLoad
             .withLatestFrom(fetchPostsObservable)
             .flatMapLatest { postQuery in
+                print("🪼🪼🪼🪼🪼", postQuery)
                 return APIManager.shared.create(type: PostResponse.self,
                                                 router: PostsRouter.fetchPosts(query: postQuery))
             }

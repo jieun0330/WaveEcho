@@ -28,7 +28,7 @@ extension PostsRouter: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .createPosts:
+        case .createPosts(_):
             return .post
         case .fetchPosts:
             return .get
@@ -41,7 +41,7 @@ extension PostsRouter: TargetType {
     
     var headers: [String : String] {
         switch self {
-        case .createPosts:
+        case .createPosts(_):
             return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
                     HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
@@ -60,7 +60,9 @@ extension PostsRouter: TargetType {
     
     var path: String {
         switch self {
-        case .createPosts, .fetchPosts:
+        case .createPosts(_):
+            return "/v1/posts"
+        case .fetchPosts:
             return "/v1/posts"
         case .uploadImage:
             return "/v1/posts/files"
@@ -71,7 +73,9 @@ extension PostsRouter: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case .createPosts, .uploadImage, .userPost(_):
+        case .createPosts(_):
+            nil
+        case .uploadImage, .userPost(_):
             nil
         case .fetchPosts(let query):
             ["next": query.next,

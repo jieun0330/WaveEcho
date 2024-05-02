@@ -25,17 +25,17 @@ final class EditProfileViewController: BaseViewController {
     
     override func configureView() {
                 
-        navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
+        navigationItem.rightBarButtonItem = mainView.editButton
         
-        mainView.rightBarButtonItem.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.navigationController?.popViewController(animated: true)
-            }
-            .disposed(by: disposeBag)
+//        mainView.editButton.rx.tap
+//            .bind(with: self) { owner, _ in
+//                owner.navigationController?.popViewController(animated: true)
+//            }
+//            .disposed(by: disposeBag)
     }
     
     override func bind() {
-        let input = EditProfileViewModel.Input(editProfileButtonTapped: mainView.rightBarButtonItem.rx.tap,
+        let input = EditProfileViewModel.Input(editButtonTapped: mainView.editButton.rx.tap,
                                                editNickname: mainView.nicknameTextField.rx.text.orEmpty)
         
         let output = viewModel.transform(input: input)

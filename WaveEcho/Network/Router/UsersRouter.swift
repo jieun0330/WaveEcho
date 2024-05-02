@@ -9,8 +9,6 @@ import UIKit
 import Alamofire
 import RxSwift
 
-//let accessToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
-
 enum UsersRouter {
     case signup(query: SignupRequestBody)
     case validEmail(query: ValidEmailRequestBody)

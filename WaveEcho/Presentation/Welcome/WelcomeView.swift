@@ -7,8 +7,19 @@
 
 import UIKit
 import SnapKit
+import Lottie
 
 class WelcomeView: BaseView {
+    
+    lazy var seaBackgroundLottiView : LottieAnimationView = {
+        let animationView = LottieAnimationView(name: "wavesAnimation")
+        animationView.frame = CGRect(x: 0, y: 0, width: .max, height: .max)
+        animationView.center = center
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .autoReverse
+        animationView.animationSpeed = 2
+        return animationView
+    }()
     
     private let hello = {
         let hello = UILabel()
@@ -21,8 +32,8 @@ class WelcomeView: BaseView {
     let loginButton = {
         let button = UIButton()
         button.setTitle("Login", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemCyan
         button.layer.cornerRadius = 20
         return button
     }()
@@ -30,7 +41,7 @@ class WelcomeView: BaseView {
     let signUpButton = {
         let button = UIButton()
         button.setTitle("Sign up", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 20
         return button
@@ -42,12 +53,17 @@ class WelcomeView: BaseView {
     }
     
     override func configureHierarchy() {
-        [hello, loginButton, signUpButton].forEach {
+        [seaBackgroundLottiView, hello, loginButton, signUpButton].forEach {
             addSubview($0)
         }
     }
     
     override func configureConstraints() {
+        
+        seaBackgroundLottiView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+
         hello.snp.makeConstraints {
             $0.top.equalToSuperview().offset(300)
             $0.leading.equalToSuperview().offset(40)

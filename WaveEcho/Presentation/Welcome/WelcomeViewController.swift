@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class WelcomeViewController: BaseViewController {
     
@@ -18,20 +20,25 @@ final class WelcomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainView.signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
-        mainView.loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
     }
-    
-    @objc private func signUpButtonTapped() {
-        print(#function)
-        let vc = SignupViewController()
-        navigationController?.viewControllers = [vc]
-    }
-    
-    @objc private func loginButtonTapped() {
-        print(#function)
-        let vc = LoginViewController()
-        navigationController?.setViewControllers([vc], animated: true)
+        
+    override func configureView() {
+        
+        mainView.seaBackgroundLottiView.play()
+        
+        mainView.signUpButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = SignupViewController()
+                owner.navigationController?.viewControllers = [vc]
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.loginButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let vc = LoginViewController()
+                owner.navigationController?.setViewControllers([vc], animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     deinit {

@@ -52,13 +52,16 @@ class WritePostViewModel: ViewModelType {
         //                                         image: <#T##Data#>)
         //            }
         
+        // 이미지 업로드
         input.image
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .flatMap { data in
+                
                 return APIManager.shared.upload(type: ImageUploadResponse.self,
                                                 router: PostsRouter.uploadImage,
                                                 image: data)
             }
+            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
@@ -74,13 +77,17 @@ class WritePostViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMap { postRequest in
+                print("🦂🦂🦂🦂🦂", postRequest)
                 return APIManager.shared.create(type: PostResponse.self, router: PostsRouter.createPosts(query: postRequest))
             }
             .bind(with: self) { owner, result in
+                print("🦧🦧🦧🦧🦧", result)
                 switch result {
-                case .success(_):
+                case .success(let success):
+                    print("🕸️🕸️🕸️🕸️🕸️", success)
                     createPostTrigger.accept(())
                 case .failure(let error):
+                    print("🪲🪲🪲🪲", error)
                     createPostError.accept(error)
                 }
             }

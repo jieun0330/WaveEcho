@@ -56,6 +56,8 @@
 		C269AF182BE224EC00BB6E20 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */; };
 		C269AF1A2BE2265B00BB6E20 /* MyPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */; };
 		C269AF202BE2813800BB6E20 /* MyPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */; };
+		C269AF282BE37B5D00BB6E20 /* AfterMyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */; };
+		C269AF2A2BE37BA700BB6E20 /* AfterMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */; };
 		C27A067F2BE0D6CF0010D382 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C27A067E2BE0D6CF0010D382 /* Lottie */; };
 		C27A06832BE0DA240010D382 /* wavesAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = C27A06822BE0DA240010D382 /* wavesAnimation.json */; };
 		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
@@ -143,6 +145,8 @@
 		C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
 		C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostTableViewCell.swift; sourceTree = "<group>"; };
 		C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewModel.swift; sourceTree = "<group>"; };
+		C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterMyProfileView.swift; sourceTree = "<group>"; };
+		C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterMyProfileViewController.swift; sourceTree = "<group>"; };
 		C27A06822BE0DA240010D382 /* wavesAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wavesAnimation.json; sourceTree = "<group>"; };
 		C27E533F2BCE6F810037E1A5 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		C27E53412BCE71B00037E1A5 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -214,7 +218,8 @@
 			children = (
 				C20E68B42BD8FC9A00507C0B /* MyProfileView.swift */,
 				C20E68B62BD8FF2100507C0B /* MyProfileViewController.swift */,
-				C23D33D22BDE9FCF00F81AB4 /* Edit */,
+				C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */,
+				C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -257,8 +262,7 @@
 		C23AFE762BC6CE820000EBE5 /* WaveEcho */ = {
 			isa = PBXGroup;
 			children = (
-				C22003432BE0E02100A95F86 /* messageAnimation.json */,
-				C27A06822BE0DA240010D382 /* wavesAnimation.json */,
+				C269AF242BE377DE00BB6E20 /* LottieFiles */,
 				C20E68BE2BD9511800507C0B /* Extension */,
 				C20E689A2BD73D8C00507C0B /* Manager */,
 				C2DC2BEE2BCD20C100A1D102 /* Presentation */,
@@ -279,16 +283,13 @@
 		C23AFE962BC6D0BC0000EBE5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C2DC2C002BCD217800A1D102 /* UsersRouter.swift */,
-				C2CDC2A42BD1023800176723 /* PostsRouter.swift */,
-				C20E68B82BD9001C00507C0B /* ProfileRouter.swift */,
-				C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */,
 				C23AFEA02BC6D2380000EBE5 /* TargetType.swift */,
 				C23AFEA82BC6DC2B0000EBE5 /* APIKey.swift */,
 				C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */,
 				C2CDC2C92BD36F9E00176723 /* APIError.swift */,
 				C2CDC2E32BD62EFC00176723 /* APIManager.swift */,
 				C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */,
+				C269AF232BE2A2FA00BB6E20 /* Router */,
 				C2DC2BFC2BCD217800A1D102 /* Request */,
 				C2DC2C012BCD217800A1D102 /* Response */,
 			);
@@ -322,17 +323,17 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		C23D33D22BDE9FCF00F81AB4 /* Edit */ = {
+		C23D33D22BDE9FCF00F81AB4 /* ProfileEdit */ = {
 			isa = PBXGroup;
 			children = (
 				C23D33D32BDEA00100F81AB4 /* EditProfileView.swift */,
 				C23D33D52BDEA07900F81AB4 /* EditProfileViewController.swift */,
 				C23D33D92BDEA30100F81AB4 /* EditProfileViewModel.swift */,
 			);
-			path = Edit;
+			path = ProfileEdit;
 			sourceTree = "<group>";
 		};
-		C25D9F112BDCC1ED00012307 /* Detail */ = {
+		C25D9F112BDCC1ED00012307 /* PostDetail */ = {
 			isa = PBXGroup;
 			children = (
 				C269AF1E2BE2560E00BB6E20 /* X */,
@@ -340,17 +341,17 @@
 				C22003472BE0F13600A95F86 /* PopupViewController.swift */,
 				C220034D2BE1308C00A95F86 /* CommentCollectionViewCell.swift */,
 			);
-			path = Detail;
+			path = PostDetail;
 			sourceTree = "<group>";
 		};
-		C269AF0A2BE1F59900BB6E20 /* Reply */ = {
+		C269AF0A2BE1F59900BB6E20 /* PostReply */ = {
 			isa = PBXGroup;
 			children = (
 				C269AF0D2BE1F96E00BB6E20 /* ReplyView.swift */,
 				C269AF0B2BE1F62A00BB6E20 /* ReplyViewController.swift */,
 				C269AF0F2BE206D000BB6E20 /* ReplyViewModel.swift */,
 			);
-			path = Reply;
+			path = PostReply;
 			sourceTree = "<group>";
 		};
 		C269AF142BE223DC00BB6E20 /* MyPost */ = {
@@ -358,13 +359,13 @@
 			children = (
 				C269AF152BE2248400BB6E20 /* MyPostView.swift */,
 				C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */,
-				C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */,
 				C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */,
+				C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */,
 			);
 			path = MyPost;
 			sourceTree = "<group>";
 		};
-		C269AF1D2BE255F000BB6E20 /* All */ = {
+		C269AF1D2BE255F000BB6E20 /* PostAll */ = {
 			isa = PBXGroup;
 			children = (
 				C27E533F2BCE6F810037E1A5 /* PostsView.swift */,
@@ -372,7 +373,7 @@
 				C2CDC2A82BD107A900176723 /* PostsViewModel.swift */,
 				C20E68982BD685D100507C0B /* PostsTableViewCell.swift */,
 			);
-			path = All;
+			path = PostAll;
 			sourceTree = "<group>";
 		};
 		C269AF1E2BE2560E00BB6E20 /* X */ = {
@@ -405,26 +406,34 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		C27E533C2BCE6EF70037E1A5 /* Posts */ = {
+		C269AF232BE2A2FA00BB6E20 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				C269AF1D2BE255F000BB6E20 /* All */,
-				C25D9F112BDCC1ED00012307 /* Detail */,
-				C27E53432BCE77390037E1A5 /* Write */,
-				C269AF0A2BE1F59900BB6E20 /* Reply */,
-				C269AF142BE223DC00BB6E20 /* MyPost */,
+				C2DC2C002BCD217800A1D102 /* UsersRouter.swift */,
+				C2CDC2A42BD1023800176723 /* PostsRouter.swift */,
+				C20E68B82BD9001C00507C0B /* ProfileRouter.swift */,
+				C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */,
 			);
-			path = Posts;
+			path = Router;
 			sourceTree = "<group>";
 		};
-		C27E53432BCE77390037E1A5 /* Write */ = {
+		C269AF242BE377DE00BB6E20 /* LottieFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C22003432BE0E02100A95F86 /* messageAnimation.json */,
+				C27A06822BE0DA240010D382 /* wavesAnimation.json */,
+			);
+			path = LottieFiles;
+			sourceTree = "<group>";
+		};
+		C27E53432BCE77390037E1A5 /* PostWrite */ = {
 			isa = PBXGroup;
 			children = (
 				C27E53442BCE774A0037E1A5 /* WritePostView.swift */,
 				C27E53462BCE780C0037E1A5 /* WritePostViewController.swift */,
 				C27E53482BCE8DE40037E1A5 /* WritePostViewModel.swift */,
 			);
-			path = Write;
+			path = PostWrite;
 			sourceTree = "<group>";
 		};
 		C27E534A2BCE8E730037E1A5 /* Posts */ = {
@@ -471,8 +480,13 @@
 				C269AF212BE2836000BB6E20 /* Join */,
 				C269AF222BE2837E00BB6E20 /* Login */,
 				C2DC2C152BCD5A9000A1D102 /* RefreshToken */,
-				C27E533C2BCE6EF70037E1A5 /* Posts */,
+				C269AF1D2BE255F000BB6E20 /* PostAll */,
+				C25D9F112BDCC1ED00012307 /* PostDetail */,
+				C27E53432BCE77390037E1A5 /* PostWrite */,
+				C269AF0A2BE1F59900BB6E20 /* PostReply */,
+				C269AF142BE223DC00BB6E20 /* MyPost */,
 				C20E68B32BD8FC8400507C0B /* Profile */,
+				C23D33D22BDE9FCF00F81AB4 /* ProfileEdit */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -658,6 +672,7 @@
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
 				C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */,
 				C22003482BE0F13600A95F86 /* PopupViewController.swift in Sources */,
+				C269AF282BE37B5D00BB6E20 /* AfterMyProfileView.swift in Sources */,
 				C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */,
 				C2CDC2D12BD4FDF000176723 /* PostQueryString.swift in Sources */,
 				C2E8EFC92BDE451100868BB3 /* WriteCommentRequestBody.swift in Sources */,
@@ -698,6 +713,7 @@
 				C2DC2C102BCD35E100A1D102 /* LoginViewModel.swift in Sources */,
 				C2E8EFCC2BDE454200868BB3 /* WriteCommentResponse.swift in Sources */,
 				C23D33D42BDEA00100F81AB4 /* EditProfileView.swift in Sources */,
+				C269AF2A2BE37BA700BB6E20 /* AfterMyProfileViewController.swift in Sources */,
 				C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */,
 				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
 				C20E68B52BD8FC9A00507C0B /* MyProfileView.swift in Sources */,

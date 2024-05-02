@@ -13,6 +13,8 @@ import Toast
 final class MyProfileViewController: BaseViewController {
     
     let mainView = MyProfileView()
+//    var myProfileResponse: MyProfileResponse!
+//    var myProfileResponse: BehaviorRelay(value: MyProfileResponse)
     
     override func loadView() {
         super.loadView()
@@ -22,8 +24,10 @@ final class MyProfileViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "내 프로필"
     }
-    
+
     override func configureView() {
         
         mainView.editNicknameButton.rx.tap
