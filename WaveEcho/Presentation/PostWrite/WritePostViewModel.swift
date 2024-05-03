@@ -19,7 +19,7 @@ class WritePostViewModel: ViewModelType {
         let content: ControlProperty<String>
         let photoButtonTapped: ControlEvent<Void>
         let uploadButtonTapped: ControlEvent<Void>
-        let image: PublishRelay<Data>
+        let uploadImage: PublishRelay<Data>
     }
     
     struct Output {
@@ -53,21 +53,25 @@ class WritePostViewModel: ViewModelType {
         //            }
         
         // 이미지 업로드
-        input.image
+        input.uploadImage
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .flatMap { data in
-                
                 return APIManager.shared.upload(type: ImageUploadResponse.self,
                                                 router: PostsRouter.uploadImage,
                                                 image: data)
             }
             .debug()
             .bind(with: self) { owner, result in
+//                dump(result)
                 switch result {
                 case .success(let success):
+                    print("성공????", success)
+//                    guard let test = success.files else { return }
                     owner.imageFiles = success.files
                     uploadPhotoSuccess.accept(success)
                 case .failure(let error):
+                    dump(error)
+                    print("에러 ??? ", error)
                     uploadPhotoError.accept(error)
                 }
             }

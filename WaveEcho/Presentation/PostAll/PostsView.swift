@@ -17,35 +17,15 @@ class PostsView: BaseView {
         animationView.center = center
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .autoReverse
-//        animationView.layer.borderColor = UIColor.orange.cgColor
-//        animationView.layer.borderWidth = 1
         animationView.animationSpeed = 2
         return animationView
     }()
     
-    lazy var messageLottiView : LottieAnimationView = {
-        let animationView = LottieAnimationView(name: "messageAnimation")
-        animationView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-//        animationView.center = center
-        animationView.contentMode = .scaleAspectFill
-        animationView.loopMode = .autoReverse
-        animationView.animationSpeed = 0.5
-        animationView.layer.borderColor = UIColor.orange.cgColor
-        animationView.layer.borderWidth = 1
-        return animationView
+    private let backView = {
+        let backView = UIView()
+        backView.backgroundColor = UIColor(hexCode: "1A79E9", alpha: 0.6)
+        return backView
     }()
-    
-//    lazy var messageLottiView2 : LottieAnimationView = {
-//        let animationView = LottieAnimationView(name: "messageAnimation")
-//        animationView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-//        animationView.center = center
-//        animationView.contentMode = .scaleAspectFill
-//        animationView.loopMode = .autoReverse
-//        animationView.animationSpeed = 0.5
-//        animationView.layer.borderColor = UIColor.orange.cgColor
-//        animationView.layer.borderWidth = 1
-//        return animationView
-//    }()
     
     let sendWaveButton = {
         let sendWave = UIButton()
@@ -72,23 +52,27 @@ class PostsView: BaseView {
         super .init(frame: frame)
         
     }
-
+    
     override func configureHierarchy() {
-                
-        [seaBackgroundLottiView, sendWaveButton].forEach {
+        
+        [backView, seaBackgroundLottiView, sendWaveButton].forEach {
             addSubview($0)
         }
     }
     
     override func configureConstraints() {
-        seaBackgroundLottiView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        
+        backView.snp.makeConstraints {
+            $0.top.equalTo(seaBackgroundLottiView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
-//        messageLottiView2.snp.makeConstraints {
-//            $0.top.equalTo(messageLottiView.snp.bottom).offset(20)
-//            $0.size.equalTo(Int.random(in: 60...100))
-//        }
+        seaBackgroundLottiView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-200)
+        }
         
         sendWaveButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)

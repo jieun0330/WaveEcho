@@ -43,7 +43,7 @@ final class WritePostViewController: BaseViewController {
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
                                              photoButtonTapped: mainView.uploadPhotoButton.rx.tap,
                                              uploadButtonTapped: mainView.sendButton.rx.tap,
-                                             image: imageData)
+                                             uploadImage: imageData)
         
         let output = viewModel.transform(input: input)
         
