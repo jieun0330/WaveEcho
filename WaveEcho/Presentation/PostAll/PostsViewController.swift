@@ -30,7 +30,10 @@ final class PostsViewController: BaseViewController {
         super.viewDidLoad()
         
         navigationItem.backButtonTitle = ""
+        navigationItem.rightBarButtonItem = mainView.myLetters
+        navigationItem.title = "파도 메아리"
         
+        // 종이배 랜덤 포지션
         for _ in 0..<Int.random(in: 10...30) {
             
             lazy var messageLottiView : LottieAnimationView = {
@@ -77,13 +80,7 @@ final class PostsViewController: BaseViewController {
         }
     }
     
-    override func configureView() {
-        
-        mainView.seaBackgroundLottiView.play()
-        
-        navigationItem.rightBarButtonItem = mainView.myLetters
-        navigationItem.title = "파도 속 유리병"
-        
+    override func uiBind() {
         // 내 포스팅 조회 화면 전환
         mainView.myLetters.rx.tap
             .bind(with: self) { owner, _ in

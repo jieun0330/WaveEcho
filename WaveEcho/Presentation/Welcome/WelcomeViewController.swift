@@ -21,11 +21,8 @@ final class WelcomeViewController: BaseViewController {
         super.viewDidLoad()
         
     }
-        
-    override func configureView() {
-        
-        mainView.seaBackgroundLottiView.play()
-        
+
+    override func uiBind() {
         mainView.signUpButton.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = SignupViewController()

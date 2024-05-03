@@ -19,12 +19,14 @@ class BaseViewController: UIViewController {
         configureHierarchy()
         configureConstraints()
         configureView()
+        uiBind()
         bind()
     }
     
     func configureHierarchy() { }
     func configureConstraints() { }
     func configureView() { }
+    func uiBind() { }
     func bind() { }
     
     func errorHandler(apiError: APIError, calltype: APIError.CallType) {

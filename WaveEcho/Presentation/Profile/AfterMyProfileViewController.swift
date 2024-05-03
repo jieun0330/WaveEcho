@@ -25,14 +25,9 @@ final class AfterMyProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationItem.title = "내 프로필"
     }
-
-    override func configureView() {
-        
-//        mainView.
-        
-        
+    
+    override func uiBind() {
         mainView.editNicknameButton.rx.tap
             .bind(with: self) { owner, _ in
                 print(#function)

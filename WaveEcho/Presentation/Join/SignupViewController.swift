@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class SignupViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate {
+final class SignupViewController: BaseViewController {
     
     private let mainView = SignupView()
     private let viewModel = SignupViewModel()
@@ -22,9 +22,16 @@ final class SignupViewController: BaseViewController, UITextFieldDelegate, UITex
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainView.seaBackgroundLottiView.play()
-        
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
+    }
+    
+    override func configureView() {
+        mainView.nicknameTextField.delegate = self
+        mainView.emailTextField.delegate = self
+        mainView.passwordTextField.delegate = self
+    }
+    
+    override func uiBind() {
         
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
@@ -32,18 +39,15 @@ final class SignupViewController: BaseViewController, UITextFieldDelegate, UITex
                 owner.navigationController?.viewControllers = [vc]
             }
             .disposed(by: disposeBag)
-        
-        mainView.nicknameTextField.delegate = self
-        mainView.emailTextField.delegate = self
-        mainView.passwordTextField.delegate = self
     }
     
     override func bind() {
+        
         let input = SignupViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
-                                                password: mainView.passwordTextField.rx.text.orEmpty,
-                                                nickname: mainView.nicknameTextField.rx.text.orEmpty,
-                                                signupButtonTapped: mainView.signupButton.rx.tap,
-                                                validEmailButtonTapped: mainView.validEmailButton.rx.tap)
+                                          password: mainView.passwordTextField.rx.text.orEmpty,
+                                          nickname: mainView.nicknameTextField.rx.text.orEmpty,
+                                          signupButtonTapped: mainView.signupButton.rx.tap,
+                                          validEmailButtonTapped: mainView.validEmailButton.rx.tap)
         
         let output = viewModel.transform(input: input)
         
@@ -85,7 +89,7 @@ final class SignupViewController: BaseViewController, UITextFieldDelegate, UITex
                 owner.mainView.validEmail.text = value
             }
             .disposed(by: disposeBag)
-                
+        
         // 회원가입 에러 처리
         output.signupError
             .drive(with: self) { owner, error in
@@ -100,13 +104,15 @@ final class SignupViewController: BaseViewController, UITextFieldDelegate, UITex
             }
             .disposed(by: disposeBag)
         
-//        signupOutput.validSignup
-//            .drive(with: self) { owner, value in
-//                let validEmail: String = value ? "사용 가능한 이메일입니다" : "사용 불가한 이메일입니다"
-//                owner.mainView.validEmail.text = validEmail
-//            }.disposed(by: disposeBag)
+        //        signupOutput.validSignup
+        //            .drive(with: self) { owner, value in
+        //                let validEmail: String = value ? "사용 가능한 이메일입니다" : "사용 불가한 이메일입니다"
+        //                owner.mainView.validEmail.text = validEmail
+        //            }.disposed(by: disposeBag)
     }
-    
+}
+
+extension SignupViewController: UITextFieldDelegate, UITextViewDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == self.mainView.nicknameTextField {

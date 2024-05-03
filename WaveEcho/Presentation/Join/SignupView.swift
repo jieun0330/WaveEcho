@@ -18,6 +18,7 @@ class SignupView: BaseView {
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .autoReverse
         animationView.animationSpeed = 2
+        animationView.play()
         return animationView
     }()
     

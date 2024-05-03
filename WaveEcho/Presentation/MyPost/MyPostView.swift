@@ -28,6 +28,7 @@ final class MyPostView: BaseView {
         tableView.register(MyPostTableViewCell.self,
                     forCellReuseIdentifier: MyPostTableViewCell.identifier)
         tableView.separatorStyle = .none
+        tableView.rowHeight = 100
         return tableView
     }()
     

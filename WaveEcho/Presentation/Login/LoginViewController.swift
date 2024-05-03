@@ -11,7 +11,7 @@ import RxCocoa
 import Toast
 import Lottie
 
-class LoginViewController: BaseViewController, UITextFieldDelegate {
+final class LoginViewController: BaseViewController {
     
     private let mainView = LoginView()
     private let viewModel = LoginViewModel()
@@ -23,14 +23,16 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
     }
     
     override func configureView() {
         
-        mainView.seaBackgroundLottiView.play()
-        
-        navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
-        
+        mainView.emailTextField.delegate = self
+        mainView.passwordTextField.delegate = self
+    }
+    
+    override func uiBind() {
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = SignupViewController()
@@ -43,15 +45,13 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 owner.view.endEditing(true)
             }
             .disposed(by: disposeBag)
-        
-        mainView.emailTextField.delegate = self
-        mainView.passwordTextField.delegate = self
     }
     
     override func bind() {
+        
         let input = LoginViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
-                                              password: mainView.passwordTextField.rx.text.orEmpty,
-                                              loginButtonTapped: mainView.loginButton.rx.tap)
+                                         password: mainView.passwordTextField.rx.text.orEmpty,
+                                         loginButtonTapped: mainView.loginButton.rx.tap)
         
         let output = viewModel.transform(input: input)
         
@@ -66,7 +66,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 owner.mainView.loginButton.isEnabled = status
             }
             .disposed(by: disposeBag)
-
+        
         // 로그인 실패했을 시 에러 핸들링
         output.loginError
             .drive(with: self) { owner, error in
@@ -90,7 +90,9 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
             }
             .disposed(by: disposeBag)
     }
-    
+}
+
+extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == mainView.emailTextField {

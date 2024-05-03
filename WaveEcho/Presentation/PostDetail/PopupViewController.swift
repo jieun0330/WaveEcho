@@ -18,13 +18,12 @@ final class PopupViewController: BaseViewController {
     
     let mainView = PopupView()
     let replyView = ReplyViewController()
-//    private let viewModel = PopupViewModel()
+    //    private let viewModel = PopupViewModel()
     //    var test = PublishRelay<WriteCommentResponse>()
     //    var postData: PostData!
     
     override func loadView() {
         view = mainView
-        
     }
     
     override func viewDidLoad() {
@@ -32,12 +31,33 @@ final class PopupViewController: BaseViewController {
         
         //        replyView.getCommentUser = self
         mainView.collectionView.setCollectionViewLayout(createLayout(), animated: true)
+        view.backgroundColor = .black.withAlphaComponent(0.3)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        disposeBag = .init()
+    }
+    
+    private func createLayout() -> UICollectionViewFlowLayout {
+        
+        let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = 20
+        let width = UIScreen.main.bounds.width - (spacing * 2)
+        
+        layout.itemSize = CGSize(width: width / 1.2, height: width / 2)
+        layout.minimumLineSpacing = spacing
+        layout.sectionInset = UIEdgeInsets(top: spacing,
+                                           left: spacing,
+                                           bottom: spacing,
+                                           right: spacing)
+        layout.minimumInteritemSpacing = spacing
+        layout.scrollDirection = .horizontal
+        
+        return layout
     }
     
     override func configureView() {
-        
-        view.backgroundColor = .black.withAlphaComponent(0.3)      
-        
         replyView.mainView.sendButton.rx.tap
             .bind(with: self) { owner, _ in
                 print("던지기 버튼 눌렸")
@@ -76,32 +96,7 @@ final class PopupViewController: BaseViewController {
                 owner.present(owner.replyView, animated: false)
             }
             .disposed(by: disposeBag)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        disposeBag = .init()
-    }
-    
-    private func createLayout() -> UICollectionViewFlowLayout {
-        
-        let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 20
-        let width = UIScreen.main.bounds.width - (spacing * 2)
-        
-        layout.itemSize = CGSize(width: width / 1.2, height: width / 2)
-        layout.minimumLineSpacing = spacing
-        layout.sectionInset = UIEdgeInsets(top: spacing,
-                                           left: spacing,
-                                           bottom: spacing,
-                                           right: spacing)
-        layout.minimumInteritemSpacing = spacing
-        layout.scrollDirection = .horizontal
-        
-        return layout
-    }
-    
+    }    
     deinit {
         print(self)
     }

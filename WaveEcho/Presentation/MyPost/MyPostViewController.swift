@@ -24,13 +24,10 @@ final class MyPostViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.rightBarButtonItem = mainView.myPageButton
     }
     
-    override func configureView() {
-        
-        mainView.tableView.rowHeight = 100
-        navigationItem.rightBarButtonItem = mainView.myPageButton
-        
+    override func uiBind() {
         // 내 프로필 modal 띄우기
         mainView.myPageButton.rx.tap
             .bind(with: self) { owner, _ in
@@ -51,18 +48,6 @@ final class MyPostViewController: BaseViewController {
                 vc.mainView.nicknameTextField.text = owner.postData.first?.creator.nick
             }
             .disposed(by: disposeBag)
-
-//        mainView.myPageButton.rx.tap
-//            .bind(with: self) { owner, _ in
-//                owner.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
-//            }
-        
-//                mainView.myPageButton.rx.tap
-//                    .bind(with: self) {  owner, _ in
-//                        owner.navigationController?.pushViewController(owner.myProfileVC, animated: true)
-//                    }
-//                    .disposed(by: disposeBag)
-
     }
     
     override func bind() {

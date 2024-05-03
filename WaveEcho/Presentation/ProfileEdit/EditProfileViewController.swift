@@ -17,21 +17,19 @@ final class EditProfileViewController: BaseViewController {
         
         view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationItem.rightBarButtonItem = mainView.editButton
     }
     
-    override func configureView() {
-                
-        navigationItem.rightBarButtonItem = mainView.editButton
-        
-//        mainView.editButton.rx.tap
-//            .bind(with: self) { owner, _ in
-//                owner.navigationController?.popViewController(animated: true)
-//            }
-//            .disposed(by: disposeBag)
+    override func uiBind() {
+        //        mainView.editButton.rx.tap
+        //            .bind(with: self) { owner, _ in
+        //                owner.navigationController?.popViewController(animated: true)
+        //            }
+        //            .disposed(by: disposeBag)
     }
     
     override func bind() {

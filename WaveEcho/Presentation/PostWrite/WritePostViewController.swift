@@ -24,21 +24,20 @@ final class WritePostViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "유리병 던지기"
+        navigationItem.title = "쪽지 던지기"
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
-    }
-        
-    override func configureView() {
         navigationItem.backButtonTitle = ""
     }
     
-    override func bind() {
-        
+    override func uiBind() {
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
                 owner.view.endEditing(true)
             }
             .disposed(by: disposeBag)
+    }
+        
+    override func bind() {
         
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
                                              photoButtonTapped: mainView.uploadPhotoButton.rx.tap,
