@@ -32,7 +32,7 @@ class SignupView: BaseView {
     
     private let background = {
         let background = UIView()
-        background.backgroundColor = .systemGray6
+        background.backgroundColor = .systemCyan.withAlphaComponent(0.1)
         return background
     }()
     
@@ -73,7 +73,7 @@ class SignupView: BaseView {
         let button = UIButton()
         button.setTitle("중복확인", for: .normal)
         button.backgroundColor = .systemCyan
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
     

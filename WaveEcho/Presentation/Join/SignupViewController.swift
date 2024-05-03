@@ -113,6 +113,14 @@ final class SignupViewController: BaseViewController {
 }
 
 extension SignupViewController: UITextFieldDelegate, UITextViewDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == mainView.nicknameTextField {
+            let transform = CGAffineTransform(translationX: 0, y: -150)
+            mainView.transform = transform
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == self.mainView.nicknameTextField {
@@ -125,5 +133,12 @@ extension SignupViewController: UITextFieldDelegate, UITextViewDelegate {
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         self.view.endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == mainView.passwordTextField {
+            let transform = CGAffineTransform(translationX: 0, y: 0)
+            mainView.transform = transform
+        }
     }
 }
