@@ -34,15 +34,13 @@ final class PostsViewController: BaseViewController {
         navigationItem.title = "파도 메아리"
         
         // 종이배 랜덤 포지션
-        for _ in 0..<Int.random(in: 10...30) {
+        for _ in 0..<Int.random(in: 10...20) {
             
             lazy var messageLottiView : LottieAnimationView = {
                 let animationView = LottieAnimationView(name: "messageAnimation")
                 animationView.contentMode = .scaleAspectFill
                 animationView.loopMode = .autoReverse
                 animationView.animationSpeed = Double.random(in: 0.5...2)
-                animationView.layer.borderColor = UIColor.orange.cgColor
-                animationView.layer.borderWidth = 1
                 return animationView
             }()
             
@@ -50,7 +48,7 @@ final class PostsViewController: BaseViewController {
             
             messageLottiView.snp.makeConstraints {
                 $0.leading.equalTo(view).offset(Int.random(in: 0..<Int(screenWidth) - 40))
-                $0.top.equalTo(view).offset(Int.random(in: 350..<Int(screenHeight) - 100))
+                $0.top.equalTo(view).offset(Int.random(in: 350..<Int(screenHeight) - 140))
                 $0.size.equalTo(Int.random(in: 30...100))
             }
             
@@ -64,13 +62,26 @@ final class PostsViewController: BaseViewController {
                 .bind(with: self) { owner, tapGesture in
                     guard let post = owner.postData.randomElement() else { return }
                     
-                    owner.popupVC.mainView.profileImage.kf.setImage(with: URL(string: post.creator.profileImage ?? ""), options: [.requestModifier(KingFisherNet())])
+                    // 작성자 프로필 이미지
+                    if let profileImageUrl = URL(string: post.creator.profileImage ?? "") {
+                        owner.popupVC.mainView.profileImage.kf.setImage(with: profileImageUrl, options: [.requestModifier(KingFisherNet())])
+                    } else {
+                        owner.popupVC.mainView.profileImage.image = .profileImg
+                    }
+                    // 작성자 닉네임
                     owner.popupVC.mainView.nicknameLabel.text = post.creator.nick
+                    // 작성자 콘텐츠 내용
                     owner.popupVC.mainView.contentLabel.text = post.content
+                    // 작성자 작성 시간
                     let stringDate = DateFormatManager.shared.stringToDate(date: post.createdAt)
                     let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                     owner.popupVC.mainView.date.text = relativeDate
-                    owner.popupVC.mainView.contentImage.kf.setImage(with: URL(string: post.files?.first ?? ""), options: [.requestModifier(KingFisherNet())])
+                    // 작성자 콘텐츠 이미지
+                    if let contentImageUrl = URL(string: post.files?.first ?? "") {
+                        owner.popupVC.mainView.contentImage.kf.setImage(with: contentImageUrl, options: [.requestModifier(KingFisherNet())])
+                    } else {
+                        owner.popupVC.mainView.contentImage.image = .paperboat
+                    }
                     owner.popupVC.setPostData(post)
                     owner.popupVC.modalPresentationStyle = .overCurrentContext
                     owner.present(owner.popupVC, animated: false)

@@ -44,7 +44,7 @@ class LoginViewModel: ViewModelType {
         // 로그인 조건
         loginObservable
             .bind(with: self) { owner, loginRequest in
-                if loginRequest.email.contains("@") {
+                if loginRequest.email.contains("@") && loginRequest.email.contains(".com") && loginRequest.password.count > 3 {
                     validLogin.accept(true)
                 } else {
                     validLogin.accept(false)

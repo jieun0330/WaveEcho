@@ -16,7 +16,7 @@ class CommentCollectionViewCell: BaseCollectionViewCell {
     
     let commentUserProfileImage = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "circle.fill")
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
@@ -31,6 +31,7 @@ class CommentCollectionViewCell: BaseCollectionViewCell {
         let comment = UILabel()
         comment.sizeToFit()
         comment.numberOfLines = 0
+        
         return comment
     }()
     
@@ -47,7 +48,7 @@ class CommentCollectionViewCell: BaseCollectionViewCell {
     override func configureConstraints() {
         commentUserProfileImage.snp.makeConstraints {
             $0.leading.top.equalTo(contentView)
-            $0.size.equalTo(30)
+            $0.size.equalTo(20)
         }
         
         commentUserNickname.snp.makeConstraints {
@@ -57,7 +58,7 @@ class CommentCollectionViewCell: BaseCollectionViewCell {
         
         commentLabel.snp.makeConstraints {
             $0.top.equalTo(commentUserProfileImage)
-            $0.leading.equalTo(commentUserProfileImage.snp.trailing).offset(5)
+            $0.leading.equalTo(commentUserProfileImage.snp.trailing).offset(10)
             $0.trailing.equalToSuperview()
         }
         

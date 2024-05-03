@@ -57,14 +57,6 @@ final class PopupViewController: BaseViewController {
         return layout
     }
     
-    override func configureView() {
-        replyView.mainView.sendButton.rx.tap
-            .bind(with: self) { owner, _ in
-                print("던지기 버튼 눌렸")
-            }
-            .disposed(by: disposeBag)
-    }
-    
     func setPostData(_ model: PostData) {
         
         let behaviorModel = BehaviorRelay(value: model)
@@ -73,8 +65,15 @@ final class PopupViewController: BaseViewController {
             .compactMap { $0 }
             .map({ $0.comments })
             .bind(to: mainView.collectionView.rx.items(cellIdentifier: CommentCollectionViewCell.identifier, cellType: CommentCollectionViewCell.self)) { row, item, cell in
-                cell.commentUserProfileImage.kf.setImage(with: URL(string: item.creator.profileImage ?? ""), options: [.requestModifier(KingFisherNet())])
+                // 코멘트 프로필 이미지
+                if let profileImageURL = item.creator.profileImage {
+                    cell.commentUserProfileImage.kf.setImage(with: URL(string: profileImageURL), options: [.requestModifier(KingFisherNet())])
+                } else {
+                    cell.commentUserProfileImage.image = .profileImg
+                }
+                // 코멘트 닉네임
                 cell.commentUserNickname.text = item.creator.nick
+                // 코멘트 내용
                 cell.commentLabel.text = item.content
             }
             .disposed(by: disposeBag)
@@ -99,6 +98,14 @@ final class PopupViewController: BaseViewController {
     }    
     deinit {
         print(self)
+    }
+    
+    override func uiBind() {
+        replyView.mainView.sendButton.rx.tap
+            .bind(with: self) { owner, _ in
+                print("던지기 버튼 눌렸")
+            }
+            .disposed(by: disposeBag)
     }
 }
 

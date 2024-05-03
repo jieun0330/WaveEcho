@@ -20,7 +20,7 @@ final class PopupView: BaseView {
     
     private let contentView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .red
         view.layer.borderColor = UIColor.green.cgColor
         view.layer.borderWidth = 1
         return view
@@ -28,7 +28,7 @@ final class PopupView: BaseView {
     
     let profileImage = {
         let profile = UIImageView()
-        profile.image = UIImage(systemName: "circle.fill")
+        profile.contentMode = .scaleAspectFill
         return profile
     }()
     
@@ -38,10 +38,19 @@ final class PopupView: BaseView {
         return label
     }()
     
+    private let scrollView = {
+        let view = UIScrollView()
+        view.backgroundColor = .yellow
+        view.isScrollEnabled = true
+        view.showsVerticalScrollIndicator = true
+        return view
+    }()
+        
     var contentLabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 20)
-        label.numberOfLines = 0
+        let label = UITextView()
+        label.font = .systemFont(ofSize: 15)
+        label.sizeToFit()
+        label.isScrollEnabled = true
         return label
     }()
     
@@ -57,9 +66,21 @@ final class PopupView: BaseView {
         return date
     }()
     
+    private let commentIcon = {
+        let icon = UIImageView()
+        icon.image = UIImage(systemName: "bubble")
+        icon.tintColor = .black
+        return icon
+    }()
+    
+    private let commentLabel = {
+        let comment = UILabel()
+        comment.text = "Comments"
+        return comment
+    }()
+    
     let collectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
-        
         collectionView.register(CommentCollectionViewCell.self,
                                 forCellWithReuseIdentifier: CommentCollectionViewCell.identifier)
         collectionView.isPagingEnabled = true
@@ -95,8 +116,12 @@ final class PopupView: BaseView {
             addSubview($0)
         }
         
-        [contentView, date, collectionView, throwButton, replyButton].forEach {
+        [contentView, scrollView, date, collectionView, commentIcon, commentLabel, throwButton, replyButton].forEach {
             popupView.addSubview($0)
+        }
+        
+        [contentLabel].forEach {
+            scrollView.addSubview($0)
         }
         
         [profileImage, nicknameLabel, contentLabel, contentImage].forEach {
@@ -117,7 +142,7 @@ final class PopupView: BaseView {
         
         profileImage.snp.makeConstraints {
             $0.leading.top.equalToSuperview()
-            $0.size.equalTo(40)
+            $0.size.equalTo(20)
         }
         
         nicknameLabel.snp.makeConstraints {
@@ -134,6 +159,7 @@ final class PopupView: BaseView {
             $0.top.equalTo(contentLabel.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(contentImage.snp.width)
+            $0.bottom.equalTo(collectionView.snp.top)
         }
         
         date.snp.makeConstraints {
@@ -141,8 +167,18 @@ final class PopupView: BaseView {
             $0.trailing.equalTo(contentLabel)
         }
         
+        commentIcon.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.top).offset(20)
+            $0.leading.equalTo(profileImage)
+        }
+        
+        commentLabel.snp.makeConstraints {
+            $0.leading.equalTo(commentIcon.snp.trailing).offset(5)
+            $0.centerY.equalTo(commentIcon)
+        }
+        
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(date.snp.bottom).offset(10)
+            $0.height.equalTo(180)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(throwButton.snp.top)
         }

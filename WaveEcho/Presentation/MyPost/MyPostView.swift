@@ -19,7 +19,7 @@ final class MyPostView: BaseView {
     
     private let segment = {
         let segment = BetterSegmentedControl(frame: .zero)
-        segment.segments = LabelSegment.segments(withTitles: ["나의 유리병", "답장"])
+        segment.segments = LabelSegment.segments(withTitles: ["나의 메아리", "답장"])
         return segment
     }()
     

@@ -24,7 +24,7 @@ class LoginView: BaseView {
     private let login = {
         let signUp = UILabel()
         signUp.text = "Login"
-        signUp.textColor = .black
+        signUp.textColor = .white
         signUp.font = .systemFont(ofSize: 60)
         return signUp
     }()

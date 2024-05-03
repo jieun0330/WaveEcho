@@ -30,7 +30,7 @@ class PostsView: BaseView {
     
     let sendWaveButton = {
         let sendWave = UIButton()
-        sendWave.setTitle("유리병 던지기", for: .normal)
+        sendWave.setTitle("메아리 던지기", for: .normal)
         sendWave.setTitleColor(.white, for: .normal)
         sendWave.backgroundColor = .systemBlue.withAlphaComponent(0.2)
         sendWave.layer.cornerRadius = 20
