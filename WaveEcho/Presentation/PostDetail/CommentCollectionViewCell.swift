@@ -67,11 +67,6 @@ class CommentCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    override func configureView() {
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.orange.cgColor
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

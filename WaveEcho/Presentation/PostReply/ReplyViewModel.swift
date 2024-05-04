@@ -17,7 +17,7 @@ final class ReplyViewModel: ViewModelType {
     struct Input {
         let sendButtonTapped: ControlEvent<Void>
         let commentContent: ControlProperty<String>
-        let postID: String
+        let postID: BehaviorRelay<String>
     }
     
     struct Output {
@@ -42,7 +42,7 @@ final class ReplyViewModel: ViewModelType {
             .flatMapLatest { writeCommentRequest in
                 return APIManager.shared.create(type: WriteCommentResponse.self,
                                                 router: CommentRouter.writeComment(query: writeCommentRequest,
-                                                                                   id: input.postID))
+                                                                                   id: input.postID.value))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -50,7 +50,6 @@ final class ReplyViewModel: ViewModelType {
                     
                     commentSuccess.accept(success)
                     commentTrigger.accept(())
-                    
                     
                     var updateComment = owner.updateCommentData.value
                     updateComment.insert(success, at: 0)

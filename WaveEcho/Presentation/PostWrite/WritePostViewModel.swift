@@ -11,8 +11,6 @@ import RxCocoa
 
 class WritePostViewModel: ViewModelType {
     
-    var imageFiles: [String] = []
-    
     var disposeBag = DisposeBag()
     
     struct Input {
@@ -32,29 +30,19 @@ class WritePostViewModel: ViewModelType {
         
         let createPostTrigger = PublishRelay<Void>()
         let createPostError = PublishRelay<APIError>()
-        let uploadPhotoSuccess = PublishRelay<ImageUploadResponse>()
+        let uploadPhotoSuccess = BehaviorRelay<[String]>(value: [])
         let uploadPhotoError = PublishRelay<APIError>()
         let uploadPhotoTrigger = PublishRelay<Void>()
         
         let contentObservable = input.content.asObservable()
             .map { content in
                 return WritePostsRequestBody(content: content,
-                                             product_id: "",
-                                             files: self.imageFiles)
+                                             product_id: "신디",
+                                             files: uploadPhotoSuccess.value)
             }
-        
-        // 1. 이미지 업로드
-        //        input.completeButtonTapped
-        //            .withLatestFrom(contentObservable)
-        //            .map { writePostRequest in
-        //                APIManager.shared.upload(type: ImageUploadResponse.self,
-        //                                         router: PostsRouter.uploadImage,
-        //                                         image: <#T##Data#>)
-        //            }
-        
+
         // 이미지 업로드
         input.uploadImage
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .flatMap { data in
                 return APIManager.shared.upload(type: ImageUploadResponse.self,
                                                 router: PostsRouter.uploadImage,
@@ -62,16 +50,11 @@ class WritePostViewModel: ViewModelType {
             }
             .debug()
             .bind(with: self) { owner, result in
-//                dump(result)
                 switch result {
                 case .success(let success):
-                    print("성공????", success)
-//                    guard let test = success.files else { return }
-                    owner.imageFiles = success.files
-                    uploadPhotoSuccess.accept(success)
+                    uploadPhotoSuccess.accept(success.files)
                 case .failure(let error):
                     dump(error)
-                    print("에러 ??? ", error)
                     uploadPhotoError.accept(error)
                 }
             }
@@ -81,17 +64,13 @@ class WritePostViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMap { postRequest in
-                print("🦂🦂🦂🦂🦂", postRequest)
                 return APIManager.shared.create(type: PostResponse.self, router: PostsRouter.createPosts(query: postRequest))
             }
             .bind(with: self) { owner, result in
-                print("🦧🦧🦧🦧🦧", result)
                 switch result {
                 case .success(let success):
-                    print("🕸️🕸️🕸️🕸️🕸️", success)
                     createPostTrigger.accept(())
                 case .failure(let error):
-                    print("🪲🪲🪲🪲", error)
                     createPostError.accept(error)
                 }
             }

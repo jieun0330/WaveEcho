@@ -33,11 +33,11 @@ class PostsViewModel {
         let postsError = PublishRelay<APIError>()
         let fetchPostsObservable = Observable.just(PostQueryString(next: "",
                                                                    limit: "5",
-                                                                   product_id: ""))
+                                                                   product_id: "신디"))
         let myProfile = PublishRelay<MyProfileResponse>()
         let myProfileError = PublishRelay<APIError>()
         
-        input.viewDidLoad
+        input.viewWillAppearTrigger
             .withLatestFrom(fetchPostsObservable)
             .flatMapLatest { postQuery in
                 return APIManager.shared.create(type: PostResponse.self,

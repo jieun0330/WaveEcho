@@ -46,8 +46,6 @@
 		C23D33D62BDEA07900F81AB4 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33D52BDEA07900F81AB4 /* EditProfileViewController.swift */; };
 		C23D33DA2BDEA30100F81AB4 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33D92BDEA30100F81AB4 /* EditProfileViewModel.swift */; };
 		C23D33DC2BDEC7C900F81AB4 /* KingFisherImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23D33DB2BDEC7C900F81AB4 /* KingFisherImage.swift */; };
-		C25D9F132BDCC5DB00012307 /* DetailPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */; };
-		C25D9F172BDE0C4F00012307 /* DetailPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D9F162BDE0C4F00012307 /* DetailPostView.swift */; };
 		C269AF0C2BE1F62A00BB6E20 /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF0B2BE1F62A00BB6E20 /* ReplyViewController.swift */; };
 		C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF0D2BE1F96E00BB6E20 /* ReplyView.swift */; };
 		C269AF102BE206D000BB6E20 /* ReplyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF0F2BE206D000BB6E20 /* ReplyViewModel.swift */; };
@@ -97,7 +95,6 @@
 		C2E8EFC92BDE451100868BB3 /* WriteCommentRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFC82BDE451100868BB3 /* WriteCommentRequestBody.swift */; };
 		C2E8EFCC2BDE454200868BB3 /* WriteCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCB2BDE454200868BB3 /* WriteCommentResponse.swift */; };
 		C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */; };
-		C2E8EFD02BDE486100868BB3 /* DetailPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,8 +134,6 @@
 		C23D33D52BDEA07900F81AB4 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C23D33D92BDEA30100F81AB4 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		C23D33DB2BDEC7C900F81AB4 /* KingFisherImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherImage.swift; sourceTree = "<group>"; };
-		C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewController.swift; sourceTree = "<group>"; };
-		C25D9F162BDE0C4F00012307 /* DetailPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostView.swift; sourceTree = "<group>"; };
 		C269AF0B2BE1F62A00BB6E20 /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		C269AF0D2BE1F96E00BB6E20 /* ReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyView.swift; sourceTree = "<group>"; };
 		C269AF0F2BE206D000BB6E20 /* ReplyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewModel.swift; sourceTree = "<group>"; };
@@ -185,7 +180,6 @@
 		C2E8EFC82BDE451100868BB3 /* WriteCommentRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentRequestBody.swift; sourceTree = "<group>"; };
 		C2E8EFCB2BDE454200868BB3 /* WriteCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentResponse.swift; sourceTree = "<group>"; };
 		C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
-		C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,7 +333,6 @@
 		C25D9F112BDCC1ED00012307 /* PostDetail */ = {
 			isa = PBXGroup;
 			children = (
-				C269AF1E2BE2560E00BB6E20 /* X */,
 				C22003492BE0F15400A95F86 /* PopupView.swift */,
 				C22003472BE0F13600A95F86 /* PopupViewController.swift */,
 				C220034D2BE1308C00A95F86 /* CommentCollectionViewCell.swift */,
@@ -377,16 +370,6 @@
 				C20E68982BD685D100507C0B /* PostsTableViewCell.swift */,
 			);
 			path = PostAll;
-			sourceTree = "<group>";
-		};
-		C269AF1E2BE2560E00BB6E20 /* X */ = {
-			isa = PBXGroup;
-			children = (
-				C25D9F162BDE0C4F00012307 /* DetailPostView.swift */,
-				C25D9F122BDCC5DB00012307 /* DetailPostViewController.swift */,
-				C2E8EFCF2BDE486100868BB3 /* DetailPostViewModel.swift */,
-			);
-			path = X;
 			sourceTree = "<group>";
 		};
 		C269AF212BE2836000BB6E20 /* Join */ = {
@@ -668,7 +651,6 @@
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
 				C20E68C02BD9512200507C0B /* UITextView.swift in Sources */,
-				C25D9F132BDCC5DB00012307 /* DetailPostViewController.swift in Sources */,
 				C269AF702BE3E51E00BB6E20 /* UIColor+Extension.swift in Sources */,
 				C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */,
 				C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */,
@@ -691,7 +673,6 @@
 				C2DC2C042BCD217800A1D102 /* RequestHeader.swift in Sources */,
 				C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */,
 				C22003502BE1309400A95F86 /* BaseCollectionViewCell.swift in Sources */,
-				C25D9F172BDE0C4F00012307 /* DetailPostView.swift in Sources */,
 				C2DC2C0C2BCD2A8700A1D102 /* LoginView.swift in Sources */,
 				C23AFEAB2BC6DD430000EBE5 /* HTTPHeader.swift in Sources */,
 				C2DC2C092BCD21BC00A1D102 /* BaseView.swift in Sources */,
@@ -723,7 +704,6 @@
 				C20E68B52BD8FC9A00507C0B /* MyProfileView.swift in Sources */,
 				C269AF0C2BE1F62A00BB6E20 /* ReplyViewController.swift in Sources */,
 				C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */,
-				C2E8EFD02BDE486100868BB3 /* DetailPostViewModel.swift in Sources */,
 				C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */,
 				C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */,
 				C27E534C2BCE8E840037E1A5 /* WritePostsRequestBody.swift in Sources */,

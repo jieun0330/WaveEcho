@@ -10,17 +10,11 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-//protocol getCommentUser: NSObject {
-//    func getCommentUser(writeCommentResponse: WriteCommentResponse)
-//}
-
 final class PopupViewController: BaseViewController {
     
     let mainView = PopupView()
     let replyView = ReplyViewController()
-    //    private let viewModel = PopupViewModel()
-    //    var test = PublishRelay<WriteCommentResponse>()
-    //    var postData: PostData!
+    let behaviorModel = BehaviorRelay(value: PostData(post_id: "", product_id: "신디", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [], comments: []))
     
     override func loadView() {
         view = mainView
@@ -29,13 +23,14 @@ final class PopupViewController: BaseViewController {
     override func viewDidLoad() {
         super .viewDidLoad()
         
-        //        replyView.getCommentUser = self
+        replyView.delegate = self
         mainView.collectionView.setCollectionViewLayout(createLayout(), animated: true)
         view.backgroundColor = .black.withAlphaComponent(0.3)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
         disposeBag = .init()
     }
     
@@ -58,8 +53,7 @@ final class PopupViewController: BaseViewController {
     }
     
     func setPostData(_ model: PostData) {
-        
-        let behaviorModel = BehaviorRelay(value: model)
+        behaviorModel.accept(model)
         
         behaviorModel
             .compactMap { $0 }
@@ -70,6 +64,7 @@ final class PopupViewController: BaseViewController {
                     cell.commentUserProfileImage.kf.setImage(with: URL(string: profileImageURL), options: [.requestModifier(KingFisherNet())])
                 } else {
                     cell.commentUserProfileImage.image = .profileImg
+                    
                 }
                 // 코멘트 닉네임
                 cell.commentUserNickname.text = item.creator.nick
@@ -78,9 +73,15 @@ final class PopupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        //        model.post_id
-        replyView.postID = model.post_id
+        replyView.postID.accept(model.post_id)
         
+    }
+    deinit {
+        print(self)
+    }
+    
+    override func uiBind() {
+
         mainView.throwButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.dismiss(animated: true)
@@ -95,24 +96,13 @@ final class PopupViewController: BaseViewController {
                 owner.present(owner.replyView, animated: false)
             }
             .disposed(by: disposeBag)
-    }    
-    deinit {
-        print(self)
-    }
-    
-    override func uiBind() {
-        replyView.mainView.sendButton.rx.tap
-            .bind(with: self) { owner, _ in
-                print("던지기 버튼 눌렸")
-            }
-            .disposed(by: disposeBag)
     }
 }
 
-//extension PopupViewController : getCommentUser {
-//    func getCommentUser(writeCommentResponse: WriteCommentResponse) {
-//        
-//        test.accept(writeCommentResponse)
-//        print("🐞🐞🐞🐞🐞", writeCommentResponse)
-//    }
-//}
+extension PopupViewController: fetchComment {
+    func fetchDone(data: CommentData) {
+        var value = behaviorModel.value
+        value.comments.insert(data, at: 0)
+        behaviorModel.accept(value)
+    }
+}

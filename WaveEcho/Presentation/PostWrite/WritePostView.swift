@@ -42,8 +42,6 @@ class WritePostView: BaseView {
         let photo = UIImageView()
         photo.contentMode = .scaleAspectFill
         photo.clipsToBounds = true
-        photo.layer.borderWidth = 1
-        photo.layer.borderColor = UIColor.orange.cgColor
         return photo
     }()
     
@@ -63,12 +61,6 @@ class WritePostView: BaseView {
         return button
     }()
     
-//    lazy var rightBarButtonItem = {
-//        let item = UIBarButtonItem()
-//        item.title = "완료"
-//        return item
-//    }()
-//    
     override init(frame: CGRect) {
         super .init(frame: frame)
         
@@ -94,8 +86,8 @@ class WritePostView: BaseView {
 
         
         letterView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-            $0.edges.equalTo(safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
+            $0.verticalEdges.equalTo(safeAreaLayoutGuide).inset(20)
         }
         
         presentPhotoView.snp.makeConstraints {

@@ -77,8 +77,6 @@ class PostsTableViewCell: BaseTableViewCell {
     override func configureView() {
         
         contentView.layer.cornerRadius = 20
-        contentView.layer.borderColor = UIColor.orange.cgColor
-        contentView.layer.borderWidth = 1
     }
     
     required init?(coder: NSCoder) {

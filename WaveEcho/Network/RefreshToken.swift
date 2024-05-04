@@ -54,7 +54,7 @@ class RefreshToken: RequestInterceptor {
                     }
             }
             catch {
-                print("error 😋")
+
             }
         default:
             completion(.doNotRetryWithError(error))

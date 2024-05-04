@@ -17,7 +17,6 @@ enum PostsRouter {
     // 포스트 조회
     case fetchPosts(query: PostQueryString)
     // 유저별 작성한 포스트 조회
-//    case userPost(query: PostQueryString, id: String)
     case userPost(id: String)
 }
 
@@ -80,7 +79,7 @@ extension PostsRouter: TargetType {
         case .fetchPosts(let query):
             ["next": query.next,
              "limit": query.limit,
-             "product_id": query.product_id]
+             "product_id": "신디"]
         }
     }
     

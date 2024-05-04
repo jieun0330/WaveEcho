@@ -11,14 +11,16 @@ import RxCocoa
 import PhotosUI
 import Toast
 
+protocol fetchComment: AnyObject {
+    func fetchDone(data: CommentData)
+}
+
 final class ReplyViewController: BaseViewController {
     
     let mainView = ReplyView()
-    private let imageData = PublishRelay<Data>()
     private let viewModel = ReplyViewModel()
-    var postID: String!
-    //    let popupVC = PopupViewController() // 콜수 가 미친듯이 올라감
-    //    var getCommentUser: getCommentUser?
+    var postID = BehaviorRelay<String>(value: "")
+    weak var delegate: fetchComment?
     
     override func loadView() {
         view = mainView
@@ -30,8 +32,6 @@ final class ReplyViewController: BaseViewController {
     }
     
     override func bind() {
-        
-        guard let postID else { return }
         
         let input = ReplyViewModel.Input(sendButtonTapped: mainView.sendButton.rx.tap,
                                          commentContent: mainView.replyTextView.rx.text.orEmpty,
@@ -55,12 +55,6 @@ final class ReplyViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        //        output.commentSuccess
-        //            .drive(with: self) { owner, model in
-        //                owner.getCommentUser?.getCommentUser(writeCommentResponse: model)
-        //            }
-        //            .disposed(by: disposeBag)
-        
         output.commentError
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .writeComment)
@@ -69,8 +63,15 @@ final class ReplyViewController: BaseViewController {
         
         output.updateCommentData
             .drive(with: self) { owner, commentModel in
-                //                owner.popupVC.test.accept(commentModel.first!)
-                print("🐷🐷🐷🐷🐷", commentModel.first?.content ?? "코멘트 없음")
+                guard let comment = commentModel.first else { return }
+                let creator = comment.creator
+                let creatorInfo = CreatorInfo(user_id: creator.user_id,
+                            nick: creator.nick,
+                            profileImage: creator.profileImage)
+                owner.delegate?.fetchDone(data: CommentData(comment_id: comment.comment_id,
+                                                            content: comment.content,
+                                                            createdAt: comment.createdAt,
+                                                            creator: creatorInfo))
             }
             .disposed(by: disposeBag)
     }

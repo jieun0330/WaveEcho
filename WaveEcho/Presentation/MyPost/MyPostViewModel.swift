@@ -15,7 +15,6 @@ final class MyPostViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoad: Observable<Void>
-//        let myProfileView: ControlEvent<Void>
     }
     
     struct Output {
@@ -36,13 +35,12 @@ final class MyPostViewModel: ViewModelType {
                 switch result {
                 case .success(let success):
                     postDataSuccess.accept(success.data)
-//                    success.data.first?.creator.nick
                 case .failure(let error):
                     postDataError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
         
-        return Output(postDataSuccess: postDataSuccess.asDriver(onErrorJustReturn: [PostData(post_id: "", product_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], likes: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])]), postDataError: postDataError.asDriver(onErrorJustReturn: .code500))
+        return Output(postDataSuccess: postDataSuccess.asDriver(onErrorJustReturn: [PostData(post_id: "", product_id: "신디", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], likes: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])]), postDataError: postDataError.asDriver(onErrorJustReturn: .code500))
     }
 }

@@ -21,17 +21,13 @@ final class APIManager {
         return Single<Result<T, APIError>>.create { single in
             do {
                 let urlRequest = try router.asURLRequest()
-//                print("🦖🦖🦖🦖🦖", urlRequest)
                 AF
                     .request(urlRequest, interceptor: RefreshToken())
                     .responseDecodable(of: T.self) { response in
-//                        print("🐙🐙🐙🐙🐙", response)
                         switch response.result {
                         case .success(let success):
-//                            print("🦀🦀🦀🦀🦀", success)
                             single(.success(.success(success)))
                         case .failure(let error):
-                            print("🐳🐳🐳🐳🐳", error)
                             guard let statusCode = response.response?.statusCode else { return }
                             guard let error = APIError(rawValue: statusCode) else { return }
                             single(.success(.failure(error)))
@@ -50,7 +46,7 @@ final class APIManager {
         return Single<Result<T, APIError>>.create { single in
             do {
                 let urlRequest = try router.asURLRequest()
-                print("여기도 확인~~~", urlRequest)
+                
                 AF
                     .upload(multipartFormData: { multipartFormData in
                         multipartFormData.append(image,
@@ -59,7 +55,6 @@ final class APIManager {
                                                  mimeType: "image/png")
                     }, with: urlRequest, interceptor: RefreshToken())
                     .responseDecodable(of: T.self) { response in
-                        print("뭐가 문젠데", response)
                         switch response.result {
                         case .success(let success):
                             single(.success(.success(success)))

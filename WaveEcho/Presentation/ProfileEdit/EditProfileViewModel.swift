@@ -19,7 +19,6 @@ class EditProfileViewModel: ViewModelType {
     }
     
     struct Output {
-//        let editProfileSuccess: PublishRelay<EditMyProfileResponse>
         let editProfileSuccess: Driver<EditMyProfileResponse>
         let editProfileError: Driver<APIError>
     }
@@ -32,18 +31,14 @@ class EditProfileViewModel: ViewModelType {
         input.editButtonTapped
             .withLatestFrom(input.editNickname)
             .flatMap { nickname in
-                print("nickname 🌳", nickname)
                 return APIManager.shared.create(type: EditMyProfileResponse.self,
                                                 router: ProfileRouter.editMyPofile(query: EditMyProfileRequestBody(nick: nickname, phoneNum: nil, birthDay: nil, profile: nil)))
             }
             .bind(with: self) { owner, result in
-                print("result 🌵", result)
                 switch result {
                 case .success(let success):
-                    print("success 🎄", success)
                     editProfileSuccess.accept(success)
                 case .failure(let error):
-                    print("error 🌲", error)
                     editProfileError.accept(error)
                 }
             }

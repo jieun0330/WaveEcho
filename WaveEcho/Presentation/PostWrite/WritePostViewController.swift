@@ -25,18 +25,9 @@ final class WritePostViewController: BaseViewController {
         super.viewDidLoad()
         
         navigationItem.title = "메아리 던지기"
-//        navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
         navigationItem.backButtonTitle = ""
     }
-    
-    override func uiBind() {
-//        mainView.rightBarButtonItem.rx.tap
-//            .bind(with: self) { owner, _ in
-//                owner.view.endEditing(true)
-//            }
-//            .disposed(by: disposeBag)
-    }
-        
+
     override func bind() {
         
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
@@ -91,7 +82,7 @@ extension WritePostViewController: PHPickerViewControllerDelegate {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {
                     let realImage = image as? UIImage
-                    let imagePng = realImage?.pngData()!
+                    let imagePng = realImage?.jpegData(compressionQuality: 0.3)
                     self.imageData.accept(imagePng!)
                     self.mainView.presentPhotoView.image = image as? UIImage
                 }

@@ -13,8 +13,6 @@ import Toast
 final class AfterMyProfileViewController: BaseViewController {
     
     let mainView = AfterMyProfileView()
-//    var myProfileResponse: MyProfileResponse!
-//    var myProfileResponse: BehaviorRelay(value: MyProfileResponse)
     
     override func loadView() {
         super.loadView()
@@ -28,9 +26,9 @@ final class AfterMyProfileViewController: BaseViewController {
     }
     
     override func uiBind() {
+        
         mainView.editNicknameButton.rx.tap
             .bind(with: self) { owner, _ in
-                print(#function)
                 owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)

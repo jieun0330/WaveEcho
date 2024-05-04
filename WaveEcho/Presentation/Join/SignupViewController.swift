@@ -64,7 +64,6 @@ final class SignupViewController: BaseViewController {
         
         output.signupTrigger
             .drive(with: self) { owner, _ in
-                print("회원가입 성공")
                 owner.view.makeToast("회원가입이 완료되었습니다")
             }
             .disposed(by: disposeBag)
@@ -74,12 +73,6 @@ final class SignupViewController: BaseViewController {
             .drive(with: self) { owner, _ in
                 let vc = PostsViewController()
                 owner.navigationController?.setViewControllers([vc], animated: true)
-            }
-            .disposed(by: disposeBag)
-        
-        output.validEmailTrigger
-            .drive(with: self) { owner, _ in
-                print("이메일 중복 검사 완료")
             }
             .disposed(by: disposeBag)
         

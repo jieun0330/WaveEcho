@@ -34,7 +34,7 @@ final class PostsViewController: BaseViewController {
         navigationItem.title = "파도 메아리"
         
         // 종이배 랜덤 포지션
-        for _ in 0..<Int.random(in: 10...20) {
+        for _ in 0..<Int.random(in: 10...15) {
             
             lazy var messageLottiView : LottieAnimationView = {
                 let animationView = LottieAnimationView(name: "messageAnimation")

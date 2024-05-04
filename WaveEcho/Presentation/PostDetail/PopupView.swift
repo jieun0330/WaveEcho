@@ -167,15 +167,15 @@ final class PopupView: BaseView {
             $0.trailing.equalTo(contentLabel)
         }
         
-        commentIcon.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.top).offset(20)
-            $0.leading.equalTo(profileImage)
-        }
-        
-        commentLabel.snp.makeConstraints {
-            $0.leading.equalTo(commentIcon.snp.trailing).offset(5)
-            $0.centerY.equalTo(commentIcon)
-        }
+//        commentIcon.snp.makeConstraints {
+//            $0.top.equalTo(collectionView.snp.top).offset(40)
+//            $0.leading.equalTo(profileImage)
+//        }
+//        
+//        commentLabel.snp.makeConstraints {
+//            $0.leading.equalTo(commentIcon.snp.trailing).offset(5)
+//            $0.centerY.equalTo(commentIcon)
+//        }
         
         collectionView.snp.makeConstraints {
             $0.height.equalTo(180)
