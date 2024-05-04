@@ -57,6 +57,7 @@
 		C269AF282BE37B5D00BB6E20 /* AfterMyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */; };
 		C269AF2A2BE37BA700BB6E20 /* AfterMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */; };
 		C269AF702BE3E51E00BB6E20 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF6F2BE3E51E00BB6E20 /* UIColor+Extension.swift */; };
+		C269AF7B2BE6153100BB6E20 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF7A2BE6153100BB6E20 /* UserDefaultsManager.swift */; };
 		C27A067F2BE0D6CF0010D382 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C27A067E2BE0D6CF0010D382 /* Lottie */; };
 		C27A06832BE0DA240010D382 /* wavesAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = C27A06822BE0DA240010D382 /* wavesAnimation.json */; };
 		C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E533F2BCE6F810037E1A5 /* PostsView.swift */; };
@@ -144,6 +145,7 @@
 		C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterMyProfileView.swift; sourceTree = "<group>"; };
 		C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterMyProfileViewController.swift; sourceTree = "<group>"; };
 		C269AF6F2BE3E51E00BB6E20 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		C269AF7A2BE6153100BB6E20 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		C27A06822BE0DA240010D382 /* wavesAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wavesAnimation.json; sourceTree = "<group>"; };
 		C27E533F2BCE6F810037E1A5 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		C27E53412BCE71B00037E1A5 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */,
+				C269AF7A2BE6153100BB6E20 /* UserDefaultsManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
+				C269AF7B2BE6153100BB6E20 /* UserDefaultsManager.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
 				C20E68C02BD9512200507C0B /* UITextView.swift in Sources */,
 				C269AF702BE3E51E00BB6E20 /* UIColor+Extension.swift in Sources */,

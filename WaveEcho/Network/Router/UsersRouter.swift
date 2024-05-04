@@ -37,11 +37,11 @@ extension UsersRouter: TargetType {
             return [HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .refreshToken:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
+            return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue,
-                    HTTPHeader.refresh.rawValue: UserDefaults.standard.string(forKey: "refreshToken") ?? ""]
+                    HTTPHeader.refresh.rawValue: UserDefaultsManager.shared.refreshToken]
         case .withdraw:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
+            return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }

@@ -63,9 +63,9 @@ class LoginViewModel: ViewModelType {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
-                    UserDefaults.standard.set(success.accessToken, forKey: "accessToken")
-                    UserDefaults.standard.set(success.refreshToken, forKey: "refreshToken")
-                    UserDefaults.standard.set(success.user_id, forKey: "userID")
+                    UserDefaultsManager.shared.accessToken = success.accessToken
+                    UserDefaultsManager.shared.refreshToken = success.refreshToken
+                    UserDefaultsManager.shared.userID = success.user_id
                     loginTrigger.accept(())
                 case .failure(let error):
                     loginError.accept(error)

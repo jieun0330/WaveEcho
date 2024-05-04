@@ -28,7 +28,7 @@ extension CommentRouter: TargetType {
     var headers: [String : String] {
         switch self {
         case .writeComment:
-            return [HTTPHeader.authorization.rawValue: UserDefaults.standard.string(forKey: "accessToken") ?? "",
+            return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
                     HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }

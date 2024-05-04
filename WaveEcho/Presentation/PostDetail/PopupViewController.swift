@@ -75,15 +75,9 @@ final class PopupViewController: BaseViewController {
         
         replyView.postID.accept(model.post_id)
         
-    }
-    deinit {
-        print(self)
-    }
-    
-    override func uiBind() {
-
         mainView.throwButton.rx.tap
             .bind(with: self) { owner, _ in
+                print(#function)
                 owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
@@ -96,6 +90,9 @@ final class PopupViewController: BaseViewController {
                 owner.present(owner.replyView, animated: false)
             }
             .disposed(by: disposeBag)
+    }
+    deinit {
+        print(self)
     }
 }
 

@@ -141,7 +141,7 @@ final class PostsViewController: BaseViewController {
             .drive(with: self) { owner, error in
                 if case .success = error {
                 } else {
-                    UserDefaults.standard.removeObject(forKey: "accessToken")
+                    UserDefaultsManager.shared.accessToken.removeAll()
                     let vc = UINavigationController (rootViewController: WelcomeViewController ())
                     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
                     

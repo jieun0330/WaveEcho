@@ -17,9 +17,8 @@ class RefreshToken: RequestInterceptor {
         
         // let ➡️ var
         var urlRequest = urlRequest
-        if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
-            urlRequest.setValue(accessToken, forHTTPHeaderField: HTTPHeader.authorization.rawValue)
-        }
+        
+        urlRequest.setValue(UserDefaultsManager.shared.accessToken, forHTTPHeaderField: HTTPHeader.authorization.rawValue)
         completion(.success(urlRequest))
     }
     
@@ -45,7 +44,7 @@ class RefreshToken: RequestInterceptor {
                         switch response.result {
                         case .success(let success):
                             // 재발급 성공 -> 새로운 토큰 저장
-                            UserDefaults.standard.set(success.accessToken, forKey: "accessToken")
+                            UserDefaultsManager.shared.accessToken = success.accessToken
                             completion(.retry) // ❗️
                         case .failure(let error):
                             // doNotRetryWithError 실행
@@ -54,7 +53,7 @@ class RefreshToken: RequestInterceptor {
                     }
             }
             catch {
-
+                
             }
         default:
             completion(.doNotRetryWithError(error))
