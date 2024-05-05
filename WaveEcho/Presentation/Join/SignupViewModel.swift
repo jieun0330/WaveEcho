@@ -52,15 +52,15 @@ class SignupViewModel: ViewModelType {
                                                         input.password,
                                                         input.nickname)
             .map { email, password, nickname in
-                return SignupRequestBody(email: email,
-                                       password: password,
-                                       nick: nickname,
-                                       phoneNum: nil,
-                                       birthDay: nil)
+                return UserModel(email: email,
+                                 password: password,
+                                 nick: nickname,
+                                 profile: nil)
             }
         
         let validEmailObservable = input.email.asObservable()
             .map { email in
+                
                 return ValidEmailRequestBody(email: email)
             }
         
@@ -70,7 +70,7 @@ class SignupViewModel: ViewModelType {
                 if signupRequest.nick.count >= 2 &&
                     signupRequest.email.contains("@") &&
                     signupRequest.email.contains(".com") &&
-                    signupRequest.password.count >= 8
+                    signupRequest.password.count >= 4
                 {
                     validSignup.accept(true)
                 } else {

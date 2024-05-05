@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct SignupRequestBody: Encodable {
+struct UserModel: Encodable {
     let email: String
     let password: String
     let nick: String
-    let phoneNum: String?
-    let birthDay: String?
+    let profile: Data?
 }

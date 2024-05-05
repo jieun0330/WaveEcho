@@ -23,8 +23,16 @@ final class MyPostTableViewCell: BaseTableViewCell {
         return view
     }()
     
+    let contentImage = {
+        let image = UIImageView()
+        image.backgroundColor = .brown
+        return image
+    }()
+    
     let contents = {
         let contents = UILabel()
+        contents.numberOfLines = 0
+        contents.sizeToFit()
         return contents
     }()
     
@@ -59,7 +67,7 @@ final class MyPostTableViewCell: BaseTableViewCell {
             contentView.addSubview($0)
         }
         
-        [contents, date].forEach {
+        [contentImage, contents, date].forEach {
             backView.addSubview($0)
         }
     }
@@ -70,8 +78,15 @@ final class MyPostTableViewCell: BaseTableViewCell {
             $0.edges.equalToSuperview()
         }
         
+        contentImage.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().offset(10)
+            $0.size.equalTo(80)
+        }
+        
         contents.snp.makeConstraints {
-            $0.leading.top.trailing.equalToSuperview().inset(5)
+            $0.leading.equalTo(contentImage.snp.trailing).offset(5)
+            $0.top.equalTo(contentImage)
+            $0.trailing.equalToSuperview().inset(5)
         }
         
         date.snp.makeConstraints {

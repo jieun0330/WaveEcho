@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Alamofire
 
 class EditProfileViewModel: ViewModelType {
     
@@ -31,24 +32,20 @@ class EditProfileViewModel: ViewModelType {
         let editProfileSuccessTrigger = PublishRelay<Void>()
         
 //        input.editButtonTapped
-//            .withLatestFrom(input.editNickname)
-//            .flatMapLatest { nickname in
-//                
+//            .withLatestFrom(Observable.just(input.editNickname))
+//            .flatMap { nickname in
+//                <#code#>
+//            }
+//            .flatMap({ nickname in
+//                let test = EditMyProfileRequestBody(nick: nickname, profile: nil)
+//                return APIManager.shared.editProfile(type: EditMyProfileResponse.self, router: ProfileRouter.editMyPofile(query: <#T##EditMyProfileRequestBody#>), model: <#T##EditMyProfileRequestBody#>)
+//            })
+//            .flatMap { nickname in
+//                print("1번", nickname)
 //                let editMyProfileRequest = EditMyProfileRequestBody(nick: nickname, phoneNum: "", birthDay: "", profile: nil)
-//                
-//                return APIManager.shared.editProfile(query: editMyProfileRequest)
+//                return APIManager.shared.editProfile(query: editMyProfileRequest, router: ProfileRouter.editMyPofile(query: editMyProfileRequest))
 //            }
-//            .bind(with: self) { owner, result in
-//                switch result {
-//                case .success(let success):
-//                    editProfileSuccess.accept(success)
-//                    editProfileSuccessTrigger.accept(())
-//                case .failure(let error):
-//                    editProfileError.accept(error)
-//                }
-//            }
-//            .disposed(by: disposeBag)
         
-        return Output(editProfileSuccess: editProfileSuccess.asDriver(onErrorJustReturn: EditMyProfileResponse(user_id: "", email: "", nick: "", followers: [Followers(user_id: "", nick: "", profileImage: "")], following: [Following(user_id: "", nick: "", profileImage: "")], posts: [""])), editProfileError: editProfileError.asDriver(onErrorJustReturn: .code500), editProfileSuccessTrigger: editProfileSuccessTrigger.asDriver(onErrorJustReturn: ()))
+        return Output(editProfileSuccess: editProfileSuccess.asDriver(onErrorJustReturn: EditMyProfileResponse(user_id: "", email: "", nick: "", profileImage: "", followers: [Followers(user_id: "", nick: "", profileImage: "")], following: [Following(user_id: "", nick: "", profileImage: "")], posts: [""])), editProfileError: editProfileError.asDriver(onErrorJustReturn: .code500), editProfileSuccessTrigger: editProfileSuccessTrigger.asDriver(onErrorJustReturn: ()))
     }
 }

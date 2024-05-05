@@ -27,3 +27,14 @@ extension UIColor {
                   alpha: alpha)
     }
 }
+
+extension UIColor {
+    func asImage(_ width: CGFloat = UIScreen.main.bounds.width, _ height: CGFloat = 1.0) -> UIImage {
+        let size: CGSize = CGSize(width: width, height: height)
+        let image: UIImage = UIGraphicsImageRenderer(size: size).image { context in
+            setFill()
+            context.fill(CGRect(origin: .zero, size: size))
+        }
+        return image
+    }
+}

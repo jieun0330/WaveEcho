@@ -9,7 +9,5 @@ import Foundation
 
 struct EditMyProfileRequestBody: Encodable {
     let nick: String
-    let phoneNum: String?
-    let birthDay: String?
     let profile: Data?
 }

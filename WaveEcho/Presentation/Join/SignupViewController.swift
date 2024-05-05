@@ -51,6 +51,7 @@ final class SignupViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
+        // 회원가입 조건
         output.validSignup
             .drive(with: self) { owner, value in
                 let validButtonColor: UIColor = value ? .systemYellow : .systemGray5
@@ -62,26 +63,29 @@ final class SignupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 회원가입 완료 토스트 창
         output.signupTrigger
+            .debounce(.seconds(1))
             .drive(with: self) { owner, _ in
                 owner.view.makeToast("회원가입이 완료되었습니다")
             }
             .disposed(by: disposeBag)
         
+        // 회원가입 완료 -> 로그인 뷰컨 이동
         output.signupTrigger
             .debounce(.seconds(2))
             .drive(with: self) { owner, _ in
-                let vc = PostsViewController()
+                let vc = LoginViewController()
                 owner.navigationController?.setViewControllers([vc], animated: true)
             }
             .disposed(by: disposeBag)
         
         // 이메일 중복확인 안내 text
-        output.validEmail
-            .drive(with: self) { owner, value in
-                owner.mainView.validEmail.text = value
-            }
-            .disposed(by: disposeBag)
+//        output.validEmail
+//            .drive(with: self) { owner, value in
+//                owner.mainView.validEmail.text = value
+//            }
+//            .disposed(by: disposeBag)
         
         // 회원가입 에러 처리
         output.signupError
@@ -91,11 +95,11 @@ final class SignupViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 이메일 중복 확인 에러 처리
-        output.validEmailError
-            .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .validEmail)
-            }
-            .disposed(by: disposeBag)
+//        output.validEmailError
+//            .drive(with: self) { owner, error in
+//                owner.errorHandler(apiError: error, calltype: .validEmail)
+//            }
+//            .disposed(by: disposeBag)
         
         //        signupOutput.validSignup
         //            .drive(with: self) { owner, value in

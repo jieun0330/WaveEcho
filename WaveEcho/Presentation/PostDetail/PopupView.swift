@@ -56,6 +56,7 @@ final class PopupView: BaseView {
     
     let contentImage = {
         let contentImage = UIImageView()
+        contentImage.contentMode = .scaleAspectFill
         return contentImage
     }()
     
@@ -135,10 +136,10 @@ final class PopupView: BaseView {
             $0.verticalEdges.equalTo(safeAreaLayoutGuide).inset(32)
         }
         
-        contentView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(32)
-            $0.horizontalEdges.equalToSuperview().inset(24)
-        }
+//        contentView.snp.makeConstraints {
+//            $0.top.equalToSuperview().inset(32)
+//            $0.horizontalEdges.equalToSuperview().inset(24)
+//        }
         
         profileImage.snp.makeConstraints {
             $0.leading.top.equalToSuperview()
@@ -198,16 +199,5 @@ final class PopupView: BaseView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension UIColor {
-    func asImage(_ width: CGFloat = UIScreen.main.bounds.width, _ height: CGFloat = 1.0) -> UIImage {
-        let size: CGSize = CGSize(width: width, height: height)
-        let image: UIImage = UIGraphicsImageRenderer(size: size).image { context in
-            setFill()
-            context.fill(CGRect(origin: .zero, size: size))
-        }
-        return image
     }
 }

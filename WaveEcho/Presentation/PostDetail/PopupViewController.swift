@@ -77,7 +77,6 @@ final class PopupViewController: BaseViewController {
         
         mainView.throwButton.rx.tap
             .bind(with: self) { owner, _ in
-                print(#function)
                 owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)

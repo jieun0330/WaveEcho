@@ -47,7 +47,12 @@ extension ProfileRouter: TargetType {
     }
     
     var parameters: [String : Any]? {
-        nil
+        switch self {
+        case .editMyPofile(query: let query):
+            return ["nickname": query.nick]
+        default:
+            return nil
+        }
     }
     
     var body: Data? {
@@ -55,10 +60,8 @@ extension ProfileRouter: TargetType {
         encoder.keyEncodingStrategy = .convertToSnakeCase
         
         switch self {
-        case .myProfile:
+        case .myProfile, .editMyPofile(_):
             return nil
-        case .editMyPofile(query: let query):
-            return try? encoder.encode(query)
         }
     }
 }

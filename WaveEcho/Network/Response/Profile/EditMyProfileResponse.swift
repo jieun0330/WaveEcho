@@ -11,6 +11,7 @@ struct EditMyProfileResponse: Decodable {
     let user_id: String
     let email: String
     let nick: String
+    let profileImage: String?
     let followers: [Followers?]
     let following: [Following?]
     let posts: [String?]

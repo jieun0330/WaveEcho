@@ -62,6 +62,12 @@ class WritePostView: BaseView {
         return button
     }()
     
+    lazy var rightBarButtonItem = {
+        let item = UIBarButtonItem()
+        item.title = "완료"
+        return item
+    }()
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         
@@ -85,7 +91,6 @@ class WritePostView: BaseView {
             $0.edges.equalToSuperview()
         }
 
-        
         letterView.snp.makeConstraints {
             $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
             $0.verticalEdges.equalTo(safeAreaLayoutGuide).inset(20)
@@ -118,6 +123,7 @@ class WritePostView: BaseView {
 }
 
 extension WritePostView: UITextViewDelegate {
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.textColor = .black

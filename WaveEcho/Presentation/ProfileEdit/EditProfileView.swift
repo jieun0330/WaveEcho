@@ -10,6 +10,13 @@ import SnapKit
 
 final class EditProfileView: BaseView {
     
+    let profileImg = {
+        let image = UIImageView()
+        image.image = .profile
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
     let nicknameLabel = {
         let nickname = UILabel()
         nickname.text = "닉네임"
@@ -22,6 +29,7 @@ final class EditProfileView: BaseView {
         return nickname
     }()
     
+    // 네비게이션바 아이템
     lazy var editButton = {
         let item = UIBarButtonItem()
         item.title = "수정"
@@ -40,15 +48,21 @@ final class EditProfileView: BaseView {
     }
     
     override func configureHierarchy() {
-        [nicknameLabel, nicknameTextField, withDrawButton].forEach {
+        [profileImg, nicknameLabel, nicknameTextField, withDrawButton].forEach {
             addSubview($0)
         }
     }
     
     override func configureConstraints() {
         
-        nicknameLabel.snp.makeConstraints {
+        profileImg.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(100)
+        }
+        
+        nicknameLabel.snp.makeConstraints {
+            $0.top.equalTo(profileImg.snp.bottom).offset(10)
             $0.leading.equalToSuperview().inset(20)
         }
         

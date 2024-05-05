@@ -10,7 +10,7 @@ import Alamofire
 import RxSwift
 
 enum UsersRouter {
-    case signup(query: SignupRequestBody)
+    case signup(query: UserModel)
     case validEmail(query: ValidEmailRequestBody)
     case login(query: LoginRequestBody)
     case refreshToken

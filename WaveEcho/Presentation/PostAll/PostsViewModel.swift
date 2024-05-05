@@ -14,8 +14,6 @@ class PostsViewModel {
     var disposeBag = DisposeBag()
     
     struct Input {
-        let viewDidLoad: Observable<Void>
-        let myProfileView: ControlEvent<Void>
         let viewWillAppearTrigger: Observable<Bool>
     }
     
@@ -53,21 +51,21 @@ class PostsViewModel {
             }
             .disposed(by: disposeBag)
         
-        input.myProfileView
-            .flatMap { _ in
-                return APIManager.shared.create(type: MyProfileResponse.self,
-                                                router: ProfileRouter.myProfile)
-            }
-            .bind(with: self) { owner, result in
-                switch result {
-                case .success(let success):
-                    myProfile.accept(success)
-                case .failure(let error):
-                    myProfileError.accept(error)
-                }
-            }
-            .disposed(by: disposeBag)
-        
+//        input.myProfileView
+//            .flatMap { _ in
+//                return APIManager.shared.create(type: MyProfileResponse.self,
+//                                                router: ProfileRouter.myProfile)
+//            }
+//            .bind(with: self) { owner, result in
+//                switch result {
+//                case .success(let success):
+//                    myProfile.accept(success)
+//                case .failure(let error):
+//                    myProfileError.accept(error)
+//                }
+//            }
+//            .disposed(by: disposeBag)
+//        
         return Output(postsContent: postsContent,
                       postsError: postsError.asDriver(onErrorJustReturn: .code500),
                       myProfile: myProfile,

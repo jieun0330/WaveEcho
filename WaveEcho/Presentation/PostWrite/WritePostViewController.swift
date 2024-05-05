@@ -26,6 +26,15 @@ final class WritePostViewController: BaseViewController {
         
         navigationItem.title = "메아리 던지기"
         navigationItem.backButtonTitle = ""
+        navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
+    }
+    
+    override func uiBind() {
+        mainView.rightBarButtonItem.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
     }
 
     override func bind() {
@@ -37,6 +46,7 @@ final class WritePostViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
+        // 포스팅 작성 업로드 조건
         output.validUpload
             .drive(with: self) { owner, value in
                 let validButtonColor: UIColor = value ? .systemBlue : .systemGray5
@@ -48,12 +58,14 @@ final class WritePostViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 포스팅 작성 성공 -> toast 창
         output.createPostTrigger
             .drive(with: self) { owner, _ in
-                owner.view.makeToast("포스팅 업로드 성공")
+                owner.view.makeToast("메아리를 던졌어요!")
             }
             .disposed(by: disposeBag)
         
+        // 포스팅 작성 성공 -> pop
         output.createPostTrigger
             .debounce(.seconds(2))
             .drive(with: self) { owner, _ in
@@ -61,6 +73,7 @@ final class WritePostViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 이미지 업로드
         output.uploadPhotoButtonTapped
             .drive(with: self) { owner, _ in
                 var configuration = PHPickerConfiguration()

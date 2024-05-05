@@ -45,7 +45,7 @@ class SignupView: BaseView {
     
     let nicknameTextField = {
         let nickname = UITextField()
-        nickname.placeholder = "사용할 닉네임을 입력해주세요"
+        nickname.placeholder = "닉네임을 2자 이상 입력해주세요"
         return nickname
     }()
     
@@ -59,6 +59,11 @@ class SignupView: BaseView {
     let emailTextField = {
         let email = UITextField()
         email.placeholder = "이메일을 입력해주세요"
+        email.keyboardType = .emailAddress
+        // 수정 제안 비활성화
+        email.autocapitalizationType = .none
+        email.autocorrectionType = .no
+        email.spellCheckingType = .no
         return email
     }()
     
@@ -68,7 +73,7 @@ class SignupView: BaseView {
         email.textColor = .red
         return email
     }()
-
+    
     let validEmailButton = {
         let button = UIButton()
         button.setTitle("중복확인", for: .normal)
@@ -86,7 +91,8 @@ class SignupView: BaseView {
     
     let passwordTextField = {
         let password = UITextField()
-        password.placeholder = "비밀번호를 입력해주세요"
+        password.placeholder = "비밀번호를 4자 이상 입력해주세요"
+        password.isSecureTextEntry = true
         return password
     }()
     
@@ -149,11 +155,6 @@ class SignupView: BaseView {
             $0.horizontalEdges.equalToSuperview().inset(30)
         }
         
-//        validNickname.snp.makeConstraints {
-//            $0.top.equalTo(nicknameTextField.snp.bottom).offset(5)
-//            $0.leading.equalTo(nicknameTextField)
-//        }
-        
         email.snp.makeConstraints {
             $0.leading.equalTo(nickname)
             $0.top.equalTo(nicknameTextField.snp.bottom).offset(35)
@@ -162,19 +163,19 @@ class SignupView: BaseView {
         emailTextField.snp.makeConstraints {
             $0.top.equalTo(email.snp.bottom).offset(20)
             $0.leading.equalToSuperview().inset(30)
-            $0.trailing.equalTo(validEmailButton.snp.leading).offset(-5)
+            $0.horizontalEdges.equalToSuperview().inset(30)
         }
         
-        validEmailButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-5)
-            $0.bottom.equalTo(emailTextField)
-            $0.width.equalTo(80)
-        }
+        //        validEmailButton.snp.makeConstraints {
+        //            $0.trailing.equalToSuperview().offset(-5)
+        //            $0.bottom.equalTo(emailTextField)
+        //            $0.width.equalTo(80)
+        //        }
         
-        validEmail.snp.makeConstraints {
-            $0.top.equalTo(emailTextField.snp.bottom).offset(5)
-            $0.leading.equalTo(emailTextField)
-        }
+        //        validEmail.snp.makeConstraints {
+        //            $0.top.equalTo(emailTextField.snp.bottom).offset(5)
+        //            $0.leading.equalTo(emailTextField)
+        //        }
         
         password.snp.makeConstraints {
             $0.leading.equalTo(email)

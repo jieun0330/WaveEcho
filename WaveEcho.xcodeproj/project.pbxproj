@@ -11,8 +11,6 @@
 		C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */; };
 		C20E68B02BD7C51A00507C0B /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */; };
 		C20E68B22BD80D5A00507C0B /* ImageUploadRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */; };
-		C20E68B52BD8FC9A00507C0B /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B42BD8FC9A00507C0B /* MyProfileView.swift */; };
-		C20E68B72BD8FF2100507C0B /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B62BD8FF2100507C0B /* MyProfileViewController.swift */; };
 		C20E68B92BD9001C00507C0B /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B82BD9001C00507C0B /* ProfileRouter.swift */; };
 		C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68BC2BD91C5F00507C0B /* MyProfileResponse.swift */; };
 		C20E68C02BD9512200507C0B /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68BF2BD9512200507C0B /* UITextView.swift */; };
@@ -81,7 +79,7 @@
 		C2DC2BF22BCD20C100A1D102 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BEB2BCD20C100A1D102 /* WelcomeView.swift */; };
 		C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BEC2BCD20C100A1D102 /* WelcomeViewController.swift */; };
 		C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BF82BCD217800A1D102 /* LoginRequestBody.swift */; };
-		C2DC2C032BCD217800A1D102 /* SignupRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BF92BCD217800A1D102 /* SignupRequestBody.swift */; };
+		C2DC2C032BCD217800A1D102 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BF92BCD217800A1D102 /* UserModel.swift */; };
 		C2DC2C042BCD217800A1D102 /* RequestHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */; };
 		C2DC2C052BCD217800A1D102 /* SignupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BFD2BCD217800A1D102 /* SignupResponse.swift */; };
 		C2DC2C062BCD217800A1D102 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BFE2BCD217800A1D102 /* LoginResponse.swift */; };
@@ -103,8 +101,6 @@
 		C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
 		C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadRequestBody.swift; sourceTree = "<group>"; };
-		C20E68B42BD8FC9A00507C0B /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
-		C20E68B62BD8FF2100507C0B /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		C20E68B82BD9001C00507C0B /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		C20E68BC2BD91C5F00507C0B /* MyProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileResponse.swift; sourceTree = "<group>"; };
 		C20E68BF2BD9512200507C0B /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
@@ -167,7 +163,7 @@
 		C2DC2BEB2BCD20C100A1D102 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		C2DC2BEC2BCD20C100A1D102 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		C2DC2BF82BCD217800A1D102 /* LoginRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
-		C2DC2BF92BCD217800A1D102 /* SignupRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupRequestBody.swift; sourceTree = "<group>"; };
+		C2DC2BF92BCD217800A1D102 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHeader.swift; sourceTree = "<group>"; };
 		C2DC2BFD2BCD217800A1D102 /* SignupResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupResponse.swift; sourceTree = "<group>"; };
 		C2DC2BFE2BCD217800A1D102 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
@@ -215,8 +211,6 @@
 		C20E68B32BD8FC8400507C0B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C20E68B42BD8FC9A00507C0B /* MyProfileView.swift */,
-				C20E68B62BD8FF2100507C0B /* MyProfileViewController.swift */,
 				C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */,
 				C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */,
 			);
@@ -483,7 +477,7 @@
 		C2DC2BFA2BCD217800A1D102 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				C2DC2BF92BCD217800A1D102 /* SignupRequestBody.swift */,
+				C2DC2BF92BCD217800A1D102 /* UserModel.swift */,
 				C2DC2C112BCD53CD00A1D102 /* ValidEmailRequestBody.swift */,
 				C2DC2BF82BCD217800A1D102 /* LoginRequestBody.swift */,
 			);
@@ -645,7 +639,7 @@
 				C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */,
 				C20E68C22BD953FC00507C0B /* ImageUploadResponse.swift in Sources */,
 				C23D33D12BDE985C00F81AB4 /* EditMyProfileResponse.swift in Sources */,
-				C2DC2C032BCD217800A1D102 /* SignupRequestBody.swift in Sources */,
+				C2DC2C032BCD217800A1D102 /* UserModel.swift in Sources */,
 				C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */,
 				C23D33CF2BDE983700F81AB4 /* EditMyProfileRequestBody.swift in Sources */,
 				C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */,
@@ -666,7 +660,6 @@
 				C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */,
 				C2CDC2D12BD4FDF000176723 /* PostQueryString.swift in Sources */,
 				C2E8EFC92BDE451100868BB3 /* WriteCommentRequestBody.swift in Sources */,
-				C20E68B72BD8FF2100507C0B /* MyProfileViewController.swift in Sources */,
 				C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */,
 				C2DC2C052BCD217800A1D102 /* SignupResponse.swift in Sources */,
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
@@ -705,7 +698,6 @@
 				C269AF2A2BE37BA700BB6E20 /* AfterMyProfileViewController.swift in Sources */,
 				C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */,
 				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
-				C20E68B52BD8FC9A00507C0B /* MyProfileView.swift in Sources */,
 				C269AF0C2BE1F62A00BB6E20 /* ReplyViewController.swift in Sources */,
 				C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */,
 				C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */,

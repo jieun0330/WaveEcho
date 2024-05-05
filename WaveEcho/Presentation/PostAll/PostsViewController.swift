@@ -113,11 +113,9 @@ final class PostsViewController: BaseViewController {
         
         // 작성일자 실시간 변경
         let viewWillAppearTrigger = rx.viewWillAppear
-            .map { $0 == true }
+            .map { $0 == true}
         
-        let input = PostsViewModel.Input(viewDidLoad: Observable.just(Void()),
-                                         myProfileView: mainView.myPageButton.rx.tap,
-                                         viewWillAppearTrigger: viewWillAppearTrigger)
+        let input = PostsViewModel.Input(viewWillAppearTrigger: viewWillAppearTrigger)
         
         let output = viewModel.transform(input: input)
         
@@ -128,6 +126,7 @@ final class PostsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 포스팅 에러 핸들링
         output.postsError
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .createPosts)

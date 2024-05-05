@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 final class MyPostViewController: BaseViewController {
     
@@ -36,6 +37,7 @@ final class MyPostViewController: BaseViewController {
                     sheet.prefersGrabberVisible = true
                 }
                 owner.present(owner.myProfileView, animated: false)
+                // 내 프로필 닉네임 -> 재확인 필요
                 owner.myProfileView.mainView.nickname.text = owner.postData.first?.creator.nick
             }
             .disposed(by: disposeBag)
@@ -72,13 +74,13 @@ final class MyPostViewController: BaseViewController {
                 cell.date.text = relativeDate
                 cell.selectionStyle = .none
                 
-//                cell.deleteButton.rx.tap
-//                    .bind { _ in
-//                        print("삭제 버튼 클릭")
-//                        input.deletePostID.accept(item.post_id)
-//                    }
-//                    .disposed(by: cell.disposeBag)
+                cell.contentImage.kf.setImage(with: URL(string: item.files?.first ?? ""))
                 
+                if let contentImageUrl = URL(string: item.files?.first ?? "") {
+                    cell.contentImage.kf.setImage(with: contentImageUrl, options: [.requestModifier(KingFisherNet())])
+                } else {
+                    cell.contentImage.image = .whitePaper
+                }
                 input.deletePostID.accept(item.post_id)
             }
                                                   .disposed(by: disposeBag) 

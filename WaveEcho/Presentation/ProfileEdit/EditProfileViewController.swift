@@ -28,25 +28,17 @@ final class EditProfileViewController: BaseViewController {
         navigationItem.rightBarButtonItem = mainView.editButton
     }
     
-    override func uiBind() {
-        //        mainView.editButton.rx.tap
-        //            .bind(with: self) { owner, _ in
-        //                owner.navigationController?.popViewController(animated: true)
-        //            }
-        //            .disposed(by: disposeBag)
-    }
-    
     override func bind() {
         let input = EditProfileViewModel.Input(editButtonTapped: mainView.editButton.rx.tap,
                                                editNickname: mainView.nicknameTextField.rx.text.orEmpty)
         
         let output = viewModel.transform(input: input)
         
-        output.editProfileSuccessTrigger
-            .drive(with: self) { owner, _ in
-                owner.view.makeToast("닉네임 변경 완료")
-            }
-            .disposed(by: disposeBag)
+//        output.editProfileSuccessTrigger
+//            .drive(with: self) { owner, _ in
+//                owner.view.makeToast("닉네임 변경 완료")
+//            }
+//            .disposed(by: disposeBag)
     
         output.editProfileError
             .drive(with: self) { owner, error in

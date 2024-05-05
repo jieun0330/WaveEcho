@@ -11,7 +11,7 @@ import Lottie
 
 class PostsView: BaseView {
     
-    lazy var seaBackgroundLottiView : LottieAnimationView = {
+    lazy var seaBackgroundLottiView: LottieAnimationView = {
         let animationView = LottieAnimationView(name: "wavesAnimation")
         animationView.frame = CGRect(x: 0, y: 0, width: .max, height: .max)
         animationView.center = center
@@ -43,12 +43,6 @@ class PostsView: BaseView {
         return item
     }()
     
-    lazy var myPageButton = {
-        let item = UIBarButtonItem()
-        item.image = UIImage(systemName: "person")
-        return item
-    }()
-    
     override init(frame: CGRect) {
         super .init(frame: frame)
         
@@ -74,7 +68,7 @@ class PostsView: BaseView {
             $0.top.equalToSuperview()
             $0.bottom.equalTo(safeAreaLayoutGuide).offset(-200)
         }
-        
+
         sendWaveButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide)
             $0.height.equalTo(50)
