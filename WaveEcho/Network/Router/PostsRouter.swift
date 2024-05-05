@@ -18,6 +18,8 @@ enum PostsRouter {
     case fetchPosts(query: PostQueryString)
     // 유저별 작성한 포스트 조회
     case userPost(id: String)
+    // 포스트 삭제
+    case delePost(id: String)
 }
 
 extension PostsRouter: TargetType {
@@ -35,6 +37,8 @@ extension PostsRouter: TargetType {
             return .post
         case .userPost:
             return .get
+        case .delePost(_):
+            return .delete
         }
     }
     
@@ -54,6 +58,9 @@ extension PostsRouter: TargetType {
         case .userPost:
             return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .delePost(_):
+            return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
@@ -67,12 +74,14 @@ extension PostsRouter: TargetType {
             return "/v1/posts/files"
         case .userPost(id: let id):
             return "/v1/posts/users/\(id)"
+        case .delePost(id: let id):
+            return "/v1/posts/\(id)"
         }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .createPosts(_):
+        case .createPosts(_), .delePost(_):
             nil
         case .uploadImage, .userPost(_):
             nil
@@ -90,7 +99,7 @@ extension PostsRouter: TargetType {
         switch self {
         case .createPosts(query: let query):
             return try? encoder.encode(query)
-        case .fetchPosts, .uploadImage, .userPost:
+        case .fetchPosts, .uploadImage, .userPost, .delePost(_):
             return nil
         }
     }

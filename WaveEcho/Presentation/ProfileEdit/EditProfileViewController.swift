@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import Toast
 
 final class EditProfileViewController: BaseViewController {
     
     let mainView = EditProfileView()
     private let viewModel = EditProfileViewModel()
+    var profileImg: Data?
     
     override func loadView() {
         super.loadView()
@@ -38,8 +42,14 @@ final class EditProfileViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
-        output.editProfileError.asObservable()
-            .bind(with: self) { owner, error in
+        output.editProfileSuccessTrigger
+            .drive(with: self) { owner, _ in
+                owner.view.makeToast("닉네임 변경 완료")
+            }
+            .disposed(by: disposeBag)
+    
+        output.editProfileError
+            .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .editMyProfile)
             }
             .disposed(by: disposeBag)

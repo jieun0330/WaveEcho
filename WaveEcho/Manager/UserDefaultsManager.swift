@@ -16,6 +16,8 @@ final class UserDefaultsManager {
         case accessToken
         case refreshToken
         case userID
+        case email
+        case nickname
     }
     
     let userDefaults = UserDefaults.standard
@@ -44,6 +46,24 @@ final class UserDefaultsManager {
         }
         set {
             userDefaults.set(newValue, forKey: UserDefaultsKey.userID.rawValue)
+        }
+    }
+    
+    var email: String {
+        get {
+            userDefaults.string(forKey: UserDefaultsKey.email.rawValue) ?? ""
+        }
+        set {
+            userDefaults.set(newValue, forKey: UserDefaultsKey.email.rawValue)
+        }
+    }
+    
+    var nickname: String {
+        get {
+            userDefaults.string(forKey: UserDefaultsKey.nickname.rawValue) ?? ""
+        }
+        set {
+            userDefaults.set(newValue, forKey: UserDefaultsKey.nickname.rawValue)
         }
     }
 }

@@ -89,7 +89,8 @@ class SignupViewModel: ViewModelType {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
-                    UserDefaults.standard.set(success.email, forKey: "email")
+                    UserDefaultsManager.shared.email = success.email
+                    UserDefaultsManager.shared.nickname = success.nick
                     signupTrigger.accept(())
                 case .failure(let error):
                     signupError.accept(error)
@@ -107,10 +108,9 @@ class SignupViewModel: ViewModelType {
             }
             .bind(with: self) { owner, result in
                 switch result {
-                case .success(let success):
+                case .success(_):
                     validEmailTrigger.accept(true)
                     // 이메일 중복확인 안내 텍스트
-//                    validEmail.accept(success.message)
                 case .failure(let error):
                     validEmailError.accept(error)
                 }

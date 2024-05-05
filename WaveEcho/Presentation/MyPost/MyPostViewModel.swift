@@ -15,16 +15,23 @@ final class MyPostViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoad: Observable<Void>
+        let deletePostID: BehaviorRelay<String>
+//        let deletePostButtonTapped: BehaviorRelay<Void>
     }
     
     struct Output {
         let postDataSuccess: Driver<[PostData]>
         let postDataError: Driver<APIError>
+        let deletePostID: Driver<String>
+        let viewWillAppearTrigger: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
         let postDataSuccess = PublishRelay<[PostData]>()
         let postDataError = PublishRelay<APIError>()
+//        let deleteButtonTapped = PublishRelay<Void>()
+        let viewWillAppearTrigger = PublishRelay<Void>()
+        let deletePostError = PublishRelay<APIError>()
         
         input.viewDidLoad
             .flatMap { _ in
@@ -41,6 +48,20 @@ final class MyPostViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(postDataSuccess: postDataSuccess.asDriver(onErrorJustReturn: [PostData(post_id: "", product_id: "신디", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], likes: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])]), postDataError: postDataError.asDriver(onErrorJustReturn: .code500))
+//        input.deletePostID
+//            .flatMap { postID in
+//                APIManager.shared.create(type: PostResponse.self, router: PostsRouter.delePost(id: postID))
+//            }
+//            .bind(with: self) { owner, result in
+//                switch result {
+//                case .success(_):
+//                    viewWillAppearTrigger.accept(())
+//                case .failure(let error):
+//                    deletePostError.accept(error)
+//                }
+//            }
+//            .disposed(by: disposeBag)
+        
+        return Output(postDataSuccess: postDataSuccess.asDriver(onErrorJustReturn: [PostData(post_id: "", product_id: "신디", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], likes: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])]), postDataError: postDataError.asDriver(onErrorJustReturn: .code500), deletePostID: input.deletePostID.asDriver(), viewWillAppearTrigger: viewWillAppearTrigger.asDriver(onErrorJustReturn: ()))
     }
 }

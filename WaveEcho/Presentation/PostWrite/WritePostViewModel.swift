@@ -16,7 +16,7 @@ class WritePostViewModel: ViewModelType {
     struct Input {
         let content: ControlProperty<String>
         let photoButtonTapped: ControlEvent<Void>
-        let uploadButtonTapped: ControlEvent<Void>
+        let sendButtonTapped: ControlEvent<Void>
         let uploadImage: PublishRelay<Data>
     }
     
@@ -24,9 +24,12 @@ class WritePostViewModel: ViewModelType {
         let createPostTrigger: Driver<Void>
         let createPostError: Driver<APIError>
         let uploadPhotoButtonTapped: Driver<Void>
+        
+        let validUpload: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
+        let validUpload = BehaviorRelay(value: false)
         
         let createPostTrigger = PublishRelay<Void>()
         let createPostError = PublishRelay<APIError>()
@@ -60,7 +63,21 @@ class WritePostViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        input.uploadButtonTapped
+        
+        contentObservable
+            .bind(with: self) { owner, writePostRequest in
+                guard let content = writePostRequest.content else { return }
+                // 콘텐츠 작성 -> 사진 업로드 하면 던지기 버튼 비활성화 되어있음
+                // 반대로 사진 업로드 부터 하면 던지기 버튼 활성화 됨
+                if !content.isEmpty && !uploadPhotoSuccess.value.isEmpty {
+                    validUpload.accept(true)
+                } else {
+                    validUpload.accept(false)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        input.sendButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMap { postRequest in
@@ -68,9 +85,11 @@ class WritePostViewModel: ViewModelType {
             }
             .bind(with: self) { owner, result in
                 switch result {
-                case .success(let success):
+                case .success(_):
                     createPostTrigger.accept(())
                 case .failure(let error):
+                    // fail안에서의 success가 뜨고있는 상황
+                    createPostTrigger.accept(())
                     createPostError.accept(error)
                 }
             }
@@ -82,6 +101,6 @@ class WritePostViewModel: ViewModelType {
         
         return Output(createPostTrigger: createPostTrigger.asDriver(onErrorJustReturn: ()),
                       createPostError: createPostError.asDriver(onErrorJustReturn: .code500),
-                      uploadPhotoButtonTapped: uploadPhotoTrigger.asDriver(onErrorJustReturn: ()))
+                      uploadPhotoButtonTapped: uploadPhotoTrigger.asDriver(onErrorJustReturn: ()), validUpload: validUpload.asDriver())
     }
 }

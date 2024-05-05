@@ -32,10 +32,21 @@ final class WritePostViewController: BaseViewController {
         
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
                                              photoButtonTapped: mainView.uploadPhotoButton.rx.tap,
-                                             uploadButtonTapped: mainView.sendButton.rx.tap,
+                                             sendButtonTapped: mainView.sendButton.rx.tap,
                                              uploadImage: imageData)
         
         let output = viewModel.transform(input: input)
+        
+        output.validUpload
+            .drive(with: self) { owner, value in
+                let validButtonColor: UIColor = value ? .systemBlue : .systemGray5
+                owner.mainView.sendButton.backgroundColor = validButtonColor
+                let buttonTitleColor: UIColor = value ? .black : .lightGray
+                owner.mainView.sendButton.setTitleColor(buttonTitleColor, for: .normal)
+                let isEnabled: Bool = value ? true : false
+                owner.mainView.sendButton.isEnabled = isEnabled
+            }
+            .disposed(by: disposeBag)
         
         output.createPostTrigger
             .drive(with: self) { owner, _ in

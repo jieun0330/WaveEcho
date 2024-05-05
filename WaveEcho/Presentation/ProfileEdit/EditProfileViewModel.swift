@@ -21,29 +21,34 @@ class EditProfileViewModel: ViewModelType {
     struct Output {
         let editProfileSuccess: Driver<EditMyProfileResponse>
         let editProfileError: Driver<APIError>
+        let editProfileSuccessTrigger: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
         
         let editProfileSuccess = PublishRelay<EditMyProfileResponse>()
         let editProfileError = PublishRelay<APIError>()
+        let editProfileSuccessTrigger = PublishRelay<Void>()
         
-        input.editButtonTapped
-            .withLatestFrom(input.editNickname)
-            .flatMap { nickname in
-                return APIManager.shared.create(type: EditMyProfileResponse.self,
-                                                router: ProfileRouter.editMyPofile(query: EditMyProfileRequestBody(nick: nickname, phoneNum: nil, birthDay: nil, profile: nil)))
-            }
-            .bind(with: self) { owner, result in
-                switch result {
-                case .success(let success):
-                    editProfileSuccess.accept(success)
-                case .failure(let error):
-                    editProfileError.accept(error)
-                }
-            }
-            .disposed(by: disposeBag)
-                
-        return Output(editProfileSuccess: editProfileSuccess.asDriver(onErrorJustReturn: EditMyProfileResponse(user_id: "", email: "", nick: "", followers: [Followers(user_id: "", nick: "", profileImage: "")], following: [Following(user_id: "", nick: "", profileImage: "")], posts: [""])), editProfileError: editProfileError.asDriver(onErrorJustReturn: .code500))
+//        input.editButtonTapped
+//            .withLatestFrom(input.editNickname)
+//            .flatMapLatest { nickname in
+//                
+//                let editMyProfileRequest = EditMyProfileRequestBody(nick: nickname, phoneNum: "", birthDay: "", profile: nil)
+//                
+//                return APIManager.shared.editProfile(query: editMyProfileRequest)
+//            }
+//            .bind(with: self) { owner, result in
+//                switch result {
+//                case .success(let success):
+//                    editProfileSuccess.accept(success)
+//                    editProfileSuccessTrigger.accept(())
+//                case .failure(let error):
+//                    editProfileError.accept(error)
+//                }
+//            }
+//            .disposed(by: disposeBag)
+        
+        return Output(editProfileSuccess: editProfileSuccess.asDriver(onErrorJustReturn: EditMyProfileResponse(user_id: "", email: "", nick: "", followers: [Followers(user_id: "", nick: "", profileImage: "")], following: [Following(user_id: "", nick: "", profileImage: "")], posts: [""])), editProfileError: editProfileError.asDriver(onErrorJustReturn: .code500), editProfileSuccessTrigger: editProfileSuccessTrigger.asDriver(onErrorJustReturn: ()))
     }
 }

@@ -51,7 +51,8 @@ final class MyPostViewController: BaseViewController {
     }
     
     override func bind() {
-        let input = MyPostViewModel.Input(viewDidLoad: Observable.just(Void()))
+        let input = MyPostViewModel.Input(viewDidLoad: Observable.just(Void()),
+                                          deletePostID: BehaviorRelay(value: ""))
         
         let output = viewModel.transform(input: input)
         
@@ -70,7 +71,22 @@ final class MyPostViewController: BaseViewController {
                 let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
                 cell.date.text = relativeDate
                 cell.selectionStyle = .none
+                
+//                cell.deleteButton.rx.tap
+//                    .bind { _ in
+//                        print("삭제 버튼 클릭")
+//                        input.deletePostID.accept(item.post_id)
+//                    }
+//                    .disposed(by: cell.disposeBag)
+                
+                input.deletePostID.accept(item.post_id)
             }
-                                                  .disposed(by: disposeBag)
+                                                  .disposed(by: disposeBag) 
+        
+//        output.viewWillAppearTrigger.asObservable()
+//            .bind(with: self) { owner, _ in
+//                owner.viewWillAppear(true)
+//            }
+//            .disposed(by: disposeBag)
     }
 }

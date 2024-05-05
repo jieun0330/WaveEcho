@@ -23,8 +23,8 @@ struct PostData: Decodable {
 }
 
 struct CreatorInfo: Decodable {
-    let user_id: String
-    let nick: String
+    let user_id: String?
+    let nick: String?
     let profileImage: String?
 }
 

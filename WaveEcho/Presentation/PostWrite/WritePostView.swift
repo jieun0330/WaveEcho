@@ -47,6 +47,8 @@ class WritePostView: BaseView {
     
     let uploadPhotoButton = {
         let button = UIButton()
+        button.setImage(UIImage(systemName: "photo.on.rectangle.angled"), for: .normal)
+        button.tintColor = .black
         button.setTitle("사진", for: .normal)
         button.setTitleColor(.black, for: .normal)
         return button
@@ -56,7 +58,6 @@ class WritePostView: BaseView {
         let button = UIButton()
         button.setTitle("던지기", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .lightGray
         button.layer.cornerRadius = 20
         return button
     }()
