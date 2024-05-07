@@ -24,12 +24,16 @@ final class APIManager {
                 AF
                     .request(urlRequest, interceptor: RefreshToken())
                     .responseDecodable(of: T.self) { response in
+                        print("response", response)
                         switch response.result {
                         case .success(let success):
+                            print("success", success)
                             single(.success(.success(success)))
-                        case .failure(_):
+                        case .failure(let error):
+                            print("error", error.localizedDescription)
                             guard let statusCode = response.response?.statusCode else { return }
                             guard let error = APIError(rawValue: statusCode) else { return }
+                            print("statusCode", statusCode)
                             single(.success(.failure(error)))
                         }
                     }

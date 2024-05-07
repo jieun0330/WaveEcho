@@ -29,8 +29,10 @@ final class MyPostViewController: BaseViewController {
     }
     
     override func uiBind() {
+        
         // 내 프로필 modal 띄우기
         mainView.myPageButton.rx.tap
+            .debug()
             .bind(with: self) { owner, _ in
                 if let sheet = owner.myProfileView.sheetPresentationController {
                     sheet.detents = [.medium()]
@@ -42,23 +44,27 @@ final class MyPostViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        // 닉네임 수정 버튼
         myProfileView.mainView.editNicknameButton.rx.tap
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .debug()
             .bind(with: self) { owner, _ in
                 let vc = EditProfileViewController()
                 owner.navigationController?.pushViewController(vc, animated: true)
                 vc.mainView.nicknameTextField.text = owner.postData.first?.creator.nick
             }
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag)        
     }
     
     override func bind() {
         let input = MyPostViewModel.Input(viewDidLoad: Observable.just(Void()),
-                                          deletePostID: BehaviorRelay(value: ""))
+                                          deletePostID: BehaviorRelay(value: ""),
+                                          tableViewModelData: mainView.tableView.rx.modelDeleted(PostData.self))
         
         let output = viewModel.transform(input: input)
         
         output.postDataSuccess.asObservable()
+            .debug()
             .bind(with: self) { owner, postData in
                 owner.postData = postData
             }
@@ -66,6 +72,7 @@ final class MyPostViewController: BaseViewController {
         
         output.postDataSuccess.asObservable()
             .map { $0 }
+            .debug()
             .bind(to: mainView.tableView.rx.items(cellIdentifier: MyPostTableViewCell.identifier,
                                                   cellType: MyPostTableViewCell.self)) { row, item, cell in
                 cell.contents.text = item.content
@@ -81,14 +88,14 @@ final class MyPostViewController: BaseViewController {
                 } else {
                     cell.contentImage.image = .whitePaper
                 }
-                input.deletePostID.accept(item.post_id)
             }
                                                   .disposed(by: disposeBag) 
         
-//        output.viewWillAppearTrigger.asObservable()
-//            .bind(with: self) { owner, _ in
-//                owner.viewWillAppear(true)
-//            }
-//            .disposed(by: disposeBag)
+        output.viewWillAppearTrigger.asObservable()
+            .debug()
+            .bind(with: self) { owner, _ in
+                owner.viewWillAppear(true)
+            }
+            .disposed(by: disposeBag)
     }
 }

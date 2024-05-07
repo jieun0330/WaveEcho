@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Lottie
 
-class SignupView: BaseView {
+class JoinView: BaseView {
     
     lazy var seaBackgroundLottiView : LottieAnimationView = {
         let animationView = LottieAnimationView(name: "wavesAnimation")
@@ -166,16 +166,16 @@ class SignupView: BaseView {
             $0.horizontalEdges.equalToSuperview().inset(30)
         }
         
-        //        validEmailButton.snp.makeConstraints {
-        //            $0.trailing.equalToSuperview().offset(-5)
-        //            $0.bottom.equalTo(emailTextField)
-        //            $0.width.equalTo(80)
-        //        }
-        
-        //        validEmail.snp.makeConstraints {
-        //            $0.top.equalTo(emailTextField.snp.bottom).offset(5)
-        //            $0.leading.equalTo(emailTextField)
-        //        }
+        validEmailButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-5)
+            $0.bottom.equalTo(emailTextField)
+            $0.width.equalTo(80)
+        }
+
+        validEmail.snp.makeConstraints {
+            $0.top.equalTo(emailTextField.snp.bottom).offset(5)
+            $0.leading.equalTo(emailTextField)
+        }
         
         password.snp.makeConstraints {
             $0.leading.equalTo(email)

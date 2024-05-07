@@ -48,7 +48,7 @@ final class PostsViewController: BaseViewController {
             
             messageLottiView.snp.makeConstraints {
                 $0.leading.equalTo(view).offset(Int.random(in: 0..<Int(screenWidth) - 40))
-                $0.top.equalTo(view).offset(Int.random(in: 350..<Int(screenHeight) - 140))
+                $0.top.equalTo(view).offset(Int.random(in: 350..<Int(screenHeight) - 160))
                 $0.size.equalTo(Int.random(in: 30...100))
             }
             
@@ -121,6 +121,7 @@ final class PostsViewController: BaseViewController {
         
         output.postsContent
             .map { $0.data }
+            .debug()
             .bind(with: self) { owner, postData in
                 owner.postData = postData
             }
@@ -128,6 +129,7 @@ final class PostsViewController: BaseViewController {
         
         // 포스팅 에러 핸들링
         output.postsError
+            .debug()
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .createPosts)
             }
@@ -137,6 +139,7 @@ final class PostsViewController: BaseViewController {
         // rootView 첫화면으로 전환
         output.postsError
             .debounce(.seconds(2))
+            .debug()
             .drive(with: self) { owner, error in
                 if case .success = error {
                 } else {
@@ -150,5 +153,8 @@ final class PostsViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+    }
+    deinit {
+        print(self)
     }
 }

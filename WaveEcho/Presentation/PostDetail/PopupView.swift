@@ -38,6 +38,12 @@ final class PopupView: BaseView {
         return label
     }()
     
+    let like = {
+        let like = UIButton()
+        like.setImage(UIImage(systemName: "heart"), for: .normal)
+        return like
+    }()
+    
     private let scrollView = {
         let view = UIScrollView()
         view.backgroundColor = .yellow
@@ -125,7 +131,7 @@ final class PopupView: BaseView {
             scrollView.addSubview($0)
         }
         
-        [profileImage, nicknameLabel, contentLabel, contentImage].forEach {
+        [profileImage, nicknameLabel, like, contentLabel, contentImage].forEach {
             contentView.addSubview($0)
         }
     }
@@ -136,10 +142,10 @@ final class PopupView: BaseView {
             $0.verticalEdges.equalTo(safeAreaLayoutGuide).inset(32)
         }
         
-//        contentView.snp.makeConstraints {
-//            $0.top.equalToSuperview().inset(32)
-//            $0.horizontalEdges.equalToSuperview().inset(24)
-//        }
+        contentView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(32)
+            $0.horizontalEdges.equalToSuperview().inset(24)
+        }
         
         profileImage.snp.makeConstraints {
             $0.leading.top.equalToSuperview()
@@ -149,6 +155,12 @@ final class PopupView: BaseView {
         nicknameLabel.snp.makeConstraints {
             $0.leading.equalTo(profileImage.snp.trailing).offset(10)
             $0.centerY.equalTo(profileImage)
+        }
+        
+        like.snp.makeConstraints {
+            $0.top.equalTo(nicknameLabel)
+            $0.trailing.trailing.equalToSuperview()
+            $0.size.equalTo(20)
         }
         
         contentLabel.snp.makeConstraints {
@@ -167,16 +179,6 @@ final class PopupView: BaseView {
             $0.top.equalTo(contentImage.snp.bottom).offset(5)
             $0.trailing.equalTo(contentLabel)
         }
-        
-//        commentIcon.snp.makeConstraints {
-//            $0.top.equalTo(collectionView.snp.top).offset(40)
-//            $0.leading.equalTo(profileImage)
-//        }
-//        
-//        commentLabel.snp.makeConstraints {
-//            $0.leading.equalTo(commentIcon.snp.trailing).offset(5)
-//            $0.centerY.equalTo(commentIcon)
-//        }
         
         collectionView.snp.makeConstraints {
             $0.height.equalTo(180)

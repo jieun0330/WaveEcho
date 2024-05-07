@@ -22,25 +22,25 @@ final class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
     }
     
     override func configureView() {
-        
         mainView.emailTextField.delegate = self
         mainView.passwordTextField.delegate = self
     }
     
     override func uiBind() {
         mainView.rightBarButtonItem.rx.tap
+            .debug()
             .bind(with: self) { owner, _ in
-                let vc = SignupViewController()
+                let vc = JoinViewController()
                 owner.navigationController?.viewControllers = [vc]
             }
             .disposed(by: disposeBag)
         
         mainView.loginButton.rx.tap
+            .debug()
             .bind(with: self) { owner, _ in
                 owner.view.endEditing(true)
             }
@@ -57,6 +57,7 @@ final class LoginViewController: BaseViewController {
         
         // 로그인버튼 (비)활성화
         output.validLogin.asObservable()
+            .debug()
             .bind(with: self) { owner, value in
                 let validButtonColor: UIColor = value ? .systemCyan : .systemGray5
                 owner.mainView.loginButton.backgroundColor = validButtonColor
@@ -69,6 +70,7 @@ final class LoginViewController: BaseViewController {
         
         // 로그인 실패했을 시 에러 핸들링
         output.loginError
+            .debug()
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .login)
             }
@@ -76,6 +78,7 @@ final class LoginViewController: BaseViewController {
         
         // 로그인 되었습니다 toast message
         output.loginTrigger
+            .debug()
             .drive(with: self) { owner, value in
                 owner.view.makeToast("로그인되었습니다")
             }
@@ -84,11 +87,15 @@ final class LoginViewController: BaseViewController {
         // 2초 후 화면 전환
         output.loginTrigger
             .debounce(.seconds(1))
+            .debug()
             .drive(with: self) { owner, _ in
                 let vc = PostsViewController()
                 owner.navigationController?.setViewControllers([vc], animated: true)
             }
             .disposed(by: disposeBag)
+    }
+    deinit {
+        print(self)
     }
 }
 

@@ -20,6 +20,8 @@ enum PostsRouter {
     case userPost(id: String)
     // 포스트 삭제
     case delePost(id: String)
+    // 포스트 좋아요
+    case likePost(query: LikeQuery, id: String)
 }
 
 extension PostsRouter: TargetType {
@@ -39,6 +41,8 @@ extension PostsRouter: TargetType {
             return .get
         case .delePost(_):
             return .delete
+        case .likePost(_, _):
+            return .post
         }
     }
     
@@ -61,6 +65,11 @@ extension PostsRouter: TargetType {
         case .delePost(_):
             return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+        case .likePost(_, _):
+            return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
+                    HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
+
         }
     }
     
@@ -76,12 +85,14 @@ extension PostsRouter: TargetType {
             return "/v1/posts/users/\(id)"
         case .delePost(id: let id):
             return "/v1/posts/\(id)"
+        case .likePost(_, id: let id):
+            return "/v1/posts/\(id)/like"
         }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .createPosts(_), .delePost(_):
+        case .createPosts(_), .delePost(_), .likePost(_, _):
             nil
         case .uploadImage, .userPost(_):
             nil
@@ -101,6 +112,8 @@ extension PostsRouter: TargetType {
             return try? encoder.encode(query)
         case .fetchPosts, .uploadImage, .userPost, .delePost(_):
             return nil
+        case .likePost(query: let query, _):
+            return try? encoder.encode(query)
         }
     }
 }

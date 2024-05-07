@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class SignupViewModel: ViewModelType {
+final class JoinViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     
@@ -60,12 +60,12 @@ class SignupViewModel: ViewModelType {
         
         let validEmailObservable = input.email.asObservable()
             .map { email in
-                
                 return ValidEmailRequestBody(email: email)
             }
         
         // 회원가입 조건
         signupObservable
+            .debug()
             .bind(with: self) { owner, signupRequest in
                 if signupRequest.nick.count >= 2 &&
                     signupRequest.email.contains("@") &&
@@ -86,6 +86,7 @@ class SignupViewModel: ViewModelType {
             .flatMap { signupRequest in
                 return APIManager.shared.create(type: SignupResponse.self, router: UsersRouter.signup(query: signupRequest))
             }
+            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
@@ -106,6 +107,7 @@ class SignupViewModel: ViewModelType {
                 return APIManager.shared.create(type: ValidEmailResponse.self,
                                                 router: UsersRouter.validEmail(query: emailRequest))
             }
+            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):

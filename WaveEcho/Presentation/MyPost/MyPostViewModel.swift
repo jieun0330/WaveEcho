@@ -16,7 +16,7 @@ final class MyPostViewModel: ViewModelType {
     struct Input {
         let viewDidLoad: Observable<Void>
         let deletePostID: BehaviorRelay<String>
-//        let deletePostButtonTapped: BehaviorRelay<Void>
+        let tableViewModelData: ControlEvent<PostData>
     }
     
     struct Output {
@@ -29,7 +29,6 @@ final class MyPostViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let postDataSuccess = PublishRelay<[PostData]>()
         let postDataError = PublishRelay<APIError>()
-//        let deleteButtonTapped = PublishRelay<Void>()
         let viewWillAppearTrigger = PublishRelay<Void>()
         let deletePostError = PublishRelay<APIError>()
         
@@ -38,6 +37,7 @@ final class MyPostViewModel: ViewModelType {
                 return APIManager.shared.create(type: PostResponse.self,
                                                 router: PostsRouter.userPost(id: UserDefaults.standard.string(forKey: "userID") ?? ""))
             }
+            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
@@ -48,19 +48,20 @@ final class MyPostViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-//        input.deletePostID
-//            .flatMap { postID in
-//                APIManager.shared.create(type: PostResponse.self, router: PostsRouter.delePost(id: postID))
-//            }
-//            .bind(with: self) { owner, result in
-//                switch result {
-//                case .success(_):
-//                    viewWillAppearTrigger.accept(())
-//                case .failure(let error):
-//                    deletePostError.accept(error)
-//                }
-//            }
-//            .disposed(by: disposeBag)
+        input.tableViewModelData
+            .flatMap { postData in
+                APIManager.shared.create(type: PostResponse.self, router: PostsRouter.delePost(id: postData.post_id))
+            }
+            .debug()
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(_):
+                    viewWillAppearTrigger.accept(())
+                case .failure(let error):
+                    deletePostError.accept(error)
+                }
+            }
+            .disposed(by: disposeBag)
         
         return Output(postDataSuccess: postDataSuccess.asDriver(onErrorJustReturn: [PostData(post_id: "", product_id: "신디", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], likes: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])]), postDataError: postDataError.asDriver(onErrorJustReturn: .code500), deletePostID: input.deletePostID.asDriver(), viewWillAppearTrigger: viewWillAppearTrigger.asDriver(onErrorJustReturn: ()))
     }

@@ -13,6 +13,8 @@ final class MyPostTableViewCell: BaseTableViewCell {
     
     var disposeBag = DisposeBag()
     
+//    var deleteAction: (() -> Void)?
+    
     static var identifier: String {
         return String(describing: self)
     }
@@ -86,22 +88,11 @@ final class MyPostTableViewCell: BaseTableViewCell {
         contents.snp.makeConstraints {
             $0.leading.equalTo(contentImage.snp.trailing).offset(5)
             $0.top.equalTo(contentImage)
-            $0.trailing.equalToSuperview().inset(5)
         }
         
         date.snp.makeConstraints {
             $0.bottom.trailing.equalToSuperview().inset(5)
         }
-        
-//        editButton.snp.makeConstraints {
-//            $0.top.equalTo(backView.snp.bottom)
-//            $0.trailing.equalTo(deleteButton.snp.leading).offset(5)
-//        }
-//        
-//        deleteButton.snp.makeConstraints {
-//            $0.top.equalTo(editButton.snp.top)
-//            $0.trailing.equalTo(backView)
-//        }
     }
     
     override func layoutSubviews() {

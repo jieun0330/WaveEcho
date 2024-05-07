@@ -56,7 +56,7 @@ class RefreshToken: RequestInterceptor {
                 
             }
         default:
-            completion(.doNotRetryWithError(error))
+            completion(.doNotRetry)
         }
     }
 }

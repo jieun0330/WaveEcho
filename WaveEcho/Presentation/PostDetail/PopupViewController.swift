@@ -37,17 +37,17 @@ final class PopupViewController: BaseViewController {
     private func createLayout() -> UICollectionViewFlowLayout {
         
         let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 20
+        let spacing: CGFloat = 10
         let width = UIScreen.main.bounds.width - (spacing * 2)
         
-        layout.itemSize = CGSize(width: width / 1.2, height: width / 2)
+        layout.itemSize = CGSize(width: width / 1.2, height: width / 7)
         layout.minimumLineSpacing = spacing
         layout.sectionInset = UIEdgeInsets(top: spacing,
                                            left: spacing,
                                            bottom: spacing,
                                            right: spacing)
         layout.minimumInteritemSpacing = spacing
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         
         return layout
     }
@@ -58,6 +58,7 @@ final class PopupViewController: BaseViewController {
         behaviorModel
             .compactMap { $0 }
             .map({ $0.comments })
+            .debug()
             .bind(to: mainView.collectionView.rx.items(cellIdentifier: CommentCollectionViewCell.identifier, cellType: CommentCollectionViewCell.self)) { row, item, cell in
                 // 코멘트 프로필 이미지
                 if let profileImageURL = item.creator.profileImage {
@@ -75,13 +76,17 @@ final class PopupViewController: BaseViewController {
         
         replyView.postID.accept(model.post_id)
         
+        // 던지기 버튼
         mainView.throwButton.rx.tap
+            .debug()
             .bind(with: self) { owner, _ in
                 owner.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
         
+        // 답장 버튼
         mainView.replyButton.rx.tap
+            .debug()
             .bind(with: self) { owner, _ in
                 if let sheet = owner.replyView.sheetPresentationController {
                     sheet.detents = [.medium()]

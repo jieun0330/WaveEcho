@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 import Toast
 
-final class SignupViewController: BaseViewController {
+final class JoinViewController: BaseViewController {
     
-    private let mainView = SignupView()
-    private let viewModel = SignupViewModel()
+    private let mainView = JoinView()
+    private let viewModel = JoinViewModel()
     
     override func loadView() {
         view = mainView
@@ -22,6 +22,7 @@ final class SignupViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 로그인
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
     }
     
@@ -33,7 +34,9 @@ final class SignupViewController: BaseViewController {
     
     override func uiBind() {
         
+        // 로그인뷰 이동
         mainView.rightBarButtonItem.rx.tap
+            .debug()
             .bind(with: self) { owner, _ in
                 let vc = LoginViewController()
                 owner.navigationController?.viewControllers = [vc]
@@ -43,16 +46,17 @@ final class SignupViewController: BaseViewController {
     
     override func bind() {
         
-        let input = SignupViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
-                                          password: mainView.passwordTextField.rx.text.orEmpty,
-                                          nickname: mainView.nicknameTextField.rx.text.orEmpty,
-                                          signupButtonTapped: mainView.signupButton.rx.tap,
-                                          validEmailButtonTapped: mainView.validEmailButton.rx.tap)
+        let input = JoinViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
+                                        password: mainView.passwordTextField.rx.text.orEmpty,
+                                        nickname: mainView.nicknameTextField.rx.text.orEmpty,
+                                        signupButtonTapped: mainView.signupButton.rx.tap,
+                                        validEmailButtonTapped: mainView.validEmailButton.rx.tap)
         
         let output = viewModel.transform(input: input)
         
         // 회원가입 조건
         output.validSignup
+            .debug()
             .drive(with: self) { owner, value in
                 let validButtonColor: UIColor = value ? .systemYellow : .systemGray5
                 owner.mainView.signupButton.backgroundColor = validButtonColor
@@ -66,6 +70,7 @@ final class SignupViewController: BaseViewController {
         // 회원가입 완료 토스트 창
         output.signupTrigger
             .debounce(.seconds(1))
+            .debug()
             .drive(with: self) { owner, _ in
                 owner.view.makeToast("회원가입이 완료되었습니다")
             }
@@ -74,6 +79,7 @@ final class SignupViewController: BaseViewController {
         // 회원가입 완료 -> 로그인 뷰컨 이동
         output.signupTrigger
             .debounce(.seconds(2))
+            .debug()
             .drive(with: self) { owner, _ in
                 let vc = LoginViewController()
                 owner.navigationController?.setViewControllers([vc], animated: true)
@@ -81,25 +87,27 @@ final class SignupViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 이메일 중복확인 안내 text
-//        output.validEmail
-//            .drive(with: self) { owner, value in
-//                owner.mainView.validEmail.text = value
-//            }
-//            .disposed(by: disposeBag)
+        output.validEmail
+            .debug()
+            .drive(with: self) { owner, value in
+                owner.mainView.validEmail.text = value
+            }
+            .disposed(by: disposeBag)
         
         // 회원가입 에러 처리
         output.signupError
+            .debug()
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .signup)
             }
             .disposed(by: disposeBag)
         
         // 이메일 중복 확인 에러 처리
-//        output.validEmailError
-//            .drive(with: self) { owner, error in
-//                owner.errorHandler(apiError: error, calltype: .validEmail)
-//            }
-//            .disposed(by: disposeBag)
+        //        output.validEmailError
+        //            .drive(with: self) { owner, error in
+        //                owner.errorHandler(apiError: error, calltype: .validEmail)
+        //            }
+        //            .disposed(by: disposeBag)
         
         //        signupOutput.validSignup
         //            .drive(with: self) { owner, value in
@@ -107,17 +115,14 @@ final class SignupViewController: BaseViewController {
         //                owner.mainView.validEmail.text = validEmail
         //            }.disposed(by: disposeBag)
     }
+    deinit {
+        print(self)
+    }
 }
 
-extension SignupViewController: UITextFieldDelegate, UITextViewDelegate {
+extension JoinViewController: UITextFieldDelegate, UITextViewDelegate {
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == mainView.nicknameTextField {
-            let transform = CGAffineTransform(translationX: 0, y: -150)
-            mainView.transform = transform
-        }
-    }
-    
+    // 입력 완료 후 다음 텍스트필드 커서로 이동
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         if textField == self.mainView.nicknameTextField {
@@ -126,6 +131,13 @@ extension SignupViewController: UITextFieldDelegate, UITextViewDelegate {
             self.mainView.passwordTextField.becomeFirstResponder()
         }
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == mainView.nicknameTextField {
+            let transform = CGAffineTransform(translationX: 0, y: -150)
+            mainView.transform = transform
+        }
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
