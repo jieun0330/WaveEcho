@@ -17,6 +17,13 @@ final class MyPostView: BaseView {
         return item
     }()
     
+//    lazy var sendPostCount = {
+//        let item = UIBarButtonItem()
+//        let count = UserDefaultsManager.shared.sendPost
+//        item.title = "메아리 횟수\(count)"
+//        return item
+//    }()
+    
     private let segment = {
         let segment = BetterSegmentedControl(frame: .zero)
         segment.segments = LabelSegment.segments(withTitles: ["나의 메아리", "답장"])

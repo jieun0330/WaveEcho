@@ -11,6 +11,7 @@ import RxCocoa
 import Kingfisher
 import SnapKit
 import Lottie
+import WebKit
 
 final class PostsViewController: BaseViewController {
     
@@ -116,7 +117,8 @@ final class PostsViewController: BaseViewController {
                                                   message: "",
                                                   preferredStyle: .alert)
                     let yesAction = UIAlertAction(title: "결제하기", style: .default) {_ in
-                        
+                        let payView = PayViewController()
+                        owner.present(payView, animated: true)
                     }
                     let noAction = UIAlertAction(title: "닫기", style: .cancel)
                     alert.addAction(yesAction)

@@ -29,7 +29,7 @@ final class MyPostViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.rightBarButtonItem = mainView.myPageButton
     }
     

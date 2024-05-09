@@ -67,6 +67,9 @@
 		C28A3A112BE7BF24000B2E90 /* LikeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A3A102BE7BF24000B2E90 /* LikeQuery.swift */; };
 		C28A3A132BE7BFF6000B2E90 /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A3A122BE7BFF6000B2E90 /* LikeModel.swift */; };
 		C28A3A152BE7C09A000B2E90 /* PopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A3A142BE7C09A000B2E90 /* PopupViewModel.swift */; };
+		C2B576372BECDA0C00B7A72F /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = C2B576362BECDA0C00B7A72F /* iamport-ios */; };
+		C2B5763A2BECE4C400B7A72F /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576392BECE4C400B7A72F /* PayView.swift */; };
+		C2B5763C2BECE60100B7A72F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5763B2BECE60100B7A72F /* PayViewController.swift */; };
 		C2CDC2A52BD1023800176723 /* PostsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A42BD1023800176723 /* PostsRouter.swift */; };
 		C2CDC2A72BD1062C00176723 /* WithdrawResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A62BD1062C00176723 /* WithdrawResponse.swift */; };
 		C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A82BD107A900176723 /* PostsViewModel.swift */; };
@@ -155,6 +158,8 @@
 		C28A3A102BE7BF24000B2E90 /* LikeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeQuery.swift; sourceTree = "<group>"; };
 		C28A3A122BE7BFF6000B2E90 /* LikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeModel.swift; sourceTree = "<group>"; };
 		C28A3A142BE7C09A000B2E90 /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
+		C2B576392BECE4C400B7A72F /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
+		C2B5763B2BECE60100B7A72F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		C2CDC2A42BD1023800176723 /* PostsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRouter.swift; sourceTree = "<group>"; };
 		C2CDC2A62BD1062C00176723 /* WithdrawResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawResponse.swift; sourceTree = "<group>"; };
 		C2CDC2A82BD107A900176723 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
@@ -191,6 +196,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B576372BECDA0C00B7A72F /* iamport-ios in Frameworks */,
 				C23D33C82BDE8D9800F81AB4 /* Kingfisher in Frameworks */,
 				C269AF132BE21F0D00BB6E20 /* BetterSegmentedControl in Frameworks */,
 				C27A067F2BE0D6CF0010D382 /* Lottie in Frameworks */,
@@ -448,6 +454,15 @@
 			path = Posts;
 			sourceTree = "<group>";
 		};
+		C2B576382BECE4AB00B7A72F /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				C2B576392BECE4C400B7A72F /* PayView.swift */,
+				C2B5763B2BECE60100B7A72F /* PayViewController.swift */,
+			);
+			path = Pay;
+			sourceTree = "<group>";
+		};
 		C2CDC2CF2BD4FDE400176723 /* QueryString */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +494,7 @@
 				C269AF142BE223DC00BB6E20 /* MyPost */,
 				C20E68B32BD8FC8400507C0B /* Profile */,
 				C23D33D22BDE9FCF00F81AB4 /* ProfileEdit */,
+				C2B576382BECE4AB00B7A72F /* Pay */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -576,6 +592,7 @@
 				C23D33C72BDE8D9800F81AB4 /* Kingfisher */,
 				C27A067E2BE0D6CF0010D382 /* Lottie */,
 				C269AF122BE21F0D00BB6E20 /* BetterSegmentedControl */,
+				C2B576362BECDA0C00B7A72F /* iamport-ios */,
 			);
 			productName = WaveEcho;
 			productReference = C23AFE742BC6CE820000EBE5 /* WaveEcho.app */;
@@ -613,6 +630,7 @@
 				C23D33C62BDE8D9800F81AB4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				C27A067D2BE0D6CF0010D382 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				C269AF112BE21F0D00BB6E20 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
+				C2B576352BECDA0C00B7A72F /* XCRemoteSwiftPackageReference "iamport-ios" */,
 			);
 			productRefGroup = C23AFE752BC6CE820000EBE5 /* Products */;
 			projectDirPath = "";
@@ -644,6 +662,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2B5763A2BECE4C400B7A72F /* PayView.swift in Sources */,
+				C2B5763C2BECE60100B7A72F /* PayViewController.swift in Sources */,
 				C20E68B92BD9001C00507C0B /* ProfileRouter.swift in Sources */,
 				C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */,
 				C20E68C22BD953FC00507C0B /* ImageUploadResponse.swift in Sources */,
@@ -879,6 +899,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -907,6 +928,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -992,6 +1014,14 @@
 				minimumVersion = 4.4.3;
 			};
 		};
+		C2B576352BECDA0C00B7A72F /* XCRemoteSwiftPackageReference "iamport-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iamport/iamport-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
 		C2CDC2AA2BD133D900176723 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift";
@@ -1037,6 +1067,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C27A067D2BE0D6CF0010D382 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		C2B576362BECDA0C00B7A72F /* iamport-ios */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2B576352BECDA0C00B7A72F /* XCRemoteSwiftPackageReference "iamport-ios" */;
+			productName = "iamport-ios";
 		};
 		C2CDC2AB2BD133D900176723 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
