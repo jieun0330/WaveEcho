@@ -18,6 +18,7 @@ final class UserDefaultsManager {
         case userID
         case email
         case nickname
+        case sendPost
     }
     
     let userDefaults = UserDefaults.standard
@@ -64,6 +65,15 @@ final class UserDefaultsManager {
         }
         set {
             userDefaults.set(newValue, forKey: UserDefaultsKey.nickname.rawValue)
+        }
+    }
+    
+    var sendPost: Int {
+        get {
+            userDefaults.integer(forKey: UserDefaultsKey.sendPost.rawValue)
+        }
+        set {
+            userDefaults.set(newValue, forKey: UserDefaultsKey.sendPost.rawValue)
         }
     }
 }

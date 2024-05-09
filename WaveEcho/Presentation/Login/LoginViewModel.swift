@@ -66,6 +66,7 @@ class LoginViewModel: ViewModelType {
                     UserDefaultsManager.shared.accessToken = success.accessToken
                     UserDefaultsManager.shared.refreshToken = success.refreshToken
                     UserDefaultsManager.shared.userID = success.user_id
+                    UserDefaultsManager.shared.sendPost = 5
                     loginTrigger.accept(())
                 case .failure(let error):
                     loginError.accept(error)

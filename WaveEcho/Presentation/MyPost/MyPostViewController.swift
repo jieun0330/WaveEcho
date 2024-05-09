@@ -10,6 +10,10 @@ import RxSwift
 import RxCocoa
 import Kingfisher
 
+//protocol fetchPost: AnyObject {
+//    func fetchDone(data: PostData)
+//}
+
 final class MyPostViewController: BaseViewController {
     
     private let mainView = MyPostView()
@@ -17,6 +21,7 @@ final class MyPostViewController: BaseViewController {
     private var postData: [PostData] = []
     // 내 프로필 조회 화면
     let myProfileView = AfterMyProfileViewController()
+//    weak var delegate: fetchPost?
     
     override func loadView() {
         view = mainView
@@ -53,7 +58,7 @@ final class MyPostViewController: BaseViewController {
                 owner.navigationController?.pushViewController(vc, animated: true)
                 vc.mainView.nicknameTextField.text = owner.postData.first?.creator.nick
             }
-            .disposed(by: disposeBag)        
+            .disposed(by: disposeBag)
     }
     
     override func bind() {
@@ -88,14 +93,15 @@ final class MyPostViewController: BaseViewController {
                 } else {
                     cell.contentImage.image = .whitePaper
                 }
+//                self.delegate?.fetchDone(data: item)
             }
                                                   .disposed(by: disposeBag) 
         
-        output.viewWillAppearTrigger.asObservable()
-            .debug()
-            .bind(with: self) { owner, _ in
-                owner.viewWillAppear(true)
-            }
-            .disposed(by: disposeBag)
+//        output.viewWillAppearTrigger.asObservable()
+//            .debug()
+//            .bind(with: self) { owner, _ in
+//                owner.viewWillAppear(true)
+//            }
+//            .disposed(by: disposeBag)
     }
 }

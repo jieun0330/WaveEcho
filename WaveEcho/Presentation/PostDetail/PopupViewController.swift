@@ -65,7 +65,6 @@ final class PopupViewController: BaseViewController {
                     cell.commentUserProfileImage.kf.setImage(with: URL(string: profileImageURL), options: [.requestModifier(KingFisherNet())])
                 } else {
                     cell.commentUserProfileImage.image = .profileImg
-                    
                 }
                 // 코멘트 닉네임
                 cell.commentUserNickname.text = item.creator.nick

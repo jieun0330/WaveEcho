@@ -89,6 +89,14 @@ final class PostsViewController: BaseViewController {
                 }
                 .disposed(by: disposeBag)
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let sendPostCount = UserDefaultsManager.shared.sendPost
+        mainView.sendWaveButton.setTitle("메아리 던지기(\(sendPostCount))", for: .normal)
     }
     
     override func uiBind() {
@@ -103,8 +111,21 @@ final class PostsViewController: BaseViewController {
         // 포스팅 작성 화면 전환
         mainView.sendWaveButton.rx.tap
             .bind(with: self) { owner, _ in
-                let vc = WritePostViewController()
-                owner.navigationController?.pushViewController(vc, animated: true)
+                if UserDefaultsManager.shared.sendPost == 0 {
+                    let alert = UIAlertController(title: "메아리 횟수가 부족해요!",
+                                                  message: "",
+                                                  preferredStyle: .alert)
+                    let yesAction = UIAlertAction(title: "결제하기", style: .default) {_ in
+                        
+                    }
+                    let noAction = UIAlertAction(title: "닫기", style: .cancel)
+                    alert.addAction(yesAction)
+                    alert.addAction(noAction)
+                    owner.present(alert, animated: true)
+                } else {
+                    let vc = WritePostViewController()
+                    owner.navigationController?.pushViewController(vc, animated: true)
+                }
             }
             .disposed(by: disposeBag)
     }

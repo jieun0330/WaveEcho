@@ -16,6 +16,7 @@ final class MyPostViewModel: ViewModelType {
     struct Input {
         let viewDidLoad: Observable<Void>
         let deletePostID: BehaviorRelay<String>
+        // 포스트 삭제
         let tableViewModelData: ControlEvent<PostData>
     }
     
@@ -29,7 +30,8 @@ final class MyPostViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let postDataSuccess = PublishRelay<[PostData]>()
         let postDataError = PublishRelay<APIError>()
-        let viewWillAppearTrigger = PublishRelay<Void>()
+        // 포스트 삭제
+        let deletePostSuccess = PublishRelay<Void>()
         let deletePostError = PublishRelay<APIError>()
         
         input.viewDidLoad
@@ -48,6 +50,7 @@ final class MyPostViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        // 포스트 삭제
         input.tableViewModelData
             .flatMap { postData in
                 APIManager.shared.create(type: PostResponse.self, router: PostsRouter.delePost(id: postData.post_id))
@@ -55,14 +58,18 @@ final class MyPostViewModel: ViewModelType {
             .debug()
             .bind(with: self) { owner, result in
                 switch result {
-                case .success(_):
-                    viewWillAppearTrigger.accept(())
+                case .success(let success):
+                    print("2번", success)
+                    deletePostSuccess.accept(())
+                    postDataSuccess.accept(success.data)
+                    print("1번", success.data)
                 case .failure(let error):
+                    print("3번", error)
                     deletePostError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
         
-        return Output(postDataSuccess: postDataSuccess.asDriver(onErrorJustReturn: [PostData(post_id: "", product_id: "신디", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], likes: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])]), postDataError: postDataError.asDriver(onErrorJustReturn: .code500), deletePostID: input.deletePostID.asDriver(), viewWillAppearTrigger: viewWillAppearTrigger.asDriver(onErrorJustReturn: ()))
+        return Output(postDataSuccess: postDataSuccess.asDriver(onErrorJustReturn: [PostData(post_id: "", product_id: "신디", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], likes: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])]), postDataError: postDataError.asDriver(onErrorJustReturn: .code500), deletePostID: input.deletePostID.asDriver(), viewWillAppearTrigger: deletePostSuccess.asDriver(onErrorJustReturn: ()))
     }
 }

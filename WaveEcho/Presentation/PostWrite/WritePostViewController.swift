@@ -62,6 +62,8 @@ final class WritePostViewController: BaseViewController {
         output.createPostTrigger
             .drive(with: self) { owner, _ in
                 owner.view.makeToast("메아리를 던졌어요!")
+                var tapCount = UserDefaultsManager.shared.sendPost - 1
+                UserDefaultsManager.shared.sendPost = tapCount
             }
             .disposed(by: disposeBag)
         
