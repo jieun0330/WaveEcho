@@ -23,6 +23,52 @@ final class MyPostViewController: BaseViewController {
     let myProfileView = AfterMyProfileViewController()
 //    weak var delegate: fetchPost?
     
+    lazy var logout = UIAction(title: "로그아웃",
+                               image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
+                               handler: { action in
+
+        let alert = UIAlertController(title: "로그아웃 하시겠습니까?",
+                                      message: "",
+                                      preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let yes = UIAlertAction(title: "확인", style: .destructive) { action in
+            sleep(1)
+            UserDefaultsManager.shared.accessToken.removeAll()
+            let vc = UINavigationController (rootViewController: LoginViewController ())
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            
+            let sceneDelegate = windowScene.delegate as? SceneDelegate
+            sceneDelegate?.window?.rootViewController = vc
+            sceneDelegate?.window?.makeKeyAndVisible()
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(yes)
+        self.present(alert, animated: true)
+    })
+    
+    lazy var withDraw = UIAction(title: "회원탈퇴",
+                                 image: UIImage(systemName: "shared.with.you.slash"),
+                                 handler: { action in
+        let alert = UIAlertController(title: "탈퇴하시겠습니까?",
+                                      message: "회원님의 모든 정보가 삭제됩니다",
+                                      preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let withDraw = UIAlertAction(title: "탈퇴", style: .destructive) { action in
+            
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(withDraw)
+        self.present(alert, animated: true)
+    })
+    
+    lazy var menu: UIMenu = {
+        return UIMenu(title: "", children: [logout, withDraw])
+    }()
+    
     override func loadView() {
         view = mainView
     }
@@ -30,6 +76,8 @@ final class MyPostViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = mainView.settingButton
+        navigationItem.rightBarButtonItem?.menu = menu
     }
     
     override func uiBind() {

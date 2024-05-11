@@ -11,6 +11,12 @@ import SnapKit
 
 final class MyPostView: BaseView {
     
+    lazy var settingButton = {
+        let setting = UIBarButtonItem()
+        setting.image = UIImage(systemName: "gear")
+        return setting
+    }()
+    
     let profileImage = {
         let profile = UIImageView()
         profile.image = .profile
