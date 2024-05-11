@@ -143,6 +143,23 @@ class BaseViewController: UIViewController {
             default:
                 return
             }
+        case .paymentValidation:
+            switch apiError {
+            case .code400:
+                makeAlert(message: "유효하지 않은 결제건입니다")
+            case .code401:
+                makeAlert(message: "인증할 수 없는 액세스 토큰입니다")
+            case .code403:
+                makeAlert(message: "Forbidden")
+            case .code409:
+                makeAlert(message: "검증처리가 완료된 결제건입니다")
+            case .code410:
+                makeAlert(message: "게시글을 찾을 수 없습니다")
+            case .code419:
+                makeAlert(message: "액세스 토큰이 만료되었습니다")
+            default:
+                return 
+            }
         }
     }
 

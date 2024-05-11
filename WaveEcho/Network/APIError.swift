@@ -37,19 +37,17 @@ enum APIError: Int, Error {
         case login
         // 회원탈퇴
         case withdraw
-        
         // 포스팅 작성
         case createPosts
         // 포스팅 조회
         case fetchPost
-        
         // 댓글 작성
         case writeComment
-        
         // 내 프로필 수정
         case editMyProfile
-        
         // 토큰 갱신
         case refreshToken
+        // 결제 영수증 검증
+        case paymentValidation
     }
 }

@@ -38,7 +38,7 @@ class PostsView: BaseView {
     
     lazy var myLetters = {
         let item = UIBarButtonItem()
-        item.image = UIImage(systemName: "paperplane.fill")
+        item.image = UIImage(systemName: "person.fill")
         return item
     }()
     

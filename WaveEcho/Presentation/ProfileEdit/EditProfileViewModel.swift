@@ -15,7 +15,7 @@ class EditProfileViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
     struct Input {
-        let editButtonTapped: ControlEvent<Void>
+//        let editButtonTapped: ControlEvent<Void>
         let editNickname: ControlProperty<String>
     }
     

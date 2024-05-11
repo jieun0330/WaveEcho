@@ -25,11 +25,10 @@ final class EditProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = mainView.editButton
     }
     
     override func bind() {
-        let input = EditProfileViewModel.Input(editButtonTapped: mainView.editButton.rx.tap,
+        let input = EditProfileViewModel.Input(
                                                editNickname: mainView.nicknameTextField.rx.text.orEmpty)
         
         let output = viewModel.transform(input: input)

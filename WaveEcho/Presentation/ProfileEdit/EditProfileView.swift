@@ -14,9 +14,11 @@ final class EditProfileView: BaseView {
         let image = UIImageView()
         image.image = .profile
         image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 50
+        image.clipsToBounds = true
         return image
     }()
-    
+
     let nicknameLabel = {
         let nickname = UILabel()
         nickname.text = "닉네임"
@@ -25,15 +27,10 @@ final class EditProfileView: BaseView {
     
     let nicknameTextField = {
         let nickname = UITextField()
-        nickname.backgroundColor = .systemGray6
+        nickname.layer.borderColor = UIColor.systemGray6.cgColor
+        nickname.layer.borderWidth = 1
+        nickname.layer.cornerRadius = 10
         return nickname
-    }()
-    
-    // 네비게이션바 아이템
-    lazy var editButton = {
-        let item = UIBarButtonItem()
-        item.title = "수정"
-        return item
     }()
     
     let withDrawButton = {
@@ -43,12 +40,20 @@ final class EditProfileView: BaseView {
         return button
     }()
     
+    private let doneButton = {
+        let button = UIButton()
+        button.setTitle("프로필 수정", for: .normal)
+        button.backgroundColor = UIColor(hexCode: "1A79E9", alpha: 0.6)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
     }
     
     override func configureHierarchy() {
-        [profileImg, nicknameLabel, nicknameTextField, withDrawButton].forEach {
+        [profileImg, nicknameLabel, nicknameTextField, withDrawButton, doneButton].forEach {
             addSubview($0)
         }
     }
@@ -62,19 +67,27 @@ final class EditProfileView: BaseView {
         }
         
         nicknameLabel.snp.makeConstraints {
-            $0.top.equalTo(profileImg.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().inset(20)
+            $0.top.equalTo(profileImg.snp.bottom).offset(60)
+            $0.leading.equalToSuperview().offset(40)
         }
         
         nicknameTextField.snp.makeConstraints {
-            $0.top.equalTo(nicknameLabel.snp.bottom).offset(5)
-            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.centerY.equalTo(nicknameLabel)
+            $0.leading.equalTo(nicknameLabel.snp.trailing).offset(20)
+            $0.width.equalTo(240)
             $0.height.equalTo(50)
         }
         
         withDrawButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(safeAreaLayoutGuide)
+            $0.bottom.equalTo(doneButton.snp.top).offset(-10)
+        }
+        
+        doneButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
+            $0.horizontalEdges.equalToSuperview().inset(40)
+            $0.height.equalTo(50)
         }
     }
     

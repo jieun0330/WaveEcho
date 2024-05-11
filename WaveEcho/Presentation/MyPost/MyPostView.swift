@@ -11,18 +11,28 @@ import SnapKit
 
 final class MyPostView: BaseView {
     
-    lazy var myPageButton = {
-        let item = UIBarButtonItem()
-        item.image = UIImage(systemName: "person")
-        return item
+    let profileImage = {
+        let profile = UIImageView()
+        profile.image = .profile
+        profile.contentMode = .scaleAspectFill
+        profile.layer.cornerRadius = 35
+        profile.clipsToBounds = true
+        return profile
     }()
     
-//    lazy var sendPostCount = {
-//        let item = UIBarButtonItem()
-//        let count = UserDefaultsManager.shared.sendPost
-//        item.title = "메아리 횟수\(count)"
-//        return item
-//    }()
+    let nickname = {
+        let nickname = UILabel()
+        nickname.font = .boldSystemFont(ofSize: 20)
+        nickname.text = "test"
+        return nickname
+    }()
+    
+    let editProfileButton = {
+        let button = UIButton()
+        button.setTitle("프로필 편집", for: .normal)
+        button.setTitleColor(.systemGray, for: .normal)
+        return button
+    }()
     
     private let segment = {
         let segment = BetterSegmentedControl(frame: .zero)
@@ -40,14 +50,31 @@ final class MyPostView: BaseView {
     }()
     
     override func configureHierarchy() {
-        [segment, tableView].forEach {
+        [profileImage, nickname, editProfileButton, segment, tableView].forEach {
             addSubview($0)
         }
     }
     
     override func configureConstraints() {
-        segment.snp.makeConstraints {
+        
+        profileImage.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
+            $0.centerX.equalTo(self)
+            $0.size.equalTo(70)
+        }
+        
+        nickname.snp.makeConstraints {
+            $0.top.equalTo(profileImage.snp.bottom).offset(5)
+            $0.centerX.equalTo(self)
+        }
+        
+        editProfileButton.snp.makeConstraints {
+            $0.top.equalTo(nickname.snp.bottom).offset(5)
+            $0.centerX.equalTo(self)
+        }
+        
+        segment.snp.makeConstraints {
+            $0.top.equalTo(editProfileButton.snp.bottom).offset(5)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(44)
         }

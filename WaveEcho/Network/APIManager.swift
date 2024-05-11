@@ -26,16 +26,12 @@ final class APIManager {
                 AF
                     .request(urlRequest, interceptor: RefreshToken())
                     .responseDecodable(of: T.self) { response in
-                        print("response", response)
                         switch response.result {
                         case .success(let success):
-                            print("success", success)
                             single(.success(.success(success)))
                         case .failure(let error):
-                            print("error", error.localizedDescription)
                             guard let statusCode = response.response?.statusCode else { return }
                             guard let error = APIError(rawValue: statusCode) else { return }
-                            print("statusCode", statusCode)
                             single(.success(.failure(error)))
                         }
                     }
@@ -78,6 +74,7 @@ final class APIManager {
     }
     
     func pay(amount: String, productTitle: String, webView: WKWebView, completionHandler: @escaping (IamportResponse?) -> Void) {
+        
         let payment = IamportPayment(
             pg: PG.html5_inicis.makePgRawName(pgId: "INIpayTest"),
             merchant_uid: "ios_\(APIKey.sesacKey.rawValue)_\(Int(Date().timeIntervalSince1970))",

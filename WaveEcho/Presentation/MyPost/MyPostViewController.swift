@@ -30,29 +30,11 @@ final class MyPostViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = mainView.myPageButton
     }
     
     override func uiBind() {
         
-        // 내 프로필 modal 띄우기
-        mainView.myPageButton.rx.tap
-            .debug()
-            .bind(with: self) { owner, _ in
-                if let sheet = owner.myProfileView.sheetPresentationController {
-                    sheet.detents = [.medium()]
-                    sheet.prefersGrabberVisible = true
-                }
-                owner.present(owner.myProfileView, animated: false)
-                // 내 프로필 닉네임 -> 재확인 필요
-                owner.myProfileView.mainView.nickname.text = owner.postData.first?.creator.nick
-            }
-            .disposed(by: disposeBag)
-        
-        // 닉네임 수정 버튼
-        myProfileView.mainView.editNicknameButton.rx.tap
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
-            .debug()
+        mainView.editProfileButton.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = EditProfileViewController()
                 owner.navigationController?.pushViewController(vc, animated: true)
@@ -69,7 +51,6 @@ final class MyPostViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.postDataSuccess.asObservable()
-            .debug()
             .bind(with: self) { owner, postData in
                 owner.postData = postData
             }
@@ -77,7 +58,6 @@ final class MyPostViewController: BaseViewController {
         
         output.postDataSuccess.asObservable()
             .map { $0 }
-            .debug()
             .bind(to: mainView.tableView.rx.items(cellIdentifier: MyPostTableViewCell.identifier,
                                                   cellType: MyPostTableViewCell.self)) { row, item, cell in
                 cell.contents.text = item.content
@@ -93,6 +73,7 @@ final class MyPostViewController: BaseViewController {
                 } else {
                     cell.contentImage.image = .whitePaper
                 }
+                
 //                self.delegate?.fetchDone(data: item)
             }
                                                   .disposed(by: disposeBag) 

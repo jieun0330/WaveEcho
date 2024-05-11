@@ -16,6 +16,7 @@ import WebKit
 final class PostsViewController: BaseViewController {
     
     private let mainView = PostsView()
+    private let payView = PayViewController()
     private let viewModel = PostsViewModel()
     var postData: [PostData] = []
     // 팝업 화면
@@ -90,7 +91,6 @@ final class PostsViewController: BaseViewController {
                 }
                 .disposed(by: disposeBag)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +98,7 @@ final class PostsViewController: BaseViewController {
         
         let sendPostCount = UserDefaultsManager.shared.sendPost
         mainView.sendWaveButton.setTitle("메아리 던지기(\(sendPostCount))", for: .normal)
+        
     }
     
     override func uiBind() {
@@ -114,11 +115,10 @@ final class PostsViewController: BaseViewController {
             .bind(with: self) { owner, _ in
                 if UserDefaultsManager.shared.sendPost == 0 {
                     let alert = UIAlertController(title: "메아리 횟수가 부족해요!",
-                                                  message: "",
+                                                  message: "100원 = 메아리 10개",
                                                   preferredStyle: .alert)
-                    let yesAction = UIAlertAction(title: "결제하기", style: .default) {_ in
-                        let payView = PayViewController()
-                        owner.present(payView, animated: true)
+                    let yesAction = UIAlertAction(title: "100원 결제하기", style: .default) {_ in
+                        owner.present(owner.payView, animated: true)
                     }
                     let noAction = UIAlertAction(title: "닫기", style: .cancel)
                     alert.addAction(yesAction)
@@ -130,6 +130,22 @@ final class PostsViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+//        if payView.viewWillDisapearTrigger == true {
+//            // 충전 알림 해주기
+//            let alert = UIAlertController(title: "메아리가 충전되었어요!",
+//                                          message: "",
+//                                          preferredStyle: .alert)
+//            let yesAction = UIAlertAction(title: "닫기", style: .default)
+//            alert.addAction(yesAction)
+//            self.present(alert, animated: true)
+//            // 던지기 횟수 10개 충전
+//            UserDefaultsManager.shared.sendPost = 10
+//        }
+        
+//            .bind(with: self) { owner, true in
+//            }
+//            .disposed(by: disposeBag)
     }
     
     override func bind() {
@@ -144,7 +160,6 @@ final class PostsViewController: BaseViewController {
         
         output.postsContent
             .map { $0.data }
-            .debug()
             .bind(with: self) { owner, postData in
                 owner.postData = postData
             }
@@ -152,7 +167,6 @@ final class PostsViewController: BaseViewController {
         
         // 포스팅 에러 핸들링
         output.postsError
-            .debug()
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .createPosts)
             }
@@ -162,7 +176,6 @@ final class PostsViewController: BaseViewController {
         // rootView 첫화면으로 전환
         output.postsError
             .debounce(.seconds(2))
-            .debug()
             .drive(with: self) { owner, error in
                 if case .success = error {
                 } else {
@@ -177,7 +190,7 @@ final class PostsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-    deinit {
-        print(self)
-    }
+//    deinit {
+//        print(self)
+//    }
 }

@@ -13,7 +13,7 @@ final class MyPostTableViewCell: BaseTableViewCell {
     
     var disposeBag = DisposeBag()
     
-//    var deleteAction: (() -> Void)?
+    var deleteAction: (() -> Void)?
     
     static var identifier: String {
         return String(describing: self)

@@ -51,7 +51,6 @@ class WritePostViewModel: ViewModelType {
                                                 router: PostsRouter.uploadImage,
                                                 image: data)
             }
-            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
@@ -64,7 +63,6 @@ class WritePostViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         contentObservable
-            .debug()
             .bind(with: self) { owner, writePostRequest in
                 guard let content = writePostRequest.content else { return }
                 // 콘텐츠 작성 -> 사진 업로드 하면 던지기 버튼 비활성화 되어있음
@@ -83,7 +81,6 @@ class WritePostViewModel: ViewModelType {
             .flatMap { postRequest in
                 return APIManager.shared.create(type: PostResponse.self, router: PostsRouter.createPosts(query: postRequest))
             }
-            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):
@@ -97,7 +94,6 @@ class WritePostViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         input.photoButtonTapped
-            .debug()
             .bind(to: uploadPhotoTrigger)
             .disposed(by: disposeBag)
         

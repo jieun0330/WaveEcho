@@ -70,6 +70,10 @@
 		C2B576372BECDA0C00B7A72F /* iamport-ios in Frameworks */ = {isa = PBXBuildFile; productRef = C2B576362BECDA0C00B7A72F /* iamport-ios */; };
 		C2B5763A2BECE4C400B7A72F /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576392BECE4C400B7A72F /* PayView.swift */; };
 		C2B5763C2BECE60100B7A72F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5763B2BECE60100B7A72F /* PayViewController.swift */; };
+		C2B5763E2BECF00D00B7A72F /* PayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5763D2BECF00D00B7A72F /* PayRouter.swift */; };
+		C2B576412BECF1CC00B7A72F /* PaymentRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576402BECF1CC00B7A72F /* PaymentRequestBody.swift */; };
+		C2B576472BEDF0DE00B7A72F /* PayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576462BEDF0DE00B7A72F /* PayViewModel.swift */; };
+		C2B5764A2BEE029800B7A72F /* PayResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576492BEE029800B7A72F /* PayResponse.swift */; };
 		C2CDC2A52BD1023800176723 /* PostsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A42BD1023800176723 /* PostsRouter.swift */; };
 		C2CDC2A72BD1062C00176723 /* WithdrawResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A62BD1062C00176723 /* WithdrawResponse.swift */; };
 		C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A82BD107A900176723 /* PostsViewModel.swift */; };
@@ -160,6 +164,10 @@
 		C28A3A142BE7C09A000B2E90 /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
 		C2B576392BECE4C400B7A72F /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		C2B5763B2BECE60100B7A72F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
+		C2B5763D2BECF00D00B7A72F /* PayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRouter.swift; sourceTree = "<group>"; };
+		C2B576402BECF1CC00B7A72F /* PaymentRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequestBody.swift; sourceTree = "<group>"; };
+		C2B576462BEDF0DE00B7A72F /* PayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewModel.swift; sourceTree = "<group>"; };
+		C2B576492BEE029800B7A72F /* PayResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayResponse.swift; sourceTree = "<group>"; };
 		C2CDC2A42BD1023800176723 /* PostsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRouter.swift; sourceTree = "<group>"; };
 		C2CDC2A62BD1062C00176723 /* WithdrawResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawResponse.swift; sourceTree = "<group>"; };
 		C2CDC2A82BD107A900176723 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
@@ -409,6 +417,7 @@
 				C2CDC2A42BD1023800176723 /* PostsRouter.swift */,
 				C20E68B82BD9001C00507C0B /* ProfileRouter.swift */,
 				C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */,
+				C2B5763D2BECF00D00B7A72F /* PayRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -459,6 +468,23 @@
 			children = (
 				C2B576392BECE4C400B7A72F /* PayView.swift */,
 				C2B5763B2BECE60100B7A72F /* PayViewController.swift */,
+				C2B576462BEDF0DE00B7A72F /* PayViewModel.swift */,
+			);
+			path = Pay;
+			sourceTree = "<group>";
+		};
+		C2B5763F2BECF1BC00B7A72F /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				C2B576402BECF1CC00B7A72F /* PaymentRequestBody.swift */,
+			);
+			path = Pay;
+			sourceTree = "<group>";
+		};
+		C2B576482BEE028400B7A72F /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				C2B576492BEE029800B7A72F /* PayResponse.swift */,
 			);
 			path = Pay;
 			sourceTree = "<group>";
@@ -512,6 +538,7 @@
 		C2DC2BFC2BCD217800A1D102 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				C2B5763F2BECF1BC00B7A72F /* Pay */,
 				C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */,
 				C2DC2BFA2BCD217800A1D102 /* Users */,
 				C27E534A2BCE8E730037E1A5 /* Posts */,
@@ -536,6 +563,7 @@
 		C2DC2C012BCD217800A1D102 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				C2B576482BEE028400B7A72F /* Pay */,
 				C2DC2BFF2BCD217800A1D102 /* Users */,
 				C27E534D2BCE8F730037E1A5 /* Posts */,
 				C2E8EFCA2BDE452F00868BB3 /* Comment */,
@@ -684,6 +712,7 @@
 				C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */,
 				C269AF182BE224EC00BB6E20 /* MyPostViewController.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
+				C2B576412BECF1CC00B7A72F /* PaymentRequestBody.swift in Sources */,
 				C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */,
 				C22003482BE0F13600A95F86 /* PopupViewController.swift in Sources */,
 				C269AF282BE37B5D00BB6E20 /* AfterMyProfileView.swift in Sources */,
@@ -691,8 +720,10 @@
 				C2CDC2D12BD4FDF000176723 /* PostQueryString.swift in Sources */,
 				C2E8EFC92BDE451100868BB3 /* WriteCommentRequestBody.swift in Sources */,
 				C27E53422BCE71B00037E1A5 /* PostsViewController.swift in Sources */,
+				C2B5763E2BECF00D00B7A72F /* PayRouter.swift in Sources */,
 				C28A3A132BE7BFF6000B2E90 /* LikeModel.swift in Sources */,
 				C2DC2C052BCD217800A1D102 /* SignupResponse.swift in Sources */,
+				C2B5764A2BEE029800B7A72F /* PayResponse.swift in Sources */,
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
 				C2DC2C072BCD217800A1D102 /* UsersRouter.swift in Sources */,
 				C2DC2C142BCD548E00A1D102 /* ValidEmailResponse.swift in Sources */,
@@ -706,6 +737,7 @@
 				C2DC2C092BCD21BC00A1D102 /* BaseView.swift in Sources */,
 				C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */,
 				C2CDC2A52BD1023800176723 /* PostsRouter.swift in Sources */,
+				C2B576472BEDF0DE00B7A72F /* PayViewModel.swift in Sources */,
 				C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */,
 				C27E53472BCE780C0037E1A5 /* WritePostViewController.swift in Sources */,
 				C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */,

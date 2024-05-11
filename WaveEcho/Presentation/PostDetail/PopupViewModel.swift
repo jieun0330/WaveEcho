@@ -31,7 +31,6 @@ final class PopupViewModel: ViewModelType {
             .flatMap { postID in
                 return APIManager.shared.create(type: LikeModel.self, router: PostsRouter.likePost(query: LikeQuery(like_status: true), id: postID))
             }
-            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):

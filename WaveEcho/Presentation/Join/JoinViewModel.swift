@@ -65,7 +65,6 @@ final class JoinViewModel: ViewModelType {
         
         // 회원가입 조건
         signupObservable
-            .debug()
             .bind(with: self) { owner, signupRequest in
                 if signupRequest.nick.count >= 2 &&
                     signupRequest.email.contains("@") &&
@@ -86,7 +85,6 @@ final class JoinViewModel: ViewModelType {
             .flatMap { signupRequest in
                 return APIManager.shared.create(type: SignupResponse.self, router: UsersRouter.signup(query: signupRequest))
             }
-            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
@@ -107,7 +105,6 @@ final class JoinViewModel: ViewModelType {
                 return APIManager.shared.create(type: ValidEmailResponse.self,
                                                 router: UsersRouter.validEmail(query: emailRequest))
             }
-            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(_):

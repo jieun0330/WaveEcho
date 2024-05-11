@@ -36,7 +36,6 @@ final class JoinViewController: BaseViewController {
         
         // 로그인뷰 이동
         mainView.rightBarButtonItem.rx.tap
-            .debug()
             .bind(with: self) { owner, _ in
                 let vc = LoginViewController()
                 owner.navigationController?.viewControllers = [vc]
@@ -56,7 +55,6 @@ final class JoinViewController: BaseViewController {
         
         // 회원가입 조건
         output.validSignup
-            .debug()
             .drive(with: self) { owner, value in
                 let validButtonColor: UIColor = value ? .systemYellow : .systemGray5
                 owner.mainView.signupButton.backgroundColor = validButtonColor
@@ -70,7 +68,6 @@ final class JoinViewController: BaseViewController {
         // 회원가입 완료 토스트 창
         output.signupTrigger
             .debounce(.seconds(1))
-            .debug()
             .drive(with: self) { owner, _ in
                 owner.view.makeToast("회원가입이 완료되었습니다")
             }
@@ -79,7 +76,6 @@ final class JoinViewController: BaseViewController {
         // 회원가입 완료 -> 로그인 뷰컨 이동
         output.signupTrigger
             .debounce(.seconds(2))
-            .debug()
             .drive(with: self) { owner, _ in
                 let vc = LoginViewController()
                 owner.navigationController?.setViewControllers([vc], animated: true)
@@ -88,7 +84,6 @@ final class JoinViewController: BaseViewController {
         
         // 이메일 중복확인 안내 text
         output.validEmail
-            .debug()
             .drive(with: self) { owner, value in
                 owner.mainView.validEmail.text = value
             }
@@ -96,7 +91,6 @@ final class JoinViewController: BaseViewController {
         
         // 회원가입 에러 처리
         output.signupError
-            .debug()
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .signup)
             }
@@ -115,9 +109,9 @@ final class JoinViewController: BaseViewController {
         //                owner.mainView.validEmail.text = validEmail
         //            }.disposed(by: disposeBag)
     }
-    deinit {
-        print(self)
-    }
+//    deinit {
+//        print(self)
+//    }
 }
 
 extension JoinViewController: UITextFieldDelegate, UITextViewDelegate {

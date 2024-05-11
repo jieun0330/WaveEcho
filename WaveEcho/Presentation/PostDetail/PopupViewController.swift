@@ -58,7 +58,6 @@ final class PopupViewController: BaseViewController {
         behaviorModel
             .compactMap { $0 }
             .map({ $0.comments })
-            .debug()
             .bind(to: mainView.collectionView.rx.items(cellIdentifier: CommentCollectionViewCell.identifier, cellType: CommentCollectionViewCell.self)) { row, item, cell in
                 // 코멘트 프로필 이미지
                 if let profileImageURL = item.creator.profileImage {
@@ -77,7 +76,6 @@ final class PopupViewController: BaseViewController {
         
         // 던지기 버튼
         mainView.throwButton.rx.tap
-            .debug()
             .bind(with: self) { owner, _ in
                 owner.dismiss(animated: true)
             }
@@ -85,7 +83,6 @@ final class PopupViewController: BaseViewController {
         
         // 답장 버튼
         mainView.replyButton.rx.tap
-            .debug()
             .bind(with: self) { owner, _ in
                 if let sheet = owner.replyView.sheetPresentationController {
                     sheet.detents = [.medium()]
@@ -94,9 +91,9 @@ final class PopupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-    deinit {
-        print(self)
-    }
+//    deinit {
+//        print(self)
+//    }
 }
 
 extension PopupViewController: fetchComment {

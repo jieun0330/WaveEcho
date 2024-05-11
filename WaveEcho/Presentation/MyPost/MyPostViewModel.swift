@@ -39,7 +39,6 @@ final class MyPostViewModel: ViewModelType {
                 return APIManager.shared.create(type: PostResponse.self,
                                                 router: PostsRouter.userPost(id: UserDefaults.standard.string(forKey: "userID") ?? ""))
             }
-            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
@@ -55,16 +54,12 @@ final class MyPostViewModel: ViewModelType {
             .flatMap { postData in
                 APIManager.shared.create(type: PostResponse.self, router: PostsRouter.delePost(id: postData.post_id))
             }
-            .debug()
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
-                    print("2번", success)
                     deletePostSuccess.accept(())
                     postDataSuccess.accept(success.data)
-                    print("1번", success.data)
                 case .failure(let error):
-                    print("3번", error)
                     deletePostError.accept(error)
                 }
             }
