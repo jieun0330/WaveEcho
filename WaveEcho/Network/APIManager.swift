@@ -29,7 +29,7 @@ final class APIManager {
                         switch response.result {
                         case .success(let success):
                             single(.success(.success(success)))
-                        case .failure(let error):
+                        case .failure(_):
                             guard let statusCode = response.response?.statusCode else { return }
                             guard let error = APIError(rawValue: statusCode) else { return }
                             single(.success(.failure(error)))

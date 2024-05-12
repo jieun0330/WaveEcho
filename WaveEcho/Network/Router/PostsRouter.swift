@@ -19,7 +19,7 @@ enum PostsRouter {
     // 유저별 작성한 포스트 조회
     case userPost(id: String)
     // 포스트 삭제
-    case delePost(id: String)
+    case deletePost(id: String)
     // 포스트 좋아요
     case likePost(query: LikeQuery, id: String)
 }
@@ -39,7 +39,7 @@ extension PostsRouter: TargetType {
             return .post
         case .userPost:
             return .get
-        case .delePost(_):
+        case .deletePost(_):
             return .delete
         case .likePost(_, _):
             return .post
@@ -62,7 +62,7 @@ extension PostsRouter: TargetType {
         case .userPost:
             return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
-        case .delePost(_):
+        case .deletePost(_):
             return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .likePost(_, _):
@@ -83,7 +83,7 @@ extension PostsRouter: TargetType {
             return "/v1/posts/files"
         case .userPost(id: let id):
             return "/v1/posts/users/\(id)"
-        case .delePost(id: let id):
+        case .deletePost(id: let id):
             return "/v1/posts/\(id)"
         case .likePost(_, id: let id):
             return "/v1/posts/\(id)/like"
@@ -92,7 +92,7 @@ extension PostsRouter: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case .createPosts(_), .delePost(_), .likePost(_, _):
+        case .createPosts(_), .deletePost(_), .likePost(_, _):
             nil
         case .uploadImage, .userPost(_):
             nil
@@ -110,7 +110,7 @@ extension PostsRouter: TargetType {
         switch self {
         case .createPosts(query: let query):
             return try? encoder.encode(query)
-        case .fetchPosts, .uploadImage, .userPost, .delePost(_):
+        case .fetchPosts, .uploadImage, .userPost, .deletePost(_):
             return nil
         case .likePost(query: let query, _):
             return try? encoder.encode(query)

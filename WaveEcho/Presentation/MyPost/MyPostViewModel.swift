@@ -5,7 +5,7 @@
 //  Created by 박지은 on 5/1/24.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 
@@ -15,27 +15,25 @@ final class MyPostViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoad: Observable<Void>
-        let deletePostID: BehaviorRelay<String>
+        let deletePostID: BehaviorRelay<String> // publish
         // 포스트 삭제
-        let tableViewModelData: ControlEvent<PostData>
+        let deleteTrigger: PublishRelay<PostData>
     }
     
     struct Output {
-        let postDataSuccess: Driver<[PostData]>
+        let postDataSuccess: Driver<[PostData]> // hot&cold observable
         let postDataError: Driver<APIError>
         let deletePostID: Driver<String>
-        let viewWillAppearTrigger: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
-        let postDataSuccess = PublishRelay<[PostData]>()
+        let postDataSuccess = BehaviorRelay<[PostData]> (value: [])
         let postDataError = PublishRelay<APIError>()
         // 포스트 삭제
-        let deletePostSuccess = PublishRelay<Void>()
-        let deletePostError = PublishRelay<APIError>()
+        let deletePostError = PublishRelay<APIError>() // postDataError와 다른점은?
         
         input.viewDidLoad
-            .flatMap { _ in
+            .flatMap { _ in // flatMap vs flatMapLatest
                 return APIManager.shared.create(type: PostResponse.self,
                                                 router: PostsRouter.userPost(id: UserDefaults.standard.string(forKey: "userID") ?? ""))
             }
@@ -50,14 +48,19 @@ final class MyPostViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         // 포스트 삭제
-        input.tableViewModelData
+        input.deleteTrigger
             .flatMap { postData in
-                APIManager.shared.create(type: PostResponse.self, router: PostsRouter.delePost(id: postData.post_id))
+
+                var value = postDataSuccess.value
+                let index = postData.currentLocation
+
+                value.remove(at: index)
+                postDataSuccess.accept(value)
+                return APIManager.shared.create(type: PostResponse.self, router: PostsRouter.deletePost(id: postData.post_id)) // Single?
             }
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
-                    deletePostSuccess.accept(())
                     postDataSuccess.accept(success.data)
                 case .failure(let error):
                     deletePostError.accept(error)
@@ -65,6 +68,8 @@ final class MyPostViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(postDataSuccess: postDataSuccess.asDriver(onErrorJustReturn: [PostData(post_id: "", product_id: "신디", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], likes: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])]), postDataError: postDataError.asDriver(onErrorJustReturn: .code500), deletePostID: input.deletePostID.asDriver(), viewWillAppearTrigger: deletePostSuccess.asDriver(onErrorJustReturn: ()))
+        return Output(postDataSuccess: postDataSuccess.asDriver(),
+                      postDataError: postDataError.asDriver(onErrorJustReturn: .code500),
+                      deletePostID: input.deletePostID.asDriver())
     }
 }

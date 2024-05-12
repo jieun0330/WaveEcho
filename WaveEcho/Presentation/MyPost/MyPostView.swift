@@ -29,7 +29,7 @@ final class MyPostView: BaseView {
     let nickname = {
         let nickname = UILabel()
         nickname.font = .boldSystemFont(ofSize: 20)
-        nickname.text = "test"
+        nickname.text = "지은"
         return nickname
     }()
     
@@ -52,6 +52,7 @@ final class MyPostView: BaseView {
                     forCellReuseIdentifier: MyPostTableViewCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = 150
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
     

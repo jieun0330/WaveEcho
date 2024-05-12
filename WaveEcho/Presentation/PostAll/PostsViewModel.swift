@@ -30,7 +30,7 @@ class PostsViewModel {
         let postsContent = PublishRelay<PostResponse>()
         let postsError = PublishRelay<APIError>()
         let fetchPostsObservable = Observable.just(PostQueryString(next: "",
-                                                                   limit: "5",
+                                                                   limit: "10",
                                                                    product_id: "신디"))
         let myProfile = PublishRelay<MyProfileResponse>()
         let myProfileError = PublishRelay<APIError>()

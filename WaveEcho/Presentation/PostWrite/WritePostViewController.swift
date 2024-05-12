@@ -63,7 +63,7 @@ final class WritePostViewController: BaseViewController {
             .drive(with: self) { owner, _ in
                 owner.view.makeToast("메아리를 던졌어요!")
                 // 작성할 때 메아리 횟수 하나씩 줄이기
-                let tapCount = UserDefaultsManager.shared.sendPost - 9
+                let tapCount = UserDefaultsManager.shared.sendPost - 1
                 UserDefaultsManager.shared.sendPost = tapCount
             }
             .disposed(by: disposeBag)

@@ -87,6 +87,7 @@ final class MyPostTableViewCell: BaseTableViewCell {
         
         contents.snp.makeConstraints {
             $0.leading.equalTo(contentImage.snp.trailing).offset(5)
+            $0.trailing.equalToSuperview().inset(5)
             $0.top.equalTo(contentImage)
         }
         

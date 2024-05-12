@@ -20,6 +20,8 @@
 		C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22003492BE0F15400A95F86 /* PopupView.swift */; };
 		C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C220034D2BE1308C00A95F86 /* CommentCollectionViewCell.swift */; };
 		C22003502BE1309400A95F86 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */; };
+		C23075FE2BEFC63A00FF732E /* WithdrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FD2BEFC63A00FF732E /* WithdrawView.swift */; };
+		C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -120,6 +122,8 @@
 		C22003492BE0F15400A95F86 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		C220034D2BE1308C00A95F86 /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		C23075FD2BEFC63A00FF732E /* WithdrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawView.swift; sourceTree = "<group>"; };
+		C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -254,6 +258,15 @@
 				C269AF6F2BE3E51E00BB6E20 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C23075FC2BEFC5E100FF732E /* Withdraw */ = {
+			isa = PBXGroup;
+			children = (
+				C23075FD2BEFC63A00FF732E /* WithdrawView.swift */,
+				C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */,
+			);
+			path = Withdraw;
 			sourceTree = "<group>";
 		};
 		C23AFE6B2BC6CE820000EBE5 = {
@@ -509,6 +522,7 @@
 		C2DC2BEE2BCD20C100A1D102 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C23075FC2BEFC5E100FF732E /* Withdraw */,
 				C2DC2BED2BCD20C100A1D102 /* Welcome */,
 				C269AF212BE2836000BB6E20 /* Join */,
 				C269AF222BE2837E00BB6E20 /* Login */,
@@ -706,6 +720,7 @@
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
 				C269AF7B2BE6153100BB6E20 /* UserDefaultsManager.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
+				C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */,
 				C20E68C02BD9512200507C0B /* UITextView.swift in Sources */,
 				C269AF702BE3E51E00BB6E20 /* UIColor+Extension.swift in Sources */,
 				C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */,
@@ -726,6 +741,7 @@
 				C2B5764A2BEE029800B7A72F /* PayResponse.swift in Sources */,
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
 				C2DC2C072BCD217800A1D102 /* UsersRouter.swift in Sources */,
+				C23075FE2BEFC63A00FF732E /* WithdrawView.swift in Sources */,
 				C2DC2C142BCD548E00A1D102 /* ValidEmailResponse.swift in Sources */,
 				C23D33DA2BDEA30100F81AB4 /* EditProfileViewModel.swift in Sources */,
 				C2CDC2CA2BD36F9E00176723 /* APIError.swift in Sources */,

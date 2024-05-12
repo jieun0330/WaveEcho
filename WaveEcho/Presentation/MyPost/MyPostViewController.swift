@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import Toast
 
 //protocol fetchPost: AnyObject {
 //    func fetchDone(data: PostData)
@@ -23,6 +24,8 @@ final class MyPostViewController: BaseViewController {
     let myProfileView = AfterMyProfileViewController()
 //    weak var delegate: fetchPost?
     
+    let test = PublishRelay<UIAlertAction>()
+    
     lazy var logout = UIAction(title: "로그아웃",
                                image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
                                handler: { action in
@@ -33,16 +36,17 @@ final class MyPostViewController: BaseViewController {
         
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let yes = UIAlertAction(title: "확인", style: .destructive) { action in
-            sleep(1)
-            UserDefaultsManager.shared.accessToken.removeAll()
-            let vc = UINavigationController (rootViewController: LoginViewController ())
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
             
-            let sceneDelegate = windowScene.delegate as? SceneDelegate
-            sceneDelegate?.window?.rootViewController = vc
-            sceneDelegate?.window?.makeKeyAndVisible()
+            self.view.makeToast("로그아웃되었습니다") { didTap in
+                UserDefaultsManager.shared.accessToken.removeAll()
+                let vc = UINavigationController (rootViewController: LoginViewController ())
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                
+                let sceneDelegate = windowScene.delegate as? SceneDelegate
+                sceneDelegate?.window?.rootViewController = vc
+                sceneDelegate?.window?.makeKeyAndVisible()
+            }
         }
-        
         alert.addAction(cancel)
         alert.addAction(yes)
         self.present(alert, animated: true)
@@ -52,14 +56,14 @@ final class MyPostViewController: BaseViewController {
                                  image: UIImage(systemName: "shared.with.you.slash"),
                                  handler: { action in
         let alert = UIAlertController(title: "탈퇴하시겠습니까?",
-                                      message: "회원님의 모든 정보가 삭제됩니다",
+                                      message: "비밀번호 확인이 필요합니다",
                                       preferredStyle: .alert)
         
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let withDraw = UIAlertAction(title: "탈퇴", style: .destructive) { action in
-            
+        let withDraw = UIAlertAction(title: "확인", style: .destructive) { action in
+            let vc = WithdrawViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        
         alert.addAction(cancel)
         alert.addAction(withDraw)
         self.present(alert, animated: true)
@@ -92,11 +96,29 @@ final class MyPostViewController: BaseViewController {
     }
     
     override func bind() {
+        
+        let deleteTrigger = PublishRelay<PostData>()
+        
         let input = MyPostViewModel.Input(viewDidLoad: Observable.just(Void()),
                                           deletePostID: BehaviorRelay(value: ""),
-                                          tableViewModelData: mainView.tableView.rx.modelDeleted(PostData.self))
+                                          deleteTrigger: deleteTrigger)
         
         let output = viewModel.transform(input: input)
+        
+        mainView.tableView.rx.modelDeleted(PostData.self)
+            .bind(with: self) { owner, postData in
+                let alert = UIAlertController(title: "게시글을 삭제하겠습니까?",
+                                              message: "",
+                                              preferredStyle: .alert)
+                let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+                    deleteTrigger.accept(postData)
+                }
+                let noAction = UIAlertAction(title: "아니오", style: .cancel)
+                alert.addAction(yesAction)
+                alert.addAction(noAction)
+                owner.present(alert, animated: true)
+            }
+            .disposed(by: disposeBag)
         
         output.postDataSuccess.asObservable()
             .bind(with: self) { owner, postData in
@@ -108,6 +130,9 @@ final class MyPostViewController: BaseViewController {
             .map { $0 }
             .bind(to: mainView.tableView.rx.items(cellIdentifier: MyPostTableViewCell.identifier,
                                                   cellType: MyPostTableViewCell.self)) { row, item, cell in
+                var item = item
+                item.currentLocation = 0
+                
                 cell.contents.text = item.content
                 let stringDate = DateFormatManager.shared.stringToDate(date: item.createdAt)
                 let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
@@ -121,16 +146,16 @@ final class MyPostViewController: BaseViewController {
                 } else {
                     cell.contentImage.image = .whitePaper
                 }
-                
-//                self.delegate?.fetchDone(data: item)
             }
                                                   .disposed(by: disposeBag) 
         
 //        output.viewWillAppearTrigger.asObservable()
 //            .debug()
 //            .bind(with: self) { owner, _ in
+//                owner.view.makeToast("삭제되었습니다")
 //                owner.viewWillAppear(true)
 //            }
 //            .disposed(by: disposeBag)
     }
 }
+
