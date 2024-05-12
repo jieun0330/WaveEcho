@@ -98,10 +98,16 @@ final class PostsViewController: BaseViewController {
         
         let sendPostCount = UserDefaultsManager.shared.sendPost
         mainView.sendWaveButton.setTitle("메아리 던지기(\(sendPostCount))", for: .normal)
-        
     }
     
     override func uiBind() {
+        
+        payView.paySuccessAction = { [weak self] value in
+            guard let self else { return }
+            let sendPostCount = UserDefaultsManager.shared.sendPost
+            mainView.sendWaveButton.setTitle("메아리 던지기(\(sendPostCount))", for: .normal)
+        }
+        
         // 내 포스팅 조회 화면 전환
         mainView.myLetters.rx.tap
             .bind(with: self) { owner, _ in
@@ -129,23 +135,7 @@ final class PostsViewController: BaseViewController {
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
             }
-            .disposed(by: disposeBag)
-        
-//        if payView.viewWillDisapearTrigger == true {
-//            // 충전 알림 해주기
-//            let alert = UIAlertController(title: "메아리가 충전되었어요!",
-//                                          message: "",
-//                                          preferredStyle: .alert)
-//            let yesAction = UIAlertAction(title: "닫기", style: .default)
-//            alert.addAction(yesAction)
-//            self.present(alert, animated: true)
-//            // 던지기 횟수 10개 충전
-//            UserDefaultsManager.shared.sendPost = 10
-//        }
-        
-//            .bind(with: self) { owner, true in
-//            }
-//            .disposed(by: disposeBag)
+            .disposed(by: disposeBag)        
     }
     
     override func bind() {
@@ -190,7 +180,7 @@ final class PostsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-//    deinit {
-//        print(self)
-//    }
+    //    deinit {
+    //        print(self)
+    //    }
 }

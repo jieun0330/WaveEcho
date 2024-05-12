@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import iamport_ios
+import Toast
 
 final class PayViewController: BaseViewController {
     
@@ -25,7 +26,7 @@ final class PayViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-          
+        
         // 결제
         APIManager.shared.pay(amount: "100",
                               productTitle: "메아리",
@@ -34,8 +35,11 @@ final class PayViewController: BaseViewController {
                   let success = response.success else { return }
             // 결제 성공했을 때
             if success {
-                // 결제창 닫고
-                self.dismiss(animated: true)
+                self.view.makeToast("결제가 완료되었습니다", duration: 1, position: .center) { didTap in
+                    UserDefaultsManager.shared.sendPost = 10
+                    self.paySuccessAction?(true)
+                    self.dismiss(animated: true)
+                }
                 self.viewModel.paymentSuccess.accept(response)
                 // 결제 취소, 실패 했을 때
             } else {
@@ -43,15 +47,6 @@ final class PayViewController: BaseViewController {
                 self.dismiss(animated: true)
             }
         }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-//        self.paySuccessAction
-//        print(#function)
-//        print("3️⃣", animated)
-//        self.viewWillDisapearTrigger = animated
     }
     
     override func bind() {

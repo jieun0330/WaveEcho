@@ -22,14 +22,14 @@ final class MyPostViewController: BaseViewController {
     private var postData: [PostData] = []
     // 내 프로필 조회 화면
     let myProfileView = AfterMyProfileViewController()
-//    weak var delegate: fetchPost?
+    //    weak var delegate: fetchPost?
     
     let test = PublishRelay<UIAlertAction>()
     
     lazy var logout = UIAction(title: "로그아웃",
                                image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
                                handler: { action in
-
+        
         let alert = UIAlertController(title: "로그아웃 하시겠습니까?",
                                       message: "",
                                       preferredStyle: .alert)
@@ -76,7 +76,7 @@ final class MyPostViewController: BaseViewController {
     override func loadView() {
         view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -148,14 +148,6 @@ final class MyPostViewController: BaseViewController {
                 }
             }
                                                   .disposed(by: disposeBag) 
-        
-//        output.viewWillAppearTrigger.asObservable()
-//            .debug()
-//            .bind(with: self) { owner, _ in
-//                owner.view.makeToast("삭제되었습니다")
-//                owner.viewWillAppear(true)
-//            }
-//            .disposed(by: disposeBag)
     }
 }
 

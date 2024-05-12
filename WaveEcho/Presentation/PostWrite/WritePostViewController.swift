@@ -36,7 +36,7 @@ final class WritePostViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-
+    
     override func bind() {
         
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
@@ -63,7 +63,7 @@ final class WritePostViewController: BaseViewController {
             .drive(with: self) { owner, _ in
                 owner.view.makeToast("메아리를 던졌어요!")
                 // 작성할 때 메아리 횟수 하나씩 줄이기
-                let tapCount = UserDefaultsManager.shared.sendPost - 1
+                let tapCount = UserDefaultsManager.shared.sendPost - 10
                 UserDefaultsManager.shared.sendPost = tapCount
             }
             .disposed(by: disposeBag)
