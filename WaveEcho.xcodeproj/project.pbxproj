@@ -26,6 +26,8 @@
 		C23076B12BF1E22900FF732E /* WithdrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */; };
 		C23076B52BF1EC3600FF732E /* PaymentHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */; };
 		C23076B72BF1ECEC00FF732E /* PaymentHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */; };
+		C23076B92BF1F0E600FF732E /* PaymentHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B82BF1F0E500FF732E /* PaymentHistoryViewModel.swift */; };
+		C23076BB2BF1F29C00FF732E /* PayHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076BA2BF1F29C00FF732E /* PayHistoryModel.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -77,9 +79,7 @@
 		C2B5763A2BECE4C400B7A72F /* PayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576392BECE4C400B7A72F /* PayView.swift */; };
 		C2B5763C2BECE60100B7A72F /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5763B2BECE60100B7A72F /* PayViewController.swift */; };
 		C2B5763E2BECF00D00B7A72F /* PayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5763D2BECF00D00B7A72F /* PayRouter.swift */; };
-		C2B576412BECF1CC00B7A72F /* PaymentRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576402BECF1CC00B7A72F /* PaymentRequestBody.swift */; };
-		C2B576472BEDF0DE00B7A72F /* PayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576462BEDF0DE00B7A72F /* PayViewModel.swift */; };
-		C2B5764A2BEE029800B7A72F /* PayResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576492BEE029800B7A72F /* PayResponse.swift */; };
+		C2B576412BECF1CC00B7A72F /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B576402BECF1CC00B7A72F /* PaymentModel.swift */; };
 		C2CDC2A52BD1023800176723 /* PostsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A42BD1023800176723 /* PostsRouter.swift */; };
 		C2CDC2A72BD1062C00176723 /* WithdrawResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A62BD1062C00176723 /* WithdrawResponse.swift */; };
 		C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2A82BD107A900176723 /* PostsViewModel.swift */; };
@@ -132,6 +132,8 @@
 		C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewModel.swift; sourceTree = "<group>"; };
 		C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryView.swift; sourceTree = "<group>"; };
 		C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryViewController.swift; sourceTree = "<group>"; };
+		C23076B82BF1F0E500FF732E /* PaymentHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryViewModel.swift; sourceTree = "<group>"; };
+		C23076BA2BF1F29C00FF732E /* PayHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayHistoryModel.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,9 +179,7 @@
 		C2B576392BECE4C400B7A72F /* PayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayView.swift; sourceTree = "<group>"; };
 		C2B5763B2BECE60100B7A72F /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		C2B5763D2BECF00D00B7A72F /* PayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayRouter.swift; sourceTree = "<group>"; };
-		C2B576402BECF1CC00B7A72F /* PaymentRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRequestBody.swift; sourceTree = "<group>"; };
-		C2B576462BEDF0DE00B7A72F /* PayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewModel.swift; sourceTree = "<group>"; };
-		C2B576492BEE029800B7A72F /* PayResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayResponse.swift; sourceTree = "<group>"; };
+		C2B576402BECF1CC00B7A72F /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
 		C2CDC2A42BD1023800176723 /* PostsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRouter.swift; sourceTree = "<group>"; };
 		C2CDC2A62BD1062C00176723 /* WithdrawResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawResponse.swift; sourceTree = "<group>"; };
 		C2CDC2A82BD107A900176723 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
@@ -283,6 +283,7 @@
 			children = (
 				C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */,
 				C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */,
+				C23076B82BF1F0E500FF732E /* PaymentHistoryViewModel.swift */,
 			);
 			path = PaymentHistory;
 			sourceTree = "<group>";
@@ -500,7 +501,6 @@
 			children = (
 				C2B576392BECE4C400B7A72F /* PayView.swift */,
 				C2B5763B2BECE60100B7A72F /* PayViewController.swift */,
-				C2B576462BEDF0DE00B7A72F /* PayViewModel.swift */,
 			);
 			path = Pay;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 		C2B5763F2BECF1BC00B7A72F /* Pay */ = {
 			isa = PBXGroup;
 			children = (
-				C2B576402BECF1CC00B7A72F /* PaymentRequestBody.swift */,
+				C2B576402BECF1CC00B7A72F /* PaymentModel.swift */,
 			);
 			path = Pay;
 			sourceTree = "<group>";
@@ -516,7 +516,7 @@
 		C2B576482BEE028400B7A72F /* Pay */ = {
 			isa = PBXGroup;
 			children = (
-				C2B576492BEE029800B7A72F /* PayResponse.swift */,
+				C23076BA2BF1F29C00FF732E /* PayHistoryModel.swift */,
 			);
 			path = Pay;
 			sourceTree = "<group>";
@@ -748,7 +748,8 @@
 				C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */,
 				C269AF182BE224EC00BB6E20 /* MyPostViewController.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
-				C2B576412BECF1CC00B7A72F /* PaymentRequestBody.swift in Sources */,
+				C2B576412BECF1CC00B7A72F /* PaymentModel.swift in Sources */,
+				C23076B92BF1F0E600FF732E /* PaymentHistoryViewModel.swift in Sources */,
 				C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */,
 				C22003482BE0F13600A95F86 /* PopupViewController.swift in Sources */,
 				C269AF282BE37B5D00BB6E20 /* AfterMyProfileView.swift in Sources */,
@@ -759,7 +760,6 @@
 				C2B5763E2BECF00D00B7A72F /* PayRouter.swift in Sources */,
 				C28A3A132BE7BFF6000B2E90 /* LikeModel.swift in Sources */,
 				C2DC2C052BCD217800A1D102 /* SignupResponse.swift in Sources */,
-				C2B5764A2BEE029800B7A72F /* PayResponse.swift in Sources */,
 				C23076B52BF1EC3600FF732E /* PaymentHistoryView.swift in Sources */,
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
 				C2DC2C072BCD217800A1D102 /* UsersRouter.swift in Sources */,
@@ -775,13 +775,13 @@
 				C2DC2C092BCD21BC00A1D102 /* BaseView.swift in Sources */,
 				C27E53402BCE6F810037E1A5 /* PostsView.swift in Sources */,
 				C2CDC2A52BD1023800176723 /* PostsRouter.swift in Sources */,
-				C2B576472BEDF0DE00B7A72F /* PayViewModel.swift in Sources */,
 				C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */,
 				C27E53472BCE780C0037E1A5 /* WritePostViewController.swift in Sources */,
 				C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */,
 				C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */,
 				C2DC2BF02BCD20C100A1D102 /* JoinViewController.swift in Sources */,
 				C2DC2BF12BCD20C100A1D102 /* JoinViewModel.swift in Sources */,
+				C23076BB2BF1F29C00FF732E /* PayHistoryModel.swift in Sources */,
 				C269AF202BE2813800BB6E20 /* MyPostViewModel.swift in Sources */,
 				C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */,
 				C23076B72BF1ECEC00FF732E /* PaymentHistoryViewController.swift in Sources */,

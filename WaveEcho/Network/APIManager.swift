@@ -91,46 +91,27 @@ final class APIManager {
                                       paymentResultCallback: completionHandler)
     }
     
-    //    func editProfile<T: Decodable>(type: T.Type, router: TargetType, model: EditMyProfileResponse) -> Single<Result<T, APIError>> {
-    //
-    //        return Single<Result<T, APIError>>.create { single in
-    //            do {
-    //                let urlRequest = try router.asURLRequest()
-    //                AF
-    //                    .upload(multipartFormData: { multipartFormData in
-    //
-    //                        if let nickname = model.nick.data(using: .utf8) {
-    //                            multipartFormData.append(nickname, withName: "nickname")
-    //                        }
-    //
-    //                        if let profileImage = model.profileImage {
-    //                            multipartFormData.append(profileImage,
-    //                                                     withName: "files",
-    //                                                     fileName: "test.png",
-    //                                                     mimeType: "image/png")
-    //                        }
-    //
-    //
-    ////                        multipartFormData.append(image,
-    ////                                                 withName: "files",
-    ////                                                 fileName: "test.png",
-    ////                                                 mimeType: "image/png")
-    //                    }, with: urlRequest, interceptor: RefreshToken())
-    //                    .responseDecodable(of: T.self) { response in
-    //                        switch response.result {
-    //                        case .success(let success):
-    //                            single(.success(.success(success)))
-    //                        case .failure(_):
-    //                            guard let statusCode = response.response?.statusCode else { return }
-    //                            guard let error = APIError(rawValue: statusCode) else { return }
-    //                            single(.success(.failure(error)))
-    //                        }
-    //                    }
-    //            }
-    //            catch {
-    //
-    //            }
-    //            return Disposables.create()
-    //        }
-    //    }
+    func paymentValidation(router: TargetType) -> Single<Result<Void, APIError>> {
+        return Single<Result<Void, APIError>>.create { single in
+            do {
+                let urlRequest = try router.asURLRequest()
+                AF
+                    .request(urlRequest, interceptor: RefreshToken())
+                    .response { response in
+                        switch response.result {
+                        case .success(_):
+                            single(.success(.success(())))
+                        case .failure(_):
+                            guard let statusCode = response.response?.statusCode else { return }
+                            guard let error = APIError(rawValue: statusCode) else { return }
+                            single(.success(.failure(error)))
+                        }
+                    }
+            }
+            catch {
+                single(.success(.failure(APIError.code500)))
+            }
+            return Disposables.create()
+        }
+    }
 }

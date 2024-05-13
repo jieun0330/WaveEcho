@@ -96,7 +96,7 @@ final class JoinViewModel: ViewModelType {
                 }
             }
             .disposed(by: disposeBag)
-        
+
         // 이메일 중복 확인
         input.validEmailButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)

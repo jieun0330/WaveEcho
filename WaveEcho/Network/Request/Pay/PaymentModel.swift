@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PaymentRequestBody: Encodable {
+struct PaymentModel: Codable {
     let imp_uid: String
     let post_id: String
     let productName: String

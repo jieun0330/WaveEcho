@@ -10,9 +10,8 @@ import SnapKit
 
 final class PaymentHistoryView: BaseView {
     
-    private let date = {
+    let date = {
         let date = UILabel()
-        date.text = "2024년 5월 13일"
         return date
     }()
     
