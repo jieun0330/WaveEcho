@@ -8,19 +8,18 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import iamport_ios
 import Toast
 
 final class PayViewController: BaseViewController {
     
     private let mainView = PayView()
     private let viewModel = PayViewModel()
-    var viewWillDisapearTrigger = false
+    
+//    var viewWillDisapearTrigger = false
     var paySuccessAction: ((Bool) -> Void)?
     
     override func loadView() {
         super.loadView()
-        
         view = mainView
     }
     

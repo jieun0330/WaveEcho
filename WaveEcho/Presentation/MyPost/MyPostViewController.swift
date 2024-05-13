@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import Kingfisher
 import Toast
 
 final class MyPostViewController: BaseViewController {
@@ -24,7 +23,7 @@ final class MyPostViewController: BaseViewController {
         weakSelf.makeAlert(alertTitle: "로그아웃 하시겠습니까?", alertMessage: nil) { completeAction in
             weakSelf.view.makeToast("로그아웃되었습니다", duration: 1) { didTap in
                 UserDefaultsManager.shared.accessToken.removeAll()
-                weakSelf.moveNext(vc: LoginViewController())
+                weakSelf.setVC(vc: LoginViewController())
             }
         }
     })
@@ -34,7 +33,7 @@ final class MyPostViewController: BaseViewController {
                                          handler: { [weak self] _ in
         guard let weakSelf = self else { return }
         weakSelf.makeAlert(alertTitle: "탈퇴하시겠습니까?", alertMessage: "비밀번호 확인이 필요합니다") { completeAction in
-            weakSelf.moveNext(vc: WithdrawViewController())
+            weakSelf.moveVC(vc: WithdrawViewController())
         }
     })
     
@@ -78,7 +77,7 @@ final class MyPostViewController: BaseViewController {
         // 프로필 편집
         mainView.editProfileButton.rx.tap
             .bind(with: self) { owner, _ in
-                owner.moveNext(vc: EditProfileViewController())
+                owner.moveVC(vc: EditProfileViewController())
             }
             .disposed(by: disposeBag)
         
@@ -92,8 +91,7 @@ final class MyPostViewController: BaseViewController {
         output.postDataSuccess.asObservable()
             .map { $0 }
             .bind(to: mainView.tableView.rx.items(cellIdentifier: MyPostTableViewCell.identifier,
-                                                  cellType: MyPostTableViewCell.self)) { [weak self] row, item, cell in
-                guard let self else { return }
+                                                  cellType: MyPostTableViewCell.self)) { row, item, cell in
                 cell.setData(item)
                 cell.selectionStyle = .none
             }

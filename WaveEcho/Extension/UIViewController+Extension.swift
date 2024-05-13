@@ -37,12 +37,16 @@ extension Reactive where Base: UIViewController {
 }
 
 extension UIViewController {
-    func moveNext(vc: UIViewController) {
+    func setVC(vc: UIViewController) {
         let vc = UINavigationController (rootViewController: vc)
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         let sceneDelegate = windowScene.delegate as? SceneDelegate
         sceneDelegate?.window?.rootViewController = vc
         sceneDelegate?.window?.makeKeyAndVisible()
+    }
+    
+    func moveVC(vc: UIViewController) {
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
