@@ -17,10 +17,10 @@ final class PaymentHistoryViewController: BaseViewController {
         
         view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.title = "결제 내역"
     }
     
@@ -33,10 +33,13 @@ final class PaymentHistoryViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
-        output.payHistorySuccess
-            .drive(with: self) { owner, payHistoryModel in
-//                owner.mainView.date.text = payHistoryModel.paidAt
+        output.payHistorySuccess.asObservable()
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: PaymentHistoryTableViewCell.identifer,
+                                                  cellType: PaymentHistoryTableViewCell.self)) { row, item, cell in
+                
+                let date = DateFormatManager.shared.stringToString(date: item.paidAt)
+                cell.date.text = date
             }
-            .disposed(by: disposeBag)
+                                                  .disposed(by: disposeBag)
     }
 }

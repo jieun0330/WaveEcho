@@ -28,6 +28,7 @@
 		C23076B72BF1ECEC00FF732E /* PaymentHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */; };
 		C23076B92BF1F0E600FF732E /* PaymentHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B82BF1F0E500FF732E /* PaymentHistoryViewModel.swift */; };
 		C23076BB2BF1F29C00FF732E /* PayHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076BA2BF1F29C00FF732E /* PayHistoryModel.swift */; };
+		C23076BD2BF226F900FF732E /* PaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076BC2BF226F900FF732E /* PaymentHistoryTableViewCell.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -134,6 +135,7 @@
 		C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryViewController.swift; sourceTree = "<group>"; };
 		C23076B82BF1F0E500FF732E /* PaymentHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryViewModel.swift; sourceTree = "<group>"; };
 		C23076BA2BF1F29C00FF732E /* PayHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayHistoryModel.swift; sourceTree = "<group>"; };
+		C23076BC2BF226F900FF732E /* PaymentHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */,
 				C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */,
 				C23076B82BF1F0E500FF732E /* PaymentHistoryViewModel.swift */,
+				C23076BC2BF226F900FF732E /* PaymentHistoryTableViewCell.swift */,
 			);
 			path = PaymentHistory;
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 				C2DC2C142BCD548E00A1D102 /* ValidEmailResponse.swift in Sources */,
 				C23D33DA2BDEA30100F81AB4 /* EditProfileViewModel.swift in Sources */,
 				C2CDC2CA2BD36F9E00176723 /* APIError.swift in Sources */,
+				C23076BD2BF226F900FF732E /* PaymentHistoryTableViewCell.swift in Sources */,
 				C2DC2C042BCD217800A1D102 /* RequestHeader.swift in Sources */,
 				C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */,
 				C22003502BE1309400A95F86 /* BaseCollectionViewCell.swift in Sources */,

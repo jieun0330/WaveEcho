@@ -25,10 +25,18 @@ final class DateFormatManager {
         }
     }
     
+    func stringToString(date: String) -> String {
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let convertToDate = dateFormatter.date(from: date)
+        let myDateFormatter = DateFormatter()
+        myDateFormatter.dateFormat = "M월 d일 HH시 mm분"
+        return myDateFormatter.string(from: convertToDate!)
+    }
+    
     func relativeDate(date: Date) -> String {
         relativeDateFormatter.unitsStyle = .abbreviated
         relativeDateFormatter.locale = Locale(identifier: "ko_KR")
-        
         return relativeDateFormatter.localizedString(for: date, relativeTo: Date())
     }
 }
