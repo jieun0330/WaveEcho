@@ -23,6 +23,7 @@
 		C23075FE2BEFC63A00FF732E /* WithdrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FD2BEFC63A00FF732E /* WithdrawView.swift */; };
 		C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */; };
 		C23076AF2BF1D2A200FF732E /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076AE2BF1D2A200FF732E /* Protocol.swift */; };
+		C23076B12BF1E22900FF732E /* WithdrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -126,6 +127,7 @@
 		C23075FD2BEFC63A00FF732E /* WithdrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawView.swift; sourceTree = "<group>"; };
 		C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		C23076AE2BF1D2A200FF732E /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewModel.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				C23075FD2BEFC63A00FF732E /* WithdrawView.swift */,
 				C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */,
+				C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */,
 			);
 			path = Withdraw;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				C27E53492BCE8DE40037E1A5 /* WritePostViewModel.swift in Sources */,
 				C28A3A152BE7C09A000B2E90 /* PopupViewModel.swift in Sources */,
 				C2CDC2A72BD1062C00176723 /* WithdrawResponse.swift in Sources */,
+				C23076B12BF1E22900FF732E /* WithdrawViewModel.swift in Sources */,
 				C20E68B22BD80D5A00507C0B /* ImageUploadRequestBody.swift in Sources */,
 				C2DC2C062BCD217800A1D102 /* LoginResponse.swift in Sources */,
 				C23AFEB32BC6E2660000EBE5 /* ViewModelType.swift in Sources */,

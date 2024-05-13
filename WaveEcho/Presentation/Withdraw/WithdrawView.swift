@@ -42,12 +42,13 @@ final class WithdrawView: BaseView {
         let button = UIButton()
         button.setTitle("회원 탈퇴", for: .normal)
         button.backgroundColor = .systemGray6
-        button.isEnabled = false
         return button
     }()
     
     override init(frame: CGRect) {
         super .init(frame: frame)
+        
+        withdrawButton.isEnabled = false
     }
     
     override func configureHierarchy() {

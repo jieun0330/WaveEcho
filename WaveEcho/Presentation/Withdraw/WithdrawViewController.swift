@@ -13,6 +13,7 @@ import Toast
 final class WithdrawViewController: BaseViewController {
     
     private let mainView = WithdrawView()
+    private let viewModel = WithdrawViewModel()
     
     override func loadView() {
         view = mainView
@@ -26,11 +27,22 @@ final class WithdrawViewController: BaseViewController {
     }
     
     override func bind() {
-        mainView.withdrawButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.view.makeToast("탈퇴되었습니다") { didTap in
+        
+        let input = WithdrawViewModel.Input(withdrawButtonTapped: mainView.withdrawButton.rx.tap)
+        
+        let output = viewModel.transform(input: input)
+        
+        output.withdrawSuccess
+            .drive(with: self) { owner, withdrawResponse in
+                owner.view.makeToast("탈퇴되었습니다", duration: 1, position: .center) { didTap in
                     owner.setVC(vc: WelcomeViewController())
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        output.withdrawError
+            .drive(with: self) { owner, error in
+                owner.errorHandler(apiError: error, calltype: .withdraw)
             }
             .disposed(by: disposeBag)
     }
