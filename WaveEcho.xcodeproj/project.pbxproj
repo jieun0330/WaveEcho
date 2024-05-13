@@ -22,6 +22,7 @@
 		C22003502BE1309400A95F86 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */; };
 		C23075FE2BEFC63A00FF732E /* WithdrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FD2BEFC63A00FF732E /* WithdrawView.swift */; };
 		C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */; };
+		C23076AF2BF1D2A200FF732E /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076AE2BF1D2A200FF732E /* Protocol.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -124,6 +125,7 @@
 		C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		C23075FD2BEFC63A00FF732E /* WithdrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawView.swift; sourceTree = "<group>"; };
 		C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
+		C23076AE2BF1D2A200FF732E /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 		C23AFE762BC6CE820000EBE5 /* WaveEcho */ = {
 			isa = PBXGroup;
 			children = (
+				C23076AE2BF1D2A200FF732E /* Protocol.swift */,
 				C269AF242BE377DE00BB6E20 /* LottieFiles */,
 				C20E68BE2BD9511800507C0B /* Extension */,
 				C20E689A2BD73D8C00507C0B /* Manager */,
@@ -718,6 +721,7 @@
 				C28A3A112BE7BF24000B2E90 /* LikeQuery.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
+				C23076AF2BF1D2A200FF732E /* Protocol.swift in Sources */,
 				C269AF7B2BE6153100BB6E20 /* UserDefaultsManager.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
 				C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */,

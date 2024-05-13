@@ -35,3 +35,29 @@ extension Reactive where Base: UIViewController {
         return ControlEvent(events: source)
     }
 }
+
+extension UIViewController {
+    func moveNext(vc: UIViewController) {
+        let vc = UINavigationController (rootViewController: vc)
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        let sceneDelegate = windowScene.delegate as? SceneDelegate
+        sceneDelegate?.window?.rootViewController = vc
+        sceneDelegate?.window?.makeKeyAndVisible()
+    }
+}
+
+extension UIViewController {
+    func makeAlert(alertTitle: String, alertMessage: String?, completeAction: @escaping (UIAlertAction) -> Void) {
+        let alert = UIAlertController(title: alertTitle,
+                                      message: alertMessage,
+                                      preferredStyle: .alert)
+        let yes = UIAlertAction(title: "확인", style: .default) { action in
+            completeAction(action)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+
+        alert.addAction(yes)
+        alert.addAction(cancel)
+        self.present(alert, animated: true)
+    }
+}
