@@ -12,7 +12,7 @@
 #### 유저 관리
 | 회원가입 | 로그인 | 로그아웃 | 회원탈퇴 |
 |:---:|:---:|:---:|:---:|
-|<picture>![회원가입](https://github.com/jieun0330/WaveEcho/assets/42729069/7d1b2a84-5311-40b7-b451-86cf12daf8e0)</picture>|<picture>![로그인](https://github.com/jieun0330/WaveEcho/assets/42729069/9a0760cb-1a3f-4f03-a72f-304266104736)</picture>|<picture>![로그아웃](https://github.com/jieun0330/WaveEcho/assets/42729069/dc65cdfb-9901-41a5-b3aa-4f05009ca4ef)</picture>|<picture>![회원탈퇴](https://github.com/jieun0330/WaveEcho/assets/42729069/e2b45c27-3655-4141-94f7-e8c828c69c82)</picture>
+|<picture>![회원가입](https://github.com/jieun0330/WaveEcho/assets/42729069/7d1b2a84-5311-40b7-b451-86cf12daf8e0)</picture>|<picture>![로그인](https://github.com/jieun0330/WaveEcho/assets/42729069/9a0760cb-1a3f-4f03-a72f-304266104736)</picture>|<picture>![로그아웃](https://github.com/jieun0330/WaveEcho/assets/42729069/dc65cdfb-9901-41a5-b3aa-4f05009ca4ef)</picture>|<picture>![회원탈퇴](https://github.com/jieun0330/WaveEcho/assets/42729069/36797a87-652a-4ff0-a168-c8552610eeb7)</picture>
 
 
 
