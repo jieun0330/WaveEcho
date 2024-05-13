@@ -13,7 +13,6 @@ import Toast
 final class PayViewController: BaseViewController {
     
     private let mainView = PayView()
-    private let viewModel = PayViewModel()
     private var postID: String?
     
     var paySuccessAction: ((Bool) -> Void)?
@@ -62,7 +61,6 @@ final class PayViewController: BaseViewController {
                                                          price: 100)
                     paymentTest.accept(payResponse)
                 }
-                self.viewModel.paymentSuccess.accept(response)
                 // 결제 취소, 실패 했을 때
             } else {
                 self.dismiss(animated: true)

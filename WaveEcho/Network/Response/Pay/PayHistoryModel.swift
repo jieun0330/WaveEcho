@@ -8,6 +8,10 @@
 import Foundation
 
 struct PayHistoryModel: Decodable {
+    let data: [PaymentData]
+}
+
+struct PaymentData: Decodable {
     let payment_id: String
     let buyer_id: String
     let post_id: String

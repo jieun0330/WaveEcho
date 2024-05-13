@@ -35,7 +35,7 @@ final class PaymentHistoryViewController: BaseViewController {
         
         output.payHistorySuccess
             .drive(with: self) { owner, payHistoryModel in
-                owner.mainView.date.text = payHistoryModel.paidAt
+//                owner.mainView.date.text = payHistoryModel.paidAt
             }
             .disposed(by: disposeBag)
     }

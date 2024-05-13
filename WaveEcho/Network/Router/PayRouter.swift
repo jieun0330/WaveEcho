@@ -37,6 +37,7 @@ extension PayRouter: TargetType {
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         case .paymentHistory:
             return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
+                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }

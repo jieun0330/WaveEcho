@@ -18,13 +18,13 @@ final class PaymentHistoryViewModel: ViewModelType {
     }
     
     struct Output {
-        let payHistorySuccess: Driver<PayHistoryModel>
+        let payHistorySuccess: Driver<[PaymentData]>
         let payHistoryError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        let payHistorySuccess = PublishRelay<PayHistoryModel>()
+        let payHistorySuccess = PublishRelay<[PaymentData]>()
         let payHistoryError = PublishRelay<APIError>()
         
         input.viewWillAppearTrigger
@@ -32,16 +32,15 @@ final class PaymentHistoryViewModel: ViewModelType {
                 APIManager.shared.create(type: PayHistoryModel.self, router: PayRouter.paymentHistory)
             }
             .bind(with: self) { owner, result in
-                print("1️⃣", result)
                 switch result {
                 case .success(let success):
-                    payHistorySuccess.accept(success)
+                    payHistorySuccess.accept(success.data)
                 case .failure(let error):
                     payHistoryError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
 
-        return Output(payHistorySuccess: payHistorySuccess.asDriver(onErrorJustReturn: PayHistoryModel(payment_id: "", buyer_id: "", post_id: "", merchant_uid: "", productName: "", price: 0, paidAt: "")), payHistoryError: payHistoryError.asDriver(onErrorJustReturn: .code500))
+        return Output(payHistorySuccess: payHistorySuccess.asDriver(onErrorJustReturn: [PaymentData(payment_id: "", buyer_id: "", post_id: "", merchant_uid: "", productName: "", price: 0, paidAt: "")]), payHistoryError: payHistoryError.asDriver(onErrorJustReturn: .code500))
     }
 }
