@@ -24,6 +24,8 @@
 		C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */; };
 		C23076AF2BF1D2A200FF732E /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076AE2BF1D2A200FF732E /* Protocol.swift */; };
 		C23076B12BF1E22900FF732E /* WithdrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */; };
+		C23076B52BF1EC3600FF732E /* PaymentHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */; };
+		C23076B72BF1ECEC00FF732E /* PaymentHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -128,6 +130,8 @@
 		C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
 		C23076AE2BF1D2A200FF732E /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewModel.swift; sourceTree = "<group>"; };
+		C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryView.swift; sourceTree = "<group>"; };
+		C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryViewController.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -272,6 +276,15 @@
 				C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */,
 			);
 			path = Withdraw;
+			sourceTree = "<group>";
+		};
+		C23076B32BF1EC2000FF732E /* PaymentHistory */ = {
+			isa = PBXGroup;
+			children = (
+				C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */,
+				C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */,
+			);
+			path = PaymentHistory;
 			sourceTree = "<group>";
 		};
 		C23AFE6B2BC6CE820000EBE5 = {
@@ -528,6 +541,7 @@
 		C2DC2BEE2BCD20C100A1D102 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C23076B32BF1EC2000FF732E /* PaymentHistory */,
 				C23075FC2BEFC5E100FF732E /* Withdraw */,
 				C2DC2BED2BCD20C100A1D102 /* Welcome */,
 				C269AF212BE2836000BB6E20 /* Join */,
@@ -746,6 +760,7 @@
 				C28A3A132BE7BFF6000B2E90 /* LikeModel.swift in Sources */,
 				C2DC2C052BCD217800A1D102 /* SignupResponse.swift in Sources */,
 				C2B5764A2BEE029800B7A72F /* PayResponse.swift in Sources */,
+				C23076B52BF1EC3600FF732E /* PaymentHistoryView.swift in Sources */,
 				C23AFEA92BC6DC2B0000EBE5 /* APIKey.swift in Sources */,
 				C2DC2C072BCD217800A1D102 /* UsersRouter.swift in Sources */,
 				C23075FE2BEFC63A00FF732E /* WithdrawView.swift in Sources */,
@@ -769,6 +784,7 @@
 				C2DC2BF12BCD20C100A1D102 /* JoinViewModel.swift in Sources */,
 				C269AF202BE2813800BB6E20 /* MyPostViewModel.swift in Sources */,
 				C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */,
+				C23076B72BF1ECEC00FF732E /* PaymentHistoryViewController.swift in Sources */,
 				C20E68B02BD7C51A00507C0B /* RefreshToken.swift in Sources */,
 				C269AF102BE206D000BB6E20 /* ReplyViewModel.swift in Sources */,
 				C2CDC2CC2BD4C63B00176723 /* PostResponse.swift in Sources */,

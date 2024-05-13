@@ -11,6 +11,12 @@ import SnapKit
 
 final class MyPostView: BaseView {
     
+    lazy var paymentButton = {
+        let pay = UIBarButtonItem()
+        pay.image = UIImage(systemName: "creditcard.fill")
+        return pay
+    }()
+    
     lazy var settingButton = {
         let setting = UIBarButtonItem()
         setting.image = UIImage(systemName: "gear")

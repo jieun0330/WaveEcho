@@ -48,7 +48,7 @@ final class MyPostViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = mainView.settingButton
+        navigationItem.rightBarButtonItems = [mainView.settingButton, mainView.paymentButton]
         navigationItem.rightBarButtonItem?.menu = menu
         navigationItem.backButtonTitle = ""
     }
@@ -63,6 +63,22 @@ final class MyPostViewController: BaseViewController {
                                           deleteTrigger: deleteTrigger)
         
         let output = viewModel.transform(input: input)
+        
+        // 포스트 데이터
+        output.postDataSuccess.asObservable()
+            .bind(with: self) { owner, postData in
+                owner.postData = postData
+            }
+            .disposed(by: disposeBag)
+        
+        output.postDataSuccess.asObservable()
+            .map { $0 }
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: MyPostTableViewCell.identifier,
+                                                  cellType: MyPostTableViewCell.self)) { row, item, cell in
+                cell.setData(item)
+                cell.selectionStyle = .none
+            }
+                                                  .disposed(by: disposeBag)
         
         // 포스트 삭제
         mainView.tableView.rx.modelDeleted(PostData.self)
@@ -81,21 +97,12 @@ final class MyPostViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        // 포스트 데이터
-        output.postDataSuccess.asObservable()
-            .bind(with: self) { owner, postData in
-                owner.postData = postData
+        // 결제 내역
+        mainView.paymentButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.moveVC(vc: PaymentHistoryViewController())
             }
             .disposed(by: disposeBag)
-        
-        output.postDataSuccess.asObservable()
-            .map { $0 }
-            .bind(to: mainView.tableView.rx.items(cellIdentifier: MyPostTableViewCell.identifier,
-                                                  cellType: MyPostTableViewCell.self)) { row, item, cell in
-                cell.setData(item)
-                cell.selectionStyle = .none
-            }
-                                                  .disposed(by: disposeBag)
     }
 }
 
