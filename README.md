@@ -5,7 +5,7 @@
 ### 소중한 메시지를 담은 쪽지를 바다 위로 띄워 다른 사람들과 쪽지를 전달하며 소통할 수 있는 앱
 * `유저 관리` 회원가입 / 로그인 / 로그아웃 / 회원탈퇴
 * `게시글 및 댓글` 게시글 작성 및 삭제 / 댓글 생성 및 삭제
-* `거래 기능` 게시글 작성 횟수 결제
+* `거래 기능` 게시글 작성 횟수 결제 / 결제 내역 조회
 
 <br/>
 
@@ -22,9 +22,10 @@
 |<picture>![포스트작성](https://github.com/jieun0330/WaveEcho/assets/42729069/0550ed94-8b07-47ed-bc9f-58406e30c642)</picture>|<picture>![포스트조회](https://github.com/jieun0330/WaveEcho/assets/42729069/e6f6d92d-7c79-47b7-bc71-467558d2634d)</picture>|<picture>![게시글 삭제](https://github.com/jieun0330/WaveEcho/assets/42729069/2422abfc-5a92-46ef-b336-c3159aaf7961)</picture>|<picture>![댓글 작성](https://github.com/jieun0330/WaveEcho/assets/42729069/d48527d3-2b40-41cb-aeb0-17e1ea38944c)</picture>
 
 #### 결제 관리
-| 결제 | 결제 완료 | ? | ? |
+| 결제 버튼 클릭 | 결제 | 결제 완료 | 결제 내역 조회 |
 |:---:|:---:|:---:|:---:|
-|<picture>![결제](https://github.com/jieun0330/WaveEcho/assets/42729069/04c42818-5946-4a83-b9ab-de1e698c2880)</picture>|<picture>![결제완료](https://github.com/jieun0330/WaveEcho/assets/42729069/7a892873-933c-4826-b508-3e8f215c685b)</picture>|<picture>![결제](https://github.com/jieun0330/WaveEcho/assets/42729069/04c42818-5946-4a83-b9ab-de1e698c2880)</picture>|<picture>![결제완료](https://github.com/jieun0330/WaveEcho/assets/42729069/7a892873-933c-4826-b508-3e8f215c685b)</picture>
+|<picture>![결제 버튼 클릭](https://github.com/jieun0330/WaveEcho/assets/42729069/d70a879f-1190-4a33-939d-4ddc43f3a4db)</picture>|<picture>![결제](https://github.com/jieun0330/WaveEcho/assets/42729069/52089dc7-fb23-4d31-9b57-781aad4fc246)</picture>|<picture>![결제완료](https://github.com/jieun0330/WaveEcho/assets/42729069/7a892873-933c-4826-b508-3e8f215c685b)</picture>|<picture>![결제 내역](https://github.com/jieun0330/WaveEcho/assets/42729069/2598ef4d-be06-46b0-ad82-fbdf3469ba2e)</picture>
+
 
 
 <br/>
