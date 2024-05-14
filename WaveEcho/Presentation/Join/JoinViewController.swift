@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toast
+import RxKeyboard
+import SnapKit
 
 final class JoinViewController: BaseViewController {
     
@@ -120,6 +122,16 @@ extension JoinViewController: UITextFieldDelegate, UITextViewDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == mainView.nicknameTextField {
             let transform = CGAffineTransform(translationX: 0, y: -150)
+            mainView.transform = transform
+        }
+        
+        if textField == mainView.emailTextField {
+            let transform = CGAffineTransform(translationX: 0, y: -120)
+            mainView.transform = transform
+        }
+        
+        if textField == mainView.passwordTextField {
+            let transform = CGAffineTransform(translationX: 0, y: -100)
             mainView.transform = transform
         }
     }
