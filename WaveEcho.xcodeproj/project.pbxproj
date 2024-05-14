@@ -28,6 +28,7 @@
 		C23076B92BF1F0E600FF732E /* PaymentHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B82BF1F0E500FF732E /* PaymentHistoryViewModel.swift */; };
 		C23076BB2BF1F29C00FF732E /* PayHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076BA2BF1F29C00FF732E /* PayHistoryModel.swift */; };
 		C23076BD2BF226F900FF732E /* PaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076BC2BF226F900FF732E /* PaymentHistoryTableViewCell.swift */; };
+		C23076CF2BF3870000FF732E /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = C23076CE2BF3870000FF732E /* RxKeyboard */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -225,6 +226,7 @@
 				C23AFE952BC6D03F0000EBE5 /* RxSwift in Frameworks */,
 				C2CDC2AC2BD133D900176723 /* Toast in Frameworks */,
 				C23AFE902BC6D01C0000EBE5 /* SnapKit in Frameworks */,
+				C23076CF2BF3870000FF732E /* RxKeyboard in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +657,7 @@
 				C27A067E2BE0D6CF0010D382 /* Lottie */,
 				C269AF122BE21F0D00BB6E20 /* BetterSegmentedControl */,
 				C2B576362BECDA0C00B7A72F /* iamport-ios */,
+				C23076CE2BF3870000FF732E /* RxKeyboard */,
 			);
 			productName = WaveEcho;
 			productReference = C23AFE742BC6CE820000EBE5 /* WaveEcho.app */;
@@ -693,6 +696,7 @@
 				C27A067D2BE0D6CF0010D382 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				C269AF112BE21F0D00BB6E20 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
 				C2B576352BECDA0C00B7A72F /* XCRemoteSwiftPackageReference "iamport-ios" */,
+				C23076CD2BF3870000FF732E /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = C23AFE752BC6CE820000EBE5 /* Products */;
 			projectDirPath = "";
@@ -1038,6 +1042,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C23076CD2BF3870000FF732E /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.1;
+			};
+		};
 		C23AFE8B2BC6CFF70000EBE5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1105,6 +1117,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C23076CE2BF3870000FF732E /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C23076CD2BF3870000FF732E /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
+		};
 		C23AFE8C2BC6CFF70000EBE5 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C23AFE8B2BC6CFF70000EBE5 /* XCRemoteSwiftPackageReference "Alamofire" */;

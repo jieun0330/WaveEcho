@@ -27,9 +27,9 @@ final class JoinViewController: BaseViewController {
     }
     
     override func configureView() {
-//        mainView.nicknameTextField.delegate = self
-//        mainView.emailTextField.delegate = self
-//        mainView.passwordTextField.delegate = self
+        mainView.nicknameTextField.delegate = self
+        mainView.emailTextField.delegate = self
+        mainView.passwordTextField.delegate = self
     }
     
     override func bind() {
@@ -98,7 +98,6 @@ final class JoinViewController: BaseViewController {
                 owner.setVC(vc: LoginViewController())
             }
             .disposed(by: disposeBag)
-
     }
     deinit {
         print(self, "deinit")
