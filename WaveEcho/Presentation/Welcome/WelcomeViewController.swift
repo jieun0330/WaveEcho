@@ -19,25 +19,22 @@ final class WelcomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func uiBind() {
         mainView.signUpButton.rx.tap
             .bind(with: self) { owner, _ in
-                let vc = JoinViewController()
-                owner.navigationController?.viewControllers = [vc]
+                owner.setVC(vc: JoinViewController())
             }
             .disposed(by: disposeBag)
         
         mainView.loginButton.rx.tap
             .bind(with: self) { owner, _ in
-                let vc = LoginViewController()
-                owner.navigationController?.setViewControllers([vc], animated: true)
+                owner.setVC(vc: LoginViewController())
             }
             .disposed(by: disposeBag)
     }
-//    deinit {
-//        print(self)
-//    }
+    deinit {
+        print(self, "deinit")
+    }
 }

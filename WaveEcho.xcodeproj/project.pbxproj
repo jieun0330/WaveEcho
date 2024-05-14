@@ -13,7 +13,6 @@
 		C20E68B22BD80D5A00507C0B /* ImageUploadRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */; };
 		C20E68B92BD9001C00507C0B /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B82BD9001C00507C0B /* ProfileRouter.swift */; };
 		C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68BC2BD91C5F00507C0B /* MyProfileResponse.swift */; };
-		C20E68C02BD9512200507C0B /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68BF2BD9512200507C0B /* UITextView.swift */; };
 		C20E68C22BD953FC00507C0B /* ImageUploadResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68C12BD953FC00507C0B /* ImageUploadResponse.swift */; };
 		C22003442BE0E02100A95F86 /* messageAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = C22003432BE0E02100A95F86 /* messageAnimation.json */; };
 		C22003482BE0F13600A95F86 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22003472BE0F13600A95F86 /* PopupViewController.swift */; };
@@ -22,7 +21,7 @@
 		C22003502BE1309400A95F86 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */; };
 		C23075FE2BEFC63A00FF732E /* WithdrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FD2BEFC63A00FF732E /* WithdrawView.swift */; };
 		C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */; };
-		C23076AF2BF1D2A200FF732E /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076AE2BF1D2A200FF732E /* Protocol.swift */; };
+		C23076AF2BF1D2A200FF732E /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076AE2BF1D2A200FF732E /* ReusableProtocol.swift */; };
 		C23076B12BF1E22900FF732E /* WithdrawViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */; };
 		C23076B52BF1EC3600FF732E /* PaymentHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */; };
 		C23076B72BF1ECEC00FF732E /* PaymentHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */; };
@@ -120,7 +119,6 @@
 		C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadRequestBody.swift; sourceTree = "<group>"; };
 		C20E68B82BD9001C00507C0B /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		C20E68BC2BD91C5F00507C0B /* MyProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileResponse.swift; sourceTree = "<group>"; };
-		C20E68BF2BD9512200507C0B /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 		C20E68C12BD953FC00507C0B /* ImageUploadResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadResponse.swift; sourceTree = "<group>"; };
 		C22003432BE0E02100A95F86 /* messageAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = messageAnimation.json; sourceTree = "<group>"; };
 		C22003472BE0F13600A95F86 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +127,7 @@
 		C220034F2BE1309400A95F86 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		C23075FD2BEFC63A00FF732E /* WithdrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawView.swift; sourceTree = "<group>"; };
 		C23075FF2BEFC73800FF732E /* WithdrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewController.swift; sourceTree = "<group>"; };
-		C23076AE2BF1D2A200FF732E /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		C23076AE2BF1D2A200FF732E /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		C23076B02BF1E22900FF732E /* WithdrawViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawViewModel.swift; sourceTree = "<group>"; };
 		C23076B42BF1EC3600FF732E /* PaymentHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryView.swift; sourceTree = "<group>"; };
 		C23076B62BF1ECEB00FF732E /* PaymentHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryViewController.swift; sourceTree = "<group>"; };
@@ -263,7 +261,6 @@
 		C20E68BE2BD9511800507C0B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C20E68BF2BD9512200507C0B /* UITextView.swift */,
 				C23D33C42BDE799C00F81AB4 /* UIViewController+Extension.swift */,
 				C269AF6F2BE3E51E00BB6E20 /* UIColor+Extension.swift */,
 			);
@@ -311,12 +308,11 @@
 		C23AFE762BC6CE820000EBE5 /* WaveEcho */ = {
 			isa = PBXGroup;
 			children = (
-				C23076AE2BF1D2A200FF732E /* Protocol.swift */,
+				C23AFEB12BC6E24F0000EBE5 /* Protocol */,
 				C269AF242BE377DE00BB6E20 /* LottieFiles */,
 				C20E68BE2BD9511800507C0B /* Extension */,
 				C20E689A2BD73D8C00507C0B /* Manager */,
 				C2DC2BEE2BCD20C100A1D102 /* Presentation */,
-				C23AFEB12BC6E24F0000EBE5 /* Protocol */,
 				C23AFEAC2BC6E1A90000EBE5 /* Base */,
 				C23AFE962BC6D0BC0000EBE5 /* Network */,
 				C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */,
@@ -360,6 +356,7 @@
 		C23AFEB12BC6E24F0000EBE5 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				C23076AE2BF1D2A200FF732E /* ReusableProtocol.swift */,
 				C23AFEB22BC6E2660000EBE5 /* ViewModelType.swift */,
 			);
 			path = Protocol;
@@ -544,9 +541,9 @@
 		C2DC2BEE2BCD20C100A1D102 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C2DC2BED2BCD20C100A1D102 /* Welcome */,
 				C23076B32BF1EC2000FF732E /* PaymentHistory */,
 				C23075FC2BEFC5E100FF732E /* Withdraw */,
-				C2DC2BED2BCD20C100A1D102 /* Welcome */,
 				C269AF212BE2836000BB6E20 /* Join */,
 				C269AF222BE2837E00BB6E20 /* Login */,
 				C2DC2C152BCD5A9000A1D102 /* RefreshToken */,
@@ -741,11 +738,10 @@
 				C28A3A112BE7BF24000B2E90 /* LikeQuery.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
-				C23076AF2BF1D2A200FF732E /* Protocol.swift in Sources */,
+				C23076AF2BF1D2A200FF732E /* ReusableProtocol.swift in Sources */,
 				C269AF7B2BE6153100BB6E20 /* UserDefaultsManager.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
 				C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */,
-				C20E68C02BD9512200507C0B /* UITextView.swift in Sources */,
 				C269AF702BE3E51E00BB6E20 /* UIColor+Extension.swift in Sources */,
 				C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */,
 				C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */,

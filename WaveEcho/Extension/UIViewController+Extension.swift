@@ -65,3 +65,14 @@ extension UIViewController {
         self.present(alert, animated: true)
     }
 }
+
+extension UIViewController {
+    func validButton(_ value: Bool, button: UIButton) {
+        let validButtonColor: UIColor = value ? .systemYellow : .systemGray5
+        button.backgroundColor = validButtonColor
+        let buttonTitleColor: UIColor = value ? .black : .lightGray
+        button.setTitleColor(buttonTitleColor, for: .normal)
+        let isEnabled: Bool = value ? true : false
+        button.isEnabled = isEnabled
+    }
+}

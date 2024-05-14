@@ -22,25 +22,14 @@ final class JoinViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 로그인
+        // 로그인 화면 이동
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
     }
     
     override func configureView() {
-        mainView.nicknameTextField.delegate = self
-        mainView.emailTextField.delegate = self
-        mainView.passwordTextField.delegate = self
-    }
-    
-    override func uiBind() {
-        
-        // 로그인뷰 이동
-        mainView.rightBarButtonItem.rx.tap
-            .bind(with: self) { owner, _ in
-                let vc = LoginViewController()
-                owner.navigationController?.viewControllers = [vc]
-            }
-            .disposed(by: disposeBag)
+//        mainView.nicknameTextField.delegate = self
+//        mainView.emailTextField.delegate = self
+//        mainView.passwordTextField.delegate = self
     }
     
     override func bind() {
@@ -56,12 +45,7 @@ final class JoinViewController: BaseViewController {
         // 회원가입 조건
         output.validSignup
             .drive(with: self) { owner, value in
-                let validButtonColor: UIColor = value ? .systemYellow : .systemGray5
-                owner.mainView.signupButton.backgroundColor = validButtonColor
-                let buttonTitleColor: UIColor = value ? .black : .lightGray
-                owner.mainView.signupButton.setTitleColor(buttonTitleColor, for: .normal)
-                let isEnabled: Bool = value ? true : false
-                owner.mainView.signupButton.isEnabled = isEnabled
+                owner.validButton(value, button: owner.mainView.signupButton)
             }
             .disposed(by: disposeBag)
         
@@ -69,16 +53,15 @@ final class JoinViewController: BaseViewController {
         output.signupTrigger
             .debounce(.seconds(1))
             .drive(with: self) { owner, _ in
-                owner.view.makeToast("회원가입이 완료되었습니다")
+                owner.view.makeToast("회원가입이 완료되었습니다", duration: 1)
             }
             .disposed(by: disposeBag)
         
         // 회원가입 완료 -> 로그인 뷰컨 이동
         output.signupTrigger
-            .debounce(.seconds(2))
+            .debounce(.seconds(1))
             .drive(with: self) { owner, _ in
-                let vc = LoginViewController()
-                owner.navigationController?.setViewControllers([vc], animated: true)
+                owner.setVC(vc: LoginViewController())
             }
             .disposed(by: disposeBag)
         
@@ -108,10 +91,18 @@ final class JoinViewController: BaseViewController {
         //                let validEmail: String = value ? "사용 가능한 이메일입니다" : "사용 불가한 이메일입니다"
         //                owner.mainView.validEmail.text = validEmail
         //            }.disposed(by: disposeBag)
+        
+        // 로그인뷰 이동
+        mainView.rightBarButtonItem.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.setVC(vc: LoginViewController())
+            }
+            .disposed(by: disposeBag)
+
     }
-//    deinit {
-//        print(self)
-//    }
+    deinit {
+        print(self, "deinit")
+    }
 }
 
 extension JoinViewController: UITextFieldDelegate, UITextViewDelegate {
