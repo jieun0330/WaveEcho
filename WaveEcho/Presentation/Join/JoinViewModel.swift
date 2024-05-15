@@ -25,7 +25,7 @@ final class JoinViewModel: ViewModelType {
         // 회원가입 조건
         let validSignup: Driver<Bool>
         // 회원가입
-        let signupTrigger: Driver<Void>
+        let signupSuccess: Driver<Void>
         // 이메일 중복 확인
         let validEmailTrigger: Driver<Bool>
         // 이메일 중복확인 안내 텍스트
@@ -39,7 +39,8 @@ final class JoinViewModel: ViewModelType {
         //회원가입 조건
         let validSignup = BehaviorRelay(value: false)
         // 회원가입
-        let signupTrigger = PublishRelay<Void>()
+        let signupSuccess = PublishRelay<Void>()
+//        let signupSuccess = BehaviorRelay(value: ())
         // 이메일 중복 확인
         let validEmailTrigger = PublishRelay<Bool>()
         // 이메일 중복확인 안내 텍스트
@@ -90,7 +91,7 @@ final class JoinViewModel: ViewModelType {
                 case .success(let success):
                     UserDefaultsManager.shared.email = success.email
                     UserDefaultsManager.shared.nickname = success.nick
-                    signupTrigger.accept(())
+                    signupSuccess.accept(())
                 case .failure(let error):
                     signupError.accept(error)
                 }
@@ -117,7 +118,7 @@ final class JoinViewModel: ViewModelType {
             .disposed(by: disposeBag)
                
         return Output(validSignup: validSignup.asDriver(),
-                      signupTrigger: signupTrigger.asDriver(onErrorJustReturn: ()),
+                      signupSuccess: signupSuccess.asDriver(onErrorJustReturn: ()),
                       validEmailTrigger: validEmailTrigger.asDriver(onErrorJustReturn: true),
                       validEmail: validEmail.asDriver(),
                       signupError: signupError.asDriver(onErrorJustReturn: .code500),

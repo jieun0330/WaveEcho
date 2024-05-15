@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toast
-import RxKeyboard
 import SnapKit
 
 final class JoinViewController: BaseViewController {
@@ -52,7 +51,7 @@ final class JoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 회원가입 완료 토스트 창
-        output.signupTrigger
+        output.signupSuccess
             .debounce(.seconds(1))
             .drive(with: self) { owner, _ in
                 owner.view.makeToast("회원가입이 완료되었습니다", duration: 1)
@@ -60,7 +59,7 @@ final class JoinViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 회원가입 완료 -> 로그인 뷰컨 이동
-        output.signupTrigger
+        output.signupSuccess
             .debounce(.seconds(1))
             .drive(with: self) { owner, _ in
                 owner.setVC(vc: LoginViewController())
