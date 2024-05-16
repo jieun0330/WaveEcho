@@ -8,6 +8,7 @@
 import UIKit
 import BetterSegmentedControl
 import SnapKit
+import Kingfisher
 
 final class MyPostView: BaseView {
     
@@ -29,13 +30,14 @@ final class MyPostView: BaseView {
         profile.contentMode = .scaleAspectFill
         profile.layer.cornerRadius = 35
         profile.clipsToBounds = true
+        profile.layer.borderColor = UIColor(hexCode: "1A79E9", alpha: 0.6).cgColor
+        profile.layer.borderWidth = 4
         return profile
     }()
     
     let nickname = {
         let nickname = UILabel()
         nickname.font = .boldSystemFont(ofSize: 20)
-        nickname.text = "지은"
         return nickname
     }()
     
@@ -96,6 +98,15 @@ final class MyPostView: BaseView {
             $0.top.equalTo(segment.snp.bottom).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalTo(safeAreaLayoutGuide)
+        }
+    }
+    
+    func setData(_ data: MyProfileResponse) {
+        nickname.text = data.nick
+        if let profileImageUrl = URL(string: data.profileImage ?? "") {
+            profileImage.kf.setImage(with: profileImageUrl, options: [.requestModifier(KingFisherNet())])
+        } else {
+            profileImage.image = .profileImg
         }
     }
 }

@@ -15,7 +15,6 @@ final class MyPostViewModel: ViewModelType {
     
     struct Input {
         let viewDidLoad: Observable<Void>
-        let deletePostID: BehaviorRelay<String> // publish
         // 포스트 삭제
         let deleteTrigger: PublishRelay<PostData>
     }
@@ -23,7 +22,10 @@ final class MyPostViewModel: ViewModelType {
     struct Output {
         let postDataSuccess: Driver<[PostData]> // hot&cold observable
         let postDataError: Driver<APIError>
-        let deletePostID: Driver<String>
+        // 프로필 조회 성공
+        let profileSuccess: Driver<MyProfileResponse>
+        // 프로필 조회 실패
+        let profileError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
@@ -31,6 +33,10 @@ final class MyPostViewModel: ViewModelType {
         let postDataError = PublishRelay<APIError>()
         // 포스트 삭제
         let deletePostError = PublishRelay<APIError>() // postDataError와 다른점은?
+        // 프로필 조회 성공
+        let profileSuccess = PublishRelay<MyProfileResponse>()
+        // 프로필 조회 실패
+        let profileError = PublishRelay<APIError>()
         
         input.viewDidLoad
             .flatMap { _ in // flatMap vs flatMapLatest
@@ -43,6 +49,21 @@ final class MyPostViewModel: ViewModelType {
                     postDataSuccess.accept(success.data)
                 case .failure(let error):
                     postDataError.accept(error)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        input.viewDidLoad
+            .flatMapLatest { _ in
+                return APIManager.shared.create(type: MyProfileResponse.self,
+                                                router: ProfileRouter.myProfile)
+            }
+            .bind(with: self) { owner, result in
+                switch result {
+                case .success(let success):
+                    profileSuccess.accept(success)
+                case .failure(let error):
+                    profileError.accept(error)
                 }
             }
             .disposed(by: disposeBag)
@@ -70,6 +91,6 @@ final class MyPostViewModel: ViewModelType {
         
         return Output(postDataSuccess: postDataSuccess.asDriver(),
                       postDataError: postDataError.asDriver(onErrorJustReturn: .code500),
-                      deletePostID: input.deletePostID.asDriver())
+                      profileSuccess: profileSuccess.asDriver(onErrorJustReturn: MyProfileResponse(user_id: "", email: "", nick: "", profileImage: "", posts: [])), profileError: profileError.asDriver(onErrorJustReturn: .code500))
     }
 }

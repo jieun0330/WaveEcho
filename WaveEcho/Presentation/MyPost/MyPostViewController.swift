@@ -14,7 +14,6 @@ final class MyPostViewController: BaseViewController {
     
     private let mainView = MyPostView()
     private let viewModel = MyPostViewModel()
-    private var postData: [PostData] = []
     
     private lazy var logout = UIAction(title: "로그아웃",
                                        image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
@@ -59,18 +58,10 @@ final class MyPostViewController: BaseViewController {
         let deleteTrigger = PublishRelay<PostData>()
         
         let input = MyPostViewModel.Input(viewDidLoad: Observable.just(Void()), // 포스트 조회
-                                          deletePostID: BehaviorRelay(value: ""),
                                           deleteTrigger: deleteTrigger)
         
         let output = viewModel.transform(input: input)
-        
-        // 포스트 데이터
-        output.postDataSuccess.asObservable()
-            .bind(with: self) { owner, postData in
-                owner.postData = postData
-            }
-            .disposed(by: disposeBag)
-        
+                
         output.postDataSuccess.asObservable()
             .map { $0 }
             .bind(to: mainView.tableView.rx.items(cellIdentifier: MyPostTableViewCell.identifier,
@@ -79,6 +70,13 @@ final class MyPostViewController: BaseViewController {
                 cell.selectionStyle = .none
             }
                                                   .disposed(by: disposeBag)
+        
+        // 프로필 조회
+        output.profileSuccess
+            .drive(with: self) { owner, myProfile in
+                owner.mainView.setData(myProfile)
+            }
+            .disposed(by: disposeBag)
         
         // 포스트 삭제
         mainView.tableView.rx.modelDeleted(PostData.self)

@@ -61,8 +61,6 @@
 		C269AF182BE224EC00BB6E20 /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */; };
 		C269AF1A2BE2265B00BB6E20 /* MyPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */; };
 		C269AF202BE2813800BB6E20 /* MyPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */; };
-		C269AF282BE37B5D00BB6E20 /* AfterMyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */; };
-		C269AF2A2BE37BA700BB6E20 /* AfterMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */; };
 		C269AF702BE3E51E00BB6E20 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF6F2BE3E51E00BB6E20 /* UIColor+Extension.swift */; };
 		C269AF7B2BE6153100BB6E20 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269AF7A2BE6153100BB6E20 /* UserDefaultsManager.swift */; };
 		C27A067F2BE0D6CF0010D382 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C27A067E2BE0D6CF0010D382 /* Lottie */; };
@@ -163,8 +161,6 @@
 		C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
 		C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostTableViewCell.swift; sourceTree = "<group>"; };
 		C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewModel.swift; sourceTree = "<group>"; };
-		C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterMyProfileView.swift; sourceTree = "<group>"; };
-		C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterMyProfileViewController.swift; sourceTree = "<group>"; };
 		C269AF6F2BE3E51E00BB6E20 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C269AF7A2BE6153100BB6E20 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		C27A06822BE0DA240010D382 /* wavesAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = wavesAnimation.json; sourceTree = "<group>"; };
@@ -240,15 +236,6 @@
 				C269AF7A2BE6153100BB6E20 /* UserDefaultsManager.swift */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		C20E68B32BD8FC8400507C0B /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				C269AF272BE37B5D00BB6E20 /* AfterMyProfileView.swift */,
-				C269AF292BE37BA700BB6E20 /* AfterMyProfileViewController.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		C20E68BB2BD91C4A00507C0B /* Profile */ = {
@@ -554,7 +541,6 @@
 				C269AF0A2BE1F59900BB6E20 /* PostReply */,
 				C27E53432BCE77390037E1A5 /* PostWrite */,
 				C269AF142BE223DC00BB6E20 /* MyPost */,
-				C20E68B32BD8FC8400507C0B /* Profile */,
 				C23D33D22BDE9FCF00F81AB4 /* ProfileEdit */,
 				C2B576382BECE4AB00B7A72F /* Pay */,
 			);
@@ -755,7 +741,6 @@
 				C23076B92BF1F0E600FF732E /* PaymentHistoryViewModel.swift in Sources */,
 				C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */,
 				C22003482BE0F13600A95F86 /* PopupViewController.swift in Sources */,
-				C269AF282BE37B5D00BB6E20 /* AfterMyProfileView.swift in Sources */,
 				C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */,
 				C2CDC2D12BD4FDF000176723 /* PostQueryString.swift in Sources */,
 				C2E8EFC92BDE451100868BB3 /* WriteCommentRequestBody.swift in Sources */,
@@ -803,7 +788,6 @@
 				C2DC2C102BCD35E100A1D102 /* LoginViewModel.swift in Sources */,
 				C2E8EFCC2BDE454200868BB3 /* WriteCommentResponse.swift in Sources */,
 				C23D33D42BDEA00100F81AB4 /* EditProfileView.swift in Sources */,
-				C269AF2A2BE37BA700BB6E20 /* AfterMyProfileViewController.swift in Sources */,
 				C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */,
 				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
 				C269AF0C2BE1F62A00BB6E20 /* ReplyViewController.swift in Sources */,
