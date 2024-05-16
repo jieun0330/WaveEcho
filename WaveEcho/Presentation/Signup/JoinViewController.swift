@@ -13,7 +13,7 @@ import SnapKit
 
 final class JoinViewController: BaseViewController {
     
-    private let mainView = JoinView()
+    private let mainView = SignupView()
     private let viewModel = JoinViewModel()
     
     override func loadView() {
@@ -25,6 +25,7 @@ final class JoinViewController: BaseViewController {
         
         // 로그인 화면 이동
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
+        
     }
     
     override func configureView() {
@@ -66,6 +67,12 @@ final class JoinViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.validEmailTrigger
+            .drive(with: self) { owner, _ in
+                owner.mainView.validEmail.isHidden = false
+            }
+            .disposed(by: disposeBag)
+        
         // 이메일 중복확인 안내 text
         output.validEmail
             .drive(with: self) { owner, value in
@@ -79,20 +86,7 @@ final class JoinViewController: BaseViewController {
                 owner.errorHandler(apiError: error, calltype: .signup)
             }
             .disposed(by: disposeBag)
-        
-        // 이메일 중복 확인 에러 처리
-        //        output.validEmailError
-        //            .drive(with: self) { owner, error in
-        //                owner.errorHandler(apiError: error, calltype: .validEmail)
-        //            }
-        //            .disposed(by: disposeBag)
-        
-        //        signupOutput.validSignup
-        //            .drive(with: self) { owner, value in
-        //                let validEmail: String = value ? "사용 가능한 이메일입니다" : "사용 불가한 이메일입니다"
-        //                owner.mainView.validEmail.text = validEmail
-        //            }.disposed(by: disposeBag)
-        
+                
         // 로그인뷰 이동
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in

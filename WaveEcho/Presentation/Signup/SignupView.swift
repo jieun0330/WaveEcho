@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Lottie
 
-class JoinView: BaseView {
+class SignupView: BaseView {
     
     lazy var seaBackgroundLottiView : LottieAnimationView = {
         let animationView = LottieAnimationView(name: "wavesAnimation")
@@ -115,6 +115,7 @@ class JoinView: BaseView {
         super .init(frame: frame)
         
         rightBarButtonItem.tintColor = .black
+        validEmail.isHidden = true
     }
     
     override func configureHierarchy() {
@@ -175,6 +176,8 @@ class JoinView: BaseView {
         validEmail.snp.makeConstraints {
             $0.top.equalTo(emailTextField.snp.bottom).offset(5)
             $0.leading.equalTo(emailTextField)
+            $0.trailing.equalTo(validEmailButton)
+            $0.height.equalTo(20)
         }
         
         password.snp.makeConstraints {

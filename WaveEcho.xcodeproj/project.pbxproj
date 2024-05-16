@@ -90,7 +90,7 @@
 		C2CDC2D12BD4FDF000176723 /* PostQueryString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2D02BD4FDF000176723 /* PostQueryString.swift */; };
 		C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2E12BD6299400176723 /* BaseTableViewCell.swift */; };
 		C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2E32BD62EFC00176723 /* APIManager.swift */; };
-		C2DC2BEF2BCD20C100A1D102 /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE62BCD20C100A1D102 /* JoinView.swift */; };
+		C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE62BCD20C100A1D102 /* SignupView.swift */; };
 		C2DC2BF02BCD20C100A1D102 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE72BCD20C100A1D102 /* JoinViewController.swift */; };
 		C2DC2BF12BCD20C100A1D102 /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE82BCD20C100A1D102 /* JoinViewModel.swift */; };
 		C2DC2BF22BCD20C100A1D102 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BEB2BCD20C100A1D102 /* WelcomeView.swift */; };
@@ -189,7 +189,7 @@
 		C2CDC2D02BD4FDF000176723 /* PostQueryString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostQueryString.swift; sourceTree = "<group>"; };
 		C2CDC2E12BD6299400176723 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		C2CDC2E32BD62EFC00176723 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		C2DC2BE62BCD20C100A1D102 /* JoinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
+		C2DC2BE62BCD20C100A1D102 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		C2DC2BE72BCD20C100A1D102 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		C2DC2BE82BCD20C100A1D102 /* JoinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
 		C2DC2BEB2BCD20C100A1D102 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -425,14 +425,14 @@
 			path = PostAll;
 			sourceTree = "<group>";
 		};
-		C269AF212BE2836000BB6E20 /* Join */ = {
+		C269AF212BE2836000BB6E20 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				C2DC2BE62BCD20C100A1D102 /* JoinView.swift */,
+				C2DC2BE62BCD20C100A1D102 /* SignupView.swift */,
 				C2DC2BE72BCD20C100A1D102 /* JoinViewController.swift */,
 				C2DC2BE82BCD20C100A1D102 /* JoinViewModel.swift */,
 			);
-			path = Join;
+			path = Signup;
 			sourceTree = "<group>";
 		};
 		C269AF222BE2837E00BB6E20 /* Login */ = {
@@ -544,9 +544,9 @@
 			isa = PBXGroup;
 			children = (
 				C2DC2BED2BCD20C100A1D102 /* Welcome */,
+				C269AF212BE2836000BB6E20 /* Signup */,
 				C23076B32BF1EC2000FF732E /* PaymentHistory */,
 				C23075FC2BEFC5E100FF732E /* Withdraw */,
-				C269AF212BE2836000BB6E20 /* Join */,
 				C269AF222BE2837E00BB6E20 /* Login */,
 				C2DC2C152BCD5A9000A1D102 /* RefreshToken */,
 				C269AF1D2BE255F000BB6E20 /* PostAll */,
@@ -805,7 +805,7 @@
 				C23D33D42BDEA00100F81AB4 /* EditProfileView.swift in Sources */,
 				C269AF2A2BE37BA700BB6E20 /* AfterMyProfileViewController.swift in Sources */,
 				C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */,
-				C2DC2BEF2BCD20C100A1D102 /* JoinView.swift in Sources */,
+				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
 				C269AF0C2BE1F62A00BB6E20 /* ReplyViewController.swift in Sources */,
 				C2CDC2A92BD107A900176723 /* PostsViewModel.swift in Sources */,
 				C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */,

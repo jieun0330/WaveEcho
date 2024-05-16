@@ -40,7 +40,6 @@ final class JoinViewModel: ViewModelType {
         let validSignup = BehaviorRelay(value: false)
         // 회원가입
         let signupSuccess = PublishRelay<Void>()
-//        let signupSuccess = BehaviorRelay(value: ())
         // 이메일 중복 확인
         let validEmailTrigger = PublishRelay<Bool>()
         // 이메일 중복확인 안내 텍스트
@@ -63,6 +62,16 @@ final class JoinViewModel: ViewModelType {
             .map { email in
                 return ValidEmailRequestBody(email: email)
             }
+        
+        validEmailObservable
+            .bind(with: self) { owner, validEmailRequest in
+                if validEmailRequest.email.contains("@") && validEmailRequest.email.contains(".com") {
+                    validEmail.accept("사용 가능한 이메일입니다")
+                } else {
+                    validEmail.accept("이메일을 확인해주세요")
+                }
+            }
+            .disposed(by: disposeBag)
         
         // 회원가입 조건
         signupObservable
