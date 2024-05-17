@@ -20,7 +20,7 @@ final class MyPostViewController: BaseViewController {
                                        handler: { [weak self] _ in
         guard let weakSelf = self else { return }
         weakSelf.makeAlert(alertTitle: "로그아웃 하시겠습니까?", alertMessage: nil) { completeAction in
-            weakSelf.view.makeToast("로그아웃되었습니다", duration: 1) { didTap in
+            weakSelf.view.makeToast("로그아웃되었습니다", duration: 1, position: .center) { didTap in
                 UserDefaultsManager.shared.accessToken.removeAll()
                 weakSelf.setVC(vc: LoginViewController())
             }

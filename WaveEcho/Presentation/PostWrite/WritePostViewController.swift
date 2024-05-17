@@ -61,7 +61,7 @@ final class WritePostViewController: BaseViewController {
         // 포스팅 작성 성공 -> toast 창
         output.createPostTrigger
             .drive(with: self) { owner, _ in
-                owner.view.makeToast("메아리를 던졌어요!")
+                owner.view.makeToast("메아리를 던졌어요!", duration: 1)
                 // 작성할 때 메아리 횟수 하나씩 줄이기
                 let tapCount = UserDefaultsManager.shared.sendPost - 10
                 UserDefaultsManager.shared.sendPost = tapCount

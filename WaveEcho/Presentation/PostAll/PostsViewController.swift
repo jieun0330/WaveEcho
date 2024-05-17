@@ -16,8 +16,9 @@ import WebKit
 final class PostsViewController: BaseViewController {
     
     private let mainView = PostsView()
-    private let payView = PayViewController()
     private let viewModel = PostsViewModel()
+    
+    private let payView = PayViewController()
     var postData: [PostData] = []
     // 팝업 화면
     let popupVC = PopupViewController()
@@ -61,33 +62,13 @@ final class PostsViewController: BaseViewController {
             messageLottiView.addGestureRecognizer(tapGesture)
             
             tapGesture.rx.event
-                .bind(with: self) { owner, tapGesture in
+                .bind(with: self) { owner, _ in
                     guard let post = owner.postData.randomElement() else { return }
                     
-                    // 작성자 프로필 이미지
-                    if let profileImageUrl = URL(string: post.creator.profileImage ?? "") {
-                        owner.popupVC.mainView.profileImage.kf.setImage(with: profileImageUrl, options: [.requestModifier(KingFisherNet())])
-                    } else {
-                        owner.popupVC.mainView.profileImage.image = .profileImg
-                    }
-                    // 작성자 닉네임
-                    owner.popupVC.mainView.nicknameLabel.text = post.creator.nick
-                    // 작성자 콘텐츠 내용
-                    owner.popupVC.mainView.contentLabel.text = post.content
-                    // 작성자 작성 시간
-                    let stringDate = DateFormatManager.shared.stringToDate(date: post.createdAt)
-                    let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
-                    owner.popupVC.mainView.date.text = relativeDate
-                    // 작성자 콘텐츠 이미지
-                    if let contentImageUrl = URL(string: post.files?.first ?? "") {
-                        owner.popupVC.mainView.contentImage.kf.setImage(with: contentImageUrl, options: [.requestModifier(KingFisherNet())])
-                    } else {
-                        owner.popupVC.mainView.contentImage.image = .paperboat
-                    }
-                    owner.popupVC.setPostData(post)
-                    owner.popupVC.modalPresentationStyle = .overCurrentContext
-                    owner.present(owner.popupVC, animated: false)
+                    owner.popupVC.setData(post)
                     owner.popupVC.replyView.mainView.toPerson.text = post.creator.nick
+                    owner.present(owner.popupVC, animated: false)
+                    owner.popupVC.modalPresentationStyle = .overCurrentContext
                 }
                 .disposed(by: disposeBag)
         }
@@ -148,15 +129,15 @@ final class PostsViewController: BaseViewController {
         
         let output = viewModel.transform(input: input)
         
-        output.postsContent
+        output.postSuccess
             .map { $0.data }
-            .bind(with: self) { owner, postData in
+            .drive(with: self) { owner, postData in
                 owner.postData = postData
             }
             .disposed(by: disposeBag)
         
         // 포스팅 에러 핸들링
-        output.postsError
+        output.postError
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .createPosts)
             }
@@ -164,7 +145,7 @@ final class PostsViewController: BaseViewController {
         
         // 리프레시 토큰 만료시 기존 accessToken 삭제
         // rootView 첫화면으로 전환
-        output.postsError
+        output.postError
             .debounce(.seconds(2))
             .drive(with: self) { owner, error in
                 if case .success = error {
@@ -180,7 +161,7 @@ final class PostsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-    //    deinit {
-    //        print(self)
-    //    }
+    deinit {
+        print(self)
+    }
 }

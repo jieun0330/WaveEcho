@@ -27,7 +27,7 @@ final class MyPostView: BaseView {
     let profileImage = {
         let profile = UIImageView()
         profile.image = .profile
-        profile.contentMode = .scaleAspectFill
+        profile.contentMode = .scaleAspectFit
         profile.layer.cornerRadius = 35
         profile.clipsToBounds = true
         profile.layer.borderColor = UIColor(hexCode: "1A79E9", alpha: 0.6).cgColor

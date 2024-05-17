@@ -100,7 +100,7 @@ class SignupView: BaseView {
         let button = UIButton()
         button.setTitle("Sign up", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 20
         return button
     }()

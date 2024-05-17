@@ -13,8 +13,8 @@ import Toast
 final class PayViewController: BaseViewController {
     
     private let mainView = PayView()
-    private var postID: String?
     
+    private var postID: String?
     var paySuccessAction: ((Bool) -> Void)?
     
     override func loadView() {

@@ -29,6 +29,7 @@
 		C23076BB2BF1F29C00FF732E /* PayHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076BA2BF1F29C00FF732E /* PayHistoryModel.swift */; };
 		C23076BD2BF226F900FF732E /* PaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076BC2BF226F900FF732E /* PaymentHistoryTableViewCell.swift */; };
 		C23076CF2BF3870000FF732E /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = C23076CE2BF3870000FF732E /* RxKeyboard */; };
+		C23077162BF7862F00FF732E /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = C23077152BF7862F00FF732E /* RxGesture */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -221,6 +222,7 @@
 				C23AFE8D2BC6CFF70000EBE5 /* Alamofire in Frameworks */,
 				C23AFE952BC6D03F0000EBE5 /* RxSwift in Frameworks */,
 				C2CDC2AC2BD133D900176723 /* Toast in Frameworks */,
+				C23077162BF7862F00FF732E /* RxGesture in Frameworks */,
 				C23AFE902BC6D01C0000EBE5 /* SnapKit in Frameworks */,
 				C23076CF2BF3870000FF732E /* RxKeyboard in Frameworks */,
 			);
@@ -532,9 +534,9 @@
 			children = (
 				C2DC2BED2BCD20C100A1D102 /* Welcome */,
 				C269AF212BE2836000BB6E20 /* Signup */,
+				C269AF222BE2837E00BB6E20 /* Login */,
 				C23076B32BF1EC2000FF732E /* PaymentHistory */,
 				C23075FC2BEFC5E100FF732E /* Withdraw */,
-				C269AF222BE2837E00BB6E20 /* Login */,
 				C2DC2C152BCD5A9000A1D102 /* RefreshToken */,
 				C269AF1D2BE255F000BB6E20 /* PostAll */,
 				C25D9F112BDCC1ED00012307 /* PostDetail */,
@@ -644,6 +646,7 @@
 				C269AF122BE21F0D00BB6E20 /* BetterSegmentedControl */,
 				C2B576362BECDA0C00B7A72F /* iamport-ios */,
 				C23076CE2BF3870000FF732E /* RxKeyboard */,
+				C23077152BF7862F00FF732E /* RxGesture */,
 			);
 			productName = WaveEcho;
 			productReference = C23AFE742BC6CE820000EBE5 /* WaveEcho.app */;
@@ -683,6 +686,7 @@
 				C269AF112BE21F0D00BB6E20 /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
 				C2B576352BECDA0C00B7A72F /* XCRemoteSwiftPackageReference "iamport-ios" */,
 				C23076CD2BF3870000FF732E /* XCRemoteSwiftPackageReference "RxKeyboard" */,
+				C23077142BF7862F00FF732E /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = C23AFE752BC6CE820000EBE5 /* Products */;
 			projectDirPath = "";
@@ -1034,6 +1038,14 @@
 				minimumVersion = 2.0.1;
 			};
 		};
+		C23077142BF7862F00FF732E /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 		C23AFE8B2BC6CFF70000EBE5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1105,6 +1117,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C23076CD2BF3870000FF732E /* XCRemoteSwiftPackageReference "RxKeyboard" */;
 			productName = RxKeyboard;
+		};
+		C23077152BF7862F00FF732E /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C23077142BF7862F00FF732E /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 		C23AFE8C2BC6CFF70000EBE5 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

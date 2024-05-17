@@ -52,8 +52,34 @@ final class PopupViewController: BaseViewController {
         return layout
     }
     
-    func setPostData(_ model: PostData) {
-        behaviorModel.accept(model)
+    func setData(_ data: PostData) {
+        behaviorModel.accept(data)
+        
+        behaviorModel
+            .bind(with: self) { owner, post in
+                // 작성자 프로필 이미지
+                if let profileImageUrl = URL(string: post.creator.profileImage ?? "") {
+                    owner.mainView.profileImage.kf.setImage(with: profileImageUrl, options: [.requestModifier(KingFisherNet())])
+                } else {
+                    owner.mainView.profileImage.image = .profileImg
+                }
+                // 작성자 닉네임
+                owner.mainView.nicknameLabel.text = post.creator.nick
+                // 작성자 콘텐츠 내용
+                owner.mainView.contentLabel.text = post.content
+                // 작성자 작성 시간
+                let stringDate = DateFormatManager.shared.stringToDate(date: post.createdAt)
+                let relativeDate = DateFormatManager.shared.relativeDate(date: stringDate!)
+                owner.mainView.date.text = relativeDate
+                // 작성자 콘텐츠 이미지
+                if let contentImageUrl = URL(string: post.files?.first ?? "") {
+                    owner.mainView.contentImage.kf.setImage(with: contentImageUrl, options: [.requestModifier(KingFisherNet())])
+                } else {
+                    owner.mainView.contentImage.image = .paperboat
+                }
+
+            }
+            .disposed(by: disposeBag)
         
         behaviorModel
             .compactMap { $0 }
@@ -72,7 +98,7 @@ final class PopupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        replyView.postID.accept(model.post_id)
+        replyView.postID.accept(data.post_id)
         
         // 던지기 버튼
         mainView.throwButton.rx.tap
@@ -90,10 +116,13 @@ final class PopupViewController: BaseViewController {
                 owner.present(owner.replyView, animated: false)
             }
             .disposed(by: disposeBag)
+        
+        // 작성자 프로필 조회
+        
     }
-//    deinit {
-//        print(self)
-//    }
+    deinit {
+        print(self)
+    }
 }
 
 extension PopupViewController: fetchComment {
