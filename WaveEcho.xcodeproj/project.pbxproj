@@ -30,6 +30,10 @@
 		C23076BD2BF226F900FF732E /* PaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23076BC2BF226F900FF732E /* PaymentHistoryTableViewCell.swift */; };
 		C23076CF2BF3870000FF732E /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = C23076CE2BF3870000FF732E /* RxKeyboard */; };
 		C23077162BF7862F00FF732E /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = C23077152BF7862F00FF732E /* RxGesture */; };
+		C23077192BF87A4600FF732E /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23077182BF87A4600FF732E /* ChatView.swift */; };
+		C230771B2BF87C1E00FF732E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230771A2BF87C1E00FF732E /* ChatViewController.swift */; };
+		C230771D2BF8801A00FF732E /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230771C2BF8801A00FF732E /* ChatRouter.swift */; };
+		C23077232BF8806100FF732E /* ChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23077222BF8806100FF732E /* ChatRequest.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -134,6 +138,10 @@
 		C23076B82BF1F0E500FF732E /* PaymentHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryViewModel.swift; sourceTree = "<group>"; };
 		C23076BA2BF1F29C00FF732E /* PayHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayHistoryModel.swift; sourceTree = "<group>"; };
 		C23076BC2BF226F900FF732E /* PaymentHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		C23077182BF87A4600FF732E /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		C230771A2BF87C1E00FF732E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C230771C2BF8801A00FF732E /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
+		C23077222BF8806100FF732E /* ChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequest.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -277,6 +285,23 @@
 				C23076BC2BF226F900FF732E /* PaymentHistoryTableViewCell.swift */,
 			);
 			path = PaymentHistory;
+			sourceTree = "<group>";
+		};
+		C23077172BF87A3900FF732E /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C23077182BF87A4600FF732E /* ChatView.swift */,
+				C230771A2BF87C1E00FF732E /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		C23077212BF8805A00FF732E /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C23077222BF8806100FF732E /* ChatRequest.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		C23AFE6B2BC6CE820000EBE5 = {
@@ -442,6 +467,7 @@
 				C20E68B82BD9001C00507C0B /* ProfileRouter.swift */,
 				C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */,
 				C2B5763D2BECF00D00B7A72F /* PayRouter.swift */,
+				C230771C2BF8801A00FF732E /* ChatRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -532,6 +558,7 @@
 		C2DC2BEE2BCD20C100A1D102 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C23077172BF87A3900FF732E /* Chat */,
 				C2DC2BED2BCD20C100A1D102 /* Welcome */,
 				C269AF212BE2836000BB6E20 /* Signup */,
 				C269AF222BE2837E00BB6E20 /* Login */,
@@ -562,6 +589,7 @@
 		C2DC2BFC2BCD217800A1D102 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				C23077212BF8805A00FF732E /* Chat */,
 				C2B5763F2BECF1BC00B7A72F /* Pay */,
 				C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */,
 				C2DC2BFA2BCD217800A1D102 /* Users */,
@@ -719,15 +747,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2B5763A2BECE4C400B7A72F /* PayView.swift in Sources */,
+				C23077192BF87A4600FF732E /* ChatView.swift in Sources */,
+				C230771B2BF87C1E00FF732E /* ChatViewController.swift in Sources */,
 				C2B5763C2BECE60100B7A72F /* PayViewController.swift in Sources */,
 				C20E68B92BD9001C00507C0B /* ProfileRouter.swift in Sources */,
 				C2DC2C172BCD5AEE00A1D102 /* RefreshTokenResponse.swift in Sources */,
 				C20E68C22BD953FC00507C0B /* ImageUploadResponse.swift in Sources */,
 				C23D33D12BDE985C00F81AB4 /* EditMyProfileResponse.swift in Sources */,
+				C23077232BF8806100FF732E /* ChatRequest.swift in Sources */,
 				C2DC2C032BCD217800A1D102 /* UserModel.swift in Sources */,
 				C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */,
 				C23D33CF2BDE983700F81AB4 /* EditMyProfileRequestBody.swift in Sources */,
 				C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */,
+				C230771D2BF8801A00FF732E /* ChatRouter.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
 				C28A3A112BE7BF24000B2E90 /* LikeQuery.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,

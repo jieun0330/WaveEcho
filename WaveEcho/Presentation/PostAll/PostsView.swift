@@ -36,6 +36,12 @@ class PostsView: BaseView {
         return sendWave
     }()
     
+    lazy var chat = {
+        let item = UIBarButtonItem()
+        item.image = UIImage(systemName: "message.badge")
+        return item
+    }()
+    
     lazy var myLetters = {
         let item = UIBarButtonItem()
         item.image = UIImage(systemName: "person.fill")

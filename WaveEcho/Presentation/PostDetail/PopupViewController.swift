@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import RxGesture
 
 final class PopupViewController: BaseViewController {
     
@@ -64,7 +65,9 @@ final class PopupViewController: BaseViewController {
                     owner.mainView.profileImage.image = .profileImg
                 }
                 // 작성자 닉네임
-                owner.mainView.nicknameLabel.text = post.creator.nick
+//                owner.mainView.nicknameLabel.text = post.creator.nick
+                owner.mainView.nicknameLabel.setTitle(post.creator.nick, for: .normal)
+
                 // 작성자 콘텐츠 내용
                 owner.mainView.contentLabel.text = post.content
                 // 작성자 작성 시간
@@ -116,9 +119,6 @@ final class PopupViewController: BaseViewController {
                 owner.present(owner.replyView, animated: false)
             }
             .disposed(by: disposeBag)
-        
-        // 작성자 프로필 조회
-        
     }
     deinit {
         print(self)

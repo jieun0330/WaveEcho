@@ -33,7 +33,7 @@ final class PostsViewController: BaseViewController {
         super.viewDidLoad()
         
         navigationItem.backButtonTitle = ""
-        navigationItem.rightBarButtonItem = mainView.myLetters
+        navigationItem.rightBarButtonItems = [mainView.myLetters, mainView.chat]
         navigationItem.title = "파도 메아리"
         
         // 종이배 랜덤 포지션
@@ -94,6 +94,12 @@ final class PostsViewController: BaseViewController {
             .bind(with: self) { owner, _ in
                 let vc = MyPostViewController()
                 owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        mainView.chat.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.moveVC(vc: ChatViewController())
             }
             .disposed(by: disposeBag)
         

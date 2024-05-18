@@ -75,11 +75,10 @@ final class LoginViewController: BaseViewController {
         // 로그인 되었습니다 toast message
         output.loginTrigger
             .drive(with: self) { owner, value in
-                owner.view.makeToast("로그인되었습니다")
+                owner.view.makeToast("로그인되었습니다", duration: 1, position: .center)
             }
             .disposed(by: disposeBag)
         
-        // 2초 후 화면 전환
         output.loginTrigger
             .debounce(.seconds(1))
             .drive(with: self) { owner, _ in
@@ -88,9 +87,9 @@ final class LoginViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-//    deinit {
-//        print(self)
-//    }
+    deinit {
+        print(self)
+    }
 }
 
 extension LoginViewController: UITextFieldDelegate {
