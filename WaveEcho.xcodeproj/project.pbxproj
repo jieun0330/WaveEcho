@@ -116,6 +116,8 @@
 		C2E8EFC92BDE451100868BB3 /* WriteCommentRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFC82BDE451100868BB3 /* WriteCommentRequestBody.swift */; };
 		C2E8EFCC2BDE454200868BB3 /* WriteCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCB2BDE454200868BB3 /* WriteCommentResponse.swift */; };
 		C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */; };
+		C2FB75B52BF9078C00B8F60A /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */; };
+		C2FB75B82BF907B800B8F60A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = C2FB75B72BF907B800B8F60A /* SocketIO */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -219,6 +221,7 @@
 		C2E8EFC82BDE451100868BB3 /* WriteCommentRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentRequestBody.swift; sourceTree = "<group>"; };
 		C2E8EFCB2BDE454200868BB3 /* WriteCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentResponse.swift; sourceTree = "<group>"; };
 		C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
+		C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,7 @@
 				C269AF132BE21F0D00BB6E20 /* BetterSegmentedControl in Frameworks */,
 				C27A067F2BE0D6CF0010D382 /* Lottie in Frameworks */,
 				C23AFE932BC6D03F0000EBE5 /* RxCocoa in Frameworks */,
+				C2FB75B82BF907B800B8F60A /* SocketIO in Frameworks */,
 				C23AFE8D2BC6CFF70000EBE5 /* Alamofire in Frameworks */,
 				C23AFE952BC6D03F0000EBE5 /* RxSwift in Frameworks */,
 				C2CDC2AC2BD133D900176723 /* Toast in Frameworks */,
@@ -367,6 +371,7 @@
 				C269AF232BE2A2FA00BB6E20 /* Router */,
 				C2DC2BFC2BCD217800A1D102 /* Request */,
 				C2DC2C012BCD217800A1D102 /* Response */,
+				C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -689,6 +694,7 @@
 				C2B576362BECDA0C00B7A72F /* iamport-ios */,
 				C23076CE2BF3870000FF732E /* RxKeyboard */,
 				C23077152BF7862F00FF732E /* RxGesture */,
+				C2FB75B72BF907B800B8F60A /* SocketIO */,
 			);
 			productName = WaveEcho;
 			productReference = C23AFE742BC6CE820000EBE5 /* WaveEcho.app */;
@@ -729,6 +735,7 @@
 				C2B576352BECDA0C00B7A72F /* XCRemoteSwiftPackageReference "iamport-ios" */,
 				C23076CD2BF3870000FF732E /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 				C23077142BF7862F00FF732E /* XCRemoteSwiftPackageReference "RxGesture" */,
+				C2FB75B62BF907B800B8F60A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = C23AFE752BC6CE820000EBE5 /* Products */;
 			projectDirPath = "";
@@ -776,6 +783,7 @@
 				C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */,
 				C230771D2BF8801A00FF732E /* ChatRouter.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
+				C2FB75B52BF9078C00B8F60A /* SocketIOManager.swift in Sources */,
 				C28A3A112BE7BF24000B2E90 /* LikeQuery.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
@@ -1158,6 +1166,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		C2FB75B62BF907B800B8F60A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 16.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1215,6 +1231,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C2CDC2AA2BD133D900176723 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		C2FB75B72BF907B800B8F60A /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2FB75B62BF907B800B8F60A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
