@@ -8,10 +8,13 @@
 import UIKit
 import RxKeyboard
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class ChatViewController: BaseViewController {
     
     private let mainView = ChatView()
+    private let viewModel = ChatViewModel()
     
     override func loadView() {
         view = mainView
@@ -23,6 +26,11 @@ final class ChatViewController: BaseViewController {
     }
     
     override func bind() {
+        
+        let input = ChatViewModel.Input(viewDidLoad: Observable.just(Void()))
+        
+        let output = viewModel.transform(input: input)
+        
         RxKeyboard.instance.visibleHeight
             .skip(1)
             .drive(with: self) { owner, keyboardVisibleHeight in

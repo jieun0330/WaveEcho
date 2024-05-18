@@ -34,6 +34,8 @@
 		C230771B2BF87C1E00FF732E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230771A2BF87C1E00FF732E /* ChatViewController.swift */; };
 		C230771D2BF8801A00FF732E /* ChatRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C230771C2BF8801A00FF732E /* ChatRouter.swift */; };
 		C23077232BF8806100FF732E /* ChatRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23077222BF8806100FF732E /* ChatRequest.swift */; };
+		C23077252BF881E400FF732E /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23077242BF881E400FF732E /* ChatViewModel.swift */; };
+		C23077292BF8838A00FF732E /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23077282BF8838A00FF732E /* ChatModel.swift */; };
 		C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */; };
 		C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */; };
 		C23AFE7C2BC6CE820000EBE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23AFE7B2BC6CE820000EBE5 /* ViewController.swift */; };
@@ -142,6 +144,8 @@
 		C230771A2BF87C1E00FF732E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C230771C2BF8801A00FF732E /* ChatRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRouter.swift; sourceTree = "<group>"; };
 		C23077222BF8806100FF732E /* ChatRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequest.swift; sourceTree = "<group>"; };
+		C23077242BF881E400FF732E /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		C23077282BF8838A00FF732E /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		C23AFE742BC6CE820000EBE5 /* WaveEcho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WaveEcho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23AFE772BC6CE820000EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23AFE792BC6CE820000EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 			children = (
 				C23077182BF87A4600FF732E /* ChatView.swift */,
 				C230771A2BF87C1E00FF732E /* ChatViewController.swift */,
+				C23077242BF881E400FF732E /* ChatViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -302,6 +307,14 @@
 				C23077222BF8806100FF732E /* ChatRequest.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		C23077272BF8838200FF732E /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				C23077282BF8838A00FF732E /* ChatModel.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		C23AFE6B2BC6CE820000EBE5 = {
@@ -615,6 +628,7 @@
 		C2DC2C012BCD217800A1D102 /* Response */ = {
 			isa = PBXGroup;
 			children = (
+				C23077272BF8838200FF732E /* New Group */,
 				C2B576482BEE028400B7A72F /* Pay */,
 				C2DC2BFF2BCD217800A1D102 /* Users */,
 				C27E534D2BCE8F730037E1A5 /* Posts */,
@@ -757,6 +771,7 @@
 				C23077232BF8806100FF732E /* ChatRequest.swift in Sources */,
 				C2DC2C032BCD217800A1D102 /* UserModel.swift in Sources */,
 				C23D33C52BDE799C00F81AB4 /* UIViewController+Extension.swift in Sources */,
+				C23077292BF8838A00FF732E /* ChatModel.swift in Sources */,
 				C23D33CF2BDE983700F81AB4 /* EditMyProfileRequestBody.swift in Sources */,
 				C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */,
 				C230771D2BF8801A00FF732E /* ChatRouter.swift in Sources */,
@@ -824,6 +839,7 @@
 				C2DC2C102BCD35E100A1D102 /* LoginViewModel.swift in Sources */,
 				C2E8EFCC2BDE454200868BB3 /* WriteCommentResponse.swift in Sources */,
 				C23D33D42BDEA00100F81AB4 /* EditProfileView.swift in Sources */,
+				C23077252BF881E400FF732E /* ChatViewModel.swift in Sources */,
 				C27E53452BCE774A0037E1A5 /* WritePostView.swift in Sources */,
 				C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */,
 				C269AF0C2BE1F62A00BB6E20 /* ReplyViewController.swift in Sources */,
