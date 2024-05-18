@@ -23,6 +23,11 @@ final class ChatViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         
+//        input.viewDidLoad
+//            .flatMap { _ in
+//                return APIManager.shared.create(type: ChatModel.self, router: ChatRouter.makeChatRoom(query: <#T##ChatRequest#>))
+//            }
+        
         return Output()
     }
 }

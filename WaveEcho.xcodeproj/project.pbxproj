@@ -118,6 +118,7 @@
 		C2E8EFCE2BDE458400868BB3 /* CommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */; };
 		C2FB75B52BF9078C00B8F60A /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */; };
 		C2FB75B82BF907B800B8F60A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = C2FB75B72BF907B800B8F60A /* SocketIO */; };
+		C2FB75BA2BF90D7F00B8F60A /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB75B92BF90D7F00B8F60A /* ChatListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -222,6 +223,7 @@
 		C2E8EFCB2BDE454200868BB3 /* WriteCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentResponse.swift; sourceTree = "<group>"; };
 		C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
 		C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		C2FB75B92BF90D7F00B8F60A /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 				C23077182BF87A4600FF732E /* ChatView.swift */,
 				C230771A2BF87C1E00FF732E /* ChatViewController.swift */,
 				C23077242BF881E400FF732E /* ChatViewModel.swift */,
+				C2FB75B92BF90D7F00B8F60A /* ChatListView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
 				C23076AF2BF1D2A200FF732E /* ReusableProtocol.swift in Sources */,
 				C269AF7B2BE6153100BB6E20 /* UserDefaultsManager.swift in Sources */,
+				C2FB75BA2BF90D7F00B8F60A /* ChatListView.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
 				C23076002BEFC73800FF732E /* WithdrawViewController.swift in Sources */,
 				C269AF702BE3E51E00BB6E20 /* UIColor+Extension.swift in Sources */,
