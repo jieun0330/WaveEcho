@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 enum ChatRouter {
-    // 채팅방 생성
-    case makeChatRoom(query : ChatRequest)
+    // 내 채팅방 리스트 조회
+    case myChatList
 }
 
 extension ChatRouter: TargetType {
@@ -20,23 +20,22 @@ extension ChatRouter: TargetType {
     
     var method: Alamofire.HTTPMethod {
         switch self {
-        case .makeChatRoom(_):
-            return .post
+        case .myChatList:
+            return .get
         }
     }
     
     var headers: [String : String] {
         switch self {
-        case .makeChatRoom(_):
+        case .myChatList:
             return [HTTPHeader.authorization.rawValue: UserDefaultsManager.shared.accessToken,
-                    HTTPHeader.contentType.rawValue: HTTPHeader.json.rawValue,
                     HTTPHeader.sesacKey.rawValue: APIKey.sesacKey.rawValue]
         }
     }
     
     var path: String {
         switch self {
-        case .makeChatRoom(_):
+        case .myChatList:
             return "v1/chats"
         }
     }
@@ -50,7 +49,7 @@ extension ChatRouter: TargetType {
         encoder.keyEncodingStrategy = .useDefaultKeys
 
         switch self {
-        case .makeChatRoom(query: let query):
+        case .myChatList:
             return nil
         }
     }

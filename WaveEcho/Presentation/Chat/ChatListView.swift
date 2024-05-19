@@ -10,9 +10,11 @@ import SnapKit
 
 final class ChatListView: BaseView {
     
-    private let tableView = {
+    let tableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .yellow
+        tableView.register(ChatListTableViewCell.self, forCellReuseIdentifier: ChatListTableViewCell.identifer)
+        tableView.rowHeight = 100
         return tableView
     }()
     
@@ -35,7 +37,5 @@ final class ChatListView: BaseView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
+    }    
 }

@@ -119,6 +119,9 @@
 		C2FB75B52BF9078C00B8F60A /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */; };
 		C2FB75B82BF907B800B8F60A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = C2FB75B72BF907B800B8F60A /* SocketIO */; };
 		C2FB75BA2BF90D7F00B8F60A /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB75B92BF90D7F00B8F60A /* ChatListView.swift */; };
+		C2FB75BC2BF90E3600B8F60A /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB75BB2BF90E3600B8F60A /* ChatListViewController.swift */; };
+		C2FB75BE2BF90EB500B8F60A /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB75BD2BF90EB500B8F60A /* ChatListTableViewCell.swift */; };
+		C2FB75C02BF9111500B8F60A /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB75BF2BF9111500B8F60A /* ChatListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +227,9 @@
 		C2E8EFCD2BDE458400868BB3 /* CommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRouter.swift; sourceTree = "<group>"; };
 		C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		C2FB75B92BF90D7F00B8F60A /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		C2FB75BB2BF90E3600B8F60A /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		C2FB75BD2BF90EB500B8F60A /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
+		C2FB75BF2BF9111500B8F60A /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +310,9 @@
 				C230771A2BF87C1E00FF732E /* ChatViewController.swift */,
 				C23077242BF881E400FF732E /* ChatViewModel.swift */,
 				C2FB75B92BF90D7F00B8F60A /* ChatListView.swift */,
+				C2FB75BB2BF90E3600B8F60A /* ChatListViewController.swift */,
+				C2FB75BD2BF90EB500B8F60A /* ChatListTableViewCell.swift */,
+				C2FB75BF2BF9111500B8F60A /* ChatListViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -791,6 +800,7 @@
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,
 				C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */,
 				C23076AF2BF1D2A200FF732E /* ReusableProtocol.swift in Sources */,
+				C2FB75BE2BF90EB500B8F60A /* ChatListTableViewCell.swift in Sources */,
 				C269AF7B2BE6153100BB6E20 /* UserDefaultsManager.swift in Sources */,
 				C2FB75BA2BF90D7F00B8F60A /* ChatListView.swift in Sources */,
 				C20E68BD2BD91C5F00507C0B /* MyProfileResponse.swift in Sources */,
@@ -829,6 +839,7 @@
 				C2CDC2A52BD1023800176723 /* PostsRouter.swift in Sources */,
 				C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */,
 				C27E53472BCE780C0037E1A5 /* WritePostViewController.swift in Sources */,
+				C2FB75BC2BF90E3600B8F60A /* ChatListViewController.swift in Sources */,
 				C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */,
 				C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */,
 				C2DC2BF02BCD20C100A1D102 /* JoinViewController.swift in Sources */,
@@ -860,6 +871,7 @@
 				C23AFE7A2BC6CE820000EBE5 /* SceneDelegate.swift in Sources */,
 				C27E534C2BCE8E840037E1A5 /* WritePostsRequestBody.swift in Sources */,
 				C269AF1A2BE2265B00BB6E20 /* MyPostTableViewCell.swift in Sources */,
+				C2FB75C02BF9111500B8F60A /* ChatListViewModel.swift in Sources */,
 				C23D33DC2BDEC7C900F81AB4 /* KingFisherImage.swift in Sources */,
 				C2DC2BF22BCD20C100A1D102 /* WelcomeView.swift in Sources */,
 				C269AF162BE2248400BB6E20 /* MyPostView.swift in Sources */,

@@ -99,7 +99,7 @@ final class PostsViewController: BaseViewController {
         
         mainView.chat.rx.tap
             .bind(with: self) { owner, _ in
-                owner.moveVC(vc: ChatViewController())
+                owner.moveVC(vc: ChatListViewController())
             }
             .disposed(by: disposeBag)
         
