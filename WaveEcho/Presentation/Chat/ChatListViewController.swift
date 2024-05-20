@@ -40,6 +40,9 @@ final class ChatListViewController: BaseViewController {
                 } else {
                     cell.profileImg.image = .paperboat
                 }
+                
+                cell.userID.text = item.participants.first?.nick
+                
             }
             .disposed(by: disposeBag)
     }

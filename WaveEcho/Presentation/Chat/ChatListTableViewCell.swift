@@ -12,8 +12,19 @@ final class ChatListTableViewCell: BaseTableViewCell, ReusableProtocol {
     
     let profileImg = {
         let profile = UIImageView()
-        profile.image = UIImage(systemName: "star")
         return profile
+    }()
+    
+    let userID = {
+        let id = UILabel()
+        id.font = .systemFont(ofSize: 12)
+        return id
+    }()
+    
+    let message = {
+        let message = UILabel()
+        message.text = "test"
+        return message
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -23,7 +34,7 @@ final class ChatListTableViewCell: BaseTableViewCell, ReusableProtocol {
     }
     
     override func configureHierarchy() {
-        [profileImg].forEach {
+        [profileImg, userID, message].forEach {
             contentView.addSubview($0)
         }
     }
@@ -34,6 +45,16 @@ final class ChatListTableViewCell: BaseTableViewCell, ReusableProtocol {
             $0.leading.equalToSuperview().inset(20)
             $0.size.equalTo(50)
         }
+        
+        userID.snp.makeConstraints {
+            $0.top.equalTo(profileImg)
+            $0.leading.equalTo(profileImg.snp.trailing).offset(10)
+        }
+        
+//        message.snp.makeConstraints {
+//            $0.leading.equalTo(userID)
+//            $0.top.equalTo(use)
+//        }
     }
     
     required init?(coder: NSCoder) {
