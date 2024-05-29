@@ -1,4 +1,4 @@
-# 📨 WaveEcho
+# 📨 WaveEcho(파도메아리)
 
 <picture>![lslpapplogo_125](https://github.com/jieun0330/WaveEcho/assets/42729069/b0cd7fc4-f4d4-42e9-a57e-7a2368125cef)</picture>
 
@@ -36,21 +36,37 @@
 <br/>
 
 ## 🛠️ 사용기술 및 라이브러리
-* `UIKit(Code Base)` `MVVM` `RxSwift` `SnapKit` `Kingfisher` 
-* `Alamofire` `Toast`
+`UIKit(Code Base)` `MVVM` `RxSwift` `SnapKit` `Kingfisher` `Alamofire` `Toast`
 
 <br/>
 
+## 🔧 구현 고려사항
+- 공통 기능을 포함한 `BaseViewController`를 사용하여, 중복 코드를 줄이고 코드의 재사용성을 높임
+- `RxSwift`를 활용하여 비동기 데이터 스트림 관리
+- UI 업데이트를 위해 `Driver`를 활용하여 메인 스레드에서 안전하게 작업이 이루어지도록 보장
+- 입력`Input`과 출력`Output` 구조체를 사용하여 코드의 모듈화와 가독성 향상
+- `deinit`을 통해 `ViewController`가 제대로 해제되는지 확인하여 메모리 누수 방지
+- 싱글톤 패턴을 사용하여 네트워크 요청 관리
+- `RefreshToken interceptor`를 사용하여 토큰 갱신을 처리함으로써, 만료된 토큰을 자동으로 갱신
+- 새로운 API 호출 유형이나 에러 케이스가 추가될 경우, `APIError`와 `CallType`에 대한 처리 로직을 쉽게 확장할 수 있음
+  
+
+<br/>
+
+
+
 ## ⛏️ Trouble Shooting
 
-**❌ 문제 상황**: 이미지 용량 압축 작업을 하지 않아 이미지 업로드 실패
+**❌ 문제 상황**
+<br/>
+이미지 용량 압축 작업을 하지 않아 이미지 업로드 실패
 
 **⭕️ 해결 방법**
-1. UIImage에는 jpeg Data로 바로 바꾸어주는 메소드가 있어서 한 줄의 코드로 변경 가능
-2. compressionQuality에는 압축률을 전달
+- UIImage에는 jpeg Data로 바꾸어주는 메소드가 있어서 한 줄의 코드로 변경 가능
+- compressionQuality에는 압축률을 전달
 
-<details>
-<summary>Code</summary>
+
+
 
 ```swift
 extension WritePostViewController: PHPickerViewControllerDelegate {
@@ -72,3 +88,47 @@ extension WritePostViewController: PHPickerViewControllerDelegate {
         }
     }
 }
+```
+<br/>
+
+**❌ 문제 상황: 에러 응답 코드 흐름 이해**
+<br/>
+서버로부터 받는 응답코드 419와 418의 처리 방식을 이해하는 것이 어려웠다. 419 상태 코드를 만났을 때, 418 상태 코드를 만나지 않고는 접할 수 없다는 점이었다.
+
+**⭕️ 해결 방법**
+- 먼저, 419와 418 응답 코드의 처리방법을 명확히 이해
+- APIManager에 리프레시 토큰 만료(418) 상태를 처리할 수 있는  `RefreshToken interceptor` 로직 구현
+- 로그아웃 과정을 사용자에게 알리기 위해 `MyPostViewController`에서 로그아웃 알림과 함께 화면 전환 로직 구현
+
+```swift
+// MyPostViewController
+private lazy var logout = UIAction(title: "로그아웃",
+                                       image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
+                                       handler: { [weak self] _ in
+        guard let self else { return }
+        makeAlert(alertTitle: "로그아웃 하시겠습니까?", alertMessage: nil) { [weak self] completeAction in
+            guard let self else { return }
+            view.makeToast("로그아웃되었습니다", duration: 1, position: .center) { [weak self] didTap in
+                guard let self else { return }
+                UserDefaultsManager.shared.accessToken.removeAll()
+                setVC(vc: LoginViewController())
+            }
+        }
+    })
+```
+
+
+<br/>
+
+## 🔧 추후 업데이트 사항
+
+- [ ] UserDefaults enum 활용 리팩토링
+- [ ] cell 속성 리팩토링
+- [ ] 메모리 누수 확인
+
+<br/>
+
+## 👏🏻 회고
+프로젝트를 시작하기 전까지, 응답 코드에 대한 처리, Router enum 활용, HTTP 메서드 뿐 아니라 리프레시 토큰의 만료와 갱신 관리까지 이렇게 많은 부분을 한 번에 다루어야 하는 경험은 전무했다. 이 모든 부분을 어디서 어떻게 시작해야 할지 막막했다. 하지만 이 프로젝트를 통해 실제로 서버 요청을 보내고 받아보며 서비스를 확장해 나가는 과정은 좋은 경험이었다.
+서버 통신을 구현하며, 각 HTTP 메서드(GET, POST 등)의 사용법을 익혔고, REST API 설계 원칙에 대해 이해할 수 있었다.
+특히 이번 프로젝트에서 처음으로 리프레시 토큰 개념에 대해 깨달았다. 액세스 토큰이 만료되었을 때 어떻게 토큰을 갱신할 수 있을지에 대한 고민은 프로젝트를 통해 해결해 나가는 큰 도전이었다. 이 과정에서, 토큰 갱신 로직을 구현하고, 이를 프로젝트의 다른 부분과 통합하는 방법을 배웠다.
