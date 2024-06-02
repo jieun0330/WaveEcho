@@ -25,7 +25,6 @@ final class JoinViewController: BaseViewController {
         
         // 로그인 화면 이동
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
-        
     }
     
     override func configureView() {

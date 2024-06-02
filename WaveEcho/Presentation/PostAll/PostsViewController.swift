@@ -107,16 +107,25 @@ final class PostsViewController: BaseViewController {
         mainView.sendWaveButton.rx.tap
             .bind(with: self) { owner, _ in
                 if UserDefaultsManager.shared.sendPost == 0 {
-                    let alert = UIAlertController(title: "메아리 횟수가 부족해요!",
-                                                  message: "100원 = 메아리 10개",
-                                                  preferredStyle: .alert)
-                    let yesAction = UIAlertAction(title: "100원 결제하기", style: .default) {_ in
-                        owner.present(owner.payView, animated: true)
+                    
+                    owner.makeAlert(alertTitle: "메아리 횟수가 부족해요!",
+                              alertMessage: "100원 = 메아리 10개") { _ in
+                        let yesAction = UIAlertAction(title: "100원 결제하기", style: .default) {_ in
+                            owner.present(owner.payView, animated: true)
+                        }
+                        let noAction = UIAlertAction(title: "닫기", style: .cancel)
                     }
-                    let noAction = UIAlertAction(title: "닫기", style: .cancel)
-                    alert.addAction(yesAction)
-                    alert.addAction(noAction)
-                    owner.present(alert, animated: true)
+                    
+//                    let alert = UIAlertController(title: "메아리 횟수가 부족해요!",
+//                                                  message: "100원 = 메아리 10개",
+//                                                  preferredStyle: .alert)
+//                    let yesAction = UIAlertAction(title: "100원 결제하기", style: .default) {_ in
+//                        owner.present(owner.payView, animated: true)
+//                    }
+//                    let noAction = UIAlertAction(title: "닫기", style: .cancel)
+//                    alert.addAction(yesAction)
+//                    alert.addAction(noAction)
+//                    owner.present(alert, animated: true)
                 } else {
                     let vc = WritePostViewController()
                     owner.navigationController?.pushViewController(vc, animated: true)

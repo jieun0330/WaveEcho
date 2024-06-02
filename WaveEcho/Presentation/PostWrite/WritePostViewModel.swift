@@ -47,7 +47,7 @@ class WritePostViewModel: ViewModelType {
         // 이미지 업로드
         input.uploadImage
             .flatMap { data in
-                return APIManager.shared.upload(type: ImageUploadResponse.self,
+                return APIManager.shared.upload(type: ImageUploadModel.self,
                                                 router: PostsRouter.uploadImage,
                                                 image: data)
             }
@@ -79,7 +79,7 @@ class WritePostViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMap { postRequest in
-                return APIManager.shared.create(type: PostResponse.self, router: PostsRouter.createPosts(query: postRequest))
+                return APIManager.shared.create(type: PostModel.self, router: PostsRouter.createPosts(query: postRequest))
             }
             .bind(with: self) { owner, result in
                 switch result {

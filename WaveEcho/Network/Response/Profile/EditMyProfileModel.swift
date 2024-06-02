@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EditMyProfileResponse: Decodable {
+struct EditMyProfileModel: Decodable {
     let user_id: String
     let email: String
     let nick: String

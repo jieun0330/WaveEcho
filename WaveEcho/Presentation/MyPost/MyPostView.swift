@@ -101,7 +101,7 @@ final class MyPostView: BaseView {
         }
     }
     
-    func setData(_ data: MyProfileResponse) {
+    func setData(_ data: MyProfileModel) {
         nickname.text = data.nick
         if let profileImageUrl = URL(string: data.profileImage ?? "") {
             profileImage.kf.setImage(with: profileImageUrl, options: [.requestModifier(KingFisherNet())])

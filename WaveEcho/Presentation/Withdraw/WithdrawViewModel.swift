@@ -18,18 +18,18 @@ final class WithdrawViewModel: ViewModelType {
     }
     
     struct Output {
-        let withdrawSuccess: Driver<WithdrawResponse>
+        let withdrawSuccess: Driver<WithdrawModel>
         let withdrawError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        let withdrawSuccess = PublishRelay<WithdrawResponse>()
+        let withdrawSuccess = PublishRelay<WithdrawModel>()
         let withdrawError = PublishRelay<APIError>()
         
         input.withdrawButtonTapped
             .flatMap { _ in
-                return APIManager.shared.create(type: WithdrawResponse.self, router: UsersRouter.withdraw)
+                return APIManager.shared.create(type: WithdrawModel.self, router: UsersRouter.withdraw)
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -41,6 +41,6 @@ final class WithdrawViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(withdrawSuccess: withdrawSuccess.asDriver(onErrorJustReturn: WithdrawResponse(user_id: "", email: "", nick: "")), withdrawError: withdrawError.asDriver(onErrorJustReturn: .code500))
+        return Output(withdrawSuccess: withdrawSuccess.asDriver(onErrorJustReturn: WithdrawModel(user_id: "", email: "", nick: "")), withdrawError: withdrawError.asDriver(onErrorJustReturn: .code500))
     }
 }

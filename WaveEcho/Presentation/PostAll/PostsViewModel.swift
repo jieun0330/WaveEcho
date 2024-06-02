@@ -18,27 +18,27 @@ class PostsViewModel {
     }
     
     struct Output {
-        let postSuccess: Driver<PostResponse>
+        let postSuccess: Driver<PostModel>
         let postError: Driver<APIError>
         
-        let myProfile: Driver<MyProfileResponse>
+        let myProfile: Driver<MyProfileModel>
         let myProfileError: Driver<APIError>
     }
     
     func transform(input: Input) -> Output {
         
-        let postSuccess = PublishRelay<PostResponse>()
+        let postSuccess = PublishRelay<PostModel>()
         let postError = PublishRelay<APIError>()
         let fetchPostsObservable = Observable.just(PostQueryString(next: "",
                                                                    limit: "10",
                                                                    product_id: "신디"))
-        let myProfile = PublishRelay<MyProfileResponse>()
+        let myProfile = PublishRelay<MyProfileModel>()
         let myProfileError = PublishRelay<APIError>()
         
         input.viewWillAppearTrigger
             .withLatestFrom(fetchPostsObservable)
             .flatMapLatest { postQuery in
-                return APIManager.shared.create(type: PostResponse.self,
+                return APIManager.shared.create(type: PostModel.self,
                                                 router: PostsRouter.fetchPosts(query: postQuery))
             }
             .bind(with: self) { owner, result in
@@ -66,9 +66,9 @@ class PostsViewModel {
 //            }
 //            .disposed(by: disposeBag)
 //        
-        return Output(postSuccess: postSuccess.asDriver(onErrorJustReturn: PostResponse(data: [PostData(post_id: "", product_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])])),
+        return Output(postSuccess: postSuccess.asDriver(onErrorJustReturn: PostModel(data: [PostData(post_id: "", product_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])])),
                       postError: postError.asDriver(onErrorJustReturn: .code500),
-                      myProfile: myProfile.asDriver(onErrorJustReturn: MyProfileResponse(user_id: "", email: "", nick: "", profileImage: "", posts: [""])),
+                      myProfile: myProfile.asDriver(onErrorJustReturn: MyProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [""])),
                       myProfileError: myProfileError.asDriver(onErrorJustReturn: .code500))
     }
 }

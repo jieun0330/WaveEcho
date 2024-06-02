@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostResponse: Decodable {
+struct PostModel: Decodable {
     let data: [PostData]
 }
 

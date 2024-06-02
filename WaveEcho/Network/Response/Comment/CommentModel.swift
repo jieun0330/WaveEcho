@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WriteCommentResponse: Decodable {
+struct CommentModel: Decodable {
     let comment_id: String
     let content: String
     let createdAt: String

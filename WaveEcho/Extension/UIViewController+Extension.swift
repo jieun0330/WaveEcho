@@ -55,7 +55,8 @@ extension UIViewController {
         let alert = UIAlertController(title: alertTitle,
                                       message: alertMessage,
                                       preferredStyle: .alert)
-        let yes = UIAlertAction(title: "확인", style: .default) { action in
+        let yes = UIAlertAction(title: "확인", style: .default) { [weak self] action in
+            guard let self else { return }
             completeAction(action)
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)

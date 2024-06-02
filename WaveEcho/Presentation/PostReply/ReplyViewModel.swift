@@ -12,7 +12,7 @@ import RxCocoa
 final class ReplyViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
-    var updateCommentData = BehaviorRelay<[WriteCommentResponse]>(value: [])
+    var updateCommentData = BehaviorRelay<[CommentModel]>(value: [])
     
     struct Input {
         let sendButtonTapped: ControlEvent<Void>
@@ -21,15 +21,15 @@ final class ReplyViewModel: ViewModelType {
     }
     
     struct Output {
-        let updateCommentData: Driver<[WriteCommentResponse]>
-        let commentSuccess: Driver<WriteCommentResponse>
+        let updateCommentData: Driver<[CommentModel]>
+        let commentSuccess: Driver<CommentModel>
         let commentError: Driver<APIError>
         let commentTrigger: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
         
-        let commentSuccess = PublishRelay<WriteCommentResponse>()
+        let commentSuccess = PublishRelay<CommentModel>()
         let commentError = PublishRelay<APIError>()
         let commentTrigger = PublishRelay<Void>()
         
@@ -40,7 +40,7 @@ final class ReplyViewModel: ViewModelType {
                 WriteCommentRequestBody(content: content)
             }
             .flatMapLatest { writeCommentRequest in
-                return APIManager.shared.create(type: WriteCommentResponse.self,
+                return APIManager.shared.create(type: CommentModel.self,
                                                 router: CommentRouter.writeComment(query: writeCommentRequest,
                                                                                    id: input.postID.value))
             }
@@ -61,7 +61,7 @@ final class ReplyViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         return Output(updateCommentData: updateCommentData.asDriver(),
-                      commentSuccess: commentSuccess.asDriver(onErrorJustReturn: WriteCommentResponse(comment_id: "",
+                      commentSuccess: commentSuccess.asDriver(onErrorJustReturn: CommentModel(comment_id: "",
                                                                                                       content: "",
                                                                                                       createdAt: "",
                                                                                                       creator: Creator(user_id: "",

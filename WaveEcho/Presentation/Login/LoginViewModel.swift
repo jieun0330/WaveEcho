@@ -56,7 +56,7 @@ class LoginViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(loginObservable)
             .flatMap { loginRequest in
-                return APIManager.shared.create(type: LoginResponse.self,
+                return APIManager.shared.create(type: LoginModel.self,
                                                 router: UsersRouter.login(query: loginRequest))
             }
             .bind(with: self) { owner, result in

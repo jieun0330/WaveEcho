@@ -23,7 +23,6 @@ final class ChatListViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     override func bind() {
@@ -33,7 +32,8 @@ final class ChatListViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.chatListSuccess.asObservable()
-            .bind(to: mainView.tableView.rx.items(cellIdentifier: ChatListTableViewCell.identifer, cellType: ChatListTableViewCell.self)) { row, item, cell in
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: ChatListTableViewCell.identifer,
+                                                  cellType: ChatListTableViewCell.self)) { row, item, cell in
                 
                 if let imageURL = item.participants.first?.profileImage {
                     cell.profileImg.kf.setImage(with: URL(string: imageURL), options: [.requestModifier(KingFisherNet())])
@@ -42,7 +42,6 @@ final class ChatListViewController: BaseViewController {
                 }
                 
                 cell.userID.text = item.participants.first?.nick
-                
             }
             .disposed(by: disposeBag)
     }

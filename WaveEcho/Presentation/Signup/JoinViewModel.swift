@@ -93,7 +93,7 @@ final class JoinViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(signupObservable)
             .flatMap { signupRequest in
-                return APIManager.shared.create(type: SignupResponse.self, router: UsersRouter.signup(query: signupRequest))
+                return APIManager.shared.create(type: SignupModel.self, router: UsersRouter.signup(query: signupRequest))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -112,7 +112,7 @@ final class JoinViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(validEmailObservable)
             .flatMap { emailRequest in
-                return APIManager.shared.create(type: ValidEmailResponse.self,
+                return APIManager.shared.create(type: ValidEmailModel.self,
                                                 router: UsersRouter.validEmail(query: emailRequest))
             }
             .bind(with: self) { owner, result in

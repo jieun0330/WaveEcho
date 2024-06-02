@@ -39,7 +39,7 @@ class RefreshToken: RequestInterceptor {
                 let urlRequest = try UsersRouter.refreshToken.asURLRequest()
                 AF
                     .request(urlRequest)
-                    .responseDecodable(of: RefreshTokenResponse.self) { response in
+                    .responseDecodable(of: RefreshTokenModel.self) { response in
                         
                         switch response.result {
                         case .success(let success):

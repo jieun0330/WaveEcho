@@ -20,14 +20,14 @@ class EditProfileViewModel: ViewModelType {
     }
     
     struct Output {
-        let editProfileSuccess: Driver<EditMyProfileResponse>
+        let editProfileSuccess: Driver<EditMyProfileModel>
         let editProfileError: Driver<APIError>
         let editProfileSuccessTrigger: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
         
-        let editProfileSuccess = PublishRelay<EditMyProfileResponse>()
+        let editProfileSuccess = PublishRelay<EditMyProfileModel>()
         let editProfileError = PublishRelay<APIError>()
         let editProfileSuccessTrigger = PublishRelay<Void>()
         
@@ -46,6 +46,6 @@ class EditProfileViewModel: ViewModelType {
 //                return APIManager.shared.editProfile(query: editMyProfileRequest, router: ProfileRouter.editMyPofile(query: editMyProfileRequest))
 //            }
         
-        return Output(editProfileSuccess: editProfileSuccess.asDriver(onErrorJustReturn: EditMyProfileResponse(user_id: "", email: "", nick: "", profileImage: "", followers: [Followers(user_id: "", nick: "", profileImage: "")], following: [Following(user_id: "", nick: "", profileImage: "")], posts: [""])), editProfileError: editProfileError.asDriver(onErrorJustReturn: .code500), editProfileSuccessTrigger: editProfileSuccessTrigger.asDriver(onErrorJustReturn: ()))
+        return Output(editProfileSuccess: editProfileSuccess.asDriver(onErrorJustReturn: EditMyProfileModel(user_id: "", email: "", nick: "", profileImage: "", followers: [Followers(user_id: "", nick: "", profileImage: "")], following: [Following(user_id: "", nick: "", profileImage: "")], posts: [""])), editProfileError: editProfileError.asDriver(onErrorJustReturn: .code500), editProfileSuccessTrigger: editProfileSuccessTrigger.asDriver(onErrorJustReturn: ()))
     }
 }
