@@ -97,11 +97,11 @@ final class PostsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        mainView.chat.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.moveVC(vc: ChatListViewController())
-            }
-            .disposed(by: disposeBag)
+//        mainView.chat.rx.tap
+//            .bind(with: self) { owner, _ in
+//                owner.moveVC(vc: ChatListViewController())
+//            }
+//            .disposed(by: disposeBag)
         
         // 포스팅 작성 화면 전환
         mainView.sendWaveButton.rx.tap
@@ -115,17 +115,6 @@ final class PostsViewController: BaseViewController {
                         }
                         let noAction = UIAlertAction(title: "닫기", style: .cancel)
                     }
-                    
-//                    let alert = UIAlertController(title: "메아리 횟수가 부족해요!",
-//                                                  message: "100원 = 메아리 10개",
-//                                                  preferredStyle: .alert)
-//                    let yesAction = UIAlertAction(title: "100원 결제하기", style: .default) {_ in
-//                        owner.present(owner.payView, animated: true)
-//                    }
-//                    let noAction = UIAlertAction(title: "닫기", style: .cancel)
-//                    alert.addAction(yesAction)
-//                    alert.addAction(noAction)
-//                    owner.present(alert, animated: true)
                 } else {
                     let vc = WritePostViewController()
                     owner.navigationController?.pushViewController(vc, animated: true)

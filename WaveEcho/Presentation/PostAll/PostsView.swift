@@ -75,7 +75,7 @@ class PostsView: BaseView {
         }
 
         sendWaveButton.snp.makeConstraints {
-            $0.bottom.equalTo(safeAreaLayoutGuide)
+            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-10)
             $0.height.equalTo(50)
             $0.width.equalTo(200)
             $0.centerX.equalToSuperview()

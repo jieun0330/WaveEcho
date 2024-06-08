@@ -14,13 +14,6 @@ final class PopupView: BaseView {
     
     var disposeBag = DisposeBag()
     
-    private let xButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
-        button.configuration = .plain()
-        return button
-    }()
-    
     private let popupView =  {
         let view = UIView()
         view.backgroundColor = .white
@@ -132,7 +125,7 @@ final class PopupView: BaseView {
     
     override func configureHierarchy() {
         
-        [xButton, popupView].forEach {
+        [popupView].forEach {
             addSubview($0)
         }
         
@@ -151,15 +144,9 @@ final class PopupView: BaseView {
     
     override func configureConstraints() {
         
-        xButton.snp.makeConstraints {
-            $0.bottom.equalTo(popupView.snp.top).offset(-10)
-            $0.trailing.equalTo(popupView)
-            $0.size.equalTo(40)
-        }
-        
         popupView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(32)
-            $0.bottom.equalTo(safeAreaLayoutGuide).inset(60)
+            $0.center.equalToSuperview()
         }
         
         contentView.snp.makeConstraints {
