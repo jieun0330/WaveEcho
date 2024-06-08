@@ -46,9 +46,11 @@
 - UI 업데이트를 위해 `Driver`를 활용하여 메인 스레드에서 안전하게 작업이 이루어지도록 보장
 - 입력`Input`과 출력`Output` 구조체를 사용하여 코드의 모듈화와 가독성 향상
 - `deinit`을 통해 `ViewController`가 제대로 해제되는지 확인하여 메모리 누수 방지
-- 싱글톤 패턴을 사용하여 네트워크 요청 관리
-- `RefreshToken interceptor`를 사용하여 토큰 갱신을 처리함으로써, 만료된 토큰을 자동으로 갱신
+- `RxSwift Single` 및 `TargetType` 프로토콜을 통한 네트워크 요청 로직 구성
+- `Alamofire interceptor`를 통한 JWT 토큰 기반 회원 인증 기능 구현
+- `Multipart Form Data` 기반으로 이미지 업로드 구현
 - 새로운 API 호출 유형이나 에러 케이스가 추가될 경우, `APIError`와 `CallType`에 대한 처리 로직을 쉽게 확장할 수 있음
+- PG 결제 시스템 연동 및 영수증 검증 처리
   
 
 <br/>
