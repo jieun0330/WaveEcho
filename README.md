@@ -77,6 +77,41 @@
 
 **❌ 문제 상황**
 <br/>
+
+댓글 작성 후 화면 전환시 댓글 업데이트 문제
+
+**⭕️ 해결 방법**
+- `protocol`을 사용하여 댓글 데이터 전달
+- 댓글 작성이 완료되었을 때 `delegate`를 통해 데이터 업데이트
+
+
+```swift
+// ReplyViewController
+protocol fetchComment: AnyObject {
+    func fetchDone(data: CommentData)
+}
+
+final class ReplyViewController: BaseViewController {
+    
+    weak var delegate: fetchComment?
+```
+
+```swift
+// PopupViewController
+extension PopupViewController: fetchComment {
+    func fetchDone(data: CommentData) {
+        var value = behaviorModel.value
+        value.comments.insert(data, at: 0)
+        behaviorModel.accept(value)
+    }
+}
+```
+<br/>
+
+
+**❌ 문제 상황**
+<br/>
+
 이미지 용량 압축 작업을 하지 않아 이미지 업로드 실패
 
 **⭕️ 해결 방법**
@@ -111,7 +146,9 @@ extension WritePostViewController: PHPickerViewControllerDelegate {
 
 **❌ 문제 상황: 에러 응답 코드 흐름 이해**
 <br/>
-서버로부터 받는 응답코드 419와 418의 처리 방식을 이해하는 것이 어려웠다. 419 상태 코드를 만났을 때, 418 상태 코드를 만나지 않고는 접할 수 없다는 점이었다.
+서버로부터 받는 응답코드 419와 418의 처리 방식을 이해하는 것이 어려웠다.
+<br/>
+419 상태 코드를 만났을 때, 418 상태 코드를 만나지 않고는 접할 수 없다는 점이었다.
 
 **⭕️ 해결 방법**
 - 먼저, 419와 418 응답 코드의 처리방법을 명확히 이해
