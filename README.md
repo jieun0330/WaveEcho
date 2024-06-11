@@ -55,16 +55,16 @@
 <br/>
 
 ## 🔧 구현 고려사항
-- `RxSwift`를 활용하여 비동기 데이터 스트림 관리
-- `RxSwift Single`및 `TargetType` 프로토콜을 사용하여 네트워크 요청 로직 구성
-- `Alamofire interceptor`를 사용하여 JWT 토큰 기반 회원 인증 기능 구현
-- UI 업데이트를 위해 `Driver`를 활용하여 메인 스레드에서 안전하게 작업이 이루어지도록 보장
-- PG 결제 시스템 연동 및 영수증 검증 처리
-- `Multipart Form Data` 형식으로 이미지를 서버에 업로드
-- `deinit`을 통해 `ViewController`가 제대로 해제되는지 확인하여 메모리 누수 방지
-- 입력`Input`과 출력`Output` 구조체를 사용하여 코드의 모듈화와 가독성 향상
-- 새로운 API 호출 유형이나 에러 케이스가 추가될 경우, `APIError`와 `CallType`에 대한 처리 로직을 쉽게 확장할 수 있도록 설계
-- 공통 기능을 `BaseViewController`에 정의하여, 중복 코드를 줄이고 코드의 재사용성을 높임
+- RxSwift를 사용해 Reactive Programming을 통한 비동기 데이터 스트림 관리
+- RxSwift Single과 TargetType 프로토콜 네트워크 요청 로직 구현
+- Alamofire interceptor를 사용한 JWT 토큰 기반 회원 인증 로직 개발
+- RxSwift Driver로 메인 스레드에서 안전한 UI 업데이트 보장
+- PG 결제 시스템 통합 및 영수증 검증 처리
+- Multipart Form Data를 활용한 이미지 업로드 기능 개발
+- Class Deinit 및 Instruments 분석을 통해 Memory Leak 방지
+- Input/Output 패턴을 활용해 단방향 데이터 바인딩 구조 설계
+- APIError와 CallType 구조를 통해 새로운 API 호출 및 에러 케이스 확장 용이
+- BaseViewController로 공통 기능 통합 및 코드 재사용성 향상
 
 
 <br/>
