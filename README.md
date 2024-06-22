@@ -10,7 +10,7 @@
 <br/>
 
 ## ⚒️ 스크린샷
-![Group 517167395](https://github.com/jieun0330/WaveEcho/assets/42729069/56c5b6ab-b59f-439e-bffc-8fe018705ac6)
+<picture>![Group 517167395](https://github.com/jieun0330/WaveEcho/assets/42729069/56c5b6ab-b59f-439e-bffc-8fe018705ac6)</picture>
 
 
 <br/>
