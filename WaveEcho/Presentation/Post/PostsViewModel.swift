@@ -49,22 +49,7 @@ final class PostsViewModel: ViewModelType {
                 }
             }
             .disposed(by: disposeBag)
-        
-//        input.myProfileView
-//            .flatMap { _ in
-//                return APIManager.shared.create(type: MyProfileResponse.self,
-//                                                router: ProfileRouter.myProfile)
-//            }
-//            .bind(with: self) { owner, result in
-//                switch result {
-//                case .success(let success):
-//                    myProfile.accept(success)
-//                case .failure(let error):
-//                    myProfileError.accept(error)
-//                }
-//            }
-//            .disposed(by: disposeBag)
-//        
+
         return Output(postSuccess: postSuccess.asDriver(onErrorJustReturn: PostModel(data: [PostData(post_id: "", product_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])])),postError: postError.asDriver(onErrorJustReturn: .code500), myProfile: myProfile.asDriver(onErrorJustReturn: ProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [""])), myProfileError: myProfileError.asDriver(onErrorJustReturn: .code500))
     }
 }

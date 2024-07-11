@@ -36,7 +36,7 @@ final class EditProfileViewModel: ViewModelType {
         let editProfileSuccessTrigger = PublishRelay<Void>()
         
         input.viewDidLoad
-            .flatMap { _ in
+            .flatMapLatest { _ in
                 return APIManager.shared.create(type: ProfileModel.self,
                                                 router: ProfileRouter.myProfile)
             }
@@ -51,7 +51,7 @@ final class EditProfileViewModel: ViewModelType {
             .disposed(by: disposeBag)
                 
         input.editButtonTapped
-            .flatMap { query in
+            .flatMapLatest { query in
                 return APIManager.shared.uploadProfile(query: query)
             }
             .bind(with: self) { owner, model in

@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-// UIViewController 생명주기를 RxSWift와 결합해 사용할 수 있는 라이브러리
+// RxViewController에 있는 구조를 부분만 가져옴
 extension Reactive where Base: UIViewController {
     
     var viewWillAppear: ControlEvent<Bool> {

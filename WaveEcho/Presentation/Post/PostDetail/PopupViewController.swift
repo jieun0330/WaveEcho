@@ -64,7 +64,6 @@ final class PopupViewController: BaseViewController {
                     owner.mainView.profileImage.image = .profileImg
                 }
                 // 작성자 닉네임
-//                owner.mainView.nicknameLabel.text = post.creator.nick
                 owner.mainView.nicknameLabel.setTitle(post.creator.nick, for: .normal)
 
                 // 작성자 콘텐츠 내용

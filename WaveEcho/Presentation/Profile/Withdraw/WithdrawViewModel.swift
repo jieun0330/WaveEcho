@@ -28,7 +28,7 @@ final class WithdrawViewModel: ViewModelType {
         let withdrawError = PublishRelay<APIError>()
         
         input.withdrawButtonTapped
-            .flatMap { _ in
+            .flatMapLatest { _ in
                 return APIManager.shared.create(type: WithdrawModel.self, router: UsersRouter.withdraw)
             }
             .bind(with: self) { owner, result in

@@ -92,7 +92,7 @@ final class SinupViewModel: ViewModelType {
         input.signupButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(signupObservable)
-            .flatMap { signupRequest in
+            .flatMapLatest { signupRequest in
                 return APIManager.shared.create(type: SignupModel.self, router: UsersRouter.signup(query: signupRequest))
             }
             .bind(with: self) { owner, result in
@@ -111,7 +111,7 @@ final class SinupViewModel: ViewModelType {
         input.validEmailButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(validEmailObservable)
-            .flatMap { emailRequest in
+            .flatMapLatest { emailRequest in
                 return APIManager.shared.create(type: ValidEmailModel.self,
                                                 router: UsersRouter.validEmail(query: emailRequest))
             }

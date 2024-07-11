@@ -55,7 +55,7 @@ final class LoginViewModel: ViewModelType {
         input.loginButtonTapped
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(loginObservable)
-            .flatMap { loginRequest in
+            .flatMapLatest { loginRequest in
                 return APIManager.shared.create(type: LoginModel.self,
                                                 router: UsersRouter.login(query: loginRequest))
             }

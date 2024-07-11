@@ -28,7 +28,7 @@ final class PopupViewModel: ViewModelType {
         let likeError = PublishRelay<APIError>()
         
         input.likeObservable
-            .flatMap { postID in
+            .flatMapLatest { postID in
                 return APIManager.shared.create(type: LikeModel.self, router: PostsRouter.likePost(query: LikeQuery(like_status: true), id: postID))
             }
             .bind(with: self) { owner, result in

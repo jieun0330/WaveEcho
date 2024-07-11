@@ -39,7 +39,7 @@ final class MyPostViewModel: ViewModelType {
         let profileError = PublishRelay<APIError>()
         
         input.viewDidLoad
-            .flatMap { _ in
+            .flatMapLatest { _ in
                 return APIManager.shared.create(type: PostModel.self,
                                                 router: PostsRouter.userPost(id: UserDefaultsManager.shared.userID))
             }
@@ -70,7 +70,7 @@ final class MyPostViewModel: ViewModelType {
         
         // 포스트 삭제
         input.deleteTrigger
-            .flatMap { postData in
+            .flatMapLatest { postData in
 
                 var value = postDataSuccess.value
                 let index = postData.currentLocation
