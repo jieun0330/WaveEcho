@@ -33,7 +33,7 @@ final class LoginViewController: BaseViewController {
     override func uiBind() {
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
-                let vc = JoinViewController()
+                let vc = SignupViewController()
                 owner.navigationController?.viewControllers = [vc]
             }
             .disposed(by: disposeBag)

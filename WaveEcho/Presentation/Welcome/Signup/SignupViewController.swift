@@ -11,10 +11,10 @@ import RxCocoa
 import Toast
 import SnapKit
 
-final class JoinViewController: BaseViewController {
+final class SignupViewController: BaseViewController {
     
     private let mainView = SignupView()
-    private let viewModel = JoinViewModel()
+    private let viewModel = SinupViewModel()
     
     override func loadView() {
         view = mainView
@@ -35,7 +35,7 @@ final class JoinViewController: BaseViewController {
     
     override func bind() {
         
-        let input = JoinViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
+        let input = SinupViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
                                         password: mainView.passwordTextField.rx.text.orEmpty,
                                         nickname: mainView.nicknameTextField.rx.text.orEmpty,
                                         signupButtonTapped: mainView.signupButton.rx.tap,
@@ -98,7 +98,7 @@ final class JoinViewController: BaseViewController {
     }
 }
 
-extension JoinViewController: UITextFieldDelegate, UITextViewDelegate {
+extension SignupViewController: UITextFieldDelegate, UITextViewDelegate {
     
     // 입력 완료 후 다음 텍스트필드 커서로 이동
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

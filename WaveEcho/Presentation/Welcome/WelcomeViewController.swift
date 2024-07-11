@@ -24,7 +24,7 @@ final class WelcomeViewController: BaseViewController {
     override func uiBind() {
         mainView.signUpButton.rx.tap
             .bind(with: self) { owner, _ in
-                owner.setVC(vc: JoinViewController())
+                owner.setVC(vc: SignupViewController())
             }
             .disposed(by: disposeBag)
         

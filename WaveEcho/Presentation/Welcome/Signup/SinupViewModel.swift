@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class JoinViewModel: ViewModelType {
+final class SinupViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     

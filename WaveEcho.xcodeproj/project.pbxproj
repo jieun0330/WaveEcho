@@ -96,8 +96,8 @@
 		C2CDC2E22BD6299400176723 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2E12BD6299400176723 /* BaseTableViewCell.swift */; };
 		C2CDC2E42BD62EFC00176723 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CDC2E32BD62EFC00176723 /* APIManager.swift */; };
 		C2DC2BEF2BCD20C100A1D102 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE62BCD20C100A1D102 /* SignupView.swift */; };
-		C2DC2BF02BCD20C100A1D102 /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE72BCD20C100A1D102 /* JoinViewController.swift */; };
-		C2DC2BF12BCD20C100A1D102 /* JoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE82BCD20C100A1D102 /* JoinViewModel.swift */; };
+		C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */; };
+		C2DC2BF12BCD20C100A1D102 /* SinupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BE82BCD20C100A1D102 /* SinupViewModel.swift */; };
 		C2DC2BF22BCD20C100A1D102 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BEB2BCD20C100A1D102 /* WelcomeView.swift */; };
 		C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BEC2BCD20C100A1D102 /* WelcomeViewController.swift */; };
 		C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DC2BF82BCD217800A1D102 /* LoginRequestBody.swift */; };
@@ -205,8 +205,8 @@
 		C2CDC2E12BD6299400176723 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		C2CDC2E32BD62EFC00176723 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		C2DC2BE62BCD20C100A1D102 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
-		C2DC2BE72BCD20C100A1D102 /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
-		C2DC2BE82BCD20C100A1D102 /* JoinViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewModel.swift; sourceTree = "<group>"; };
+		C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		C2DC2BE82BCD20C100A1D102 /* SinupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinupViewModel.swift; sourceTree = "<group>"; };
 		C2DC2BEB2BCD20C100A1D102 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		C2DC2BEC2BCD20C100A1D102 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		C2DC2BF82BCD217800A1D102 /* LoginRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
@@ -447,34 +447,39 @@
 			path = PostReply;
 			sourceTree = "<group>";
 		};
-		C269AF142BE223DC00BB6E20 /* MyPost */ = {
+		C269AF142BE223DC00BB6E20 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				C269AF152BE2248400BB6E20 /* MyPostView.swift */,
 				C269AF172BE224EC00BB6E20 /* MyPostViewController.swift */,
 				C269AF1F2BE2813800BB6E20 /* MyPostViewModel.swift */,
 				C269AF192BE2265B00BB6E20 /* MyPostTableViewCell.swift */,
+				C23075FC2BEFC5E100FF732E /* Withdraw */,
+				C23D33D22BDE9FCF00F81AB4 /* ProfileEdit */,
 			);
-			path = MyPost;
+			path = Profile;
 			sourceTree = "<group>";
 		};
-		C269AF1D2BE255F000BB6E20 /* PostAll */ = {
+		C269AF1D2BE255F000BB6E20 /* Post */ = {
 			isa = PBXGroup;
 			children = (
 				C27E533F2BCE6F810037E1A5 /* PostsView.swift */,
 				C27E53412BCE71B00037E1A5 /* PostsViewController.swift */,
 				C2CDC2A82BD107A900176723 /* PostsViewModel.swift */,
 				C20E68982BD685D100507C0B /* PostsTableViewCell.swift */,
+				C269AF0A2BE1F59900BB6E20 /* PostReply */,
+				C27E53432BCE77390037E1A5 /* PostWrite */,
+				C25D9F112BDCC1ED00012307 /* PostDetail */,
 			);
-			path = PostAll;
+			path = Post;
 			sourceTree = "<group>";
 		};
 		C269AF212BE2836000BB6E20 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
 				C2DC2BE62BCD20C100A1D102 /* SignupView.swift */,
-				C2DC2BE72BCD20C100A1D102 /* JoinViewController.swift */,
-				C2DC2BE82BCD20C100A1D102 /* JoinViewModel.swift */,
+				C2DC2BE72BCD20C100A1D102 /* SignupViewController.swift */,
+				C2DC2BE82BCD20C100A1D102 /* SinupViewModel.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -546,6 +551,7 @@
 		C2B576382BECE4AB00B7A72F /* Pay */ = {
 			isa = PBXGroup;
 			children = (
+				C23076B32BF1EC2000FF732E /* PaymentHistory */,
 				C2B576392BECE4C400B7A72F /* PayView.swift */,
 				C2B5763B2BECE60100B7A72F /* PayViewController.swift */,
 			);
@@ -581,6 +587,8 @@
 			children = (
 				C2DC2BEB2BCD20C100A1D102 /* WelcomeView.swift */,
 				C2DC2BEC2BCD20C100A1D102 /* WelcomeViewController.swift */,
+				C269AF212BE2836000BB6E20 /* Signup */,
+				C269AF222BE2837E00BB6E20 /* Login */,
 			);
 			path = Welcome;
 			sourceTree = "<group>";
@@ -589,17 +597,9 @@
 			isa = PBXGroup;
 			children = (
 				C2DC2BED2BCD20C100A1D102 /* Welcome */,
-				C269AF212BE2836000BB6E20 /* Signup */,
-				C269AF222BE2837E00BB6E20 /* Login */,
-				C23D33D22BDE9FCF00F81AB4 /* ProfileEdit */,
-				C23075FC2BEFC5E100FF732E /* Withdraw */,
-				C269AF1D2BE255F000BB6E20 /* PostAll */,
-				C25D9F112BDCC1ED00012307 /* PostDetail */,
-				C27E53432BCE77390037E1A5 /* PostWrite */,
-				C269AF0A2BE1F59900BB6E20 /* PostReply */,
-				C269AF142BE223DC00BB6E20 /* MyPost */,
+				C269AF1D2BE255F000BB6E20 /* Post */,
+				C269AF142BE223DC00BB6E20 /* Profile */,
 				C2B576382BECE4AB00B7A72F /* Pay */,
-				C23076B32BF1EC2000FF732E /* PaymentHistory */,
 				C23077172BF87A3900FF732E /* Chat */,
 			);
 			path = Presentation;
@@ -834,8 +834,8 @@
 				C2FB75BC2BF90E3600B8F60A /* ChatListViewController.swift in Sources */,
 				C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */,
 				C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */,
-				C2DC2BF02BCD20C100A1D102 /* JoinViewController.swift in Sources */,
-				C2DC2BF12BCD20C100A1D102 /* JoinViewModel.swift in Sources */,
+				C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */,
+				C2DC2BF12BCD20C100A1D102 /* SinupViewModel.swift in Sources */,
 				C23076BB2BF1F29C00FF732E /* PayHistoryModel.swift in Sources */,
 				C269AF202BE2813800BB6E20 /* MyPostViewModel.swift in Sources */,
 				C23AFE782BC6CE820000EBE5 /* AppDelegate.swift in Sources */,

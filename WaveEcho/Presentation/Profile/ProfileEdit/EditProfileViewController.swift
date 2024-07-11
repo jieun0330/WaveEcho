@@ -29,9 +29,16 @@ final class EditProfileViewController: BaseViewController {
     
     override func bind() {
         let input = EditProfileViewModel.Input(
-                                               editNickname: mainView.nicknameTextField.rx.text.orEmpty)
+            viewDidLoad: Observable.just(Void()),
+            editNickname: mainView.nicknameTextField.rx.text.orEmpty)
         
         let output = viewModel.transform(input: input)
+        
+        output.profileSuccess
+            .drive(with: self) { owner, myProfile in
+                owner.mainView.setData(myProfile)
+            }
+            .disposed(by: disposeBag)
         
 //        output.editProfileSuccessTrigger
 //            .drive(with: self) { owner, _ in
