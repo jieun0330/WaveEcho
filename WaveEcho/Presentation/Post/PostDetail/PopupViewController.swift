@@ -31,7 +31,7 @@ final class PopupViewController: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        disposeBag = .init()
+        disposeBag = DisposeBag()
     }
     
     private func createLayout() -> UICollectionViewFlowLayout {

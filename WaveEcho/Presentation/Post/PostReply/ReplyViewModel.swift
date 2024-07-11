@@ -61,12 +61,7 @@ final class ReplyViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         return Output(updateCommentData: updateCommentData.asDriver(),
-                      commentSuccess: commentSuccess.asDriver(onErrorJustReturn: CommentModel(comment_id: "",
-                                                                                                      content: "",
-                                                                                                      createdAt: "",
-                                                                                                      creator: Creator(user_id: "",
-                                                                                                                       nick: "",
-                                                                                                                       profileImage: ""))),
+                      commentSuccess: commentSuccess.asDriver(onErrorJustReturn: CommentModel(comment_id: "", content: "", createdAt: "", creator: Creator(user_id: "", nick: "", profileImage: ""))),
                       commentError: commentError.asDriver(onErrorJustReturn: .code500),
                       commentTrigger: commentTrigger.asDriver(onErrorJustReturn: ()))
     }

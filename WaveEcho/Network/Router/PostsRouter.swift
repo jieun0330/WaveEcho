@@ -24,9 +24,6 @@ enum PostsRouter {
 }
 
 extension PostsRouter: TargetType {
-    var baseURL: String {
-        return APIKey.baseURL.rawValue
-    }
     
     var method: Alamofire.HTTPMethod {
         switch self {

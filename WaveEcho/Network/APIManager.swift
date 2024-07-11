@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import Alamofire
 
-final class APIManager {
+struct APIManager {
     
     static let shared = APIManager()
     
@@ -48,9 +48,9 @@ final class APIManager {
                 AF
                     .upload(multipartFormData: { multipartFormData in
                         multipartFormData.append(image,
-                                                 withName: "files",
-                                                 fileName: "test.png",
-                                                 mimeType: "image/png")
+                                                 withName: "files", // key값
+                                                 fileName: "test.png", // 파일 이름
+                                                 mimeType: "image/png") // 이미지 형식
                     }, with: urlRequest, interceptor: RefreshToken())
                     .responseDecodable(of: T.self) { response in
                         switch response.result {
@@ -78,9 +78,9 @@ final class APIManager {
                 AF.upload(multipartFormData: { multipartFormData in
             
                     multipartFormData.append(query.profile!,
-                                                 withName: "profile",
-                                                 fileName: "sesac.png",
-                                                 mimeType: "image/png")
+                                             withName: "profile", // key값
+                                             fileName: "sesac.png", // 파일 이름
+                                             mimeType: "image/png") // 이미지 형식
                     
                     if let stringData = query.nick.data(using: .utf8) {
                            multipartFormData.append(stringData, withName: "nick")

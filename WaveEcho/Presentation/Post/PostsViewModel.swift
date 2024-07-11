@@ -20,7 +20,6 @@ final class PostsViewModel: ViewModelType {
     struct Output {
         let postSuccess: Driver<PostModel>
         let postError: Driver<APIError>
-        
         let myProfile: Driver<ProfileModel>
         let myProfileError: Driver<APIError>
     }
@@ -66,9 +65,6 @@ final class PostsViewModel: ViewModelType {
 //            }
 //            .disposed(by: disposeBag)
 //        
-        return Output(postSuccess: postSuccess.asDriver(onErrorJustReturn: PostModel(data: [PostData(post_id: "", product_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])])),
-                      postError: postError.asDriver(onErrorJustReturn: .code500),
-                      myProfile: myProfile.asDriver(onErrorJustReturn: ProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [""])),
-                      myProfileError: myProfileError.asDriver(onErrorJustReturn: .code500))
+        return Output(postSuccess: postSuccess.asDriver(onErrorJustReturn: PostModel(data: [PostData(post_id: "", product_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])])),postError: postError.asDriver(onErrorJustReturn: .code500), myProfile: myProfile.asDriver(onErrorJustReturn: ProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [""])), myProfileError: myProfileError.asDriver(onErrorJustReturn: .code500))
     }
 }

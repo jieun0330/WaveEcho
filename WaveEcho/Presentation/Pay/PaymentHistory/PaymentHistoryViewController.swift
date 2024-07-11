@@ -27,7 +27,7 @@ final class PaymentHistoryViewController: BaseViewController {
     override func bind() {
         
         let viewWillAppearTrigger = rx.viewWillAppear
-            .map { $0 == true}
+            .map { $0 == true }
         
         let input = PaymentHistoryViewModel.Input(viewWillAppearTrigger: viewWillAppearTrigger)
         

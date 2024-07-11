@@ -6,12 +6,9 @@
 //
 
 import UIKit
-import RxSwift
 
 class BaseTableViewCell: UITableViewCell {
-    
-    var disposeBag = DisposeBag()
-    
+        
     static var identifer: String {
         return String(describing: self)
     }
@@ -23,12 +20,7 @@ class BaseTableViewCell: UITableViewCell {
         configureConstraints()
         configureView()
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = DisposeBag()
-    }
-    
+        
     func configureHierarchy() { }
     func configureConstraints() { }
     func configureView() { }

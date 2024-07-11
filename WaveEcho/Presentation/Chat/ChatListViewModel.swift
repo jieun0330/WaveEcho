@@ -41,7 +41,6 @@ final class ChatListViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(chatListSuccess: chatListSuccess.asDriver(onErrorJustReturn: [ChatData(room_id: "", createdAt: "", updatedAt: "", participants: [Participants(user_id: "", nick: "", profileImage: "")], lastChat: LastChat(chat_id: "", room_id: "", content: "", createdAt: "", sender: Participants(user_id: "", nick: "", profileImage: ""), files: [""]))]),
-                      chatListError: chatListError.asDriver(onErrorJustReturn: .code500))
+        return Output(chatListSuccess: chatListSuccess.asDriver(onErrorJustReturn: [ChatData(room_id: "", createdAt: "", updatedAt: "", participants: [Participants(user_id: "", nick: "", profileImage: "")], lastChat: LastChat(chat_id: "", room_id: "", content: "", createdAt: "", sender: Participants(user_id: "", nick: "", profileImage: ""), files: [""]))]), chatListError: chatListError.asDriver(onErrorJustReturn: .code500))
     }
 }

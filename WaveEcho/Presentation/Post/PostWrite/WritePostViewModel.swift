@@ -24,7 +24,6 @@ final class WritePostViewModel: ViewModelType {
         let createPostTrigger: Driver<Void>
         let createPostError: Driver<APIError>
         let uploadPhotoButtonTapped: Driver<Void>
-        
         let validUpload: Driver<Bool>
     }
     
