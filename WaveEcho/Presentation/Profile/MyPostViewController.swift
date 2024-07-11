@@ -23,7 +23,7 @@ final class MyPostViewController: BaseViewController {
         weakSelf.makeAlert(alertTitle: "로그아웃 하시겠습니까?", alertMessage: nil) {completeAction in
             weakSelf.view.makeToast("로그아웃되었습니다", duration: 1, position: .center) { didTap in
                 UserDefaultsManager.shared.accessToken.removeAll()
-                weakSelf.setVC(vc: LoginViewController())
+                weakSelf.setVC(LoginViewController())
             }
         }
     })
@@ -33,7 +33,7 @@ final class MyPostViewController: BaseViewController {
                                          handler: { [weak self] _ in
         guard let weakSelf = self else { return }
         weakSelf.makeAlert(alertTitle: "탈퇴하시겠습니까?", alertMessage: "비밀번호 확인이 필요합니다") { completeAction in
-            weakSelf.moveVC(vc: WithdrawViewController())
+            weakSelf.pushVC(WithdrawViewController())
         }
     })
     
@@ -112,14 +112,14 @@ final class MyPostViewController: BaseViewController {
         // 프로필 편집
         mainView.editProfileButton.rx.tap
             .bind(with: self) { owner, _ in
-                owner.moveVC(vc: EditProfileViewController())
+                owner.pushVC(EditProfileViewController())
             }
             .disposed(by: disposeBag)
         
         // 결제 내역
         mainView.paymentButton.rx.tap
             .bind(with: self) { owner, _ in
-                owner.moveVC(vc: PaymentHistoryViewController())
+                owner.pushVC(PaymentHistoryViewController())
             }
             .disposed(by: disposeBag)
     }

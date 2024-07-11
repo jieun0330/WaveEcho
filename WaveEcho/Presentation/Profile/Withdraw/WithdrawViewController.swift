@@ -35,7 +35,7 @@ final class WithdrawViewController: BaseViewController {
         output.withdrawSuccess
             .drive(with: self) { owner, withdrawResponse in
                 owner.view.makeToast("탈퇴되었습니다", duration: 1, position: .center) { didTap in
-                    owner.setVC(vc: WelcomeViewController())
+                    owner.setVC(WelcomeViewController())
                 }
             }
             .disposed(by: disposeBag)

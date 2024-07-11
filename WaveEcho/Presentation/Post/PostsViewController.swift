@@ -70,7 +70,7 @@ final class PostsViewController: BaseViewController {
                     popupVC.setData(post)
                     popupVC.replyView.mainView.toPerson.text = post.creator.nick
                     popupVC.modalPresentationStyle = .overCurrentContext
-                    owner.present(popupVC, animated: false )
+                    owner.present(popupVC, animated: false)
                 }
                 .disposed(by: disposeBag)
         }

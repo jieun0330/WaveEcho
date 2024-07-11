@@ -38,7 +38,7 @@ extension Reactive where Base: UIViewController {
 
 extension UIViewController {
     // 뷰 전환
-    func setVC(vc: UIViewController) {
+    func setVC(_ vc: UIViewController) {
         let vc = UINavigationController (rootViewController: vc)
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
         let sceneDelegate = windowScene.delegate as? SceneDelegate
@@ -46,15 +46,15 @@ extension UIViewController {
         sceneDelegate?.window?.makeKeyAndVisible()
     }
     
-    func moveVC(vc: UIViewController) {
+    func pushVC(_ vc: UIViewController) {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func present(nowVC: UIViewController, toVC: UIViewController) {
+    func presentVC(nowVC: UIViewController, toVC: UIViewController) {
         nowVC.present(toVC, animated: true)
     }
     
-    func pop (_ nowVC: UIViewController) {
+    func popVC(_ nowVC: UIViewController) {
         nowVC.navigationController?.popViewController(animated: true)
     }
 }

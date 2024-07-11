@@ -47,17 +47,19 @@ final class EditProfileViewController: BaseViewController {
                 
                 let alertTitle = value ? "프로필 수정 완료" : "프로필 수정 실패"
                 owner.makeAlert(alertTitle: "", alertMessage: alertTitle) { _ in
-                    owner.pop(owner)
+                    owner.popVC(owner)
                 }
             }
             .disposed(by: disposeBag)
 
+        // 이미지 선택 창
         mainView.imageEditButton.rx.tap
             .subscribe(with: self) { owner, _ in
                 let vc = UIImagePickerController()
                 vc.delegate = self
+                // 이미지 편집 기능 on
                 vc.allowsEditing = true
-                owner.present(nowVC: owner, toVC: vc)
+                owner.presentVC(nowVC: owner, toVC: vc)
             }
             .disposed(by: disposeBag)
 
@@ -94,7 +96,10 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true)
     }
     
+    // 이미지 피커에서 이미지를 선택했을 때 호출되는 메서드
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // 이미지를 이미지 뷰에 표시
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.mainView.profileImg.image = pickedImage
         }

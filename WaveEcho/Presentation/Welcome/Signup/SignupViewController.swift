@@ -62,7 +62,7 @@ final class SignupViewController: BaseViewController {
         output.signupSuccess
             .debounce(.seconds(1))
             .drive(with: self) { owner, _ in
-                owner.setVC(vc: LoginViewController())
+                owner.setVC(LoginViewController())
             }
             .disposed(by: disposeBag)
         
@@ -89,7 +89,7 @@ final class SignupViewController: BaseViewController {
         // 로그인뷰 이동
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
-                owner.setVC(vc: LoginViewController())
+                owner.setVC(LoginViewController())
             }
             .disposed(by: disposeBag)
     }

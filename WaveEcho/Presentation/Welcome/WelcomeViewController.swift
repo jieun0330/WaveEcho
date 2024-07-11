@@ -24,13 +24,13 @@ final class WelcomeViewController: BaseViewController {
     override func uiBind() {
         mainView.signUpButton.rx.tap
             .bind(with: self) { owner, _ in
-                owner.setVC(vc: SignupViewController())
+                owner.setVC(SignupViewController())
             }
             .disposed(by: disposeBag)
         
         mainView.loginButton.rx.tap
             .bind(with: self) { owner, _ in
-                owner.setVC(vc: LoginViewController())
+                owner.setVC(LoginViewController())
             }
             .disposed(by: disposeBag)
     }
