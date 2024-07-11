@@ -20,8 +20,7 @@ final class PostsViewController: BaseViewController {
     
     private let payView = PayViewController()
     var postData: [PostData] = []
-    // 팝업 화면
-    let popupVC = PopupViewController()
+    
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     
@@ -63,12 +62,15 @@ final class PostsViewController: BaseViewController {
             
             tapGesture.rx.event
                 .bind(with: self) { owner, _ in
-                    guard let post = owner.postData.randomElement() else { return }
                     
-                    owner.popupVC.setData(post)
-                    owner.popupVC.replyView.mainView.toPerson.text = post.creator.nick
-                    owner.present(owner.popupVC, animated: false)
-                    owner.popupVC.modalPresentationStyle = .overCurrentContext
+                    guard let post = owner.postData.randomElement() else { return }
+                   
+                    // 팝업 화면
+                    let popupVC = PopupViewController()
+                    popupVC.setData(post)
+                    popupVC.replyView.mainView.toPerson.text = post.creator.nick
+                    popupVC.modalPresentationStyle = .overCurrentContext
+                    owner.present(popupVC, animated: false )
                 }
                 .disposed(by: disposeBag)
         }
