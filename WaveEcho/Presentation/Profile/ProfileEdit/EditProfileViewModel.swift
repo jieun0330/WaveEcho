@@ -56,7 +56,12 @@ class EditProfileViewModel: ViewModelType {
             }
             .bind(with: self) { owner, model in
                 UserDefaultsManager.shared.nickname = model.nick
-                UserDefaultsManager.shared.profileImg = model.profileImage ?? ""
+                
+                if let imageString = model.profileImage {
+                    let result =  imageString
+                    UserDefaultsManager.shared.profileImg = result
+                }
+                // 있을때만 baseurl을 넣어줌
                 editProfileSuccess.accept(true)
             }
             .disposed(by: disposeBag)

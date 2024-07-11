@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toast
+import Kingfisher
 
 final class MyPostViewController: BaseViewController {
     
@@ -55,6 +56,25 @@ final class MyPostViewController: BaseViewController {
         navigationItem.backButtonTitle = ""
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mainView.nickname.text = UserDefaultsManager.shared.nickname
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UserDefaultsManager.shared.profileImg == "" {
+            mainView.profileImage.image = UIImage(resource: .profile)
+        } else {
+            let url = URL(string: UserDefaultsManager.shared.profileImg)
+            if let url {
+                mainView.profileImage.kf.setImage(with:url, options: [.requestModifier(KingFisherNet())])
+            } else {
+                mainView.profileImage.image = UIImage(resource: .profile)
+            }
+        }
+    }
+    
     override func bind() {
         
         // 포스트 삭제
@@ -77,7 +97,8 @@ final class MyPostViewController: BaseViewController {
         // 프로필 조회
         output.profileSuccess
             .drive(with: self) { owner, myProfile in
-                owner.mainView.setData(myProfile)
+                                owner.mainView.setData(myProfile)
+
             }
             .disposed(by: disposeBag)
         

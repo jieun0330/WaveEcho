@@ -51,7 +51,7 @@ final class EditProfileViewController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
-        
+
         mainView.imageEditButton.rx.tap
             .subscribe(with: self) { owner, _ in
                 let vc = UIImagePickerController()
@@ -61,7 +61,6 @@ final class EditProfileViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
-        
         mainView.editDoneButton.rx.tap
             .withUnretained(self)
             .map { owner, _ -> EditMyProfileRequestBody in
@@ -71,25 +70,21 @@ final class EditProfileViewController: BaseViewController {
                       let data = profile.imageZipLimit(zipRate: 4.9) else {
                     return EditMyProfileRequestBody(nick: nick ?? "", profile: nil)
                 }
-                
-                return EditMyProfileRequestBody(nick: nick ?? "", profile: data )
+                return EditMyProfileRequestBody(nick: nick ?? "", profile: data)
             }
             .bind { model in //  EditMyProfileRequestBody
                 input.editButtonTapped.accept(model)
             }
             .disposed(by: disposeBag)
        
-//        output.editProfileSuccessTrigger
-//            .drive(with: self) { owner, _ in
-//                owner.view.makeToast("닉네임 변경 완료")
-//            }
-//            .disposed(by: disposeBag)
-        
         output.editProfileError
             .drive(with: self) { owner, error in
                 owner.errorHandler(apiError: error, calltype: .editMyProfile)
             }
             .disposed(by: disposeBag)
+    }
+    deinit {
+        print(self)
     }
 }
 
