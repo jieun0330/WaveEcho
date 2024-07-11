@@ -7,7 +7,6 @@
 
 import UIKit
 import Alamofire
-import RxSwift
 
 enum UsersRouter {
     case signup(query: UserModel)

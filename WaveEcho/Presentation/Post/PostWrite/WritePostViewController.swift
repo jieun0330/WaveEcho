@@ -90,11 +90,11 @@ final class WritePostViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 포스팅 작성 에러 핸들링
-        output.createPostError
-            .drive(with: self) { owner, error in
-                owner.errorAlert(error: error, callType: .createPosts)
-            }
-            .disposed(by: disposeBag)
+//        output.createPostError
+//            .drive(with: self) { owner, error in
+//                owner.errorAlert(error: error, callType: .createPosts)
+//            }
+//            .disposed(by: disposeBag)
     }
 }
 

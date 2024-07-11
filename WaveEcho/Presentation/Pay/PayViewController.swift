@@ -43,7 +43,7 @@ final class PayViewController: BaseViewController {
             .disposed(by: disposeBag)
                 
         // 1. 결제
-        APIManager.shared.pay(amount: "100",
+        PayManager.shared.pay(amount: "100",
                               productTitle: "메아리",
                               webView: mainView.wkWebView) { response in
             guard let response,
@@ -70,7 +70,7 @@ final class PayViewController: BaseViewController {
         // 2. 결제 영수증 검증
         paymentTest
             .flatMapLatest { payResponse in
-                return APIManager.shared.paymentValidation(router: PayRouter.paymentsValidation(query: payResponse))
+                return PayManager.shared.paymentValidation(router: PayRouter.paymentsValidation(query: payResponse))
             }
             .bind(with: self) { owner, result in
                 switch result {

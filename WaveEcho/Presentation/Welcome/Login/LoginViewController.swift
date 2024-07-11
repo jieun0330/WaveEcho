@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Toast
-import Lottie
 
 final class LoginViewController: BaseViewController {
     

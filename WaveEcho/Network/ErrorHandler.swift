@@ -5,7 +5,7 @@
 //  Created by 박지은 on 7/11/24.
 //
 
-import UIKit
+import Foundation
 
 struct ErrorHandler {
     

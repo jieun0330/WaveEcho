@@ -7,7 +7,6 @@
 
 import UIKit
 import Alamofire
-import RxSwift
 
 enum PostsRouter {
     // 포스트 이미지 업로드

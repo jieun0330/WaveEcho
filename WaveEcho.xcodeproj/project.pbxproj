@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C2063B9C2C3F94990052527A /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063B9B2C3F94990052527A /* UIImage.swift */; };
 		C2063BA02C3FBDA90052527A /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063B9F2C3FBDA90052527A /* ErrorHandler.swift */; };
+		C2063BA22C3FC9AE0052527A /* PayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063BA12C3FC9AE0052527A /* PayManager.swift */; };
 		C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */; };
 		C20E68B02BD7C51A00507C0B /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */; };
 		C20E68B22BD80D5A00507C0B /* ImageUploadRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */; };
@@ -127,6 +128,7 @@
 /* Begin PBXFileReference section */
 		C2063B9B2C3F94990052527A /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		C2063B9F2C3FBDA90052527A /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		C2063BA12C3FC9AE0052527A /* PayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayManager.swift; sourceTree = "<group>"; };
 		C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
 		C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadRequestBody.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				C23AFEAA2BC6DD430000EBE5 /* HTTPHeader.swift */,
 				C2CDC2C92BD36F9E00176723 /* APIError.swift */,
 				C2CDC2E32BD62EFC00176723 /* APIManager.swift */,
+				C2063BA12C3FC9AE0052527A /* PayManager.swift */,
 				C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */,
 				C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */,
 				C2063B9F2C3FBDA90052527A /* ErrorHandler.swift */,
@@ -865,6 +868,7 @@
 				C269AF1A2BE2265B00BB6E20 /* MyPostTableViewCell.swift in Sources */,
 				C2FB75C02BF9111500B8F60A /* ChatListViewModel.swift in Sources */,
 				C23D33DC2BDEC7C900F81AB4 /* KingFisherImage.swift in Sources */,
+				C2063BA22C3FC9AE0052527A /* PayManager.swift in Sources */,
 				C2DC2BF22BCD20C100A1D102 /* WelcomeView.swift in Sources */,
 				C269AF162BE2248400BB6E20 /* MyPostView.swift in Sources */,
 				C23D33D62BDEA07900F81AB4 /* EditProfileViewController.swift in Sources */,

@@ -11,7 +11,6 @@ import RxCocoa
 import Kingfisher
 import SnapKit
 import Lottie
-import WebKit
 
 final class PostsViewController: BaseViewController {
     
@@ -149,11 +148,11 @@ final class PostsViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         // 포스팅 에러 핸들링
-        output.postError
-            .drive(with: self) { owner, error in
-                owner.errorAlert(error: error, callType: .createPosts)
-            }
-            .disposed(by: disposeBag)
+//        output.postError
+//            .drive(with: self) { owner, error in
+//                owner.errorAlert(error: error, callType: .createPosts)
+//            }
+//            .disposed(by: disposeBag)
         
         // 리프레시 토큰 만료시 기존 accessToken 삭제
         // rootView 첫화면으로 전환
