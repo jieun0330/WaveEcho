@@ -20,8 +20,8 @@ final class WelcomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-    override func uiBind() {
+    
+    override func bind() {
         mainView.signUpButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.setVC(SignupViewController())

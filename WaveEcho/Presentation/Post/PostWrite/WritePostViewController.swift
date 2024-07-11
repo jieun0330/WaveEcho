@@ -29,14 +29,6 @@ final class WritePostViewController: BaseViewController {
         navigationItem.rightBarButtonItem = mainView.rightBarButtonItem
     }
     
-    override func uiBind() {
-        mainView.rightBarButtonItem.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.view.endEditing(true)
-            }
-            .disposed(by: disposeBag)
-    }
-    
     override func bind() {
         
         let input = WritePostViewModel.Input(content: mainView.contentTextView.rx.text.orEmpty,
@@ -45,6 +37,12 @@ final class WritePostViewController: BaseViewController {
                                              uploadImage: imageData)
         
         let output = viewModel.transform(input: input)
+        
+        mainView.rightBarButtonItem.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.view.endEditing(true)
+            }
+            .disposed(by: disposeBag)
         
         // 포스팅 작성 업로드 조건
         output.validUpload

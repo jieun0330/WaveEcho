@@ -81,8 +81,16 @@ final class PostsViewController: BaseViewController {
         let sendPostCount = UserDefaultsManager.shared.sendPost
         mainView.sendWaveButton.setTitle("메아리 던지기(\(sendPostCount))", for: .normal)
     }
-    
-    override func uiBind() {
+
+    override func bind() {
+        
+        // 작성일자 실시간 변경
+        let viewWillAppearTrigger = rx.viewWillAppear
+            .map { $0 == true}
+        
+        let input = PostsViewModel.Input(viewWillAppearTrigger: viewWillAppearTrigger)
+        
+        let output = viewModel.transform(input: input)
         
         payView.paySuccessAction = { [weak self] value in
             guard let self else { return }
@@ -112,33 +120,12 @@ final class PostsViewController: BaseViewController {
                     let noAction = UIAlertAction(title: "닫기", style: .cancel)
                     alert.addAction(yesAction)
                     alert.addAction(noAction)
-                    owner.present(alert, animated: true)
-//                }
-                    
-//                    owner.makeAlert(alertTitle: "메아리 횟수가 부족해요!",
-//                              alertMessage: "100원 = 메아리 10개") { _ in
-//                        let yesAction = UIAlertAction(title: "100원 결제하기", style: .default) {_ in
-//                            owner.present(owner.payView, animated: true)
-//                        }
-//                        let noAction = UIAlertAction(title: "닫기", style: .cancel)
-//                    }
                 } else {
                     let vc = WritePostViewController()
                     owner.navigationController?.pushViewController(vc, animated: true)
                 }
             }
-            .disposed(by: disposeBag)        
-    }
-    
-    override func bind() {
-        
-        // 작성일자 실시간 변경
-        let viewWillAppearTrigger = rx.viewWillAppear
-            .map { $0 == true}
-        
-        let input = PostsViewModel.Input(viewWillAppearTrigger: viewWillAppearTrigger)
-        
-        let output = viewModel.transform(input: input)
+            .disposed(by: disposeBag)
         
         output.postSuccess
             .map { $0.data }

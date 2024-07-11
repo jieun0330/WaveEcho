@@ -529,11 +529,11 @@
 		C27E534A2BCE8E730037E1A5 /* Posts */ = {
 			isa = PBXGroup;
 			children = (
+				C28A3A102BE7BF24000B2E90 /* LikeQuery.swift */,
 				C27E534B2BCE8E840037E1A5 /* WritePostsRequestBody.swift */,
 				C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */,
 				C23D33DB2BDEC7C900F81AB4 /* KingFisherImage.swift */,
 				C2CDC2CF2BD4FDE400176723 /* QueryString */,
-				C28A3A102BE7BF24000B2E90 /* LikeQuery.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -618,9 +618,9 @@
 		C2DC2BFC2BCD217800A1D102 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */,
 				C23077212BF8805A00FF732E /* Chat */,
 				C2B5763F2BECF1BC00B7A72F /* Pay */,
-				C2DC2BFB2BCD217800A1D102 /* RequestHeader.swift */,
 				C2DC2BFA2BCD217800A1D102 /* Users */,
 				C27E534A2BCE8E730037E1A5 /* Posts */,
 				C2E8EFC72BDE44D200868BB3 /* Comment */,

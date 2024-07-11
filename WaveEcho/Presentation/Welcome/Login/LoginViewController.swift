@@ -29,7 +29,14 @@ final class LoginViewController: BaseViewController {
         mainView.passwordTextField.delegate = self
     }
     
-    override func uiBind() {
+    override func bind() {
+        
+        let input = LoginViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
+                                         password: mainView.passwordTextField.rx.text.orEmpty,
+                                         loginButtonTapped: mainView.loginButton.rx.tap)
+        
+        let output = viewModel.transform(input: input)
+        
         mainView.rightBarButtonItem.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = SignupViewController()
@@ -42,15 +49,6 @@ final class LoginViewController: BaseViewController {
                 owner.view.endEditing(true)
             }
             .disposed(by: disposeBag)
-    }
-    
-    override func bind() {
-        
-        let input = LoginViewModel.Input(email: mainView.emailTextField.rx.text.orEmpty,
-                                         password: mainView.passwordTextField.rx.text.orEmpty,
-                                         loginButtonTapped: mainView.loginButton.rx.tap)
-        
-        let output = viewModel.transform(input: input)
         
         // 로그인버튼 (비)활성화
         output.validLogin.asObservable()
