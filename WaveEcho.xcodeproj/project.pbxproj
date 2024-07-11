@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C2063B9A2C3F81830052527A /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063B992C3F81830052527A /* FileManager.swift */; };
 		C2063B9C2C3F94990052527A /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063B9B2C3F94990052527A /* UIImage.swift */; };
 		C2063BA02C3FBDA90052527A /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063B9F2C3FBDA90052527A /* ErrorHandler.swift */; };
-		C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68982BD685D100507C0B /* PostsTableViewCell.swift */; };
 		C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */; };
 		C20E68B02BD7C51A00507C0B /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */; };
 		C20E68B22BD80D5A00507C0B /* ImageUploadRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */; };
@@ -127,10 +125,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C2063B992C3F81830052527A /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		C2063B9B2C3F94990052527A /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		C2063B9F2C3FBDA90052527A /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
-		C20E68982BD685D100507C0B /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
 		C20E68B12BD80D5A00507C0B /* ImageUploadRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadRequestBody.swift; sourceTree = "<group>"; };
@@ -264,7 +260,6 @@
 			children = (
 				C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */,
 				C269AF7A2BE6153100BB6E20 /* UserDefaultsManager.swift */,
-				C2063B992C3F81830052527A /* FileManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -472,7 +467,6 @@
 				C27E533F2BCE6F810037E1A5 /* PostsView.swift */,
 				C27E53412BCE71B00037E1A5 /* PostsViewController.swift */,
 				C2CDC2A82BD107A900176723 /* PostsViewModel.swift */,
-				C20E68982BD685D100507C0B /* PostsTableViewCell.swift */,
 				C25D9F112BDCC1ED00012307 /* PostDetail */,
 				C269AF0A2BE1F59900BB6E20 /* PostReply */,
 				C27E53432BCE77390037E1A5 /* PostWrite */,
@@ -557,9 +551,9 @@
 		C2B576382BECE4AB00B7A72F /* Pay */ = {
 			isa = PBXGroup;
 			children = (
-				C23076B32BF1EC2000FF732E /* PaymentHistory */,
 				C2B576392BECE4C400B7A72F /* PayView.swift */,
 				C2B5763B2BECE60100B7A72F /* PayViewController.swift */,
+				C23076B32BF1EC2000FF732E /* PaymentHistory */,
 			);
 			path = Pay;
 			sourceTree = "<group>";
@@ -808,7 +802,6 @@
 				C220034A2BE0F15400A95F86 /* PopupView.swift in Sources */,
 				C269AF182BE224EC00BB6E20 /* MyPostViewController.swift in Sources */,
 				C2DC2C0E2BCD2DB700A1D102 /* LoginViewController.swift in Sources */,
-				C2063B9A2C3F81830052527A /* FileManager.swift in Sources */,
 				C2B576412BECF1CC00B7A72F /* PaymentModel.swift in Sources */,
 				C23076B92BF1F0E600FF732E /* PaymentHistoryViewModel.swift in Sources */,
 				C220034E2BE1308C00A95F86 /* CommentCollectionViewCell.swift in Sources */,
@@ -839,7 +832,6 @@
 				C23AFEB02BC6E1D50000EBE5 /* BaseViewController.swift in Sources */,
 				C27E53472BCE780C0037E1A5 /* WritePostViewController.swift in Sources */,
 				C2FB75BC2BF90E3600B8F60A /* ChatListViewController.swift in Sources */,
-				C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */,
 				C2DC2BF32BCD20C100A1D102 /* WelcomeViewController.swift in Sources */,
 				C2DC2BF02BCD20C100A1D102 /* SignupViewController.swift in Sources */,
 				C2DC2BF12BCD20C100A1D102 /* SinupViewModel.swift in Sources */,

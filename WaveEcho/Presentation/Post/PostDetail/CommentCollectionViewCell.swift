@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CommentCollectionViewCell: BaseCollectionViewCell {
+final class CommentCollectionViewCell: BaseCollectionViewCell {
     
     static var identifier: String {
         return String(describing: self)

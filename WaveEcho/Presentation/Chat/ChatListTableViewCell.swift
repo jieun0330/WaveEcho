@@ -23,7 +23,6 @@ final class ChatListTableViewCell: BaseTableViewCell, ReusableProtocol {
     
     let message = {
         let message = UILabel()
-        message.text = "test"
         return message
     }()
     

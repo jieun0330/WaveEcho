@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class RefreshToken: RequestInterceptor {
+final class RefreshToken: RequestInterceptor {
     
     // adapt, retry 별도의 호출없이 생성만 해두면 자동으로 호출된다
     

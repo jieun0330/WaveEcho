@@ -109,9 +109,11 @@ extension WritePostViewController: PHPickerViewControllerDelegate {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {
                     let realImage = image as? UIImage
-                    let imagePng = realImage?.jpegData(compressionQuality: 0.3)
-                    self.imageData.accept(imagePng!)
-                    self.mainView.presentPhotoView.image = image as? UIImage
+                    let compressedImgData = realImage?.imageZipLimit(zipRate: 0.3)
+                    if let imageData = compressedImgData {
+                        self.imageData.accept(imageData)
+                        self.mainView.presentPhotoView.image = realImage
+                    }
                 }
             }
         }

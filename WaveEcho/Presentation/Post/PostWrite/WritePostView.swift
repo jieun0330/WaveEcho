@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Lottie
 
-class WritePostView: BaseView {
+final class WritePostView: BaseView {
     
     lazy var seaBackgroundLottiView : LottieAnimationView = {
         let animationView = LottieAnimationView(name: "wavesAnimation")

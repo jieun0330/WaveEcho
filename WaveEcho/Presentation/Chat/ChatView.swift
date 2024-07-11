@@ -31,7 +31,6 @@ final class ChatView: BaseView {
     
     private let myChat = {
         let chat = UILabel()
-        chat.text = "test"
         return chat
     }()
     

@@ -7,15 +7,18 @@
 
 import UIKit
 
+// 용량: 5MB 제한
 extension UIImage {
+    
     func imageZipLimit(zipRate: Double) -> Data? {
+        // 1MB
         let limitBytes = zipRate * 1024 * 1024
-        print("클라이언트가 원하는 크기",limitBytes)
         var currentQuality: CGFloat = 0.7
+        // jpeg 포맷으로 이미지 압축
         var imageData = self.jpegData(compressionQuality: currentQuality)
         
         while let data = imageData,
-              Double(imageData!.count) > limitBytes && currentQuality > 0{
+            Double(imageData!.count) > limitBytes && currentQuality > 0{
             print("현재 이미지 크기 :\(data.count)")
             currentQuality -= 0.1
             imageData = self.jpegData(compressionQuality: currentQuality)
@@ -23,7 +26,7 @@ extension UIImage {
         }
         
         if let data = imageData,
-           Double(data.count) <= limitBytes {
+            Double(data.count) <= limitBytes {
             print("압축 \(data.count) bytes, 압축률: \(currentQuality)")
             return data
             
@@ -33,5 +36,3 @@ extension UIImage {
         }
     }
 }
-
-

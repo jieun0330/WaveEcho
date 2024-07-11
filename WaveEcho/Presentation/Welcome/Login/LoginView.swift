@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class LoginView: BaseView {
+final class LoginView: BaseView {
     
     lazy var seaBackgroundLottiView : LottieAnimationView = {
         let animationView = LottieAnimationView(name: "wavesAnimation")
