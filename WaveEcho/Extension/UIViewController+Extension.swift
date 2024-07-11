@@ -51,23 +51,6 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func makeAlert(alertTitle: String, alertMessage: String?, completeAction: @escaping (UIAlertAction) -> Void) {
-        let alert = UIAlertController(title: alertTitle,
-                                      message: alertMessage,
-                                      preferredStyle: .alert)
-        let yes = UIAlertAction(title: "확인", style: .default) { [weak self] action in
-            guard let self else { return }
-            completeAction(action)
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-
-        alert.addAction(yes)
-        alert.addAction(cancel)
-        self.present(alert, animated: true)
-    }
-}
-
-extension UIViewController {
     func validButton(_ value: Bool, button: UIButton) {
         let validButtonColor: UIColor = value ? .systemYellow : .systemGray5
         button.backgroundColor = validButtonColor

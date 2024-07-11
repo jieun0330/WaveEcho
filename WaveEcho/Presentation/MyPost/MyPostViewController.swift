@@ -19,6 +19,7 @@ final class MyPostViewController: BaseViewController {
                                        image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
                                        handler: { [weak self] _ in
         guard let self else { return }
+                
         makeAlert(alertTitle: "로그아웃 하시겠습니까?", alertMessage: nil) { [weak self] completeAction in
             guard let self else { return }
             view.makeToast("로그아웃되었습니다", duration: 1, position: .center) { [weak self] didTap in

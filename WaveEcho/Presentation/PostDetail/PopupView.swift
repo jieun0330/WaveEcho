@@ -39,7 +39,7 @@ final class PopupView: BaseView {
     var nicknameLabel = {
         let label = UIButton()
         label.setTitleColor(.black, for: .normal)
-        label.backgroundColor = .yellow
+//        label.backgroundColor = .yellow
         return label
     }()
     

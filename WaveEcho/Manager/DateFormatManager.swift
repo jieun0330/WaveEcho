@@ -13,6 +13,8 @@ final class DateFormatManager {
     private init() { }
     
     private let dateFormatter = DateFormatter()
+    
+    
     private let relativeDateFormatter = RelativeDateTimeFormatter()
     
     func stringToDate(date: String) -> Date? {

@@ -17,10 +17,10 @@ protocol fetchComment: AnyObject {
 
 final class ReplyViewController: BaseViewController {
     
+    weak var delegate: fetchComment?
     let mainView = ReplyView()
     private let viewModel = ReplyViewModel()
     var postID = BehaviorRelay<String>(value: "")
-    weak var delegate: fetchComment?
     
     override func loadView() {
         view = mainView

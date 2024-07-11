@@ -35,6 +35,7 @@ class WritePostView: BaseView {
     let letterView = {
         let view = UIView()
         view.backgroundColor = .systemCyan.withAlphaComponent(0.3)
+        view.layer.cornerRadius = 20
         return view
     }()
     
