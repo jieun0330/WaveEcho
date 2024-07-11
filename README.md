@@ -9,6 +9,14 @@
 
 <br/>
 
+## ⚒️ 스크린샷
+<picture>![Group 517167395](https://github.com/jieun0330/WaveEcho/assets/42729069/56c5b6ab-b59f-439e-bffc-8fe018705ac6)</picture>
+
+
+<br/>
+
+## 🪚 시연 영상
+
 #### 유저 관리
 | 회원가입 | 로그인 | 로그아웃 | 회원탈퇴 |
 |:---:|:---:|:---:|:---:|
@@ -35,23 +43,24 @@
 
 <br/>
 
+
 ## 🛠️ 사용기술 및 라이브러리
 `UIKit(Code Base)` `MVVM` `RxSwift` `SnapKit` `Kingfisher` `Alamofire` `Toast`
 
 <br/>
 
 ## 🔧 구현 고려사항
-- 공통 기능을 포함한 `BaseViewController`를 사용하여, 중복 코드를 줄이고 코드의 재사용성을 높임
-- `RxSwift`를 활용하여 비동기 데이터 스트림 관리
-- UI 업데이트를 위해 `Driver`를 활용하여 메인 스레드에서 안전하게 작업이 이루어지도록 보장
-- 입력`Input`과 출력`Output` 구조체를 사용하여 코드의 모듈화와 가독성 향상
-- `deinit`을 통해 `ViewController`가 제대로 해제되는지 확인하여 메모리 누수 방지
-- `RxSwift Single` 및 `TargetType` 프로토콜을 통한 네트워크 요청 로직 구성
-- `Alamofire interceptor`를 통한 JWT 토큰 기반 회원 인증 기능 구현
-- `Multipart Form Data` 기반으로 이미지 업로드 구현
-- 새로운 API 호출 유형이나 에러 케이스가 추가될 경우, `APIError`와 `CallType`에 대한 처리 로직을 쉽게 확장할 수 있음
-- PG 결제 시스템 연동 및 영수증 검증 처리
-  
+- RxSwift를 사용해 Reactive Programming을 통한 비동기 데이터 스트림 관리
+- RxSwift Single과 TargetType 프로토콜 네트워크 요청 로직 구현
+- Alamofire interceptor를 사용한 JWT 토큰 기반 회원 인증 로직 개발
+- RxSwift Driver로 메인 스레드에서 안전한 UI 업데이트 보장
+- PG 결제 시스템 통합 및 영수증 검증 처리
+- Multipart Form Data를 활용한 이미지 업로드 기능 개발
+- Class Deinit 및 Instruments 분석을 통해 Memory Leak 방지
+- Input/Output 패턴을 활용해 단방향 데이터 바인딩 구조 설계
+- APIError와 CallType 구조를 통해 새로운 API 호출 및 에러 케이스 확장 용이
+- BaseViewController로 공통 기능 통합 및 코드 재사용성 향상
+
 
 <br/>
 
@@ -61,6 +70,41 @@
 
 **❌ 문제 상황**
 <br/>
+
+댓글 작성 후 화면 전환시 댓글 업데이트 문제
+
+**⭕️ 해결 방법**
+- `protocol`을 사용하여 댓글 데이터 전달
+- 댓글 작성이 완료되었을 때 `delegate`를 통해 데이터 업데이트
+
+
+```swift
+// ReplyViewController
+protocol fetchComment: AnyObject {
+    func fetchDone(data: CommentData)
+}
+
+final class ReplyViewController: BaseViewController {
+    
+    weak var delegate: fetchComment?
+```
+
+```swift
+// PopupViewController
+extension PopupViewController: fetchComment {
+    func fetchDone(data: CommentData) {
+        var value = behaviorModel.value
+        value.comments.insert(data, at: 0)
+        behaviorModel.accept(value)
+    }
+}
+```
+<br/>
+
+
+**❌ 문제 상황**
+<br/>
+
 이미지 용량 압축 작업을 하지 않아 이미지 업로드 실패
 
 **⭕️ 해결 방법**
@@ -95,7 +139,9 @@ extension WritePostViewController: PHPickerViewControllerDelegate {
 
 **❌ 문제 상황: 에러 응답 코드 흐름 이해**
 <br/>
-서버로부터 받는 응답코드 419와 418의 처리 방식을 이해하는 것이 어려웠다. 419 상태 코드를 만났을 때, 418 상태 코드를 만나지 않고는 접할 수 없다는 점이었다.
+서버로부터 받는 응답코드 419와 418의 처리 방식을 이해하는 것이 어려웠다.
+<br/>
+419 상태 코드를 만났을 때, 418 상태 코드를 만나지 않고는 접할 수 없다는 점이었다.
 
 **⭕️ 해결 방법**
 - 먼저, 419와 418 응답 코드의 처리방법을 명확히 이해
