@@ -22,6 +22,7 @@ struct PostData: Decodable {
     var comments: [CommentData]
     var currentLocation = 0 // 서버에는 없는 응답
 
+    // 서버에 없는 응답값으로 인해 decoding 에러가 날 수 있으니
     enum CodingKeys: CodingKey {
         case post_id
         case product_id

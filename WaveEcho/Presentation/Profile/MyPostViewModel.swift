@@ -83,7 +83,8 @@ final class MyPostViewModel: ViewModelType {
 
                 value.remove(at: index)
                 postDataSuccess.accept(value)
-                return APIManager.shared.create(type: PostModel.self, router: PostsRouter.deletePost(id: postData.post_id)) 
+                return APIManager.shared.create(type: PostModel.self,
+                                                router: PostsRouter.deletePost(id: postData.post_id))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -95,8 +96,6 @@ final class MyPostViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(postDataSuccess: postDataSuccess.asDriver(),
-                      postDataError: postDataError.asDriver(onErrorJustReturn: .code500),
-                      profileSuccess: profileSuccess.asDriver(onErrorJustReturn: ProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [])), profileError: profileError.asDriver(onErrorJustReturn: .code500))
+        return Output(postDataSuccess: postDataSuccess.asDriver(), postDataError: postDataError.asDriver(onErrorJustReturn: .code500), profileSuccess: profileSuccess.asDriver(onErrorJustReturn: ProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [])), profileError: profileError.asDriver(onErrorJustReturn: .code500))
     }
 }

@@ -17,7 +17,8 @@ struct PayManager {
     
     private init() { }
     
-    func pay(amount: String, productTitle: String, webView: WKWebView, completionHandler: @escaping (IamportResponse?) -> Void) {
+    func pay(amount: String, productTitle: String, webView: WKWebView,
+             completionHandler: @escaping (IamportResponse?) -> Void) {
         
         // 결제 요청 데이터 구성(어떤 유저가 어떤 상품을 어떤 금액에 어떤 결제사를 통해 주문했는 지의 정보)
         let payment = IamportPayment(

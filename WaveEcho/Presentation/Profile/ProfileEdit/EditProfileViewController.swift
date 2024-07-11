@@ -97,7 +97,8 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
     }
     
     // 이미지 피커에서 이미지를 선택했을 때 호출되는 메서드
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         // 이미지를 이미지 뷰에 표시
         if let pickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {

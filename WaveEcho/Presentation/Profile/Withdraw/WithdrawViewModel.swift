@@ -41,7 +41,6 @@ final class WithdrawViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        return Output(withdrawSuccess: withdrawSuccess.asDriver(onErrorJustReturn: WithdrawModel(user_id: "", email: "", nick: "")),
-                      withdrawError: withdrawError.asDriver(onErrorJustReturn: .code500))
+        return Output(withdrawSuccess: withdrawSuccess.asDriver(onErrorJustReturn: WithdrawModel(user_id: "", email: "", nick: "")), withdrawError: withdrawError.asDriver(onErrorJustReturn: .code500))
     }
 }

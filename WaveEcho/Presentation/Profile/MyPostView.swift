@@ -102,7 +102,8 @@ final class MyPostView: BaseView {
         nickname.text = data.nick
         
         if let profileImageUrl = URL(string: data.profileImage ?? "") {
-            profileImage.kf.setImage(with: profileImageUrl, options: [.requestModifier(KingFisherNet())])
+            profileImage.kf.setImage(with: profileImageUrl,
+                                     options: [.requestModifier(KingFisherNet())])
         } else {
             profileImage.image = .profileImg
             profileImage.contentMode = .scaleAspectFit

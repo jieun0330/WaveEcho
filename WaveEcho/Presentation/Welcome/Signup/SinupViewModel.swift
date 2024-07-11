@@ -93,7 +93,8 @@ final class SinupViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(signupObservable)
             .flatMapLatest { signupRequest in
-                return APIManager.shared.create(type: SignupModel.self, router: UsersRouter.signup(query: signupRequest))
+                return APIManager.shared.create(type: SignupModel.self,
+                                                router: UsersRouter.signup(query: signupRequest))
             }
             .bind(with: self) { owner, result in
                 switch result {

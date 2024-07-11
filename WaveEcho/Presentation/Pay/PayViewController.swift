@@ -30,7 +30,8 @@ final class PayViewController: BaseViewController {
         let paymentSuccess = PublishRelay<Void>()
 
         // postID를 받기위한 과정
-        let result = APIManager.shared.create(type: PostModel.self, router: PostsRouter.userPost(id: UserDefaultsManager.shared.userID))
+        let result = APIManager.shared.create(type: PostModel.self,
+                                              router: PostsRouter.userPost(id: UserDefaultsManager.shared.userID))
         result.asObservable()
             .bind(with: self) { owner, result in
                 switch result {

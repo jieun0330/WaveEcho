@@ -40,6 +40,6 @@ final class PaymentHistoryViewController: BaseViewController {
                 let date = DateFormatManager.shared.stringToString(date: item.paidAt)
                 cell.date.text = date
             }
-                                                  .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
 }

@@ -32,7 +32,8 @@ final class MyPostViewController: BaseViewController {
                                          image: UIImage(systemName: "person.slash"),
                                          handler: { [weak self] _ in
         guard let weakSelf = self else { return }
-        weakSelf.makeAlert(alertTitle: "탈퇴하시겠습니까?", alertMessage: "비밀번호 확인이 필요합니다") { completeAction in
+        weakSelf.makeAlert(alertTitle: "탈퇴하시겠습니까?",
+                           alertMessage: "비밀번호 확인이 필요합니다") { completeAction in
             weakSelf.pushVC(WithdrawViewController())
         }
     })

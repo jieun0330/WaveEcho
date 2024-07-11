@@ -78,7 +78,8 @@ final class WritePostViewModel: ViewModelType {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .withLatestFrom(contentObservable)
             .flatMapLatest { postRequest in
-                return APIManager.shared.create(type: PostModel.self, router: PostsRouter.createPosts(query: postRequest))
+                return APIManager.shared.create(type: PostModel.self,
+                                                router: PostsRouter.createPosts(query: postRequest))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -96,8 +97,6 @@ final class WritePostViewModel: ViewModelType {
             .bind(to: uploadPhotoTrigger)
             .disposed(by: disposeBag)
         
-        return Output(createPostTrigger: createPostTrigger.asDriver(onErrorJustReturn: ()),
-                      createPostError: createPostError.asDriver(onErrorJustReturn: .code500),
-                      uploadPhotoButtonTapped: uploadPhotoTrigger.asDriver(onErrorJustReturn: ()), validUpload: validUpload.asDriver())
+        return Output(createPostTrigger: createPostTrigger.asDriver(onErrorJustReturn: ()), createPostError: createPostError.asDriver(onErrorJustReturn: .code500), uploadPhotoButtonTapped: uploadPhotoTrigger.asDriver(onErrorJustReturn: ()), validUpload: validUpload.asDriver())
     }
 }
