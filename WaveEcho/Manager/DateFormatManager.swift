@@ -8,32 +8,27 @@
 import Foundation
 
 final class DateFormatManager {
+    
     static let shared = DateFormatManager()
     
     private init() { }
     
     private let dateFormatter = DateFormatter()
-    
-    
     private let relativeDateFormatter = RelativeDateTimeFormatter()
     
+    private let standardDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    private let displayDateFormat = "M월 d일 HH시 mm분"
+    
     func stringToDate(date: String) -> Date? {
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        if let date = dateFormatter.date(from: date) {
-            return date
-        } else {
-            return nil
-        }
+        dateFormatter.dateFormat = standardDateFormat
+        return dateFormatter.date(from: date)
     }
     
     func stringToString(date: String) -> String {
-        
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        let convertToDate = dateFormatter.date(from: date)
-        let myDateFormatter = DateFormatter()
-        myDateFormatter.dateFormat = "M월 d일 HH시 mm분"
-        return myDateFormatter.string(from: convertToDate!)
+        dateFormatter.dateFormat = standardDateFormat
+        guard let converTodate = dateFormatter.date(from: date) else { return "" }
+        dateFormatter.dateFormat = displayDateFormat
+        return dateFormatter.string(from: converTodate)
     }
     
     func relativeDate(date: Date) -> String {
@@ -42,5 +37,3 @@ final class DateFormatManager {
         return relativeDateFormatter.localizedString(for: date, relativeTo: Date())
     }
 }
-
-
