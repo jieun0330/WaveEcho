@@ -82,7 +82,7 @@ final class SignupViewController: BaseViewController {
         // 회원가입 에러 처리
         output.signupError
             .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .signup)
+                owner.errorAlert(error: error, callType: .signup)
             }
             .disposed(by: disposeBag)
                 

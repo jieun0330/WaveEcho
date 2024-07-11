@@ -151,7 +151,7 @@ final class PostsViewController: BaseViewController {
         // 포스팅 에러 핸들링
         output.postError
             .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .createPosts)
+                owner.errorAlert(error: error, callType: .createPosts)
             }
             .disposed(by: disposeBag)
         

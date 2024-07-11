@@ -42,7 +42,7 @@ final class WithdrawViewController: BaseViewController {
         
         output.withdrawError
             .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .withdraw)
+                owner.errorAlert(error: error, callType: .withdraw)
             }
             .disposed(by: disposeBag)
     }

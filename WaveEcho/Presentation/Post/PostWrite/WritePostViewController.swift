@@ -92,7 +92,7 @@ final class WritePostViewController: BaseViewController {
         // 포스팅 작성 에러 핸들링
         output.createPostError
             .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .createPosts)
+                owner.errorAlert(error: error, callType: .createPosts)
             }
             .disposed(by: disposeBag)
     }

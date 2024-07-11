@@ -57,7 +57,7 @@ final class ReplyViewController: BaseViewController {
         
         output.commentError
             .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .writeComment)
+                owner.errorAlert(error: error, callType: .writeComment)
             }
             .disposed(by: disposeBag)
         

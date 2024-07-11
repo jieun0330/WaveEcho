@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C2063B9A2C3F81830052527A /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063B992C3F81830052527A /* FileManager.swift */; };
 		C2063B9C2C3F94990052527A /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063B9B2C3F94990052527A /* UIImage.swift */; };
+		C2063BA02C3FBDA90052527A /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2063B9F2C3FBDA90052527A /* ErrorHandler.swift */; };
 		C20E68992BD685D100507C0B /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68982BD685D100507C0B /* PostsTableViewCell.swift */; };
 		C20E689C2BD73D9B00507C0B /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */; };
 		C20E68B02BD7C51A00507C0B /* RefreshToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */; };
@@ -128,6 +129,7 @@
 /* Begin PBXFileReference section */
 		C2063B992C3F81830052527A /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		C2063B9B2C3F94990052527A /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		C2063B9F2C3FBDA90052527A /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		C20E68982BD685D100507C0B /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		C20E689B2BD73D9B00507C0B /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 		C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToken.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				C2CDC2E32BD62EFC00176723 /* APIManager.swift */,
 				C20E68AF2BD7C51A00507C0B /* RefreshToken.swift */,
 				C2FB75B42BF9078C00B8F60A /* SocketIOManager.swift */,
+				C2063B9F2C3FBDA90052527A /* ErrorHandler.swift */,
 				C269AF232BE2A2FA00BB6E20 /* Router */,
 				C2DC2BFC2BCD217800A1D102 /* Request */,
 				C2DC2C012BCD217800A1D102 /* Response */,
@@ -789,6 +792,7 @@
 				C269AF0E2BE1F96E00BB6E20 /* ReplyView.swift in Sources */,
 				C230771D2BF8801A00FF732E /* ChatRouter.swift in Sources */,
 				C23AFEA12BC6D2380000EBE5 /* TargetType.swift in Sources */,
+				C2063BA02C3FBDA90052527A /* ErrorHandler.swift in Sources */,
 				C2FB75B52BF9078C00B8F60A /* SocketIOManager.swift in Sources */,
 				C28A3A112BE7BF24000B2E90 /* LikeQuery.swift in Sources */,
 				C2DC2C022BCD217800A1D102 /* LoginRequestBody.swift in Sources */,

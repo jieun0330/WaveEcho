@@ -68,7 +68,7 @@ final class LoginViewController: BaseViewController {
         // 로그인 실패했을 시 에러 핸들링
         output.loginError
             .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .login)
+                owner.errorAlert(error: error, callType: .login)
             }
             .disposed(by: disposeBag)
         

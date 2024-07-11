@@ -77,7 +77,7 @@ final class PayViewController: BaseViewController {
                 case .success():
                     paymentSuccess.accept(())
                 case .failure(let error):
-                    owner.errorHandler(apiError: error, calltype: .paymentValidation)
+                    owner.errorAlert(error: error, callType: .paymentValidation)
                 }
             }
             .disposed(by: disposeBag)

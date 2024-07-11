@@ -81,7 +81,7 @@ final class EditProfileViewController: BaseViewController {
        
         output.editProfileError
             .drive(with: self) { owner, error in
-                owner.errorHandler(apiError: error, calltype: .editMyProfile)
+                owner.errorAlert(error: error, callType: .editMyProfile)
             }
             .disposed(by: disposeBag)
     }
