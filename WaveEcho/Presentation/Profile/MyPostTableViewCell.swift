@@ -19,7 +19,8 @@ final class MyPostTableViewCell: BaseTableViewCell, ReusableProtocol {
     
     private let contentImage = {
         let image = UIImageView()
-        image.backgroundColor = .brown
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         return image
     }()
     

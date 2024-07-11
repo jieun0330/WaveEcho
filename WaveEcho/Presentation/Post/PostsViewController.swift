@@ -99,12 +99,6 @@ final class PostsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-//        mainView.chat.rx.tap
-//            .bind(with: self) { owner, _ in
-//                owner.moveVC(vc: ChatListViewController())
-//            }
-//            .disposed(by: disposeBag)
-        
         // 포스팅 작성 화면 전환
         mainView.sendWaveButton.rx.tap
             .bind(with: self) { owner, _ in

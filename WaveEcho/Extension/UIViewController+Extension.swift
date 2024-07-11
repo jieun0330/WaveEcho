@@ -37,6 +37,7 @@ extension Reactive where Base: UIViewController {
 }
 
 extension UIViewController {
+    // 뷰 전환
     func setVC(vc: UIViewController) {
         let vc = UINavigationController (rootViewController: vc)
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }

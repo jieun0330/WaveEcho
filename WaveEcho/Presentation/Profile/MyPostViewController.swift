@@ -19,14 +19,11 @@ final class MyPostViewController: BaseViewController {
     private lazy var logout = UIAction(title: "로그아웃",
                                        image: UIImage(systemName: "rectangle.portrait.and.arrow.right"),
                                        handler: { [weak self] _ in
-        guard let self else { return }
-                
-        makeAlert(alertTitle: "로그아웃 하시겠습니까?", alertMessage: nil) { [weak self] completeAction in
-            guard let self else { return }
-            view.makeToast("로그아웃되었습니다", duration: 1, position: .center) { [weak self] didTap in
-                guard let self else { return }
+        guard let weakSelf = self else { return }
+        weakSelf.makeAlert(alertTitle: "로그아웃 하시겠습니까?", alertMessage: nil) {completeAction in
+            weakSelf.view.makeToast("로그아웃되었습니다", duration: 1, position: .center) { didTap in
                 UserDefaultsManager.shared.accessToken.removeAll()
-                setVC(vc: LoginViewController())
+                weakSelf.setVC(vc: LoginViewController())
             }
         }
     })
