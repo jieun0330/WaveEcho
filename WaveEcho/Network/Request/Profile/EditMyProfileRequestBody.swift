@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EditMyProfileRequestBody: Encodable {
+struct EditMyProfileRequestBody: Codable {
     let nick: String
     let profile: Data?
 }

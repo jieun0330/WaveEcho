@@ -21,7 +21,7 @@ class PostsViewModel {
         let postSuccess: Driver<PostModel>
         let postError: Driver<APIError>
         
-        let myProfile: Driver<MyProfileModel>
+        let myProfile: Driver<ProfileModel>
         let myProfileError: Driver<APIError>
     }
     
@@ -32,7 +32,7 @@ class PostsViewModel {
         let fetchPostsObservable = Observable.just(PostQueryString(next: "",
                                                                    limit: "10",
                                                                    product_id: "신디"))
-        let myProfile = PublishRelay<MyProfileModel>()
+        let myProfile = PublishRelay<ProfileModel>()
         let myProfileError = PublishRelay<APIError>()
         
         input.viewWillAppearTrigger
@@ -68,7 +68,7 @@ class PostsViewModel {
 //        
         return Output(postSuccess: postSuccess.asDriver(onErrorJustReturn: PostModel(data: [PostData(post_id: "", product_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""), files: [""], comments: [CommentData(comment_id: "", content: "", createdAt: "", creator: CreatorInfo(user_id: "", nick: "", profileImage: ""))])])),
                       postError: postError.asDriver(onErrorJustReturn: .code500),
-                      myProfile: myProfile.asDriver(onErrorJustReturn: MyProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [""])),
+                      myProfile: myProfile.asDriver(onErrorJustReturn: ProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [""])),
                       myProfileError: myProfileError.asDriver(onErrorJustReturn: .code500))
     }
 }

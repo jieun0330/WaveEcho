@@ -12,11 +12,19 @@ final class EditProfileView: BaseView {
     
     let profileImg = {
         let image = UIImageView()
-        image.image = .profile
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 50
         image.clipsToBounds = true
         return image
+    }()
+    
+    let imageEditButton = {
+        let button = UIButton()
+        button.backgroundColor = .systemGray6
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 25
+        button.setImage(UIImage(systemName: "photo"), for: .normal)
+        return button
     }()
 
     let nicknameLabel = {
@@ -40,7 +48,7 @@ final class EditProfileView: BaseView {
         return button
     }()
     
-    private let doneButton = {
+    let editDoneButton = {
         let button = UIButton()
         button.setTitle("프로필 수정", for: .normal)
         button.backgroundColor = UIColor(hexCode: "1A79E9", alpha: 0.6)
@@ -53,7 +61,7 @@ final class EditProfileView: BaseView {
     }
     
     override func configureHierarchy() {
-        [profileImg, nicknameLabel, nicknameTextField, withDrawButton, doneButton].forEach {
+        [profileImg, imageEditButton, nicknameLabel, nicknameTextField, withDrawButton, editDoneButton].forEach {
             addSubview($0)
         }
     }
@@ -64,6 +72,12 @@ final class EditProfileView: BaseView {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.centerX.equalToSuperview()
             $0.size.equalTo(100)
+        }
+        
+        imageEditButton.snp.makeConstraints {
+            $0.size.equalTo(40)
+            $0.trailing.equalTo(profileImg.snp.trailing)
+            $0.bottom.equalTo(profileImg.snp.bottom)
         }
         
         nicknameLabel.snp.makeConstraints {
@@ -80,10 +94,10 @@ final class EditProfileView: BaseView {
         
         withDrawButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(doneButton.snp.top).offset(-10)
+            $0.bottom.equalTo(editDoneButton.snp.top).offset(-10)
         }
         
-        doneButton.snp.makeConstraints {
+        editDoneButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(safeAreaLayoutGuide).offset(-20)
             $0.horizontalEdges.equalToSuperview().inset(40)
@@ -95,7 +109,13 @@ final class EditProfileView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData(_ data: MyProfileModel) {
+    func setData(_ data: ProfileModel) {
         nicknameTextField.text = data.nick
+        if let profileImageUrl = URL(string: data.profileImage ?? "") {
+            profileImg.kf.setImage(with: profileImageUrl, options: [.requestModifier(KingFisherNet())])
+        } else {
+            profileImg.image = .profileImg
+            profileImg.contentMode = .scaleAspectFit
+        }
     }
 }

@@ -19,6 +19,7 @@ final class UserDefaultsManager {
         case email
         case nickname
         case sendPost
+        case profileImg
     }
     
     let userDefaults = UserDefaults.standard
@@ -74,6 +75,15 @@ final class UserDefaultsManager {
         }
         set {
             userDefaults.set(newValue, forKey: UserDefaultsKey.sendPost.rawValue)
+        }
+    }
+
+    var profileImg: String {
+        get {
+            userDefaults.string(forKey: UserDefaultsKey.profileImg.rawValue) ?? ""
+        }
+        set {
+            userDefaults.set(newValue, forKey: UserDefaultsKey.profileImg.rawValue)
         }
     }
 }

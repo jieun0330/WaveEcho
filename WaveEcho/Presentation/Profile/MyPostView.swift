@@ -26,12 +26,9 @@ final class MyPostView: BaseView {
     
     let profileImage = {
         let profile = UIImageView()
-//        profile.image = .profile
         profile.contentMode = .scaleAspectFill
         profile.layer.cornerRadius = 35
         profile.clipsToBounds = true
-//        profile.layer.borderColor = UIColor(hexCode: "1A79E9", alpha: 0.6).cgColor
-//        profile.layer.borderWidth = 1
         return profile
     }()
     
@@ -101,12 +98,13 @@ final class MyPostView: BaseView {
         }
     }
     
-    func setData(_ data: MyProfileModel) {
+    func setData(_ data: ProfileModel) {
         nickname.text = data.nick
         if let profileImageUrl = URL(string: data.profileImage ?? "") {
             profileImage.kf.setImage(with: profileImageUrl, options: [.requestModifier(KingFisherNet())])
         } else {
-            profileImage.image = .profile
+            profileImage.image = .profileImg
+            profileImage.contentMode = .scaleAspectFit
         }
     }
 }

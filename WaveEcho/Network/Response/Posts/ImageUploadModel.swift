@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageUploadModel: Decodable {
+struct ImageUploadModel: Codable {
     let files: [String]
     
     enum CodingKeys: CodingKey {

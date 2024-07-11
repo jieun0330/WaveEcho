@@ -73,6 +73,38 @@ final class APIManager {
         }
     }
     
+    func uploadProfile(query: EditMyProfileRequestBody) -> Single<ProfileModel> {
+        return Single<ProfileModel>.create { single in
+            do {
+                let urlRequest = try ProfileRouter.editMyPofile(query: query).asURLRequest()
+                
+                AF.upload(multipartFormData: { multipartFormData in
+            
+                    multipartFormData.append(query.profile!,
+                                                 withName: "profile",
+                                                 fileName: "sesac.png",
+                                                 mimeType: "image/png")
+                    
+                    if let stringData = query.nick.data(using: .utf8) {
+                           multipartFormData.append(stringData, withName: "nick")
+                       }
+                }, with: urlRequest, interceptor: RefreshToken())
+                .responseDecodable(of: ProfileModel.self) { response in
+                    switch response.result {
+                    case .success(let success):
+                        print(success)
+                        single(.success(success))
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            } catch {
+                single(.failure(error))
+            }
+            return Disposables.create()
+        }
+    }
+    
     func pay(amount: String, productTitle: String, webView: WKWebView, completionHandler: @escaping (IamportResponse?) -> Void) {
         
         let payment = IamportPayment(

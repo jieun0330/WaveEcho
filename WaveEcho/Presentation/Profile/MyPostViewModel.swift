@@ -20,10 +20,10 @@ final class MyPostViewModel: ViewModelType {
     }
     
     struct Output {
-        let postDataSuccess: Driver<[PostData]> // hot&cold observable
+        let postDataSuccess: Driver<[PostData]>
         let postDataError: Driver<APIError>
         // 프로필 조회 성공
-        let profileSuccess: Driver<MyProfileModel>
+        let profileSuccess: Driver<ProfileModel>
         // 프로필 조회 실패
         let profileError: Driver<APIError>
     }
@@ -32,17 +32,16 @@ final class MyPostViewModel: ViewModelType {
         let postDataSuccess = BehaviorRelay<[PostData]> (value: [])
         let postDataError = PublishRelay<APIError>()
         // 포스트 삭제
-        let deletePostError = PublishRelay<APIError>() // postDataError와 다른점은?
+        let deletePostError = PublishRelay<APIError>()
         // 프로필 조회 성공
-        let profileSuccess = PublishRelay<MyProfileModel>()
+        let profileSuccess = PublishRelay<ProfileModel>()
         // 프로필 조회 실패
         let profileError = PublishRelay<APIError>()
         
         input.viewDidLoad
-            .flatMap { _ in // flatMap vs flatMapLatest
+            .flatMap { _ in
                 return APIManager.shared.create(type: PostModel.self,
                                                 router: PostsRouter.userPost(id: UserDefaultsManager.shared.userID))
-//                                                router: PostsRouter.userPost(id: UserDefaults.standard.string(forKey: "userID") ?? ""))
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -56,7 +55,7 @@ final class MyPostViewModel: ViewModelType {
         
         input.viewDidLoad
             .flatMapLatest { _ in
-                return APIManager.shared.create(type: MyProfileModel.self,
+                return APIManager.shared.create(type: ProfileModel.self,
                                                 router: ProfileRouter.myProfile)
             }
             .bind(with: self) { owner, result in
@@ -78,7 +77,7 @@ final class MyPostViewModel: ViewModelType {
 
                 value.remove(at: index)
                 postDataSuccess.accept(value)
-                return APIManager.shared.create(type: PostModel.self, router: PostsRouter.deletePost(id: postData.post_id)) // Single?
+                return APIManager.shared.create(type: PostModel.self, router: PostsRouter.deletePost(id: postData.post_id)) 
             }
             .bind(with: self) { owner, result in
                 switch result {
@@ -92,6 +91,6 @@ final class MyPostViewModel: ViewModelType {
         
         return Output(postDataSuccess: postDataSuccess.asDriver(),
                       postDataError: postDataError.asDriver(onErrorJustReturn: .code500),
-                      profileSuccess: profileSuccess.asDriver(onErrorJustReturn: MyProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [])), profileError: profileError.asDriver(onErrorJustReturn: .code500))
+                      profileSuccess: profileSuccess.asDriver(onErrorJustReturn: ProfileModel(user_id: "", email: "", nick: "", profileImage: "", posts: [])), profileError: profileError.asDriver(onErrorJustReturn: .code500))
     }
 }

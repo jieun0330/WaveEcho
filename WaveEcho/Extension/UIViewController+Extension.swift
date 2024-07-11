@@ -48,6 +48,14 @@ extension UIViewController {
     func moveVC(vc: UIViewController) {
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func present(nowVC: UIViewController, toVC: UIViewController) {
+        nowVC.present(toVC, animated: true)
+    }
+    
+    func pop (_ nowVC: UIViewController) {
+        nowVC.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension UIViewController {
