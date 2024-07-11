@@ -89,13 +89,12 @@ final class MyPostViewController: BaseViewController {
                 cell.setData(item)
                 cell.selectionStyle = .none
             }
-                                                  .disposed(by: disposeBag)
+             .disposed(by: disposeBag)
         
         // 프로필 조회
         output.profileSuccess
             .drive(with: self) { owner, myProfile in
-                                owner.mainView.setData(myProfile)
-
+                owner.mainView.setData(myProfile)
             }
             .disposed(by: disposeBag)
         

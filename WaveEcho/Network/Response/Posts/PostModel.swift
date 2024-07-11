@@ -55,6 +55,10 @@ struct PostData: Decodable {
         self.likes = likes
         self.comments = comments
     }
+    
+    mutating func countTrigger(_ num: Int) {
+        currentLocation = num
+    }
 }
 
 struct CreatorInfo: Decodable {

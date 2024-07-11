@@ -46,7 +46,13 @@ final class MyPostViewModel: ViewModelType {
             .bind(with: self) { owner, result in
                 switch result {
                 case .success(let success):
-                    postDataSuccess.accept(success.data)
+                    let mapping = success.data.enumerated().map { index, model -> PostData in
+                        var changedModel = model
+                        // 인덱스 값 설정
+                        changedModel.countTrigger(index)
+                        return changedModel
+                    }
+                    postDataSuccess.accept(mapping)
                 case .failure(let error):
                     postDataError.accept(error)
                 }
